@@ -1,0 +1,179 @@
+Time: Tue Mar 05 2013 03:06:13 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 03:06:13 GMT+0530 (IST) Message: Error in Reading filetypelist.txt:
+Error: ENOENT, open 'filetypelist.txt'
+
+Time: Tue Mar 05 2013 03:07:46 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 03:07:46 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 03:07:46 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:07:46 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 03:07:46 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 03:07:46 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:07:46 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 03:08:40 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 03:08:40 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 03:08:40 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:08:40 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 03:08:40 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 03:08:40 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:08:40 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 03:08:56 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 03:08:56 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 03:08:56 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:08:56 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 03:08:56 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 03:08:56 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:08:56 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 03:09:10 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 03:09:10 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 03:09:10 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:09:10 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 03:09:10 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 03:09:10 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:09:10 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 03:10:35 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 03:10:35 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 03:10:35 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:10:35 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 03:10:35 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 03:10:35 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:10:35 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 03:13:14 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 03:13:14 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 03:13:14 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:13:14 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 03:13:14 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 03:13:14 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 03:13:14 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 10:46:29 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 10:46:29 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 10:46:29 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:46:29 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 10:46:31 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 10:46:31 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:46:31 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 10:46:46 GMT+0530 (IST) Message: Request Details: {"pathname":"/veoozloading.gif","path":"/veoozloading.gif","href":"/veoozloading.gif"}
+Time: Tue Mar 05 2013 10:46:46 GMT+0530 (IST) Message: File Extension is = gif
+Time: Tue Mar 05 2013 10:46:46 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:46:46 GMT+0530 (IST) Message: Written File Contents to Response with content-type: image/gif
+
+Time: Tue Mar 05 2013 10:46:48 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 10:46:48 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:46:48 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 10:46:56 GMT+0530 (IST) Message: Request Details: {"pathname":"/veoozloading.gif","path":"/veoozloading.gif","href":"/veoozloading.gif"}
+Time: Tue Mar 05 2013 10:46:56 GMT+0530 (IST) Message: File Extension is = gif
+Time: Tue Mar 05 2013 10:46:56 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:46:56 GMT+0530 (IST) Message: Written File Contents to Response with content-type: image/gif
+
+Time: Tue Mar 05 2013 10:46:56 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 10:46:56 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:46:56 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 10:47:24 GMT+0530 (IST) Message: Request Details: {"pathname":"/log.txt","path":"/log.txt","href":"/log.txt"}
+Time: Tue Mar 05 2013 10:47:24 GMT+0530 (IST) Message: File Extension is = txt
+Time: Tue Mar 05 2013 10:47:24 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:47:24 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/plain
+
+Time: Tue Mar 05 2013 10:47:24 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 10:47:24 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:47:24 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 10:47:31 GMT+0530 (IST) Message: Request Details: {"pathname":"/index.html","path":"/index.html","href":"/index.html"}
+Time: Tue Mar 05 2013 10:47:31 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 10:47:31 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:47:31 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 10:47:31 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 10:47:31 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:47:31 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 10:47:48 GMT+0530 (IST) Message: Request Details: {"pathname":"/fwdicons.zip","path":"/fwdicons.zip","href":"/fwdicons.zip"}
+Time: Tue Mar 05 2013 10:47:49 GMT+0530 (IST) Message: File Extension is = zip
+Time: Tue Mar 05 2013 10:47:49 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 10:47:49 GMT+0530 (IST) Message: Written File Contents to Response with content-type: multipart/x-zip
+
+Time: Tue Mar 05 2013 11:04:21 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 11:04:21 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 11:04:21 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:04:21 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 11:04:21 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 11:04:21 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:04:21 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 11:05:11 GMT+0530 (IST) Message: Request Details: {"pathname":"/veoozloading.gif","path":"/veoozloading.gif","href":"/veoozloading.gif"}
+Time: Tue Mar 05 2013 11:05:11 GMT+0530 (IST) Message: File Extension is = gif
+Time: Tue Mar 05 2013 11:05:11 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:05:11 GMT+0530 (IST) Message: Written File Contents to Response with content-type: image/gif
+
+Time: Tue Mar 05 2013 11:05:11 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 11:05:11 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:05:11 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 11:05:18 GMT+0530 (IST) Message: Request Details: {"pathname":"/log.txt","path":"/log.txt","href":"/log.txt"}
+Time: Tue Mar 05 2013 11:05:18 GMT+0530 (IST) Message: File Extension is = txt
+Time: Tue Mar 05 2013 11:05:18 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:05:18 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/plain
+
+Time: Tue Mar 05 2013 11:05:18 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 11:05:18 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:05:18 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 11:38:43 GMT+0530 (IST) Message: Request Details: {"pathname":"/filerserver.js","path":"/filerserver.js","href":"/filerserver.js"}
+Time: Tue Mar 05 2013 11:38:43 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:38:43 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './filerserver.js'
+
+Time: Tue Mar 05 2013 11:38:43 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 11:38:43 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:38:43 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 11:38:50 GMT+0530 (IST) Message: Request Details: {"pathname":"/fileserver.js","path":"/fileserver.js","href":"/fileserver.js"}
+Time: Tue Mar 05 2013 11:38:50 GMT+0530 (IST) Message: File Extension is = js
+Time: Tue Mar 05 2013 11:38:50 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:38:50 GMT+0530 (IST) Message: Written File Contents to Response with content-type: application/x-javascript
+
+Time: Tue Mar 05 2013 11:38:50 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 11:38:50 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 11:38:50 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Tue Mar 05 2013 12:14:13 GMT+0530 (IST) Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Tue Mar 05 2013 12:14:13 GMT+0530 (IST) Message: File Extension is = html
+Time: Tue Mar 05 2013 12:14:13 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 12:14:13 GMT+0530 (IST) Message: Written File Contents to Response with content-type: text/html
+
+Time: Tue Mar 05 2013 12:14:13 GMT+0530 (IST) Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Tue Mar 05 2013 12:14:13 GMT+0530 (IST) Message: Response Completed
+Time: Tue Mar 05 2013 12:14:13 GMT+0530 (IST) Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+

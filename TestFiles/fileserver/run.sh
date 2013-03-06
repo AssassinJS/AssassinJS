@@ -1,1 +1,0 @@
-sudo node fileserver.js

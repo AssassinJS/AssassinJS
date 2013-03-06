@@ -1,0 +1,4 @@
+GET	/test	test
+GET	/test/again	again
+POST	/test	testpost
+GET	/	fileserve

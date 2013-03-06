@@ -1,34 +1,25 @@
-var url = require('url');
-var fileserver = require('../fileserver/fileserver');
-var controller = require('../controllers/controller');
-var $ = require('jquery');
-//var api = require('./api');
+/* router.js
+ ***** Part of AssassinJS *****
+  - (c)2013 Adithya and Sai Teja under MIT (Open Source) License
+  
+ This is the file that maps the request URL's to those in the routes.txt file
 
+*/
+
+var url = require('url');
+var $ = require('jquery');
+var controller = require('../controllers/controller');
 var config = require('./config');
 var logger = require('./logger');
 
 function route(request,response)
-{		
-	//var result = api.delegate(request,response);
-	//consolePrint(request);
-	
+{			
 	var routes = config.getRoutes();
 	var reqDetails = url.parse(request.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
 	var filepath = reqDetails.pathname;
 	
 	controller.handleRequest(routes[filepath],request,response);
-	
-	if(routes[filepath] != null)
-	{
-		logger.write('Route is '+routes[filepath]);
-		//Need to handle FunctionServer here
-	}
-	else
-	{
-		logger.write('No Route for Request is found');
-		//fileserver.handleRequest(request,response);
-	}
 	
 }
 

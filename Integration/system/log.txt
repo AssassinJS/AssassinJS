@@ -1047,3 +1047,674 @@ Time: Wed Mar 06 2013 16:14:57 GMT+0530 (IST)
 	Message: config object={"port":"8000","address":"127.0.0.1"}
 Time: Wed Mar 06 2013 16:14:57 GMT+0530 (IST)
 	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:23:15 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:23:15 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:23:15 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:23:15 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserve"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:23:15 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:23:15 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:23:15 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:23:15 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:24:32 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:24:32 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:24:32 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:24:32 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserve"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:24:32 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:24:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:24:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:24:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:24:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserve"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:24:42 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:24:43 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:24:43 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:24:43 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:24:53 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:24:53 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:24:53 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:24:53 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserve"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:24:53 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:24:53 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:24:53 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:24:53 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserve"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:39:12 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserve"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:40:25 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserve"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:40:41 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:41:06 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:41:06 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:41:06 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserve"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:41:06 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:41:06 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:41:06 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:41:06 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:41:06 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:41:06 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserve"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:41:33 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:41:40 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserve"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:41:40 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:41:40 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserve"}
+Time: Wed Mar 06 2013 16:41:40 GMT+0530 (IST)
+	Message: endpoint function undefined not defined
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:41:59 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:42:01 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:42:01 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:42:01 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:42:01 GMT+0530 (IST)
+	Message: endpoint function undefined not defined
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:42:55 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:43:04 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:43:04 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:43:04 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:43:04 GMT+0530 (IST)
+	Message: endpoint function undefined not defined
+Time: Wed Mar 06 2013 16:43:43 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:43:43 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:43:43 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:43:43 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:43:43 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:43:43 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:43:43 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:43:43 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:43:43 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:43:56 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:43:59 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:44:06 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:44:06 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:44:06 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:44:06 GMT+0530 (IST)
+	Message: endpoint function undefined not defined
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:44:26 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:44:30 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:44:30 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:44:30 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:44:30 GMT+0530 (IST)
+	Message: endpoint function undefined not defined
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:44:51 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:44:53 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:44:53 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:44:53 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:44:53 GMT+0530 (IST)
+	Message: endpoint function undefined not defined
+Time: Wed Mar 06 2013 16:45:07 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:45:07 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:45:07 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:45:07 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:45:07 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:45:07 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:45:07 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:45:07 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:45:07 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:45:08 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:45:08 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:45:08 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:45:09 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:45:09 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:45:09 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:45:09 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:45:09 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Wed Mar 06 2013 16:45:09 GMT+0530 (IST)
+	Message: Response Completed
+Time: Wed Mar 06 2013 16:45:09 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Wed Mar 06 2013 16:46:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:46:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:46:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:46:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:46:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:46:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:46:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:46:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:46:11 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:46:12 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:46:12 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:46:12 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:46:14 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:46:14 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:46:14 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:46:14 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:46:14 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Wed Mar 06 2013 16:46:14 GMT+0530 (IST)
+	Message: Response Completed
+Time: Wed Mar 06 2013 16:46:14 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:49:08 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:49:11 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:49:11 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:49:11 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:49:11 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:49:11 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Wed Mar 06 2013 16:49:11 GMT+0530 (IST)
+	Message: Response Completed
+Time: Wed Mar 06 2013 16:49:11 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:50:16 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:50:18 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:50:18 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:50:18 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:50:18 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:50:18 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Wed Mar 06 2013 16:50:18 GMT+0530 (IST)
+	Message: Response Completed
+Time: Wed Mar 06 2013 16:50:18 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"path":"/favicon.ico","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:51:49 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: Response Completed
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: returning routes = {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: Response Completed
+Time: Wed Mar 06 2013 16:51:51 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './favicon.ico'
+
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"path":"/favicon.ico","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:53:42 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:53:43 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:53:43 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:53:43 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"path":"/favicon.ico","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:54:40 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"GET","target":"test"} and routes= {"/test":{"GET":"test"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test/again","method":"GET","target":"again"} and routes= {"/test":{"GET":"test"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/test","method":"POST","target":"testpost"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/put","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dbfunctions/get","method":"GET","target":"dbfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/dnsfunctions/findip","method":"GET","target":"dnsfunctions"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/users/generateUID","method":"GET","target":"users"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"path":"/favicon.ico","method":"GET","target":"fileserver"} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: routeObj = {"method":""} and routes= {"/test":{"GET":"test","POST":"testpost"},"/test/again":{"GET":"again"},"/":{"GET":"fileserver"},"/dbfunctions/put":{"GET":"dbfunctions"},"/dbfunctions/get":{"GET":"dbfunctions"},"/dnsfunctions/findip":{"GET":"dnsfunctions"},"/users/generateUID":{"GET":"users"},"/favicon.ico":{"GET":"fileserver"}}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: returning config
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: config object={"port":"8000","address":"127.0.0.1"}
+Time: Wed Mar 06 2013 16:56:11 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000

@@ -4,7 +4,7 @@ var querystring = require('querystring');
 var contenttypelist = require('./contenttypelist');
 var logger = require('../system/logger');
 
-function handleRequest(req,res)
+function serveFile(req,res)
 {
 	var reqDetails = url.parse(req.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
@@ -42,4 +42,4 @@ function createResponse(res,ResponseHeader,ResponseContent)
 	logger.write('Response Completed');
 }
 
-exports.handleRequest = handleRequest;
+exports.serveFile = serveFile;

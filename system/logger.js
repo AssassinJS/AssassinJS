@@ -11,7 +11,7 @@ var fs = require('fs');
 function write(data)
 {
 	var entry = 'Time: '+new Date()+'\n\tMessage: '+data+'\n';
-	fs.appendFile('./system/log.txt',entry,function(err){
+	fs.appendFile('./config/log.txt',entry,function(err){
 		if(err){console.log('Log NOT Appended with data:\n\t'+entry);}
 		else{console.log('Log Appended with data:\n\t'+entry);}
 	});

@@ -7,13 +7,40 @@
 */
 
 var url = require('url');
-var controller = require('../controllers/controller');
-var config = require('./config');
+var fs = require('fs');
+var controller = require('./controller');
 var logger = require('./logger');
 
+
+//Reading Routes File
+var routes={};
+
+var r_data = fs.readFileSync('./config/routes.txt');
+if(r_data==null)
+{ 
+	logger.write("Routes data not found");
+}
+else
+{
+	var listentries = r_data.toString().split('\n');
+	
+	for(row in listentries)
+	{
+		var values = listentries[row].split('\t');
+		var routeObj={};
+		routeObj.path=values[1];
+		routeObj.method=values[0];
+		routeObj.target=values[2];
+		if(routes[routeObj.path]===undefined && routeObj.path!=undefined) routes[routeObj.path]={};
+		if(routes[routeObj.path]!=undefined)routes[routeObj.path][routeObj.method] = routeObj.target;
+		//logger.write('routeObj = '+JSON.stringify(routeObj)+' and routes= '+JSON.stringify(routes));
+	}
+	//logger.write('routes object = '+JSON.stringify(routes));
+}
+
+//Actual Routing Function
 function route(request,response)
 {			
-	var routes = config.getRoutes();
 	var reqDetails = url.parse(request.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
 	var filepath = reqDetails.pathname;

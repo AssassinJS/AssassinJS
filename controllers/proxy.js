@@ -1,6 +1,7 @@
 var common = require('./common');
 var url = require('url');
 var http = require('http');
+var config = require('../system/config');
 
 function forwardRequest(request,response)
 {		
@@ -75,7 +76,7 @@ function forwardRequest(request,response)
 		
 		final_response = response;
 						
-		var	domain='www.veooz.com';
+		var	domain=config.getConfig().domain;
 		var	pathstring = request.url;
 			
 		console.log(domain+pathstring);

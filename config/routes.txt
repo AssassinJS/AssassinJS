@@ -1,7 +1,6 @@
 GET	/test	test
 GET	/test/again	again
 POST	/test	testpost
-GET	/	fileserver
 GET	/dbfunctions/put	dbfunctions
 GET	/dbfunctions/get	dbfunctions
 GET	/dnsfunctions/findip	dnsfunctions

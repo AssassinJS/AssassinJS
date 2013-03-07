@@ -4355,3 +4355,448 @@ Time: Thu Mar 07 2013 17:22:00 GMT+0530 (IST)
 	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657015000","query":"topicId=bangalore&endtime=1362657015000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657015000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657015000"}
 Time: Thu Mar 07 2013 17:22:00 GMT+0530 (IST)
 	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:22:30 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657015000","query":"topicId=bangalore&endtime=1362657015000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657015000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657015000"}
+Time: Thu Mar 07 2013 17:22:30 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:23:00 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657015000","query":"topicId=bangalore&endtime=1362657015000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657015000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657015000"}
+Time: Thu Mar 07 2013 17:23:00 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:30:50 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"127.0.0.1"}
+Time: Thu Mar 07 2013 17:30:50 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Thu Mar 07 2013 17:30:57 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.purple.com","query":"query=www.purple.com","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.purple.com","href":"/proxy/getURL?query=www.purple.com"}
+Time: Thu Mar 07 2013 17:30:57 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 17:30:58 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/proxy/index.css","path":"/proxy/index.css","href":"/proxy/index.css"}
+Time: Thu Mar 07 2013 17:30:58 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:30:59 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:30:59 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:30:59 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:30:59 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:31:02 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/proxy/purple.html","path":"/proxy/purple.html","href":"/proxy/purple.html"}
+Time: Thu Mar 07 2013 17:31:02 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:31:03 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:03 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:31:03 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:03 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:31:08 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:08 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:31:08 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:08 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:31:11 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/proxy/purple.html","path":"/proxy/purple.html","href":"/proxy/purple.html"}
+Time: Thu Mar 07 2013 17:31:11 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:31:12 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:12 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:31:12 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:12 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:31:13 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:13 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:31:13 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:13 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:31:16 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.purple.com","query":"query=www.purple.com","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.purple.com","href":"/proxy/getURL?query=www.purple.com"}
+Time: Thu Mar 07 2013 17:31:16 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 17:31:16 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/proxy/index.css","path":"/proxy/index.css","href":"/proxy/index.css"}
+Time: Thu Mar 07 2013 17:31:16 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:31:17 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:17 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:31:17 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:17 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:31:20 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/proxy/purple.html","path":"/proxy/purple.html","href":"/proxy/purple.html"}
+Time: Thu Mar 07 2013 17:31:20 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:31:20 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:20 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:31:20 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:20 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:31:51 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"127.0.0.1"}
+Time: Thu Mar 07 2013 17:31:51 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Thu Mar 07 2013 17:31:54 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:54 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:31:54 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:31:54 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:31:55 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.veooz.com/search?q=bangalore","query":"query=www.veooz.com/search?q=bangalore","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.veooz.com/search?q=bangalore","href":"/proxy/getURL?query=www.veooz.com/search?q=bangalore"}
+Time: Thu Mar 07 2013 17:31:55 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 17:31:58 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore","query":"topicId=bangalore","pathname":"/interestingcomments.html","path":"/interestingcomments.html?topicId=bangalore","href":"/interestingcomments.html?topicId=bangalore"}
+Time: Thu Mar 07 2013 17:31:58 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:32:28 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657635000","query":"topicId=bangalore&endtime=1362657635000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657635000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657635000"}
+Time: Thu Mar 07 2013 17:32:28 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:32:58 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657635000","query":"topicId=bangalore&endtime=1362657635000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657635000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657635000"}
+Time: Thu Mar 07 2013 17:32:58 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:33:28 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657635000","query":"topicId=bangalore&endtime=1362657635000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657635000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657635000"}
+Time: Thu Mar 07 2013 17:33:28 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:33:58 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657736000","query":"topicId=bangalore&endtime=1362657736000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657736000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657736000"}
+Time: Thu Mar 07 2013 17:33:58 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:34:28 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657736000","query":"topicId=bangalore&endtime=1362657736000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657736000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657736000"}
+Time: Thu Mar 07 2013 17:34:28 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:34:58 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657736000","query":"topicId=bangalore&endtime=1362657736000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657736000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657736000"}
+Time: Thu Mar 07 2013 17:34:58 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:35:28 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=bangalore&endtime=1362657736000","query":"topicId=bangalore&endtime=1362657736000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=bangalore&endtime=1362657736000","href":"/latestliveposts.html?topicId=bangalore&endtime=1362657736000"}
+Time: Thu Mar 07 2013 17:35:28 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:35:34 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"127.0.0.1"}
+Time: Thu Mar 07 2013 17:35:34 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000
+Time: Thu Mar 07 2013 17:35:41 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.youtube.com","query":"query=www.youtube.com","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.youtube.com","href":"/proxy/getURL?query=www.youtube.com"}
+Time: Thu Mar 07 2013 17:35:41 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 17:35:42 GMT+0530 (IST)
+	Message: Request Details: {"search":"?gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2Flocalhost%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2Flocalhost%3A8000%2Frobots.txt%22%7D","query":"gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2Flocalhost%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2Flocalhost%3A8000%2Frobots.txt%22%7D","pathname":"/doubleclick/DARTIframe.html","path":"/doubleclick/DARTIframe.html?gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2Flocalhost%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2Flocalhost%3A8000%2Frobots.txt%22%7D","href":"/doubleclick/DARTIframe.html?gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2Flocalhost%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2Flocalhost%3A8000%2Frobots.txt%22%7D"}
+Time: Thu Mar 07 2013 17:35:42 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:35:58 GMT+0530 (IST)
+	Message: Request Details: {"search":"?v=yVI7JelAzPc","query":"v=yVI7JelAzPc","pathname":"/watch","path":"/watch?v=yVI7JelAzPc","href":"/watch?v=yVI7JelAzPc"}
+Time: Thu Mar 07 2013 17:35:58 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:37:38 GMT+0530 (IST)
+	Message: Request Details: {"search":"?v=IQEQkJmt3mk","query":"v=IQEQkJmt3mk","pathname":"/watch","path":"/watch?v=IQEQkJmt3mk","href":"/watch?v=IQEQkJmt3mk"}
+Time: Thu Mar 07 2013 17:37:38 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:37:40 GMT+0530 (IST)
+	Message: Request Details: {"search":"?a=resolution&width=1366&height=768&depth=24&win_width=1286&win_height=505&pixel_ratio=1","query":"a=resolution&width=1366&height=768&depth=24&win_width=1286&win_height=505&pixel_ratio=1","pathname":"/gen_204","path":"/gen_204?a=resolution&width=1366&height=768&depth=24&win_width=1286&win_height=505&pixel_ratio=1","href":"/gen_204?a=resolution&width=1366&height=768&depth=24&win_width=1286&win_height=505&pixel_ratio=1"}
+Time: Thu Mar 07 2013 17:37:40 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:37:41 GMT+0530 (IST)
+	Message: Request Details: {"search":"?a=resolution&width=1366&height=768&depth=24&win_width=1286&win_height=505&pixel_ratio=1","query":"a=resolution&width=1366&height=768&depth=24&win_width=1286&win_height=505&pixel_ratio=1","pathname":"/gen_204","path":"/gen_204?a=resolution&width=1366&height=768&depth=24&win_width=1286&win_height=505&pixel_ratio=1","href":"/gen_204?a=resolution&width=1366&height=768&depth=24&win_width=1286&win_height=505&pixel_ratio=1"}
+Time: Thu Mar 07 2013 17:37:41 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:39:43 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 17:39:43 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:39:43 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 17:39:43 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Thu Mar 07 2013 17:39:43 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Thu Mar 07 2013 17:39:44 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:39:44 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:39:44 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:39:44 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:40:39 GMT+0530 (IST)
+	Message: Request Details: {"search":"?v=bafI4ASsKqA","query":"v=bafI4ASsKqA","pathname":"/watch","path":"/watch?v=bafI4ASsKqA","href":"/watch?v=bafI4ASsKqA"}
+Time: Thu Mar 07 2013 17:40:39 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:42:13 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:42:13 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:42:13 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:42:13 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:42:18 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:42:18 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:42:18 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:42:18 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:42:20 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.allaboutkawaii.files.wordpress.com/2012/12/face.gif","query":"query=www.allaboutkawaii.files.wordpress.com/2012/12/face.gif","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.allaboutkawaii.files.wordpress.com/2012/12/face.gif","href":"/proxy/getURL?query=www.allaboutkawaii.files.wordpress.com/2012/12/face.gif"}
+Time: Thu Mar 07 2013 17:42:20 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 17:42:22 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:42:22 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:42:22 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:42:22 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:42:25 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=allaboutkawaii.files.wordpress.com/2012/12/face.gif","query":"query=allaboutkawaii.files.wordpress.com/2012/12/face.gif","pathname":"/proxy/getURL","path":"/proxy/getURL?query=allaboutkawaii.files.wordpress.com/2012/12/face.gif","href":"/proxy/getURL?query=allaboutkawaii.files.wordpress.com/2012/12/face.gif"}
+Time: Thu Mar 07 2013 17:42:25 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 17:42:27 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:42:27 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:42:27 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:42:27 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:43:05 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=mail.setusoftware.com/webmail","query":"query=mail.setusoftware.com/webmail","pathname":"/proxy/getURL","path":"/proxy/getURL?query=mail.setusoftware.com/webmail","href":"/proxy/getURL?query=mail.setusoftware.com/webmail"}
+Time: Thu Mar 07 2013 17:43:05 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 17:43:16 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:43:16 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:43:16 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:43:16 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:48:56 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0"}
+Time: Thu Mar 07 2013 17:48:56 GMT+0530 (IST)
+	Message: Server running at 0.0.0.0:8000
+Time: Thu Mar 07 2013 17:49:17 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 17:49:17 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:49:17 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 17:49:17 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Thu Mar 07 2013 17:49:17 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Thu Mar 07 2013 17:49:17 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:49:17 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 17:49:17 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 17:49:17 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 17:49:55 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.youtube.com","query":"query=www.youtube.com","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.youtube.com","href":"/proxy/getURL?query=www.youtube.com"}
+Time: Thu Mar 07 2013 17:49:55 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 17:49:56 GMT+0530 (IST)
+	Message: Request Details: {"search":"?gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Frobots.txt%22%7D","query":"gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Frobots.txt%22%7D","pathname":"/doubleclick/DARTIframe.html","path":"/doubleclick/DARTIframe.html?gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Frobots.txt%22%7D","href":"/doubleclick/DARTIframe.html?gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Frobots.txt%22%7D"}
+Time: Thu Mar 07 2013 17:49:56 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:50:18 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.youtube.com","query":"query=www.youtube.com","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.youtube.com","href":"/proxy/getURL?query=www.youtube.com"}
+Time: Thu Mar 07 2013 17:50:18 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 17:50:19 GMT+0530 (IST)
+	Message: Request Details: {"search":"?gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Frobots.txt%22%7D","query":"gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Frobots.txt%22%7D","pathname":"/doubleclick/DARTIframe.html","path":"/doubleclick/DARTIframe.html?gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Frobots.txt%22%7D","href":"/doubleclick/DARTIframe.html?gtVersion=200_18&mediaserver=http%3A%2F%2Fs0.2mdn.net%2F879366&xpc=%7B%22cn%22%3A%22peerIframe23363268%22%2C%22tp%22%3Anull%2C%22osh%22%3Anull%2C%22pru%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Fdoubleclick%2FDARTIframe.html%3FgtVersion%3Drelay_200_18%26mediaserver%3Dhttp%3A%2F%2Fs0.2mdn.net%2F879366%22%2C%22ppu%22%3A%22http%3A%2F%2Fn4061ad.jp.doubleclick.net%2Frobots.txt%22%2C%22lpu%22%3A%22http%3A%2F%2F192.168.2.53%3A8000%2Frobots.txt%22%7D"}
+Time: Thu Mar 07 2013 17:50:19 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:50:45 GMT+0530 (IST)
+	Message: Request Details: {"search":"?v=yVI7JelAzPc","query":"v=yVI7JelAzPc","pathname":"/watch","path":"/watch?v=yVI7JelAzPc","href":"/watch?v=yVI7JelAzPc"}
+Time: Thu Mar 07 2013 17:50:45 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:50:47 GMT+0530 (IST)
+	Message: Request Details: {"search":"?v=dIEfNaNCkKM","query":"v=dIEfNaNCkKM","pathname":"/watch","path":"/watch?v=dIEfNaNCkKM","href":"/watch?v=dIEfNaNCkKM"}
+Time: Thu Mar 07 2013 17:50:47 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 17:51:05 GMT+0530 (IST)
+	Message: Request Details: {"search":"?v=dIEfNaNCkKM","query":"v=dIEfNaNCkKM","pathname":"/watch","path":"/watch?v=dIEfNaNCkKM","href":"/watch?v=dIEfNaNCkKM"}
+Time: Thu Mar 07 2013 17:51:05 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:08:05 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:08:05 GMT+0530 (IST)
+	Message: Server running at 0.0.0.0:8000
+Time: Thu Mar 07 2013 18:09:09 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:09:09 GMT+0530 (IST)
+	Message: Server running at 0.0.0.0:8000
+Time: Thu Mar 07 2013 18:09:14 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.veooz.com/search?q=goa","query":"query=www.veooz.com/search?q=goa","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.veooz.com/search?q=goa","href":"/proxy/getURL?query=www.veooz.com/search?q=goa"}
+Time: Thu Mar 07 2013 18:09:14 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 18:09:25 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.veooz.com/search?q=hyderabad","query":"query=www.veooz.com/search?q=hyderabad","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.veooz.com/search?q=hyderabad","href":"/proxy/getURL?query=www.veooz.com/search?q=hyderabad"}
+Time: Thu Mar 07 2013 18:09:25 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 18:09:33 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=hyderabad","query":"topicId=hyderabad","pathname":"/interestingcomments.html","path":"/interestingcomments.html?topicId=hyderabad","href":"/interestingcomments.html?topicId=hyderabad"}
+Time: Thu Mar 07 2013 18:09:33 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:09:33 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:09:43 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 18:09:43 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 18:09:43 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 18:09:43 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Thu Mar 07 2013 18:09:43 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Thu Mar 07 2013 18:09:43 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 18:09:43 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 18:09:43 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 18:09:43 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 18:09:45 GMT+0530 (IST)
+	Message: Request Details: {"search":"?query=www.veooz.com/search?q=hyderabad","query":"query=www.veooz.com/search?q=hyderabad","pathname":"/proxy/getURL","path":"/proxy/getURL?query=www.veooz.com/search?q=hyderabad","href":"/proxy/getURL?query=www.veooz.com/search?q=hyderabad"}
+Time: Thu Mar 07 2013 18:09:45 GMT+0530 (IST)
+	Message: routesobj = {"GET":"proxy"}
+Time: Thu Mar 07 2013 18:09:48 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=hyderabad","query":"topicId=hyderabad","pathname":"/interestingcomments.html","path":"/interestingcomments.html?topicId=hyderabad","href":"/interestingcomments.html?topicId=hyderabad"}
+Time: Thu Mar 07 2013 18:09:48 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:09:48 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:09:54 GMT+0530 (IST)
+	Message: Request Details: {"search":"?q=hyderabad","query":"q=hyderabad","pathname":"/search","path":"/search?q=hyderabad","href":"/search?q=hyderabad"}
+Time: Thu Mar 07 2013 18:09:54 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:09:54 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:09:58 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=hyderabad","query":"topicId=hyderabad","pathname":"/interestingcomments.html","path":"/interestingcomments.html?topicId=hyderabad","href":"/interestingcomments.html?topicId=hyderabad"}
+Time: Thu Mar 07 2013 18:09:58 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:09:58 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:10:28 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=hyderabad&endtime=1362659806000","query":"topicId=hyderabad&endtime=1362659806000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=hyderabad&endtime=1362659806000","href":"/latestliveposts.html?topicId=hyderabad&endtime=1362659806000"}
+Time: Thu Mar 07 2013 18:10:28 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:10:28 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:10:58 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=hyderabad&endtime=1362659943000","query":"topicId=hyderabad&endtime=1362659943000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=hyderabad&endtime=1362659943000","href":"/latestliveposts.html?topicId=hyderabad&endtime=1362659943000"}
+Time: Thu Mar 07 2013 18:10:58 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:10:58 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:11:28 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=hyderabad&endtime=1362659943000","query":"topicId=hyderabad&endtime=1362659943000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=hyderabad&endtime=1362659943000","href":"/latestliveposts.html?topicId=hyderabad&endtime=1362659943000"}
+Time: Thu Mar 07 2013 18:11:28 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:11:28 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:11:40 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:11:40 GMT+0530 (IST)
+	Message: Server running at 0.0.0.0:8000
+Time: Thu Mar 07 2013 18:11:47 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 18:11:47 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:11:47 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:11:59 GMT+0530 (IST)
+	Message: Request Details: {"search":"?q=New+Zealand","query":"q=New+Zealand","pathname":"/search","path":"/search?q=New+Zealand","href":"/search?q=New+Zealand"}
+Time: Thu Mar 07 2013 18:11:59 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:11:59 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:12:05 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=new_zealand","query":"topicId=new_zealand","pathname":"/interestingcomments.html","path":"/interestingcomments.html?topicId=new_zealand","href":"/interestingcomments.html?topicId=new_zealand"}
+Time: Thu Mar 07 2013 18:12:05 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:12:05 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:12:35 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=new_zealand&endtime=1362659966000","query":"topicId=new_zealand&endtime=1362659966000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=new_zealand&endtime=1362659966000","href":"/latestliveposts.html?topicId=new_zealand&endtime=1362659966000"}
+Time: Thu Mar 07 2013 18:12:35 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:12:35 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}
+Time: Thu Mar 07 2013 18:13:05 GMT+0530 (IST)
+	Message: Request Details: {"search":"?topicId=new_zealand&endtime=1362659966000","query":"topicId=new_zealand&endtime=1362659966000","pathname":"/latestliveposts.html","path":"/latestliveposts.html?topicId=new_zealand&endtime=1362659966000","href":"/latestliveposts.html?topicId=new_zealand&endtime=1362659966000"}
+Time: Thu Mar 07 2013 18:13:05 GMT+0530 (IST)
+	Message: routesobj = undefined
+Time: Thu Mar 07 2013 18:13:05 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"0.0.0.0","domain":"www.veooz.com"}

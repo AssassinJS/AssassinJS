@@ -1,7 +1,7 @@
 var common = require('./common');
 var url = require('url');
 var queryutil = require('querystring');
-var dbconnect = require('../db/dbconnect');
+var dbconnect = require('../system/dbconnect');
 
 function forwardRequest(request,response)
 {	

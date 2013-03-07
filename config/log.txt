@@ -431,3 +431,70 @@ Time: Thu Mar 07 2013 13:42:46 GMT+0530 (IST)
 	Message: Error in Reading File or Missing File:
 Error: ENOENT, open './public/favicon.ico'
 
+Time: Thu Mar 07 2013 14:25:28 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 14:25:28 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 14:25:28 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 14:25:28 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Thu Mar 07 2013 14:25:28 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Thu Mar 07 2013 14:25:28 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 14:25:28 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 14:25:28 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 14:25:28 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 14:28:09 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 14:28:09 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 14:28:09 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 14:28:09 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Thu Mar 07 2013 14:28:09 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Thu Mar 07 2013 14:28:09 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 14:28:09 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 14:28:09 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 14:28:09 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 14:28:22 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 14:28:22 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 14:28:22 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/","path":"/","href":"/"}
+Time: Thu Mar 07 2013 14:28:22 GMT+0530 (IST)
+	Message: File Extension is = html
+Time: Thu Mar 07 2013 14:28:22 GMT+0530 (IST)
+	Message: Written File Contents to Response with content-type: text/html
+
+Time: Thu Mar 07 2013 14:28:22 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 14:28:22 GMT+0530 (IST)
+	Message: routesobj = {"GET":"fileserver"}
+Time: Thu Mar 07 2013 14:28:22 GMT+0530 (IST)
+	Message: Request Details: {"pathname":"/favicon.ico","path":"/favicon.ico","href":"/favicon.ico"}
+Time: Thu Mar 07 2013 14:28:22 GMT+0530 (IST)
+	Message: Error in Reading File or Missing File:
+Error: ENOENT, open './public/favicon.ico'
+
+Time: Thu Mar 07 2013 14:30:05 GMT+0530 (IST)
+	Message: returning config = {"port":"8000","address":"127.0.0.1"}
+Time: Thu Mar 07 2013 14:30:05 GMT+0530 (IST)
+	Message: Server running at 127.0.0.1:8000

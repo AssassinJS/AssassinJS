@@ -11,8 +11,8 @@ extensions['dnsfunctions'] = require('./extensions/dnsfunctions');
 extensions['dbfunctions'] = require('./extensions/dbfunctions');
 extensions['common'] = require('./extensions/common');
 extensions['users'] = require('./extensions/users');
-
-var fileserver = require('../fileserver/fileserver');
+extensions['fileserver'] = require('./extensions/fileserver/fileserver');
+extensions['error'] = require('./extensions/error');
 
 function handleRequest(routesObj,request,response)
 {				
@@ -25,7 +25,7 @@ function handleRequest(routesObj,request,response)
 	}
 	else
 	{
-		logger.write('endpoint function '+controllerName+' not defined');
+		controllers.error(request,response);
 	}
 	
 }
@@ -35,11 +35,12 @@ controllers.test = function(request,response)
 {
 	logger.write('test in controller executed');
 }
-controllers['fileserver'] = fileserver.serveFile;
+controllers['fileserver'] = extensions['fileserver'].serveFile;
 controllers['dnsfunctions'] = extensions['dnsfunctions'].forwardRequest;
 controllers['dbfunctions'] = extensions['dbfunctions'].forwardRequest;
 controllers['common'] = extensions['common'].forwardRequest;
 controllers['users'] = extensions['users'].forwardRequest;
+controllers['error'] = extensions['error'].errorResponse;
 
 
 exports.handleRequest = handleRequest;

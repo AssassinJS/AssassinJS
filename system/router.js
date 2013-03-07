@@ -7,7 +7,6 @@
 */
 
 var url = require('url');
-var $ = require('jquery');
 var controller = require('../controllers/controller');
 var config = require('./config');
 var logger = require('./logger');

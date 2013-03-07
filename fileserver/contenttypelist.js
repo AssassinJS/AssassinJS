@@ -12,9 +12,17 @@ fs.readFile('./fileserver/filetypelist.txt',function(err,data2){
 	else
 	{
 		var listentries = data2.toString().split('\n');
+		
+		for(row in listentries)
+		{
+			filetypemap[row.split('\t')[0].split('.')[1]] = row.split('\t')[1];
+		}
+		
+		/*
 		$.each(listentries,function(key,value){
 			filetypemap[value.split('\t')[0].split('.')[1]] = value.split('\t')[1];
 		});
+		*/
 	}
 });
 

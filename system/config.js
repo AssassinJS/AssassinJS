@@ -9,7 +9,6 @@
 
 //Reading Configuration Parameters
 var fs = require('fs');
-var $ = require('jquery');
 var logger = require('./logger');
 
 var config = {};
@@ -18,10 +17,13 @@ if(data==null) logger.write("Config data not found");
 else
 {
 	var listentries = data.toString().split('\n');
-	$.each(listentries,function(key,value){	
-		var valuepair = value.split('\t');
+	
+	for(row in listentries)
+	{
+		var valuepair = row.split('\t');
 		config[valuepair[0]] = valuepair[1];
-	});
+	}
+	
 }
 
 
@@ -36,8 +38,10 @@ if(r_data==null)
 else
 {
 	var listentries = r_data.toString().split('\n');
-	$.each(listentries,function(key,value){	
-		var values = value.split('\t');
+	
+	for(row in listentries)
+	{
+		var values = row.split('\t');
 		var routeObj={};
 		routeObj.path=values[1];
 		routeObj.method=values[0];
@@ -45,7 +49,8 @@ else
 		if(routes[routeObj.path]===undefined && routeObj.path!=undefined) routes[routeObj.path]={};
 		if(routes[routeObj.path]!=undefined)routes[routeObj.path][routeObj.method] = routeObj.target;
 		logger.write('routeObj = '+JSON.stringify(routeObj)+' and routes= '+JSON.stringify(routes));
-	});
+	}
+		
 }
 
 

@@ -6,6 +6,7 @@
 
 */
 var logger = require('./logger');
+
 var extensions =[];
 extensions['dnsfunctions'] = require('../controllers/dnsfunctions');
 extensions['dbfunctions'] = require('../controllers/dbfunctions');
@@ -13,6 +14,7 @@ extensions['common'] = require('../controllers/common');
 extensions['users'] = require('../controllers/users');
 extensions['fileserver'] = require('../controllers/fileserver');
 extensions['respond'] = require('../controllers/respond');
+extensions['proxy'] = require('../controllers/proxy');
 
 function handleRequest(routesObj,request,response)
 {
@@ -29,7 +31,8 @@ function handleRequest(routesObj,request,response)
 	}
 	else
 	{
-		controllers.fileserver(request,response);
+		//controllers.fileserver(request,response);
+		controllers['proxy'](request,response);
 	}
 	
 }
@@ -44,12 +47,13 @@ controllers.error = function(request,response)
 	var rHeader = {'Content-Type': 'text/plain'};
 	var status = 404;
 	var rContent = 'Requested Resourse is not found on the server. Please Check the URL';
-	controllers['respond'].createResponse(response,rHeader,status,rContent);
+	controllers['respond'].createResponse(response,status,rHeader,rContent);
 }
 controllers['fileserver'] = extensions['fileserver'].serveFile;
 controllers['dnsfunctions'] = extensions['dnsfunctions'].forwardRequest;
 controllers['dbfunctions'] = extensions['dbfunctions'].forwardRequest;
 controllers['common'] = extensions['common'].forwardRequest;
 controllers['users'] = extensions['users'].forwardRequest;
+controllers['proxy'] = extensions['proxy'].forwardRequest;
 
 exports.handleRequest = handleRequest;

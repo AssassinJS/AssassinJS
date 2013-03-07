@@ -19,8 +19,9 @@ else
 	var listentries = data.toString().split('\n');
 	
 	for(row in listentries)
-	{
-		var valuepair = row.split('\t');
+	{		
+		var valuepair = listentries[row].split('\t');
+		//logger.write(listentries[row]+','+valuepair);
 		config[valuepair[0]] = valuepair[1];
 	}
 	
@@ -41,22 +42,21 @@ else
 	
 	for(row in listentries)
 	{
-		var values = row.split('\t');
+		var values = listentries[row].split('\t');
 		var routeObj={};
 		routeObj.path=values[1];
 		routeObj.method=values[0];
 		routeObj.target=values[2];
 		if(routes[routeObj.path]===undefined && routeObj.path!=undefined) routes[routeObj.path]={};
 		if(routes[routeObj.path]!=undefined)routes[routeObj.path][routeObj.method] = routeObj.target;
-		logger.write('routeObj = '+JSON.stringify(routeObj)+' and routes= '+JSON.stringify(routes));
+		//logger.write('routeObj = '+JSON.stringify(routeObj)+' and routes= '+JSON.stringify(routes));
 	}
 		
 }
 
-
 function getConfig()
 {
-	logger.write('returning config');
+	logger.write('returning config = '+JSON.stringify(config));
 	return config;
 }
 

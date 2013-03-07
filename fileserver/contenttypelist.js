@@ -15,14 +15,10 @@ fs.readFile('./fileserver/filetypelist.txt',function(err,data2){
 		
 		for(row in listentries)
 		{
+			row = listentries[row];
 			filetypemap[row.split('\t')[0].split('.')[1]] = row.split('\t')[1];
 		}
 		
-		/*
-		$.each(listentries,function(key,value){
-			filetypemap[value.split('\t')[0].split('.')[1]] = value.split('\t')[1];
-		});
-		*/
 	}
 });
 

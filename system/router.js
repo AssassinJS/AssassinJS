@@ -45,6 +45,19 @@ function route(request,response)
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
 	var filepath = reqDetails.pathname;
 	
+	for(i in routes)
+	{
+
+		var urlReg = new RegExp('^'+i.toString()+'$');
+		logger.write('filepath='+filepath+' and i ='+i+' urlReg='+urlReg);
+		if(urlReg.test(filepath))
+		{
+			logger.write('filepath='+filepath+' matched urlReg='+urlReg);
+			controller.handleRequest(routes[i],request,response);
+			return;
+		}
+	}
+	logger.write('URL not found');
 	controller.handleRequest(routes[filepath],request,response);
 	
 }

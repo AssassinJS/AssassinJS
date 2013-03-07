@@ -7,3 +7,4 @@ GET	/dbfunctions/get	dbfunctions
 GET	/dnsfunctions/findip	dnsfunctions
 GET	/users/generateUID	users
 GET	/favicon.ico	fileserver
+GET	/reg/[a-zA-Z]*/test	testReg

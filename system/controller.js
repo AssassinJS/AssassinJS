@@ -38,13 +38,19 @@ var controllers = [];
 controllers.test = function(request,response)
 {
 	logger.write('test in controller executed');
+	extensions['respond'].createResponse(response,200,null,'test');
 }
 controllers.error = function(request,response)
 {
 	var rHeader = {'Content-Type': 'text/plain'};
 	var status = 404;
 	var rContent = 'Requested Resourse is not found on the server. Please Check the URL';
-	controllers['respond'].createResponse(response,rHeader,status,rContent);
+	extensions['respond'].createResponse(response,status,rHeader,rContent);
+}
+controllers.testReg = function(request,response)
+{
+	logger.write('testReg executed');
+	extensions['respond'].createResponse(response,200,null,'testReg Executed.');
 }
 controllers['fileserver'] = extensions['fileserver'].serveFile;
 controllers['dnsfunctions'] = extensions['dnsfunctions'].forwardRequest;

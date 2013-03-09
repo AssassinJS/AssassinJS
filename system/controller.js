@@ -15,6 +15,7 @@ extensions['users'] = require('../controllers/users');
 extensions['fileserver'] = require('../controllers/fileserver');
 extensions['respond'] = require('../controllers/respond');
 extensions['proxy'] = require('../controllers/proxy');
+extensions['assassinPanel'] = require('../controllers/assassinPanel');
 
 function handleRequest(routesObj,request,response)
 {
@@ -61,5 +62,6 @@ controllers['dbfunctions'] = extensions['dbfunctions'].forwardRequest;
 controllers['common'] = extensions['common'].forwardRequest;
 controllers['users'] = extensions['users'].forwardRequest;
 controllers['proxy'] = extensions['proxy'].forwardRequest;
+controllers['assassinPanel'] = extensions['assassinPanel'].invoke;
 
 exports.handleRequest = handleRequest;

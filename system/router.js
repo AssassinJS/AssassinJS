@@ -10,10 +10,12 @@ var url = require('url');
 var fs = require('fs');
 var controller = require('./controller');
 var logger = require('./logger');
+var dbconnect = require('./dbconnect');
 
 //Reading Routes File
 var routes={};
 
+// Obsolete with database storage
 ReadRoutesFile();//Ensures first time execution
 function ReadRoutesFile()
 {
@@ -39,6 +41,12 @@ function ReadRoutesFile()
 		}
 		//logger.write('routes object = '+JSON.stringify(routes));
 	}
+}
+
+
+function ReadFromDB()
+{
+	
 }
 
 //Actual Routing Function

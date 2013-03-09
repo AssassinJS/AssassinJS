@@ -1,25 +1,28 @@
 var url = require('url');
 var fs = require('fs');
-var querystring = require('querystring');
 var logger = require('../system/logger');
 var respond = require('./respond');
 
 //Reading filetypelist into filetypemap
-var filetypemap = {};
 
-var data = fs.readFileSync('./config/filetypelist.txt');
-if(data == null)
+var filetypemap = {};
+ReadFileTypeList();
+function ReadFileTypeList()
 {
-	logger.write('Error in Reading filetypelist.txt:\n');
-}
-else
-{
-	var listentries = data.toString().split('\n');
-	
-	for(row in listentries)
+	var data = fs.readFileSync('./config/filetypelist.txt');
+	if(data == null)
 	{
-		row = listentries[row];
-		filetypemap[row.split('\t')[0].split('.')[1]] = row.split('\t')[1];
+		logger.write('Error in Reading filetypelist.txt:\n');
+	}
+	else
+	{
+		var listentries = data.toString().split('\n');
+		
+		for(row in listentries)
+		{
+			row = listentries[row];
+			filetypemap[row.split('\t')[0].split('.')[1]] = row.split('\t')[1];
+		}
 	}
 }
 
@@ -51,3 +54,4 @@ function serveFile(req,res)
 }
 
 exports.serveFile = serveFile;
+exports.ReadFileTypeList = ReadFileTypeList;

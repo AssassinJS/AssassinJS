@@ -6,25 +6,30 @@
 
 */
 
-
-//Reading Configuration Parameters
 var fs = require('fs');
 var logger = require('./logger');
 
 var config = {};
-var data = fs.readFileSync('./config/config.txt');
-if(data==null) logger.write("Config data not found");
-else
+
+//Reading Configuration Parameters
+ReadConfigFile();//This ensures first time execution
+function ReadConfigFile()
 {
-	var listentries = data.toString().split('\n');
-	
-	for(row in listentries)
-	{		
-		var valuepair = listentries[row].split('\t');
-		//logger.write(listentries[row]+','+valuepair);
-		config[valuepair[0]] = valuepair[1];
+
+	var data = fs.readFileSync('./config/config.txt');
+	if(data==null) logger.write("Config data not found");
+	else
+	{
+		var listentries = data.toString().split('\n');
+		
+		for(row in listentries)
+		{		
+			var valuepair = listentries[row].split('\t');
+			//logger.write(listentries[row]+','+valuepair);
+			config[valuepair[0]] = valuepair[1];
+		}
+		
 	}
-	
 }
 
 function getConfig()
@@ -34,4 +39,5 @@ function getConfig()
 }
 
 exports.getConfig = getConfig;
+exports.ReadConfigFile = ReadConfigFile;
 

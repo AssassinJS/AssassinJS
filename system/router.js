@@ -11,31 +11,34 @@ var fs = require('fs');
 var controller = require('./controller');
 var logger = require('./logger');
 
-
 //Reading Routes File
 var routes={};
 
-var r_data = fs.readFileSync('./config/routes.txt');
-if(r_data==null)
-{ 
-	logger.write("Routes data not found");
-}
-else
+ReadRoutesFile();//Ensures first time execution
+function ReadRoutesFile()
 {
-	var listentries = r_data.toString().split('\n');
-	
-	for(row in listentries)
-	{
-		var values = listentries[row].split('\t');
-		var routeObj={};
-		routeObj.path=values[1];
-		routeObj.method=values[0];
-		routeObj.target=values[2];
-		if(routes[routeObj.path]===undefined && routeObj.path!=undefined) routes[routeObj.path]={};
-		if(routes[routeObj.path]!=undefined)routes[routeObj.path][routeObj.method] = routeObj.target;
-		//logger.write('routeObj = '+JSON.stringify(routeObj)+' and routes= '+JSON.stringify(routes));
+	var r_data = fs.readFileSync('./config/routes.txt');
+	if(r_data==null)
+	{ 
+		logger.write("Routes data not found");
 	}
-	//logger.write('routes object = '+JSON.stringify(routes));
+	else
+	{
+		var listentries = r_data.toString().split('\n');
+		
+		for(row in listentries)
+		{
+			var values = listentries[row].split('\t');
+			var routeObj={};
+			routeObj.path=values[1];
+			routeObj.method=values[0];
+			routeObj.target=values[2];
+			if(routes[routeObj.path]===undefined && routeObj.path!=undefined) routes[routeObj.path]={};
+			if(routes[routeObj.path]!=undefined)routes[routeObj.path][routeObj.method] = routeObj.target;
+			//logger.write('routeObj = '+JSON.stringify(routeObj)+' and routes= '+JSON.stringify(routes));
+		}
+		//logger.write('routes object = '+JSON.stringify(routes));
+	}
 }
 
 //Actual Routing Function
@@ -47,7 +50,6 @@ function route(request,response)
 	
 	for(i in routes)
 	{
-
 		var urlReg = new RegExp('^'+i.toString()+'$');
 		logger.write('filepath='+filepath+' and i ='+i+' urlReg='+urlReg);
 		if(urlReg.test(filepath))
@@ -62,4 +64,5 @@ function route(request,response)
 	
 }
 
-exports.route = route
+exports.route = route;
+exports.ReadRoutesFile = ReadRoutesFile;

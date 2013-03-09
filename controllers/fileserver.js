@@ -27,14 +27,17 @@ function ReadFileTypeList()
 }
 
 
-function serveFile(req,res)
+function serveFile(req,res,defaultDir)
 {
 	var reqDetails = url.parse(req.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
 	var filepath =reqDetails.pathname;
 	if(filepath=='/')
 		filepath = '/index.html';
-	fs.readFile("./public"+filepath,function(err,data){
+	//if(defaultDir==null ||defaultDir==undefined)
+	//	defaultDir='/public';
+	//fs.readFile("."+defaultDir+filepath,function(err,data){
+	fs.readFile("."+filepath,function(err,data){
 		if(err)
 		{
 			respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');

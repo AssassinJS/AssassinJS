@@ -8,7 +8,9 @@
 
 function invoke()
 {
-
+	//First need to check of user validation credentials.
+	//If valid user, then show home page
+	//else redirect to login index page
 }
 
 exports.invoke = invoke;

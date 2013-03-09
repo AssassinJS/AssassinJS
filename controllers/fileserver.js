@@ -32,10 +32,11 @@ function serveFile(req,res,defaultDir)
 	var reqDetails = url.parse(req.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
 	var filepath =reqDetails.pathname;
+	if(defaultDir==null ||defaultDir==undefined)
+		defaultDir='/public';
 	if(filepath=='/')
-		filepath = '/index.html';
-	//if(defaultDir==null ||defaultDir==undefined)
-	//	defaultDir='/public';
+		filepath = defaultDir+'/index.html';
+	
 	//fs.readFile("."+defaultDir+filepath,function(err,data){
 	fs.readFile("."+filepath,function(err,data){
 		if(err)

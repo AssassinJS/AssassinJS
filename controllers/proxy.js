@@ -4,98 +4,103 @@ var http = require('http');
 var config = require('../system/config');
 
 function forwardRequest(request,response)
-{		
-	//For returning response to browser
-	var final_response = '';
-
+{	
+	var		
+	domain = config.getConfig().domain,
+	domainPort = config.getConfig().domainPort,
+	pathstring = request.url;
+	
+	//cached request,response objects
+	var cached_request = request;
+	var cached_response = response;
+	
 	this.requestComplete = function(res)
 	{
 		console.log('STATUS: ' + res.statusCode);
  		console.log('HEADERS: ' + JSON.stringify(res.headers));
   		//res.setEncoding('utf8');
+  		//res.setEncoding('binary');
   		
-  		final_response.writeHead(res.statusCode,res.headers);
+  		cached_response.writeHead(res.statusCode,res.headers);
   		
  		res.on('data', function (chunk) { 			
     		console.log('BODY: ' + chunk);
-    		final_response.write(chunk);	     	 
+    		cached_response.write(chunk);	     	 
   		});
   		
-  		res.on('end',function() {  			  			  			
-    		
-    		final_response.addTrailers(res.headers);
-    		final_response.end(); 	
+  		res.on('end',function() {  			  			  			    		
+    		cached_response.addTrailers(res.headers);
+    		cached_response.end(); 	
   		});
 	};
 	
-	this.getURL = function(request,response)
+	this.makePOSTrequest = function(original_request,original_post_data)
 	{
-		final_response = response;
-		
-		var
-		query = url.parse(request.url).query.replace(/query=/,''),
-		domain = query.split('/')[0],
-		pathstring = '/'+query.slice(domain.length+1);
-							
-		console.log(domain+pathstring);
+		//var data = JSON.stringify(original_post_data);
 		
 		var options = {
-  						host: domain,
- 						port: 80,
-  						path: pathstring
+ 						 host: domain,
+ 						 port: domainPort,
+  						 path: pathstring,
+  						 headers: original_request.headers,
+  						 method: 'POST'
 					  };
-
-		http.get(options, this.requestComplete)
+					  
+		var new_request = http.request(options, this.requestComplete)
 		.on('error', function(e) {
   			console.log('problem with request: ' + e.message);
-  			final_response.writeHead(500,{'Content-Type': 'text/plain'});
-    		final_response.write('Invalid URL Specified');
-    		final_response.end();
+  			response.writeHead(500,{'Content-Type': 'text/plain'});
+    		response.write('Invalid URL Specified');
+    		response.end();
 		});
+		
+		new_request.write(original_post_data);
+		new_request.end();
 
 	};
 	
-	this.postURL = function(request,response)
-	{
-		
-	};
-		
-	//actual calling part
-	var pathname = url.parse(request.url).pathname;	
-	console.log(pathname);
-	console.log(this);
-	var word = pathname.split('/')[2];
-			
-	if(typeof(this[word]) === 'function')
-	{
-		this[word](request,response);		
-	}
-	else
-	{
-		//common.errorEcho(request,response);
-		
-		final_response = response;
-						
-		var	domain=config.getConfig().domain;
-		var	pathstring = request.url;
-			
+	if(request.method == 'GET')
+	{					
 		console.log(domain+pathstring);
 		
 		var options = {
   						host: domain,
- 						port: 80,
-  						path: pathstring
+ 						port: domainPort,
+  						path: pathstring,
+  						headers: request.headers
 					  };
 
 		http.get(options, this.requestComplete)
 		.on('error', function(e) {
   			console.log('problem with request: ' + e.message);
-  			final_response.writeHead(500,{'Content-Type': 'text/plain'});
-    		final_response.write('Invalid URL Specified');
-    		final_response.end();
+  			response.writeHead(500,{'Content-Type': 'text/plain'});
+    		response.write('Invalid URL Specified');
+    		response.end();
 		});
-		
 	}
+	else if(request.method == 'POST')
+	{
+		//caching Post Content Chunks
+		var fullPostData = '';
+		
+		request.on('data', function(chunk) {		
+      		// append the current chunk of data to the content cache
+     		fullPostData += chunk;
+   		});
+   		
+   		request.on('end',function() {  			  			  			    		
+    		this.makePOSTrequest(cached_request,fullPostData);
+  		});
+	}
+	else if(request.method == 'PUT')
+	{
+	
+	}
+	else if(request.method == 'DELETE')
+	{
+	
+	}	
+	
 }
 
 exports.forwardRequest = forwardRequest;

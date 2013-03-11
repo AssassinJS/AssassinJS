@@ -1,3 +1,4 @@
 port	8000
 address	0.0.0.0
-domain	www.veooz.com
+domain	localhost
+domainPort	9000

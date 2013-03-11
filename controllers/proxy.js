@@ -12,9 +12,10 @@ function forwardRequest(request,response)
 	
 	//cached request,response objects
 	var cached_request = request;
-	var cached_response = response;
+	var cached_response = response;		
 	
-	this.requestComplete = function(res)
+	//called on getting response from target server
+	var requestComplete = function(res)
 	{
 		console.log('STATUS: ' + res.statusCode);
  		console.log('HEADERS: ' + JSON.stringify(res.headers));
@@ -33,36 +34,43 @@ function forwardRequest(request,response)
     		cached_response.end(); 	
   		});
 	};
-	
-	this.makePOSTrequest = function(original_request,original_post_data)
+			
+	//for making a http head request
+	var makeHEADrequest = function(request)
 	{
-		//var data = JSON.stringify(original_post_data);
-		
 		var options = {
- 						 host: domain,
- 						 port: domainPort,
-  						 path: pathstring,
-  						 headers: original_request.headers,
-  						 method: 'POST'
+  						host: domain,
+ 						port: domainPort,
+  						path: pathstring,
+  						headers: request.headers,
+  						method: 'HEAD'
 					  };
-					  
-		var new_request = http.request(options, this.requestComplete)
-		.on('error', function(e) {
-  			console.log('problem with request: ' + e.message);
-  			response.writeHead(500,{'Content-Type': 'text/plain'});
-    		response.write('Invalid URL Specified');
-    		response.end();
+
+		var new_request = http.request(options,function(res){
+						
+		console.log('STATUS: ' + res.statusCode);
+ 		console.log('HEADERS: ' + JSON.stringify(res.headers));
+  		
+  		cached_response.writeHead(res.statusCode,res.headers);
+  		cached_response.end(); 	
+  											
 		});
 		
-		new_request.write(original_post_data);
-		new_request.end();
-
+		new_request.on('error', function(e) {
+  			console.log('problem with request: ' + e.message);
+  			cached_response.writeHead(500,{'Content-Type': 'text/plain'});
+    		cached_response.write('Invalid URL Specified');
+    		cached_response.end();
+		});
+		
+		new_request.end();	
+		
+		return;
 	};
 	
-	if(request.method == 'GET')
-	{					
-		console.log(domain+pathstring);
-		
+	//for making a http get request
+	var makeGETrequest = function(request)
+	{
 		var options = {
   						host: domain,
  						port: domainPort,
@@ -70,37 +78,77 @@ function forwardRequest(request,response)
   						headers: request.headers
 					  };
 
-		http.get(options, this.requestComplete)
+		http.get(options, requestComplete)
 		.on('error', function(e) {
   			console.log('problem with request: ' + e.message);
-  			response.writeHead(500,{'Content-Type': 'text/plain'});
-    		response.write('Invalid URL Specified');
-    		response.end();
+  			cached_response.writeHead(500,{'Content-Type': 'text/plain'});
+    		cached_response.write('Invalid URL Specified');
+    		cached_response.end();
 		});
-	}
-	else if(request.method == 'POST')
+		
+		return;
+	};
+	
+	//for making other http requests
+	var makeRequest = function(data)
 	{
+		var options = {
+ 						host: domain,
+ 						port: domainPort,
+  						path: pathstring,
+  						headers: cached_request.headers,
+  						method: cached_request.method
+					 };
+					  
+		var new_request = http.request(options, requestComplete)
+		.on('error', function(e) {
+  			console.log('problem with request: ' + e.message);
+  			cached_response.writeHead(500,{'Content-Type': 'text/plain'});
+    		cached_response.write('Invalid URL Specified');
+    		cached_response.end();
+		});
+			
+		new_request.write(data);			
+		new_request.end();
+	};
+			
+	//for receiving request from source
+	var receiveRequest = function(request)
+	{			
 		//caching Post Content Chunks
-		var fullPostData = '';
+		var fullData = '';
 		
 		request.on('data', function(chunk) {		
       		// append the current chunk of data to the content cache
-     		fullPostData += chunk;
+     		fullData += chunk;
    		});
    		
-   		request.on('end',function() {  			  			  			    		
-    		this.makePOSTrequest(cached_request,fullPostData);
+   		request.on('end',function() {   		
+   			makeRequest(fullData);
   		});
-	}
-	else if(request.method == 'PUT')
+	};
+	
+	//actual execution part starts from here
+	console.log(domain+pathstring);
+	
+	switch(request.method)
 	{
-	
+		case 'HEAD':		
+						makeHEADrequest(request);						
+						return;			 									 				 		
+		case 'GET':							
+						makeGETrequest(request);
+						return;						
+		case 'POST':
+		case 'PUT':
+		case 'PATCH':
+		case 'DELETE':
+		case 'OPTIONS':												
+						receiveRequest(request);
+						return;	
+						
 	}
-	else if(request.method == 'DELETE')
-	{
-	
-	}	
-	
+		
 }
 
 exports.forwardRequest = forwardRequest;

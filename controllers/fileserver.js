@@ -32,13 +32,15 @@ function serveFile(req,res,defaultDir)
 	var reqDetails = url.parse(req.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
 	var filepath =reqDetails.pathname;
+	filepath = filepath.split('/'+filepath.split('/')[1])[1];
+	logger.write('filepath is '+filepath);
 	if(defaultDir==null ||defaultDir==undefined)
 		defaultDir='/public';
-	if(filepath=='/')
-		filepath = defaultDir+'/index.html';
+	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
+		filepath = '/index.html';
 	
-	//fs.readFile("."+defaultDir+filepath,function(err,data){
-	fs.readFile("."+filepath,function(err,data){
+	fs.readFile("./"+defaultDir+filepath,function(err,data){
+	//fs.readFile("."+filepath,function(err,data){
 		if(err)
 		{
 			respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');

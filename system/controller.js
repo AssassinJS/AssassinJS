@@ -59,7 +59,7 @@ controllers.error = function(request,response)
 {
 	var rHeader = {'Content-Type': 'text/plain'};
 	var status = 404;
-	var rContent = 'Access to Requested Resourse has been denied by the server. Please Try Again After Sometime';
+	var rContent = 'Request Resource Not Found On Server. Please Check the URL';
 	extensions['respond'].createResponse(response,status,rHeader,rContent);
 }
 controllers.blocked = function(request,response,filterMessage,statusCode)

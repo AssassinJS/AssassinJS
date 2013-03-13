@@ -71,22 +71,17 @@ function route(request,response)
 	var reqDetails = url.parse(request.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
 	var filepath = reqDetails.pathname;
-	//logger.write(routes);
 	var isHandled = false;
 	for(i in routes)
 	{
 		var urlReg = new RegExp('^'+routes[i].regexp+'$');
-		//logger.write('routes['+i+'] is '+JSON.stringify(routes[i]));
-		//logger.write('filepath='+filepath+' and routes['+i+'].regexp ='+routes[i].regexp+' urlReg='+urlReg);
 		if(urlReg.test(filepath))
 		{
 			isHandled = true;
-			//logger.write('filepath='+filepath+' matched urlReg='+urlReg);
 			if(routes[i].filters !=null || routes[i].filters != undefined)
 				filter.applyFilters(routes[i],request,response);
 			else
 				controller.handleRequest(routes[i],request,response);
-			//return;
 		}
 	}
 	if(!isHandled)

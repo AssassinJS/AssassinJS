@@ -8,6 +8,7 @@
 
 var fs = require('fs');
 var logger = require('./logger');
+var controller = require('./controller');
 
 var filters =[];
 
@@ -16,7 +17,7 @@ ReadFilters();//Ensures first time execution
 function ReadFilters()
 {
 	var filterFiles = [];
-	filterFiles = fs.readdirSync('./controllers/');
+	filterFiles = fs.readdirSync('./filters/');
 	filterExtensionReg = new RegExp('.js$');
 	for(i in filterFiles)
 	{
@@ -28,23 +29,22 @@ function ReadFilters()
 
 function applyFilters(routesObj,request,response)
 {
-	logger.write('filters = '+JSON.stringify(routesObj.filters),'filter.js');
 	var filterObj = {};
-	for(var i in routesObj)
+	for(var i in routesObj.filters)
 	{
 		//checking if any of the routesObj filters match with the filter modules present in the filters folder
-		if(filters.indexOf(routesObj[i]) != -1)
+		if(filters[routesObj.filters[i]] != undefined)
 		{
-			filterObj = filters[routesObj[i]].applyFilter(routesObj,request,response);
+			filterObj = filters[routesObj.filters[i]].applyFilter(routesObj,request,response);
 			if(filterObj.filterStatus > 400)
 				break;
 		}
 	}
 	if(filterObj.filterMessage != undefined)
-		controller.handleRequest(routes[i],request,response);
+		controller.handleRequest(filterObj,request,response);
 	else
 	{
-		controller.handleRequest(filterObj,request,response)
+		controller.handleRequest(routesObj,request,response);
 	}
 }
 

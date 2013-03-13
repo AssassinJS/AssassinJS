@@ -11,6 +11,7 @@ var fs = require('fs');
 var controller = require('./controller');
 var logger = require('./logger');
 var dbconnect = require('./dbconnect');
+var filter = require('./filter');
 
 //Reading Routes File
 var routes={};
@@ -81,7 +82,10 @@ function route(request,response)
 		{
 			isHandled = true;
 			//logger.write('filepath='+filepath+' matched urlReg='+urlReg);
-			controller.handleRequest(routes[i],request,response);
+			if(routes[i].filters !=null || routes[i].filters != undefined)
+				filter.applyFilters(routes[i],request,response);
+			else
+				controller.handleRequest(routes[i],request,response);
 			//return;
 		}
 	}

@@ -21,25 +21,34 @@ for(i in controllerFiles)
 
 function handleRequest(routesObj,request,response)
 {
-	logger.write('routesobj = '+JSON.stringify(routesObj),'controller');
-	if(routesObj != undefined)
+	logger.write('routesobj = '+JSON.stringify(routesObj),'controller.js');
+	if(routesObj != undefined || routesObj != null)
 	{
-		var controllerName = routesObj[request.method];
-		if(typeof(controllers[controllerName]) === 'function')
+		if(routesObj['filterMessage'] != undefined)
 		{
-			controllers[controllerName](request,response);		
+			controllers.blocked(request,response,routesObj['filterMessage'],routesObj['filterStatus']);
 		}
 		else
-			controllers.error(request,response);
+		{ 
+			var controllerName = routesObj[request.method];
+			if(typeof(controllers[controllerName]) === 'function')
+			{
+				controllers[controllerName](request,response);		
+			}
+			else
+				controllers.error(request,response);
+		}
 	}
 	else
 	{
 		//controllers.fileserver(request,response);
-		controllers['proxy'](request,response);
+		//controllers['proxy'](request,response);
+		controllers.error(request,response);
 	}
-	
 }
 
+//The actual controller functions to which requests are forwarded to 
+//(and the controller functions may be mapped to extensions)
 var controllers = [];
 controllers.test = function(request,response)
 {
@@ -50,7 +59,14 @@ controllers.error = function(request,response)
 {
 	var rHeader = {'Content-Type': 'text/plain'};
 	var status = 404;
-	var rContent = 'Requested Resourse is not found on the server. Please Check the URL';
+	var rContent = 'Access to Requested Resourse has been denied by the server. Please Try Again After Sometime';
+	extensions['respond'].createResponse(response,status,rHeader,rContent);
+}
+controllers.blocked = function(request,response,filterMessage,statusCode)
+{
+	var rHeader = {'Content-Type': 'text/plain'};
+	var status = statusCode;
+	var rContent = filterMessage;
 	extensions['respond'].createResponse(response,status,rHeader,rContent);
 }
 controllers.testReg = function(request,response)

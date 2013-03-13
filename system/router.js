@@ -16,7 +16,7 @@ var dbconnect = require('./dbconnect');
 var routes={};
 
 // Obsolete with database storage
-ReadRoutesFile();//Ensures first time execution
+// Is used only for first time initialization
 function ReadRoutesFile()
 {
 	var r_data = fs.readFileSync('./config/routes.txt');
@@ -28,25 +28,38 @@ function ReadRoutesFile()
 	{
 		var listentries = r_data.toString().split('\n');
 		
-		for(row in listentries)
-		{
-			var values = listentries[row].split('\t');
-			var routeObj={};
-			routeObj.path=values[1];
-			routeObj.method=values[0];
-			routeObj.target=values[2];
-			if(routes[routeObj.path]===undefined && routeObj.path!=undefined) routes[routeObj.path]={};
-			if(routes[routeObj.path]!=undefined)routes[routeObj.path][routeObj.method] = routeObj.target;
-			//logger.write('routeObj = '+JSON.stringify(routeObj)+' and routes= '+JSON.stringify(routes));
-		}
-		//logger.write('routes object = '+JSON.stringify(routes));
+		dbconnect.db_ready(function(db){
+			var collection = db.collection('routes');
+			
+			for(row in listentries)
+			{
+				var values = listentries[row].split('\t');
+				if(values.length<3) continue;
+				var routeObj={};
+				routeObj.path=values[1];
+				routeObj.method=values[0];
+				routeObj.target=values[2];
+			
+				var toSet={};
+				toSet[routeObj.method] = routeObj.target;
+				collection.update({regexp:routeObj.path},{$set:toSet},{upsert:true, w:1},function(err,data){
+					if(err)logger.write(err);
+				});			
+			}
+		});
 	}
 }
 
-
+//Reading Routes from DB
+ReadFromDB(); //Ensures first time execution
 function ReadFromDB()
 {
-	
+	dbconnect.db_ready(function(db){
+		
+		var collection = db.collection('routes');
+				
+		routes = collection.find();				
+	});
 }
 
 //Actual Routing Function
@@ -58,8 +71,8 @@ function route(request,response)
 	
 	for(i in routes)
 	{
-		var urlReg = new RegExp('^'+i.toString()+'$');
-		logger.write('filepath='+filepath+' and i ='+i+' urlReg='+urlReg);
+		var urlReg = new RegExp('^'+i.regexp.toString()+'$');
+		logger.write('filepath='+filepath+' and i.regexp ='+i.regexp+' urlReg='+urlReg);
 		if(urlReg.test(filepath))
 		{
 			logger.write('filepath='+filepath+' matched urlReg='+urlReg);
@@ -68,9 +81,10 @@ function route(request,response)
 		}
 	}
 	logger.write('URL not found');
-	controller.handleRequest(routes[filepath],request,response);
+	controller.handleRequest(null,request,response);
 	
 }
 
 exports.route = route;
+exports.ReadFromDB = ReadFromDB;
 exports.ReadRoutesFile = ReadRoutesFile;

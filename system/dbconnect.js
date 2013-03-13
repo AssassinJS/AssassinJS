@@ -7,7 +7,7 @@ db_details['username'] = '';
 db_details['password'] = '';
 db_details['location'] = 'localhost';
 db_details['port_num'] = 27017;
-db_details['name'] = 'myDB';
+db_details['name'] = 'assassindb';
 
 // Define options. Note poolSize.
 var serverOptions = {

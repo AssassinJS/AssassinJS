@@ -58,7 +58,9 @@ function ReadFromDB()
 		
 		var collection = db.collection('routes');
 				
-		routes = collection.find();				
+		collection.find().toArray(function(err,list){
+			routes = list;
+		});				
 	});
 }
 
@@ -68,21 +70,26 @@ function route(request,response)
 	var reqDetails = url.parse(request.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
 	var filepath = reqDetails.pathname;
-	
+	//logger.write(routes);
+	var isHandled = false;
 	for(i in routes)
 	{
-		var urlReg = new RegExp('^'+i.regexp.toString()+'$');
-		logger.write('filepath='+filepath+' and i.regexp ='+i.regexp+' urlReg='+urlReg);
+		var urlReg = new RegExp('^'+routes[i].regexp+'$');
+		//logger.write('routes['+i+'] is '+JSON.stringify(routes[i]));
+		//logger.write('filepath='+filepath+' and routes['+i+'].regexp ='+routes[i].regexp+' urlReg='+urlReg);
 		if(urlReg.test(filepath))
 		{
-			logger.write('filepath='+filepath+' matched urlReg='+urlReg);
+			isHandled = true;
+			//logger.write('filepath='+filepath+' matched urlReg='+urlReg);
 			controller.handleRequest(routes[i],request,response);
-			return;
+			//return;
 		}
 	}
-	logger.write('URL not found');
-	controller.handleRequest(null,request,response);
-	
+	if(!isHandled)
+	{
+		logger.write('URL not found');
+		controller.handleRequest(null,request,response);
+	}
 }
 
 exports.route = route;

@@ -5,21 +5,23 @@
  This is the file that calls the corresponding functions mapped from router.js
 
 */
+var fs = require('fs');
 var logger = require('./logger');
 
 var extensions =[];
-extensions['dnsfunctions'] = require('../controllers/dnsfunctions');
-extensions['dbfunctions'] = require('../controllers/dbfunctions');
-extensions['common'] = require('../controllers/common');
-extensions['users'] = require('../controllers/users');
-extensions['fileserver'] = require('../controllers/fileserver');
-extensions['respond'] = require('../controllers/respond');
-extensions['proxy'] = require('../controllers/proxy');
-extensions['assassinPanel'] = require('../controllers/assassinPanel');
+//Dynamically Reading the controllers folder to get all the extensions
+var controllerFiles = [];
+controllerFiles = fs.readdirSync('./controllers/');
+controllerExtensionReg = new RegExp('.js$');
+for(i in controllerFiles)
+{
+	var controllerFile = controllerFiles[i].split(controllerExtensionReg)[0];
+	extensions[controllerFile] = require('../controllers/'+controllerFile);
+}
 
 function handleRequest(routesObj,request,response)
 {
-	logger.write('routesobj = '+JSON.stringify(routesObj));
+	logger.write('routesobj = '+JSON.stringify(routesObj),'controller');
 	if(routesObj != undefined)
 	{
 		var controllerName = routesObj[request.method];

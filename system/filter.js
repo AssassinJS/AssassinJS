@@ -36,16 +36,14 @@ function applyFilters(routesObj,request,response)
 		if(filters[routesObj.filters[i]] != undefined)
 		{
 			filterObj = filters[routesObj.filters[i]].applyFilter(routesObj,request,response);
-			if(filterObj.filterStatus > 400)
+			if(filterObj !=null && filterObj !=undefined && filterObj.filterStatus > 400)
 				break;
 		}
 	}
 	if(filterObj.filterMessage != undefined)
 		controller.handleRequest(filterObj,request,response);
 	else
-	{
 		controller.handleRequest(routesObj,request,response);
-	}
 }
 
 exports.applyFilters = applyFilters;

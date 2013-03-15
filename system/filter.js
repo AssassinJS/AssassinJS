@@ -30,20 +30,24 @@ function ReadFilters()
 function applyFilters(routesObj,request,response)
 {
 	var filterObj = {};
-	for(var i in routesObj.filters)
+	for(var i in routesObj.filters[request.method])
 	{
 		//checking if any of the routesObj filters match with the filter modules present in the filters folder
-		if(filters[routesObj.filters[i]] != undefined)
+		if(filters[routesObj.filters[request.method][i]] != undefined)
 		{
-			filterObj = filters[routesObj.filters[i]].applyFilter(routesObj,request,response);
-			if(filterObj !=null && filterObj !=undefined && filterObj.filterStatus > 400)
+			filterObj = filters[routesObj.filters[request.method][i]].applyFilter(routesObj,request,response);
+			if(filterObj !=null && filterObj !=undefined)
 				break;
 		}
 	}
 	if(filterObj.filterMessage != undefined)
+	{
 		controller.handleRequest(filterObj,request,response);
+	}
 	else
+	{
 		controller.handleRequest(routesObj,request,response);
+	}
 }
 
 exports.applyFilters = applyFilters;

@@ -2,6 +2,7 @@ var common = require('./common');
 var url = require('url');
 var http = require('http');
 var config = require('../system/config');
+var logger = require('../system/logger');
 
 function forwardRequest(request,response)
 {	
@@ -17,15 +18,15 @@ function forwardRequest(request,response)
 	//called on getting response from target server
 	var requestComplete = function(res)
 	{
-		console.log('STATUS: ' + res.statusCode);
- 		console.log('HEADERS: ' + JSON.stringify(res.headers));
+		logger.write('STATUS: ' + res.statusCode,'proxy.js');
+ 		logger.write('HEADERS: ' + JSON.stringify(res.headers),'proxy.js');
   		//res.setEncoding('utf8');
   		//res.setEncoding('binary');
   		
   		cached_response.writeHead(res.statusCode,res.headers);
   		
  		res.on('data', function (chunk) { 			
-    		console.log('BODY: ' + chunk);
+    		logger.write('BODY: ' + chunk,'proxy.js');
     		cached_response.write(chunk);	     	 
   		});
   		
@@ -48,8 +49,8 @@ function forwardRequest(request,response)
 
 		var new_request = http.request(options,function(res){
 						
-		console.log('STATUS: ' + res.statusCode);
- 		console.log('HEADERS: ' + JSON.stringify(res.headers));
+		logger.write('STATUS: ' + res.statusCode,'proxy.js');
+ 		logger.write('HEADERS: ' + JSON.stringify(res.headers),'proxy.js');
   		
   		cached_response.writeHead(res.statusCode,res.headers);
   		cached_response.end(); 	
@@ -57,7 +58,7 @@ function forwardRequest(request,response)
 		});
 		
 		new_request.on('error', function(e) {
-  			console.log('problem with request: ' + e.message);
+  			logger.write('problem with request: ' + e.message,'proxy.js');
   			cached_response.writeHead(500,{'Content-Type': 'text/plain'});
     		cached_response.write('Invalid URL Specified');
     		cached_response.end();
@@ -80,7 +81,7 @@ function forwardRequest(request,response)
 
 		http.get(options, requestComplete)
 		.on('error', function(e) {
-  			console.log('problem with request: ' + e.message);
+  			logger.write('problem with request: ' + e.message,'proxy.js');
   			cached_response.writeHead(500,{'Content-Type': 'text/plain'});
     		cached_response.write('Invalid URL Specified');
     		cached_response.end();
@@ -102,7 +103,7 @@ function forwardRequest(request,response)
 					  
 		var new_request = http.request(options, requestComplete)
 		.on('error', function(e) {
-  			console.log('problem with request: ' + e.message);
+  			logger.write('problem with request: ' + e.message,'proxy.js');
   			cached_response.writeHead(500,{'Content-Type': 'text/plain'});
     		cached_response.write('Invalid URL Specified');
     		cached_response.end();
@@ -129,7 +130,7 @@ function forwardRequest(request,response)
 	};
 	
 	//actual execution part starts from here
-	console.log(domain+pathstring);
+	logger.write('Call To '+domain+pathstring,'proxy.js');
 	
 	switch(request.method)
 	{

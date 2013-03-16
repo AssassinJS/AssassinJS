@@ -15,6 +15,7 @@ userAgents['/filterbrowser']={'GET':{'allow':["Mozilla/5.0 (X11; Linux x86_64) A
 // Is used only for first time initialization
 function ReadUserAgentFile()
 {
+	logger.write('Reading from db,please wait...','router.js');
 	var ua_data = fs.readFileSync('./config/useragent.txt');
 	if(ua_data==null)
 	{ 
@@ -31,7 +32,10 @@ function ReadUserAgentFile()
 			toset.parameters.total = listentries;
 			collection.update({filter:'user-agent'},{$set:toset},{upsert:true, w:1},function(err,data){
 				if(err)logger.write(err,'user-agent.js');
-			});			
+			});
+			
+			//db.close();
+			logger.write('initialized the user agent collection in db','router.js');			
 		});
 	}
 }
@@ -46,7 +50,9 @@ function ReadFromDB()
 				
 		collection.findOne({filter:'user-agent'},function(err,item){
 			userAgents = item.parameters;
-		});			
+		});
+		
+		//db.close();			
 	});	
 }
 

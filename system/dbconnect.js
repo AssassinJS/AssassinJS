@@ -12,7 +12,7 @@ db_details['name'] = 'assassindb';
 // Define options. Note poolSize.
 var serverOptions = {
    'auto_reconnect': true,
-   'poolSize': 5
+   'poolSize': 10
 };
 
 // Now create the server, passing our options.
@@ -23,24 +23,44 @@ var serv = new mongodb.Server(db_details['location'], db_details['port_num'], se
 // Create a handle to the Mongo database called 'myDB'.
 var dbManager = new mongodb.Db(db_details['name'], serv, {w:1});
 
-var on_db_ready = null;
-
-module.exports = {
-               		 db_ready:function(db_ready_callback){
-                   		  on_db_ready = db_ready_callback;
-                    	 //here we call callback if already have db
-                     	if (global_db) on_db_ready(global_db);
-                	 },
-                 	getConnection:getConnection
-                };
-                
 dbManager.open(function (error, db) {
- if (on_db_ready) on_db_ready(db);
+
+ //if (on_db_ready) on_db_ready(db);
   global_db = db;
+  
 });
+
+//var on_db_ready = null;
 
 function getConnection()
 {
    return global_db;
 } 
+
+function db_ready(db_ready_callback){
+
+  //on_db_ready = db_ready_callback;
+  
+  //here we call callback if already have db
+  if (global_db) db_ready_callback(global_db);
+                     	
+}
+
+function db_do(db_perform){
+
+	dbManager.open(function (error, db) {
+ 
+ 			db_perform(db);
+ 
+	});
+	
+}
+	
+module.exports = {
+               		db_ready : db_ready,
+               		db_do : db_do,
+                 	getConnection : getConnection
+};
+                
+
 

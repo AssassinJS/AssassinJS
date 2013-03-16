@@ -22,7 +22,9 @@ function forwardRequest(request,response)
 					response.writeHead(200,{'content-type':'text/plain'});			
 					response.write(result);				 
 					response.end();
-				});				
+				});	
+				
+				//db.close();			
 		});
 				
 	};
@@ -43,7 +45,9 @@ function forwardRequest(request,response)
 					response.writeHead(200,{'content-type':'text/plain'});			
 					response.write(result);				 
 					response.end();
-				});				
+				});
+				
+				//db.close();				
 		});
 	};
 

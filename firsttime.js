@@ -10,11 +10,9 @@ var logger = require('./system/logger');
 //To populate db from routes file
 var router = require('./system/router');
 router.ReadRoutesFile();
-logger.write('initialized the routes collection in db','firsttime.js');
 
 //To populate db from useragent file
 var useragent = require('./filters/user-agent');
 useragent.ReadUserAgentFile();
-logger.write('initialized the user agent collection in db','firsttime.js');
 
 logger.write('\n\n\tPress ctrl+c to exit...','firsttime.js');

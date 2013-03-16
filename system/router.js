@@ -20,6 +20,7 @@ var routes={};
 // Is used only for first time initialization
 function ReadRoutesFile()
 {
+	logger.write('Reading routes from db,please wait...','router.js');
 	var r_data = fs.readFileSync('./config/routes.txt');
 	if(r_data==null)
 	{ 
@@ -52,6 +53,9 @@ function ReadRoutesFile()
 					if(err)logger.write(err);
 				});			
 			}
+			
+			//db.close();
+			logger.write('initialized the routes collection in db','router.js');
 		});
 	}
 }
@@ -66,7 +70,9 @@ function ReadFromDB()
 				
 		collection.find().toArray(function(err,list){
 			routes = list;
-		});				
+		});
+		
+		//db.close();				
 	});
 }
 

@@ -14,7 +14,7 @@ function invoke(req,res)
 	//First need to check of user validation credentials.
 	//If valid user, then show home page
 	//else redirect to login index page
-	fileserver.serveFile(req,res,'assassinPanel');
+	fileserver.serveFile(req,res,'views');
 }
 
 exports.invoke = invoke;

@@ -17,4 +17,9 @@ var useragent = require('./filters/user-agent');
 useragent.ReadUserAgentFile();
 logger.write('initialized the user agent collection in db','firsttime.js');
 
+//To Compile JSSP files to Views (production level - assuming that jssp's are already there)
+var viewcompiler = require('./system/viewcompiler');
+viewcompiler.readJSSP();
+logger.write("compiled the JSSP's to Views",'firsttime.js');
+
 logger.write('\n\n\tPress ctrl+c to exit...','firsttime.js');

@@ -30,7 +30,7 @@ function ReadFileTypeList()
 function serveFile(req,res,defaultDir)
 {
 	var reqDetails = url.parse(req.url);
-	logger.write("Request Details: "+JSON.stringify(reqDetails));
+	logger.write("Request Details: "+JSON.stringify(reqDetails),'serveFile in fileserver');
 	var filepath =reqDetails.pathname;
 	filepath = filepath.split('/'+filepath.split('/')[1])[1];
 	logger.write('filepath is '+filepath);
@@ -38,7 +38,12 @@ function serveFile(req,res,defaultDir)
 		defaultDir='/public';
 	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
 		filepath = '/index.html';
-	
+	if(defaultDir == 'views')
+	{
+		serveView(req,res);
+	}
+	else
+	{
 	fs.readFile("./"+defaultDir+filepath,function(err,data){
 	//fs.readFile("."+filepath,function(err,data){
 		if(err)
@@ -53,11 +58,44 @@ function serveFile(req,res,defaultDir)
 			var contenttype = filetypemap[extension];
 			respond.createResponse(res,200,contenttype,data);
 			logger.write('Written File Contents to Response with content-type: '+contenttype+'\n');
-			
 		}
 	});
+	}
+}
 
+function serveView(req,res)
+{
+	var reqDetails = url.parse(req.url);
+	logger.write("Request Details: "+JSON.stringify(reqDetails),'serveView in fileserver');
+	var filepath =reqDetails.pathname;
+	filepath = filepath.split('/'+filepath.split('/')[1])[1];
+	logger.write('filepath is '+filepath,'serveView in fileserver');
+	var fileextension = filepath.split('.')[1];
+	logger.write('fileextension is '+fileextension,'serveView in fileserver');
+	if(fileextension !='html' && fileextension !='htm')
+		serveFile(req,res,null);
+	else
+	{
+	filepath = filepath.replace('.'+fileextension,'.js');
+	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
+		filepath = '/index.js';
+	fs.exists('./views'+filepath,function(exists){
+		if(exists)
+		{
+			var toServe = require('../views'+filepath);
+			toServe.render(res); //Second optional param is a data object
+			logger.write('View Rendered:\n');
+		}
+		else
+		{
+			respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');
+			logger.write('Error in Reading View or Missing View:\n');
+		}
+	});
+	
+	}
 }
 
 exports.serveFile = serveFile;
+exports.serveView = serveView;
 exports.ReadFileTypeList = ReadFileTypeList;

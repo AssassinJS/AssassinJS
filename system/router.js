@@ -61,4 +61,3 @@ function route(request,response)
 
 exports.route = route;
 exports.ReadFromDB = ReadFromDB;
-exports.ReadRoutesFile = ReadRoutesFile;

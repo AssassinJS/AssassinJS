@@ -2,57 +2,26 @@
 // this is a test filter
 
 var logger = require('../system/logger');
-var dbconnect = require('../system/dbconnect');
 var fs = require('fs');
+
+var MyMongo = require('../system/dbconnect.js').MyMongo;
+var db = new MyMongo('localhost', 27017, 'assassindb');
 
 var userAgents = [];
 
 //test entry in userAgents
 userAgents['/filterbrowser']={'GET':{'allow':["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17"],'block':[]}};
 
-
-// Obsolete with database storage
-// Is used only for first time initialization
-function ReadUserAgentFile()
-{
-	logger.write('Reading from db,please wait...','router.js');
-	var ua_data = fs.readFileSync('./config/useragent.txt');
-	if(ua_data==null)
-	{ 
-		logger.write("useragent filter list data not found",'');
-	}
-	else
-	{
-		var listentries = ua_data.toString().split('\n');
-		
-		dbconnect.db_ready(function(db){
-			var collection = db.collection('filterParameters');
-			var toset = {};
-			toset.parameters = {};
-			toset.parameters.total = listentries;
-			collection.update({filter:'user-agent'},{$set:toset},{upsert:true, w:1},function(err,data){
-				if(err)logger.write(err,'user-agent.js');
-			});
-			
-			//db.close();
-			logger.write('initialized the user agent collection in db','router.js');			
-		});
-	}
-}
-
 //Reading from db to get the user-agent parameters object
 ReadFromDB();//First Time Execution
 function ReadFromDB()
 {
-	dbconnect.db_ready(function(db){
-		
-		var collection = db.collection('filterParameters');
+	db.query('filterParameters',function(collection){		
 				
 		collection.findOne({filter:'user-agent'},function(err,item){
 			userAgents = item.parameters;
 		});
 		
-		//db.close();			
 	});	
 }
 

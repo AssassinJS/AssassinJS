@@ -1,66 +1,43 @@
 var mongodb = require('mongodb');
-var global_db  = '';
 
-//DB Details
-var db_details = [];
-db_details['username'] = '';
-db_details['password'] = '';
-db_details['location'] = 'localhost';
-db_details['port_num'] = 27017;
-db_details['name'] = 'assassindb';
+function MyMongo(host, port, dbname) {
+    this.host = host;
+    this.port = port;
+    this.dbname = dbname;
 
-// Define options. Note poolSize.
-var serverOptions = {
-   'auto_reconnect': true,
-   'poolSize': 10
-};
+    this.server = new mongodb.Server(
+                              this.host, 
+                              this.port, 
+                              {auto_reconnect: true});
+    this.db_connector = new mongodb.Db(this.dbname, this.server,{w:1});
 
-// Now create the server, passing our options.
-var serv = new mongodb.Server(db_details['location'], db_details['port_num'], serverOptions);
+    var self = this;
 
-// At this point, there is no connection made to the server.
+    this.db = undefined;
+    this.queue = [];
 
-// Create a handle to the Mongo database called 'myDB'.
-var dbManager = new mongodb.Db(db_details['name'], serv, {w:1});
+    this.db_connector.open(function(err, db) {
+            if( err ) {
+                console.log(err);
+                return;
+        }
+        self.db = db;
+        for (var i = 0; i < self.queue.length; i++) {
+            var collection = new mongodb.Collection(
+                                 self.db, self.queue[i].cn);
+            self.queue[i].cb(collection);
+        }
+        self.queue = [];
 
-dbManager.open(function (error, db) {
-
- //if (on_db_ready) on_db_ready(db);
-  global_db = db;
-  
-});
-
-//var on_db_ready = null;
-
-function getConnection()
-{
-   return global_db;
-} 
-
-function db_ready(db_ready_callback){
-
-  //on_db_ready = db_ready_callback;
-  
-  //here we call callback if already have db
-  if (global_db) db_ready_callback(global_db);
-                     	
+    });
 }
+exports.MyMongo = MyMongo;
 
-function db_do(db_perform){
-
-	dbManager.open(function (error, db) {
- 
- 			db_perform(db);
- 
-	});
-	
+MyMongo.prototype.query = function(collectionName, callback) {
+    if (this.db != undefined) {
+        var collection = new mongodb.Collection(this.db, collectionName);
+        callback(collection);
+        return;
+    }
+    this.queue.push({ "cn" : collectionName, "cb" : callback});
 }
-	
-module.exports = {
-               		db_ready : db_ready,
-               		db_do : db_do,
-                 	getConnection : getConnection
-};
-                
-
-

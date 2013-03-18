@@ -42,8 +42,8 @@ function handleRequest(routesObj,request,response)
 	else
 	{
 		//controllers.fileserver(request,response);
-		//controllers['proxy'](request,response);
-		controllers.error(request,response);
+		controllers['proxy'](request,response);
+		//controllers.error(request,response);
 	}
 }
 

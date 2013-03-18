@@ -1,7 +1,9 @@
 var common = require('./common');
 var url = require('url');
 var queryutil = require('querystring');
-var dbconnect = require('../system/dbconnect');
+
+var MyMongo = require('../system/dbconnect.js').MyMongo;
+var db = new MyMongo('localhost', 27017, 'assassindb');
 
 function forwardRequest(request,response)
 {	
@@ -11,10 +13,8 @@ function forwardRequest(request,response)
 		console.log('query is '+params);		
 		var searchobj = queryutil.parse(params);
 		console.log(searchobj);
-		dbconnect.db_ready(function(db){
+		db.query('nodethings',function(collection){
 		
-				var collection = db.collection('nodethings');
-				
 				collection.find(searchobj).toArray(function(err,data)
 				{
 					var result = JSON.stringify(data);
@@ -24,7 +24,6 @@ function forwardRequest(request,response)
 					response.end();
 				});	
 				
-				//db.close();			
 		});
 				
 	};
@@ -34,10 +33,8 @@ function forwardRequest(request,response)
 		var params = url.parse(request.url).query;	
 		console.log('query is '+params);		
 		var insertobj = queryutil.parse(params);		
-		dbconnect.db_ready(function(db){
+		db.query('nodethings',function(collection){
 		
-				var collection = db.collection('nodethings');
-				
 				collection.insert(insertobj,{w:1},function(err,data)
 				{
 					var result = JSON.stringify(data);
@@ -47,7 +44,6 @@ function forwardRequest(request,response)
 					response.end();
 				});
 				
-				//db.close();				
 		});
 	};
 

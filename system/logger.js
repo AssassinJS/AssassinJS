@@ -14,6 +14,7 @@ function write(data,filename)
 	if(filename !=null || filename != undefined) entry = entry+'\n\tFile: '+filename;
 	if(data !=null || data != undefined) entry = entry+'\n\tMessage: '+data;
 	entry = entry+'\n';
+	
 	fs.appendFile('./config/log.txt',entry,function(err){
 		if(err){console.log('Log NOT Appended with data:\n\t'+entry);}
 		else{console.log('Log Appended with data:\n\t'+entry);}

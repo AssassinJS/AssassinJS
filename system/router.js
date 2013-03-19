@@ -16,14 +16,14 @@ var MyMongo = require('./dbconnect.js').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 //Reading Routes File
-var routes={};
+var routes = [];
 
 //Reading Routes from DB
 ReadFromDB(); //Ensures first time execution
 function ReadFromDB()
 {
 	db.query('routes',function(collection){
-				
+			
 		collection.find().toArray(function(err,list){
 			routes = list;
 		});
@@ -34,6 +34,7 @@ function ReadFromDB()
 //Actual Routing Function
 function route(request,response)
 {			
+	logger.write('Routes = '+JSON.stringify(routes),'router.js');
 	logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
 	var reqDetails = url.parse(request.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));
@@ -46,8 +47,11 @@ function route(request,response)
 		{
 			isHandled = true;
 			
-			if(routes[i].filters !=null || routes[i].filters != undefined)
+			if(routes[i].filters != undefined)
+			{
+				logger.write('Route is'+JSON.stringify(routes[i]),'router.js');
 				filter.applyFilters(routes[i],request,response);
+			}
 			else
 				controller.handleRequest(routes[i],request,response);
 		}

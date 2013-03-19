@@ -8,7 +8,7 @@ GET	/users/generateUID	users
 GET	/favicon.ico	proxy
 GET	/proxy/getURL	proxy
 GET	/reg/[a-zA-Z0-9]*/test	testReg
-GET	/assassinPanel/[a-zA-Z0-9_./]*	assassinPanel
+GET	/assassinPanel/[a-zA-Z0-9_./]*	assassinPanel	rate-limit
 GET	/public/[a-zA-Z0-9_./]*	fileserver
 GET	/testfilter	proxy	test,test2
 GET	/filterbrowser	proxy	user-agent

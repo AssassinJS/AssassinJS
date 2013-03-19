@@ -7,13 +7,13 @@ var fs = require('fs');
 var MyMongo = require('../system/dbconnect.js').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
-var userAgents = [];
+var userAgents = {};
 
 //test entry in userAgents
 userAgents['/filterbrowser']={'GET':{'allow':["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17"],'block':[]}};
 
 //Reading from db to get the user-agent parameters object
-ReadFromDB();//First Time Execution
+//ReadFromDB();//First Time Execution
 function ReadFromDB()
 {
 	db.query('filterParameters',function(collection){		
@@ -27,6 +27,8 @@ function ReadFromDB()
 
 function applyFilter(routesObj,request,response)
 {
+	logger.write('UA OBJ = '+JSON.stringify(userAgents),'user-agent.js');
+
 	var userAgent = request.headers['user-agent'];
 	var whitelist=userAgents[routesObj.regexp][request.method].allow;
 	var blacklist=userAgents[routesObj.regexp][request.method].block;

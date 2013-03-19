@@ -2,6 +2,7 @@ var common = require('./common');
 var url = require('url');
 var http = require('http');
 var config = require('../system/config');
+var logger = require('../system/logger');
 
 function forwardRequest(request,response)
 {	
@@ -9,7 +10,7 @@ function forwardRequest(request,response)
 	domain = config.getConfig().domain,
 	domainPort = config.getConfig().domainPort,
 	pathstring = request.url;
-
+	
 	//cached request,response objects
 	var cached_request = request;
 	var cached_response = response;		
@@ -30,7 +31,7 @@ function forwardRequest(request,response)
   		});
   		
   		res.on('end',function() {  			  			  			    		
-    		//cached_response.addTrailers(res.headers);
+    		cached_response.addTrailers(res.headers);
     		cached_response.end(); 	
   		});
 	};
@@ -39,10 +40,11 @@ function forwardRequest(request,response)
 	var makeHEADrequest = function(request)
 	{
 		var options = {
-  						host: domain,
+						//host: domain
+  						hostname: domain,
  						port: domainPort,
   						path: pathstring,
-  						//headers: request.headers,
+  						headers: request.headers,
   						method: 'HEAD'
 					  };
 
@@ -70,13 +72,16 @@ function forwardRequest(request,response)
 
 	//for making a http get request
 	var makeGETrequest = function(request)
-	{
+	{		
 		var options = {
-  						host: domain,
+						//host: domain
+  						hostname: domain,
  						port: domainPort,
   						path: pathstring,
-  						//headers: request.headers
+  						headers: request.headers  									
 					  };
+
+		logger.write(JSON.stringify(options),'proxy.js');
 
 		http.get(options, requestComplete)
 		.on('error', function(e) {
@@ -93,10 +98,11 @@ function forwardRequest(request,response)
 	var makeRequest = function(data)
 	{
 		var options = {
- 						host: domain,
+						//host: domain
+ 						hostname: domain,
  						port: domainPort,
   						path: pathstring,
-  						//headers: cached_request.headers,
+  						headers: cached_request.headers,
   						method: cached_request.method
 					 };
 

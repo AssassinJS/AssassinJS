@@ -85,4 +85,9 @@ ReadRoutesFile();
 //To populate db from useragent file
 ReadUserAgentFile();
 
+//To Compile JSSP files to Views (production level - assuming that jssp's are already there)
+var viewcompiler = require('./system/viewcompiler');
+viewcompiler.readJSSP();
+logger.write("compiled the JSSP's to Views",'firsttime.js');
+
 logger.write('\n\n\tPress ctrl+c to exit...','firsttime.js');

@@ -1,0 +1,12 @@
+<html>
+<body>
+<$
+var i;
+for(i=0;i<200;i++){ 
+$>
+this is a test iteration 
+<$ 
+} 
+$>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="stylesheet" href="index_style.css" type="text/css" />
+</head>
+<body>
+
+<div id="bodyWrapper">
+
+<div id="headerWrapper">
+<div id="headerContent">
+Assassin.js
+</div>
+</div>
+<div id="contentWrapper">
+
+<div id="contentLeft">
+<div id="projectMenu">
+Configure Project Routes<br />
+Configure Filters<br />
+</div>
+</div>
+<div id="contentRight">
+Manage User Agent Filters for Routes Here<br /><br />
+<$
+for(i=0;i<100;i++)
+{
+$>
+this is a user agent filter<br />
+<$
+}
+$>
+</div>
+
+</div>
+<div id="footerWrapper">
+<div id="footerContent">
+(c)2013 Adithya Chebiyyam and Sai Teja Jammalamadaka
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

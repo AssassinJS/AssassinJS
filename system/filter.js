@@ -39,7 +39,7 @@ function applyFilters(routesObj,request,response)
 				break;
 		}
 	}
-	if(filterObj.filterMessage != undefined)
+	if(filterObj['filterMessage'] != undefined)
 	{
 		controller.handleRequest(filterObj,request,response);
 	}

@@ -34,7 +34,7 @@ function ReadFromDB()
 //Actual Routing Function
 function route(request,response)
 {			
-	logger.write('Routes = '+JSON.stringify(routes),'router.js');
+	//logger.write('Routes = '+JSON.stringify(routes),'router.js');
 	logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
 	var reqDetails = url.parse(request.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails));

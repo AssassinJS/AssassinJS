@@ -17,8 +17,8 @@ function ReadFromDB()
 			
 				if(err)
 				 	logger.write();
-				else
-					rateLimits[doc.url] = doc;
+				else if(doc)
+					rateLimits[doc.url] = doc.params;
 		
 		});		
 	});
@@ -41,7 +41,7 @@ function ReadFromDB()
 			
 				if(err)
 				 	logger.write();
-				else
+				else if(doc)
 					IPLogs[doc.ip] = doc;
 		
 		});	
@@ -50,7 +50,8 @@ function ReadFromDB()
 			Above Function populates IPLogs object as
 			IPLogs = {
 			
-					192.168.2.97 : {					
+					/dots in ip cause an error while insertion into db/
+					192168297 : {					
 										GET/assassinPanel : { LastRequestOn:1363691315880 , RequestsCounter:7 },
 										GET/index.html : { LastRequestOn:1363643127965 , RequestsCounter:5 },
 										
@@ -66,17 +67,21 @@ function applyFilter(routesObj,request,response)
 {
 	var
 	filterObj = routesObj,
-	ip = request.headers['x-forwarded-for'].split(', ')[0] || request.connection.remoteAddress,
+	xfr = request.headers['x-forwarded-for'],	
+	ip = xfr?xfr.split(', ')[0]:request.connection.remoteAddress,
 	path = request.method + url.parse(request.url).pathname,
 	limitNum = false,
 	limitTime = false;
 	
 	logger.write('IP is : '+ip,'rate-limit.js');
 	
+	ip = ip.replace(/\./g,'');
+	
 	if(rateLimits[path] != undefined)
 	{
 		limitNum = rateLimits[path]['limitNum'],
 		limitTime = rateLimits[path]['limitTime'];//This must be set in milliseconds
+		logger.write('path = '+path+', LimitNum = '+limitNum+', LimitTime = '+limitTime,'rate-limit.js');
 	}
 	
 	if(limitNum && limitTime)
@@ -95,28 +100,27 @@ function applyFilter(routesObj,request,response)
 					if(RequestsCounter < limitNum)
 					{
 						//When within limit
-						filterobj.filterMessage = 'Allowed: Request Rate is within Limits';
-						filterobj.filterStatus = 200;
+						filterObj.filterMessage = 'Allowed: Request Rate is within Limits';
+						filterObj.filterStatus = 200;
 					}
 					else
 					{
 						//When limit exceeded
-						filterobj.filterMessage = 'Forbidden: Request Rate Exceeded Limits';
-						filterobj.filterStatus = 403;
+						filterObj.filterMessage = 'Forbidden: Request Rate Exceeded Limits';
+						filterObj.filterStatus = 403;
 					}
 					
-					IPLogs[ip][path]['RequestsCounter']++;
+					IPLogs[ip][path]['RequestsCounter']++;				
 				}
 				else
 				{
 					//When limit window has elapsed and must be reset
-					filterobj.filterMessage = 'Allowed: Request Rate is within Limits';
-					filterobj.filterStatus = 200;
+					filterObj.filterMessage = 'Allowed: Request Rate is within Limits';
+					filterObj.filterStatus = 200;
 				
 					IPLogs[ip][path]['LastRequestOn'] = LatestRequestOn;
 					IPLogs[ip][path]['RequestsCounter'] = 1;
 				}
-				
 			
 			}
 			else
@@ -128,13 +132,14 @@ function applyFilter(routesObj,request,response)
 			var newObj = {$set:{}};
 			newObj['$set'][path] = IPLogs[ip][path];
 			
-			db.query('IPLogs',function(collection){
-					
-				collection.update({ip:ip},newObj,{w:1},function(err){
-						if(err) Logger.write('Error Updating New Path to IPlogs : '+err,'rate-limit.js');
-						else Logger.write('Updated New Path to IPlogs','rate-limit.js');
-				});
+			logger.write('IP '+ip+' requested path '+path+' '+IPLogs[ip][path]['RequestsCounter']+' times','rate-limit.js');
+			logger.write('New IPLogs Obj is  = '+JSON.stringify(newObj),'rate-limit.js');
 			
+			db.query('IPLogs',function(collection){					
+				collection.update({ip:ip},newObj,{w:1},function(err){
+						if(err) logger.write('Error Updating New Path to IPlogs : '+err,'rate-limit.js');
+						else logger.write('Updated New Path to IPlogs','rate-limit.js');
+				});			
 			});
 		}
 		else
@@ -143,20 +148,23 @@ function applyFilter(routesObj,request,response)
 			IPLogs[ip] = {};
 			IPLogs[ip][path] = { LastRequestOn : new Date().getTime(), RequestsCounter : 1 };
 			
+			var newObj = {ip:ip};
+			newObj[path] = IPLogs[ip][path];
+			
 			db.query('IPLogs',function(collection){
 			
-					collection.insert(IPLogs[ip],{w:1},function(err,records){
-					
+					collection.insert(newObj,{w:1},function(err,records){					
 							if(err)
 								logger.write('Error while inserting new IP into IPLogs : '+err,'rate-limit.js');
 							else
-								logger.write('Inserted new IP into IPLogs : '+records,'rate-limit.js');
-					
+								logger.write('Inserted new IP into IPLogs : '+records,'rate-limit.js');					
 					});
 			
 			});
 		}
 	}
+	
+	return filterObj;
 }
 
 //Populate on load, executes only once, when loaded for first time, during server start

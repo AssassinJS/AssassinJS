@@ -7,6 +7,9 @@
 */
 
 var assassin = require('./assassin');
+var viewcompiler = require('./system/viewcompiler');
 
+//This function invokes the precompiler of jssp views
+viewcompiler.readJSSP();
 //This function invokes assassin
 assassin.assassinate();

@@ -18,7 +18,7 @@ function compileJSSP()
 	for(file in JSSPFiles)
 	{
 		compileJSSPFile('./JSSP/'+JSSPFiles[file]);
-		watchJSSP('./JSSP/'+JSSPFiles[file]);
+		//watchJSSP('./JSSP/'+JSSPFiles[file]);
 	}
 }
 

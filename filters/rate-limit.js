@@ -6,43 +6,41 @@ var url = require('url');
 var MyMongo = require('../system/dbconnect.js').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
-var rateLimits = {};
+var rateLimits = [];
 var IPLogs = {};
 
 //To read from db
 function ReadFromDB()
 {
-	db.query('rateLimits',function(collection){	
-		collection.find().each(function(err,doc){
-			
+	db.query('filterParameters',function(collection){
+		collection.find({filter:'rate-limit'},{parameters:1}).nextObject(function(err,doc){
+				
 				if(err)
-				 	logger.write();
-				else if(doc)
-					rateLimits[doc.url] = doc.params;
-		
-		});		
+				 	logger.write(JSON.stringify(err),'rate-limit.js');
+				else if(doc)				
+					rateLimits = doc.parameters;								
+	
+		});
 	});
 	/*
 			Above Function populates rateLimits object as
-			rateLimits = {
+			rateLimits = [{url:'GET/assassinPanel', params:{ limitNum:10 , limitTime:60000 }},
+						  {url:'GET/assassinPanel/index.html', params:{ limitNum:10 , limitTime:60000 }}
 			
-					GET/assassinPanel : { limitNum:10 , limitTime:60000 },
-					GET/index.html : { limitNum:20 , limitTime:60000 },
-					
-					and so on..
+			  			  and so on..
 			
-			}
+			]
 			
-			limitTime should be given in ms
+			limitTime should be given in ms, changed this from earlier format so as to support regex matching in url fields
 	*/
 	
 	db.query('IPLogs',function(collection){	
 		collection.find().each(function(err,doc){
 			
 				if(err)
-				 	logger.write();
+				 	logger.write(JSON.stringify(err),'rate-limit.js');
 				else if(doc)
-					IPLogs[doc.ip] = doc;
+					IPLogs[doc.ip] = doc.logs;
 		
 		});	
 	});
@@ -51,15 +49,16 @@ function ReadFromDB()
 			IPLogs = {
 			
 					/dots in ip cause an error while insertion into db/
-					192168297 : {					
-										GET/assassinPanel : { LastRequestOn:1363691315880 , RequestsCounter:7 },
-										GET/index.html : { LastRequestOn:1363643127965 , RequestsCounter:5 },
+					192-168-2-97 : [{url:'GET/assassinPanel', params:{ LastRequestOn:1363691315880 , RequestsCounter:7 }},
+									{url:'GET/index.html', params:{ LastRequestOn:1363643127965 , RequestsCounter:5 }},
 										
 										and so on..					
-								   },
+								   }],
 					and so on..
 			
 			}
+			
+			LastRequestOn should be given in ms, changed this from earlier format so as to support regex matching in url fields
 	*/
 }
 
@@ -71,68 +70,91 @@ function applyFilter(routesObj,request,response)
 	ip = xfr?xfr.split(', ')[0]:request.connection.remoteAddress,
 	path = request.method + url.parse(request.url).pathname,
 	limitNum = false,
-	limitTime = false;
-	
+	limitTime = false,
+	urlReg = null,
+	urlReg2 = null,
+	handled = false;
+		
 	logger.write('IP is : '+ip,'rate-limit.js');
 	
-	ip = ip.replace(/\./g,'');
+	logger.write(JSON.stringify(rateLimits),'rate-limit.js');
+	logger.write(JSON.stringify(IPLogs),'rate-limit.js');
 	
-	if(rateLimits[path] != undefined)
+	ip = ip.replace(/\./g,'-');
+	
+	for(index in rateLimits)
 	{
-		limitNum = rateLimits[path]['limitNum'],
-		limitTime = rateLimits[path]['limitTime'];//This must be set in milliseconds
-		logger.write('path = '+path+', LimitNum = '+limitNum+', LimitTime = '+limitTime,'rate-limit.js');
+		urlReg = new RegExp('^'+rateLimits[index].url+'$');
+	
+		if(urlReg.test(path))
+		{
+			limitNum = rateLimits[index].params.limitNum;
+			limitTime = rateLimits[index].params.limitTime;
+			logger.write('path = '+path+', LimitNum = '+limitNum+', LimitTime = '+limitTime,'rate-limit.js');
+			urlReg = rateLimits[index].url;
+			logger.write('URL RegExp = '+JSON.stringify(urlReg),'rate-limit');
+			break;
+		}
 	}
 	
 	if(limitNum && limitTime)
 	{
 		if(IPLogs[ip] != undefined)
 		{
-			if(IPLogs[ip][path] != undefined)
+			for(index in IPLogs[ip])
 			{
-				var
-				LastRequestOn = IPLogs[ip][path]['LastRequestOn'],
-				RequestsCounter = IPLogs[ip][path]['RequestsCounter'],
-				LatestRequestOn = new Date().getTime();
-				
-				if(LastRequestOn + limitTime > LatestRequestOn)
+				urlReg2 = new RegExp('^'+IPLogs[ip][index].url+'$');
+			
+				if(urlReg2.test(path))
 				{
-					if(RequestsCounter < limitNum)
+					handled = true;
+					
+					var
+					LastRequestOn = IPLogs[ip][index].params.LastRequestOn,
+					RequestsCounter = IPLogs[ip][index].params.RequestsCounter,
+					LatestRequestOn = new Date().getTime();
+				
+					if(LastRequestOn + limitTime > LatestRequestOn)
 					{
-						//When within limit
-						filterObj.filterMessage = 'Allowed: Request Rate is within Limits';
-						filterObj.filterStatus = 200;
+						if(RequestsCounter < limitNum)
+						{
+							//When within limit
+							filterObj.filterMessage = 'Allowed: Request Rate is within Limits';
+							filterObj.filterStatus = 200;
+						}
+						else
+						{
+							//When limit exceeded
+							filterObj.filterMessage = 'Forbidden: Request Rate Exceeded Limits';
+							filterObj.filterStatus = 403;
+						}
+					
+						IPLogs[ip][index].params.RequestsCounter++;				
 					}
 					else
 					{
-						//When limit exceeded
-						filterObj.filterMessage = 'Forbidden: Request Rate Exceeded Limits';
-						filterObj.filterStatus = 403;
+						//When limit window has elapsed and must be reset
+						filterObj.filterMessage = 'Allowed: Request Rate is within Limits';
+						filterObj.filterStatus = 200;
+				
+						IPLogs[ip][index].params.LastRequestOn = LatestRequestOn;
+						IPLogs[ip][index].params.RequestsCounter = 1;
 					}
 					
-					IPLogs[ip][path]['RequestsCounter']++;				
-				}
-				else
-				{
-					//When limit window has elapsed and must be reset
-					filterObj.filterMessage = 'Allowed: Request Rate is within Limits';
-					filterObj.filterStatus = 200;
-				
-					IPLogs[ip][path]['LastRequestOn'] = LatestRequestOn;
-					IPLogs[ip][path]['RequestsCounter'] = 1;
-				}
-			
+					break;
+				}								
 			}
-			else
-			{
+			
+			if(!handled)
+			{				
 				//When an ip is accessing a specific url for the first time
-				IPLogs[ip][path] = { LastRequestOn : new Date().getTime() , RequestsCounter : 1 };				
+				console.log();
+				IPLogs[ip].push({url:urlReg,params:{ LastRequestOn : new Date().getTime() , RequestsCounter : 1 }});				
 			}
 			
-			var newObj = {$set:{}};
-			newObj['$set'][path] = IPLogs[ip][path];
+			var newObj = {$set:{logs:IPLogs[ip]}};
 			
-			logger.write('IP '+ip+' requested path '+path+' '+IPLogs[ip][path]['RequestsCounter']+' times','rate-limit.js');
+			logger.write('IP '+ip+' requested path '+path+' '+IPLogs[ip][index].params.RequestsCounter+' times','rate-limit.js');
 			logger.write('New IPLogs Obj is  = '+JSON.stringify(newObj),'rate-limit.js');
 			
 			db.query('IPLogs',function(collection){					
@@ -145,11 +167,12 @@ function applyFilter(routesObj,request,response)
 		else
 		{
 			//When an ip is accessing for the first time
-			IPLogs[ip] = {};
-			IPLogs[ip][path] = { LastRequestOn : new Date().getTime(), RequestsCounter : 1 };
+			IPLogs[ip] = [];
+			var tempObj = {url:urlReg,params:{ LastRequestOn : new Date().getTime(), RequestsCounter : 1 }};
+			IPLogs[ip].push(tempObj);
 			
-			var newObj = {ip:ip};
-			newObj[path] = IPLogs[ip][path];
+			var newObj = {ip:ip,logs:[]};
+			newObj['logs'].push(tempObj);
 			
 			db.query('IPLogs',function(collection){
 			
@@ -163,7 +186,7 @@ function applyFilter(routesObj,request,response)
 			});
 		}
 	}
-	
+		
 	return filterObj;
 }
 

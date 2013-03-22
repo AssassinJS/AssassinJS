@@ -34,28 +34,68 @@ function ReadFromDB()
 //Actual Routing Function
 function route(request,response)
 {			
-	logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
-	var reqDetails = url.parse(request.url);
-	logger.write("Request Details: "+JSON.stringify(reqDetails));
-	var filepath = reqDetails.pathname;
-	var isHandled = false;
-	for(i in routes)
+	if(request.method == 'POST')//for post requests, to get the entire request body
 	{
-		var urlReg = new RegExp('^'+routes[i].regexp+'$');
-		if(urlReg.test(filepath))
+        var reqbody = '';
+        request.on('data', function (data) {
+            reqbody += data;
+        });
+        request.on('end', function () {
+			request.body = reqbody;
+			logger.write(request.body,'router.js');
+		
+			logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
+			var reqDetails = url.parse(request.url);
+			logger.write("Request Details: "+JSON.stringify(reqDetails));
+			var filepath = reqDetails.pathname;
+			var isHandled = false;
+			for(i in routes)
+			{
+				var urlReg = new RegExp('^'+routes[i].regexp+'$');
+				if(urlReg.test(filepath))
+				{
+					isHandled = true;
+					
+					if(routes[i].filters !=null || routes[i].filters != undefined)
+						filter.applyFilters(routes[i],request,response);
+					else
+						controller.handleRequest(routes[i],request,response);
+				}
+			}
+			if(!isHandled)
+			{
+				logger.write('URL not found');
+				controller.handleRequest(null,request,response);
+			}
+        	    
+
+        });
+    }
+    else//for get requests
+    {
+		logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
+		var reqDetails = url.parse(request.url);
+		logger.write("Request Details: "+JSON.stringify(reqDetails));
+		var filepath = reqDetails.pathname;
+		var isHandled = false;
+		for(i in routes)
 		{
-			isHandled = true;
-			
-			if(routes[i].filters !=null || routes[i].filters != undefined)
-				filter.applyFilters(routes[i],request,response);
-			else
-				controller.handleRequest(routes[i],request,response);
+			var urlReg = new RegExp('^'+routes[i].regexp+'$');
+			if(urlReg.test(filepath))
+			{
+				isHandled = true;
+				
+				if(routes[i].filters !=null || routes[i].filters != undefined)
+					filter.applyFilters(routes[i],request,response);
+				else
+					controller.handleRequest(routes[i],request,response);
+			}
 		}
-	}
-	if(!isHandled)
-	{
-		logger.write('URL not found');
-		controller.handleRequest(null,request,response);
+		if(!isHandled)
+		{
+			logger.write('URL not found');
+			controller.handleRequest(null,request,response);
+		}
 	}
 }
 

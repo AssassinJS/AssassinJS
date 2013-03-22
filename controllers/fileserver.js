@@ -27,7 +27,7 @@ function ReadFileTypeList()
 }
 
 
-function serveFile(req,res,defaultDir)
+function serveFile(req,res,defaultDir,dataObj)
 {
 	var reqDetails = url.parse(req.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails),'serveFile in fileserver');
@@ -40,7 +40,7 @@ function serveFile(req,res,defaultDir)
 		filepath = '/index.html';
 	if(defaultDir == 'views')
 	{
-		serveView(req,res);
+		serveView(req,res,dataObj);
 	}
 	else
 	{
@@ -63,7 +63,7 @@ function serveFile(req,res,defaultDir)
 	}
 }
 
-function serveView(req,res)
+function serveView(req,res,dataObj)
 {
 	var reqDetails = url.parse(req.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails),'serveView in fileserver');
@@ -83,8 +83,8 @@ function serveView(req,res)
 		if(exists)
 		{
 			var toServe = require('../views'+filepath);
-			toServe.render(res); //Second optional param is a data object
-			logger.write('View Rendered:\n');
+			toServe.render(req,res,dataObj); //Second optional param is a data object
+			logger.write('View Rendered:\n','fileserver.js');
 		}
 		else
 		{

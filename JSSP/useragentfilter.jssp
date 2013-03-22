@@ -12,25 +12,68 @@ Assassin.js
 </div>
 </div>
 <div id="contentWrapper">
-
+<form method="POST" action="./useragentfiltersubmit.html">
 <div id="contentLeft">
-<div id="projectMenu">
+<div id="projectMenu" style="position:fixed;">
 Configure Project Routes<br />
 Configure Filters<br />
+<input type="submit" value="Save Changes to Filter User Agent" />
 </div>
 </div>
 <div id="contentRight">
 Manage User Agent Filters for Routes Here<br /><br />
 <$
-for(i=0;i<100;i++)
-{
+var userAgentFilterParameters = __dataObj["filterDB"]["user-agent"];
+var routesList = __dataObj["routesDB"];
 $>
-this is a user agent filter<br />
+
+Total List of Routes<br />
+<div style="color:black; background-color:white;">
+<table border="1" cellspacing="0" style="width:100%">
+	<tr>
+		<th>Apply<br /><input type="checkbox" id="routesToggle" onclick="toggle(this)"></th>
+		<th>Select Routes to Apply User-Agent Filter</th>
+	</tr>
+	<$
+	for(var x in routesList)
+	{
+	$>
+	<tr>
+		<td style="text-align: center;"><input type="checkbox" name="routes" value="<$=routesList[x].regexp$>"></td>
+		<td><$=routesList[x].regexp$></td>
+	</tr>
 <$
 }
 $>
+</table>
 </div>
 
+Total List of User Agents<br />
+<div style="color:black; background-color:white;">
+<table border="1" cellspacing="0">
+	<tr>
+		<th>BlackList<br /><input type="checkbox" id="useragentBlackToggle" onclick="toggle(this)"></th>
+		<th>WhiteList<br /><input type="checkbox" id="useragentWhiteToggle" onclick="toggle(this)"></th>
+		<th>UserAgent</th>
+	</tr>
+	<$
+	for(var x in userAgentFilterParameters.total)
+	{
+	$>
+	<tr>
+		<td style="text-align: center;"><input type="checkbox" name="useragentBlack" value="<$=userAgentFilterParameters.total[x]$>"></td>
+		<td style="text-align: center;"><input type="checkbox" name="useragentWhite" value="<$=userAgentFilterParameters.total[x]$>"></td>
+		<td><$=userAgentFilterParameters.total[x]$></td>
+	</tr>
+<$
+}
+$>
+</table>
+</div>
+
+
+</div>
+</form>
 </div>
 <div id="footerWrapper">
 <div id="footerContent">
@@ -39,6 +82,26 @@ $>
 </div>
 
 </div>
+
+<script language="javascript">
+function toggle(tag) {
+	checkboxes = [];
+	if(tag.id=="useragentBlackToggle")
+	{
+		checkboxes = document.getElementsByName("useragentBlack");
+	}
+	if(tag.id=="useragentWhiteToggle")
+	{
+		checkboxes = document.getElementsByName("useragentWhite");
+	}
+	if(tag.id=="routesToggle")
+	{
+		checkboxes = document.getElementsByName("routes");
+	}
+	for(var i in checkboxes)
+		checkboxes[i].checked = tag.checked;
+}
+</script>
 
 </body>
 </html>

@@ -26,7 +26,8 @@ function compileJSSPFile(filename)
 {
 	var JSSPExtensionReg = new RegExp('.jssp$');
 	var EqualReg = new RegExp('^=');
-	var compiledCode = "var respond = require('../controllers/respond');\r\n\r\nfunction render(__response,__dataObj){\r\nvar outputstr='';\r\n";
+	var globalCode = '';
+	var compiledCode = "var respond = require('../controllers/respond');\r\n\r\nfunction render(__request,__response,__dataObj){\r\nvar outputstr='';\r\n";
 	var filedata = fs.readFileSync(filename,'utf-8').toString();
 	if(filedata!=null || filedata!=undefined)
 	{
@@ -38,9 +39,21 @@ function compileJSSPFile(filename)
 			if(startTagSplit[line].indexOf('$>')!=-1)
 			{
 				var endTagSplit = startTagSplit[line].split('$>');
-				if(endTagSplit[0] != null || endTagSplit[0] != undefined)
-					compiledCode = compiledCode+endTagSplit[0];
-				if(endTagSplit[1] != null || endTagSplit[1] != undefined)
+				if(endTagSplit[0] != null && endTagSplit[0] != undefined)
+				{
+					if((/^=/).test(endTagSplit[0]))
+					{
+						compiledCode = compiledCode+"var expression"+endTagSplit[0]+";\r\n\t";
+						compiledCode = compiledCode+"outputstr=outputstr+expression;\r\n";
+					}
+					else if((/^@/).test(endTagSplit[0]))
+					{
+						globalCode = globalCode+endTagSplit[0];
+					}
+					else
+						compiledCode = compiledCode+endTagSplit[0];
+				}
+				if(endTagSplit[1] != null && endTagSplit[1] != undefined && endTagSplit[1] != '')
 					compiledCode = compiledCode+"outputstr=outputstr+'"+endTagSplit[1].replace(/\r/g,"").replace(/\n/g," ").replace('\'','\\\'')+"';\r\n";
 			}
 			else
@@ -49,8 +62,8 @@ function compileJSSPFile(filename)
 			}
 		}
 	}
-	compiledCode = compiledCode+"respond.createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);\r\n} \r\n\r\nexports.render = render;";
-	fs.writeFile('./views/'+viewFile+'.js',compiledCode,function(err){
+	compiledCode = compiledCode+"respond.createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);\r\n/**/} \r\n\r\nexports.render = render;";
+	fs.writeFile('./views/'+viewFile+'.js',globalCode+compiledCode,function(err){
 		if(err)
 			logger.write('file write error for view file '+viewFile,'viewcompiler.js');
 		//else

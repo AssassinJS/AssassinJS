@@ -1,6 +1,6 @@
 var respond = require('../controllers/respond');
 
-function render(__response,__dataObj){
+function render(__request,__response,__dataObj){
 var outputstr='';
 outputstr=outputstr+'<html> <body> ';
 
@@ -11,6 +11,6 @@ outputstr=outputstr+' this is a test iteration  ';
 } 
 outputstr=outputstr+' </body> </html> ';
 respond.createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);
-} 
+/**/} 
 
 exports.render = render;

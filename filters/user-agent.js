@@ -7,10 +7,7 @@ var fs = require('fs');
 var MyMongo = require('../system/dbconnect.js').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
-var userAgents = [];
-
-//test entry in userAgents
-userAgents['/filterbrowser']={'GET':{'allow':["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17"],'block':[]}};
+var userAgents = {};
 
 //Reading from db to get the user-agent parameters object
 ReadFromDB();//First Time Execution
@@ -20,6 +17,11 @@ function ReadFromDB()
 				
 		collection.findOne({filter:'user-agent'},function(err,item){
 			userAgents = item.parameters;
+			
+			//test entry in userAgents
+			//userAgents['/filterbrowser']={'GET':{'allow':["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17"],'block':[]}};
+		
+			//logger.write(JSON.stringify(userAgents),'user-agent filter');
 		});
 		
 	});	
@@ -28,6 +30,7 @@ function ReadFromDB()
 function applyFilter(routesObj,request,response)
 {
 	var userAgent = request.headers['user-agent'];
+	//logger.write('routesObj.regexp is '+routesObj.regexp,'user-agent.js');
 	var whitelist=userAgents[routesObj.regexp][request.method].allow;
 	var blacklist=userAgents[routesObj.regexp][request.method].block;
 	logger.write('user-agent header is '+userAgent,'filters/test.js');
@@ -49,7 +52,7 @@ function applyFilter(routesObj,request,response)
 		browser='MSIE';
 	*/
 	var filterobj = routesObj;
-	if(whitelist.length!=0)
+	if(whitelist != null && whitelist.length!=0)
 	{
 		if(whitelist.indexOf(userAgent)>-1)
 		{
@@ -79,4 +82,11 @@ function applyFilter(routesObj,request,response)
 	return filterobj;
 }
 
+function returnUserAgentsObj()
+{
+	return userAgents;
+}
+
 exports.applyFilter = applyFilter;
+exports.returnUserAgentsObj = returnUserAgentsObj;
+exports.ReadFromDB = ReadFromDB;

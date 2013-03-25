@@ -1,4 +1,4 @@
 node_modules/
 **/node_modules/
-**/log.txt
+config/log.txt
 bin/

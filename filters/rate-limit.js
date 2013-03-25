@@ -98,12 +98,12 @@ function applyFilter(routesObj,request,response)
 	}
 	
 	if(limitNum && limitTime)
-	{
+	{		
 		if(IPLogs[ip] != undefined)
-		{
+		{		
 			for(index in IPLogs[ip])
 			{
-				urlReg2 = new RegExp('^'+IPLogs[ip][index].url+'$');
+				urlReg2 = new RegExp('^'+IPLogs[ip][index].url+'$');				
 			
 				if(urlReg2.test(path))
 				{
@@ -146,10 +146,12 @@ function applyFilter(routesObj,request,response)
 			}
 			
 			if(!handled)
-			{				
-				//When an ip is accessing a specific url for the first time
-				console.log();
-				IPLogs[ip].push({url:urlReg,params:{ LastRequestOn : new Date().getTime() , RequestsCounter : 1 }});				
+			{
+				//When an ip is accessing a specific url for the first time				
+				IPLogs[ip].push({url:urlReg,params:{ LastRequestOn : new Date().getTime() , RequestsCounter : 1 }});
+				
+				filterObj.filterMessage = 'Allowed: Request Rate is within Limits';
+				filterObj.filterStatus = 200;				
 			}
 			
 			var newObj = {$set:{logs:IPLogs[ip]}};
@@ -173,6 +175,9 @@ function applyFilter(routesObj,request,response)
 			
 			var newObj = {ip:ip,logs:[]};
 			newObj['logs'].push(tempObj);
+			
+			filterObj.filterMessage = 'Allowed: Request Rate is within Limits';
+			filterObj.filterStatus = 200;
 			
 			db.query('IPLogs',function(collection){
 			

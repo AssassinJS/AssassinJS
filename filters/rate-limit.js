@@ -1,9 +1,8 @@
 //This filter implements rate limitation of requests based on IPs and Preset URLs 
 var logger = require('../system/logger');
-var fs = require('fs');
 var url = require('url');
 
-var MyMongo = require('../system/dbconnect.js').MyMongo;
+var MyMongo = require('../system/dbconnect').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 var rateLimits = [];
@@ -13,13 +12,11 @@ var IPLogs = {};
 function ReadFromDB()
 {
 	db.query('filterParameters',function(collection){
-		collection.find({filter:'rate-limit'},{parameters:1}).nextObject(function(err,doc){
-				
+		collection.find({filter:'rate-limit'},{parameters:1}).nextObject(function(err,doc){				
 				if(err)
 				 	logger.write(JSON.stringify(err),'rate-limit.js');
 				else if(doc)				
-					rateLimits = doc.parameters;								
-	
+					rateLimits = doc.parameters;									
 		});
 	});
 	/*
@@ -35,13 +32,11 @@ function ReadFromDB()
 	*/
 	
 	db.query('IPLogs',function(collection){	
-		collection.find().each(function(err,doc){
-			
+		collection.find().each(function(err,doc){			
 				if(err)
 				 	logger.write(JSON.stringify(err),'rate-limit.js');
 				else if(doc)
-					IPLogs[doc.ip] = doc.logs;
-		
+					IPLogs[doc.ip] = doc.logs;		
 		});	
 	});
 	/*

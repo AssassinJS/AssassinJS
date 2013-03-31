@@ -17,8 +17,8 @@ function compileJSSP()
 	var EqualReg = new RegExp('^=');
 	for(file in JSSPFiles)
 	{
-		compileJSSPFile('./JSSP/'+JSSPFiles[file]);
-		//watchJSSP('./JSSP/'+JSSPFiles[file]);
+		compileJSSPFile(JSSPFiles[file]);
+		watchJSSP(JSSPFiles[file]);
 	}
 }
 
@@ -28,10 +28,11 @@ function compileJSSPFile(filename)
 	var EqualReg = new RegExp('^=');
 	var globalCode = '';
 	var compiledCode = "var respond = require('../controllers/respond');\r\n\r\nfunction render(__request,__response,__dataObj){\r\nvar outputstr='';\r\n";
-	var filedata = fs.readFileSync(filename,'utf-8').toString();
+	var filedata = fs.readFileSync('./JSSP/'+filename,'utf-8').toString();
+	logger.write('view contents '+filedata,'viewcompiler');
 	if(filedata!=null || filedata!=undefined)
 	{
-		var viewFile = JSSPFiles[file].split(JSSPExtensionReg)[0];
+		var viewFile = filename.split(JSSPExtensionReg)[0];
 		
 		var startTagSplit = filedata.split('<$');
 		for(line in startTagSplit)
@@ -63,21 +64,24 @@ function compileJSSPFile(filename)
 		}
 	}
 	compiledCode = compiledCode+"respond.createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);\r\n/**/} \r\n\r\nexports.render = render;";
-	fs.writeFile('./views/'+viewFile+'.js',globalCode+compiledCode,function(err){
+	fs.writeFile('./compiled_views/'+viewFile+'.jssp.js',globalCode+compiledCode,function(err){
 		if(err)
 			logger.write('file write error for view file '+viewFile,'viewcompiler.js');
-		//else
-			//logger.write('file write successful for view file '+viewFile,'viewcompiler.js');
+		else
+			logger.write('file write successful for view file '+viewFile,'viewcompiler.js');
 	});
 }
 
 function watchJSSP(filename)
 {
-	fs.watchFile(filename,{persistent: true, interval: 1000 },function (curr, prev) {
-		console.log('the current mtime is: ' + curr.mtime);
-		console.log('the previous mtime was: ' + prev.mtime);
+	fs.watchFile('./JSSP/'+filename,{persistent: true, interval: 1000 },function (curr, prev) {
+		logger.write('the current mtime is: ' + curr.mtime,'viewcompiler.js');
+		logger.write('the previous mtime was: ' + prev.mtime,'viewcompiler.js');
 		if(curr.mtime != prev.mtime)
+		{
 			compileJSSPFile(filename);
+			logger.write("called compileJSSPFile again",'viewcompiler.js');
+		}
 	});
 }
 

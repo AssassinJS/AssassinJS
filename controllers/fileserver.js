@@ -35,13 +35,13 @@ function serveFile(req,res,defaultDir,dataObj)
 	filepath = filepath.split('/'+filepath.split('/')[1])[1];
 	logger.write('filepath is '+filepath);
 	if(defaultDir==null ||defaultDir==undefined)
-		defaultDir='/public';
+		defaultDir='public';
 	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
 		filepath = '/index.html';
-	if(defaultDir == 'views')
-	{
+	var fileextension = filepath.split('.').pop();
+	logger.write('fileextension is '+fileextension,'serveFile in fileserver');
+	if(fileextension =='jssp')
 		serveView(req,res,dataObj);
-	}
 	else
 	{
 	fs.readFile("./"+defaultDir+filepath,function(err,data){
@@ -53,9 +53,7 @@ function serveFile(req,res,defaultDir,dataObj)
 		}
 		else
 		{
-			var extension = filepath.split('.').pop();
-			logger.write('File Extension is = '+extension);
-			var contenttype = filetypemap[extension];
+			var contenttype = filetypemap[fileextension];
 			respond.createResponse(res,200,contenttype,data);
 			logger.write('Written File Contents to Response with content-type: '+contenttype+'\n');
 		}
@@ -70,19 +68,19 @@ function serveView(req,res,dataObj)
 	var filepath =reqDetails.pathname;
 	filepath = filepath.split('/'+filepath.split('/')[1])[1];
 	logger.write('filepath is '+filepath,'serveView in fileserver');
-	var fileextension = filepath.split('.')[1];
-	logger.write('fileextension is '+fileextension,'serveView in fileserver');
-	if(fileextension !='html' && fileextension !='htm')
-		serveFile(req,res,null);
-	else
-	{
-	filepath = filepath.replace('.'+fileextension,'.js');
+	
 	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
-		filepath = '/index.js';
-	fs.exists('./views'+filepath,function(exists){
+		filepath = '/index.jssp';
+	filepath = filepath+'.js';
+	fs.exists('./compiled_views'+filepath,function(exists){
 		if(exists)
 		{
-			var toServe = require('../views'+filepath);
+			//To clear the previous cache
+			var toClear = require.resolve('../compiled_views'+filepath);
+			logger.write('resolved require object is '+toClear,'fileserver.js');
+			delete require.cache[toClear];
+			
+			var toServe = require('../compiled_views'+filepath);
 			toServe.render(req,res,dataObj); //Second optional param is a data object
 			logger.write('View Rendered:\n','fileserver.js');
 		}
@@ -93,7 +91,7 @@ function serveView(req,res,dataObj)
 		}
 	});
 	
-	}
+
 }
 
 exports.serveFile = serveFile;

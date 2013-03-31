@@ -54,7 +54,7 @@ function invoke(req,res)
 	//else redirect to login index page
 	DataObj['request'] = req;
 	DataObj['response'] = res;
-	fileserver.serveFile(req,res,'views',DataObj);
+	fileserver.serveFile(req,res,null,DataObj);
 }
 
 exports.invoke = invoke;

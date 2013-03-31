@@ -194,3 +194,4 @@ function applyFilter(routesObj,request,response)
 ReadFromDB();
 
 exports.applyFilter = applyFilter;
+exports.ReadFromDB = ReadFromDB;

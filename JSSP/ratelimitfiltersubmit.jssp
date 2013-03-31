@@ -1,0 +1,115 @@
+<html>
+<head>
+<link rel="stylesheet" href="index_style.css" type="text/css" />
+</head>
+<body>
+
+<div id="bodyWrapper">
+
+<div id="headerWrapper">
+<div id="headerContent">
+Assassin.js
+</div>
+</div>
+<div id="contentWrapper">
+
+<div id="contentLeft">
+<div id="projectMenu" style="position:fixed;">
+Configure Project Routes<br />
+Configure Filters<br />
+</div>
+</div>
+<div id="contentRight">
+<$
+var qs = require('querystring');
+var logger = require('../system/logger');
+var MyMongo = require('../system/dbconnect.js').MyMongo;
+var db = new MyMongo('localhost', 27017, 'assassindb');
+$>
+<$
+var rateLimitFilterParameters = __dataObj['filterDB']['rate-limit'];
+var routesList = __dataObj['routesDB'];
+var newRLFilters = qs.parse(__request.body);
+$>
+<$=__request.body$><br />
+<$=JSON.stringify(newRLFilters)$>
+<$
+	db.query('filterParameters',function(collection){		
+		var toSet = {};
+		toSet.parameters = rateLimitFilterParameters;
+		if(newRLFilters.routes !=null ||newRLFilters.routes !=undefined)
+		{
+			if (newRLFilters.routes instanceof Array) {
+				
+			} else {
+				newRLFilters.routes = [newRLFilters.routes];
+			}
+			for(var i in newRLFilters.routes)
+			{
+				var routeURL = newRLFilters.routes[i];
+				var updateflag = true;
+				for(var j in toSet.parameters)
+				{
+					if(toSet.parameters[j].url == routeURL)
+					{
+						updateflag = false;
+						toSet.parameters[j].params.limitNum = parseInt(newRLFilters.limitNum,10);
+						toSet.parameters[j].params.limitTime = parseInt(newRLFilters.limitTime,10);
+					}
+				}
+				if(updateflag)
+				{
+					var RateLimitObj = {}
+					RateLimitObj['url'] = newRLFilters.routes[i];
+					RateLimitObj['params'] = {}
+					RateLimitObj['params']['limitNum'] = parseInt(newRLFilters.limitNum,10);
+					RateLimitObj['params']['limitTime'] = parseInt(newRLFilters.limitTime,10);
+					toSet.parameters.push(RateLimitObj);
+				}
+				
+			}
+			collection.update({filter:'rate-limit'},{$set:toSet},{upsert:true, w:1},function(err,data){
+				if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
+				else require('../filters/rate-limit').ReadFromDB();
+			});
+		}	
+		
+	});
+
+$>
+
+
+
+</div>
+
+</div>
+<div id="footerWrapper">
+<div id="footerContent">
+(c)2013 Adithya Chebiyyam and Sai Teja Jammalamadaka
+</div>
+</div>
+
+</div>
+
+<script language="javascript">
+function toggle(tag) {
+	checkboxes = [];
+	if(tag.id=="useragentBlackToggle")
+	{
+		checkboxes = document.getElementsByName("useragentBlack");
+	}
+	if(tag.id=="useragentWhiteToggle")
+	{
+		checkboxes = document.getElementsByName("useragentWhite");
+	}
+	if(tag.id=="routesToggle")
+	{
+		checkboxes = document.getElementsByName("routes");
+	}
+	for(var i in checkboxes)
+		checkboxes[i].checked = tag.checked;
+}
+</script>
+
+</body>
+</html>

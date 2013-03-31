@@ -40,7 +40,6 @@ $>
 		toSet.parameters = userAgentFilterParameters;
 		if(newUAFilters.routes !=null ||newUAFilters.routes !=undefined)
 		{
-			$><$=newUAFilters.routes[i]$><$
 			for(var i in newUAFilters.routes)
 			{
 				$><$=newUAFilters.routes[i]$><$

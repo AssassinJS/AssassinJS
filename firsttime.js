@@ -80,10 +80,43 @@ function ReadUserAgentFile()
 	}
 }
 
+// Is used only for first time initialization
+function ReadRateLimitFile()
+{
+	logger.write('Reading user-agents from db,please wait...','firsttime.js');
+	var ua_data = fs.readFileSync('./config/useragent.txt');
+	if(ua_data==null)
+	{ 
+		logger.write("useragent filter list data not found",'');
+		var toset = {};
+		collection.update({filter:'rate-limit'},{$set:toset},{upsert:true, w:1},function(err,data){
+			if(err)logger.write(err,'firsttime.js');
+		});
+	}
+	else
+	{
+		var listentries = ua_data.toString().split('\n');
+		
+		db.query('filterParameters',function(collection){
+
+			var toset = {};
+			toset.parameters = [];
+			//toset.parameters.total = listentries;
+			collection.update({filter:'rate-limit'},{$set:toset},{upsert:true, w:1},function(err,data){
+				if(err)logger.write(err,'firsttime.js');
+			});
+			
+			logger.write('initialized the user agent collection in db','firsttime.js');			
+		});
+	}
+}
+
 //To populate db from routes file
 ReadRoutesFile();
 //To populate db from useragent file
 ReadUserAgentFile();
+//To populate db from ratelimit file if it exists or else an empty obj
+ReadRateLimitFile();
 
 //To Compile JSSP files to Views (production level - assuming that jssp's are already there)
 var viewcompiler = require('./system/viewcompiler');

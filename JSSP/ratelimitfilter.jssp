@@ -12,7 +12,7 @@ Assassin.js
 </div>
 </div>
 <div id="contentWrapper">
-<form method="POST" action="./useragentfiltersubmit.jssp">
+<form method="POST" action="./ratelimitfiltersubmit.jssp">
 <div id="contentLeft">
 <div id="projectMenu" style="position:fixed;">
 Configure Project Routes<br />
@@ -21,9 +21,9 @@ Configure Filters<br />
 </div>
 </div>
 <div id="contentRight">
-Manage User Agent Filters for Routes Here<br /><br />
+Manage Rate Limit Filters for Routes Here<br /><br />
 <$
-var userAgentFilterParameters = __dataObj["filterDB"]["user-agent"];
+var rateLimitFilterParameters = __dataObj["filterDB"]["rate-limit"];
 var routesList = __dataObj["routesDB"];
 $>
 
@@ -41,6 +41,7 @@ Total List of Routes<br />
 	<tr>
 		<td style="text-align: center;"><input type="checkbox" name="routes" value="<$=routesList[x].regexp$>"></td>
 		<td><$=routesList[x].regexp$></td>
+		<td></td>
 	</tr>
 <$
 }
@@ -52,22 +53,13 @@ Total List of User Agents<br />
 <div style="color:black; background-color:white;">
 <table border="1" cellspacing="0">
 	<tr>
-		<th>BlackList<br /><input type="checkbox" id="useragentBlackToggle" onclick="toggle(this)"></th>
-		<th>WhiteList<br /><input type="checkbox" id="useragentWhiteToggle" onclick="toggle(this)"></th>
-		<th>UserAgent</th>
+		<th>Limit Number</th>
+		<th>Limit Time</th>
 	</tr>
-	<$
-	for(var x in userAgentFilterParameters.total)
-	{
-	$>
 	<tr>
-		<td style="text-align: center;"><input type="checkbox" name="useragentBlack" value="<$=userAgentFilterParameters.total[x]$>"></td>
-		<td style="text-align: center;"><input type="checkbox" name="useragentWhite" value="<$=userAgentFilterParameters.total[x]$>"></td>
-		<td><$=userAgentFilterParameters.total[x]$></td>
+		<td style="text-align: center;"><input type="text" name="limitNum" value="10"></td>
+		<td style="text-align: center;"><input type="text" name="limitTime" value="6000"></td>
 	</tr>
-<$
-}
-$>
 </table>
 </div>
 
@@ -86,14 +78,6 @@ $>
 <script language="javascript">
 function toggle(tag) {
 	checkboxes = [];
-	if(tag.id=="useragentBlackToggle")
-	{
-		checkboxes = document.getElementsByName("useragentBlack");
-	}
-	if(tag.id=="useragentWhiteToggle")
-	{
-		checkboxes = document.getElementsByName("useragentWhite");
-	}
 	if(tag.id=="routesToggle")
 	{
 		checkboxes = document.getElementsByName("routes");

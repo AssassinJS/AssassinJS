@@ -7,11 +7,8 @@
 */
 
 var assassin = require('./assassin');
-var viewcompiler = require('./system/viewcompiler');
 var fileserver = require('./controllers/fileserver');
 
-//This function invokes the precompiler of jssp views
-viewcompiler.readJSSP();
 //This function reads all the views in compiled_views folder
 fileserver.LoadViews();
 //This function invokes assassin

@@ -21,7 +21,8 @@ function getDBParameterObjects()
 				
 		DataObj['filterDB'] = {};
 		collection.find({}).each(function(err,item){
-			if(err) ;
+			if(err) 
+				logger.write('error occured in retrieving from db','assassinPanel filterDB');
 			else if(item)
 			{
 				DataObj['filterDB'][item.filter] = item.parameters;

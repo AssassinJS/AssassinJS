@@ -26,6 +26,45 @@ function ReadFileTypeList()
 	}
 }
 
+var ViewsList = {};
+LoadViews();
+function LoadViews()
+{
+	var ViewFiles = [];
+	ViewFiles = fs.readdirSync('./compiled_views/');
+	ViewExtensionReg = new RegExp('.js$');
+	for(i in ViewFiles)
+	{
+		LoadView(ViewFiles[i]);
+		WatchViews(ViewFiles[i]);
+	}
+}
+function LoadView(ViewFile)
+{
+	if(ViewExtensionReg.test(ViewFile))
+	{
+		//To clear the previous cache
+		var toClear = require.resolve('../compiled_views/'+ViewFile);
+		//logger.write('resolved require object is '+toClear,'fileserver.js');
+		delete require.cache[toClear];
+			
+		//logger.write('ViewFile is '+ViewFile,'fileserver.js');
+		ViewsList['/'+ViewFile] = require('../compiled_views/'+ViewFile);	
+	}
+}
+function WatchViews(ViewFile)
+{
+	fs.watchFile('./compiled_views/'+ViewFile,{persistent: true, interval: 1000 },function (curr, prev) {
+		//logger.write('the current mtime is: ' + curr.mtime,'views in fileserver.js');
+		//logger.write('the previous mtime was: ' + prev.mtime,'views in fileserver.js');
+		if(curr.mtime != prev.mtime)
+		{
+			LoadView(ViewFile);
+			logger.write("called LoadView again for "+ViewFile,'fileserver.js');
+		}
+	});
+}
+
 
 function serveFile(req,res,defaultDir,dataObj)
 {
@@ -39,7 +78,7 @@ function serveFile(req,res,defaultDir,dataObj)
 	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
 		filepath = '/index.html';
 	var fileextension = filepath.split('.').pop();
-	logger.write('fileextension is '+fileextension,'serveFile in fileserver');
+	//logger.write('fileextension is '+fileextension,'serveFile in fileserver');
 	if(fileextension =='jssp')
 		serveView(req,res,dataObj);
 	else
@@ -64,36 +103,28 @@ function serveFile(req,res,defaultDir,dataObj)
 function serveView(req,res,dataObj)
 {
 	var reqDetails = url.parse(req.url);
-	logger.write("Request Details: "+JSON.stringify(reqDetails),'serveView in fileserver');
+	//logger.write("Request Details: "+JSON.stringify(reqDetails),'serveView in fileserver');
 	var filepath =reqDetails.pathname;
 	filepath = filepath.split('/'+filepath.split('/')[1])[1];
-	logger.write('filepath is '+filepath,'serveView in fileserver');
+	//logger.write('filepath is '+filepath,'serveView in fileserver');
 	
 	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
 		filepath = '/index.jssp';
 	filepath = filepath+'.js';
-	fs.exists('./compiled_views'+filepath,function(exists){
-		if(exists)
-		{
-			//To clear the previous cache
-			var toClear = require.resolve('../compiled_views'+filepath);
-			logger.write('resolved require object is '+toClear,'fileserver.js');
-			delete require.cache[toClear];
-			
-			var toServe = require('../compiled_views'+filepath);
-			toServe.render(req,res,dataObj); //Second optional param is a data object
-			logger.write('View Rendered:\n','fileserver.js');
-		}
-		else
-		{
-			respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');
-			logger.write('Error in Reading View or Missing View:\n');
-		}
-	});
-	
-
+	var toServe = ViewsList[filepath];
+	if(toServe!=null || toServe!=undefined)
+	{		
+		toServe.render(req,res,dataObj); //Third optional param is a data object
+		logger.write('View Rendered:\n','fileserver.js');
+	}
+	else
+	{
+		respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');
+		logger.write('Error in Reading View or Missing View:\n');
+	}
 }
 
 exports.serveFile = serveFile;
 exports.serveView = serveView;
 exports.ReadFileTypeList = ReadFileTypeList;
+exports.LoadViews = LoadViews;

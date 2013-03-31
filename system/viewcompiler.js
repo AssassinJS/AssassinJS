@@ -29,7 +29,7 @@ function compileJSSPFile(filename)
 	var globalCode = '';
 	var compiledCode = "var respond = require('../controllers/respond');\r\n\r\nfunction render(__request,__response,__dataObj){\r\nvar outputstr='';\r\n";
 	var filedata = fs.readFileSync('./JSSP/'+filename,'utf-8').toString();
-	logger.write('view contents '+filedata,'viewcompiler');
+	//logger.write('view contents '+filedata,'viewcompiler');
 	if(filedata!=null || filedata!=undefined)
 	{
 		var viewFile = filename.split(JSSPExtensionReg)[0];
@@ -67,20 +67,20 @@ function compileJSSPFile(filename)
 	fs.writeFile('./compiled_views/'+viewFile+'.jssp.js',globalCode+compiledCode,function(err){
 		if(err)
 			logger.write('file write error for view file '+viewFile,'viewcompiler.js');
-		else
-			logger.write('file write successful for view file '+viewFile,'viewcompiler.js');
+		//else
+			//logger.write('file write successful for view file '+viewFile,'viewcompiler.js');
 	});
 }
 
 function watchJSSP(filename)
 {
 	fs.watchFile('./JSSP/'+filename,{persistent: true, interval: 1000 },function (curr, prev) {
-		logger.write('the current mtime is: ' + curr.mtime,'viewcompiler.js');
-		logger.write('the previous mtime was: ' + prev.mtime,'viewcompiler.js');
+		//logger.write('the current mtime is: ' + curr.mtime,'viewcompiler.js');
+		//logger.write('the previous mtime was: ' + prev.mtime,'viewcompiler.js');
 		if(curr.mtime != prev.mtime)
 		{
 			compileJSSPFile(filename);
-			logger.write("called compileJSSPFile again",'viewcompiler.js');
+			logger.write("called compileJSSPFile again for "+filename,'viewcompiler.js');
 		}
 	});
 }

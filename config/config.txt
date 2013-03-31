@@ -1,4 +1,4 @@
 port	8080
 address	0.0.0.0
-domain	www.youtube.com
-domainPort	80
+domain	localhost
+domainPort	9000

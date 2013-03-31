@@ -30,7 +30,6 @@ function ReadFromDB()
 function applyFilter(routesObj,request,response)
 {
 	var userAgent = request.headers['user-agent'];
-	//logger.write('routesObj.regexp is '+routesObj.regexp,'user-agent.js');
 	var whitelist=userAgents[routesObj.regexp][request.method].allow;
 	var blacklist=userAgents[routesObj.regexp][request.method].block;
 	logger.write('user-agent header is '+userAgent,'filters/test.js');

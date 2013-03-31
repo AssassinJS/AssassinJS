@@ -26,11 +26,10 @@ function ReadFilters()
 	}
 }
 
-
 function applyFilters(routesObj,request,response)
 {
 	var filterObj = {};
-	for(var i in routesObj.filters[request.method])
+	for(i in routesObj.filters[request.method])
 	{
 		//checking if any of the routesObj filters match with the filter modules present in the filters folder
 		if(filters[routesObj.filters[request.method][i]] != undefined)
@@ -40,7 +39,7 @@ function applyFilters(routesObj,request,response)
 				break;
 		}
 	}
-	if(filterObj.filterMessage != undefined)
+	if(filterObj['filterMessage'] != undefined)
 	{
 		controller.handleRequest(filterObj,request,response);
 	}

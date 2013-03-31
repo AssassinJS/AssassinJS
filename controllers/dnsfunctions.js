@@ -2,6 +2,7 @@ var url = require('url');
 var dns = require('dns');
 var queryutil = require('querystring');
 var common = require('./common');
+var logger = require('../system/logger');
 
 function forwardRequest(request,response)
 {	
@@ -13,7 +14,9 @@ function forwardRequest(request,response)
 						
 		dns.lookup(qObj.query,function(err,ip){
 				
-			var result = 'HTTP - '+request.httpVersion+'\nMethod - '+request.method+'\nURL - '+request.url+'\nHeader - '+request.header;		
+			//var result = 'HTTP - '+request.httpVersion+'\nMethod - '+request.method+'\nURL - '+request.url+'\nHeader - '+request.header;	
+			
+			var result = 'Request : \n'+JSON.stringify(request);	
 	
 			if(err) 
 			{			 
@@ -24,7 +27,8 @@ function forwardRequest(request,response)
 				 result += '\n'+qObj.query+' resolved to '+ip;	
 			}
 		
-		 	console.log(result);		
+		 	console.log(result);
+		 	logger.write(JSON.stringify(response),'dnsfunctions.js');		
 			response.writeHead(200,{'content-type':'text/plain'});			
 			response.write(result);				 
 			response.end();		

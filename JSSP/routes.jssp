@@ -16,15 +16,36 @@
 
 <div id="contentLeft">
 <div id="projectMenu" class="glowBoxBlue">
-<a href="./home.jssp">Home</a><br />
-<a href="./routes.jssp">Configure Project Routes</a><br />
-<a href="./filters.jssp">Configure Filters</a><br />
-<a href="./index.jssp">Logout</a>
+<a class="navMenuLink" href="./home.jssp">Home</a><br />
+<a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
+<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
+<a class="navMenuLink" href="./index.jssp">Logout</a>
 </div>
 </div>
 <div id="contentRight">
-<div id="infobox" class="glowBoxNavy">
+<div id="titlebox" class="glowBoxNavy">
 <p>Configure Routes Here</p>
+</div>
+<div id="infobox" class="boxNavy">
+<$
+var routesList = __dataObj["routesDB"];
+$>
+Total List of Routes<br />
+<table border="0" cellspacing="0" style="width:100%">
+	<tr>
+		<th style="color:white;">Select Routes to Apply User-Agent Filter</th>
+	</tr>
+	<$
+	for(var x in routesList)
+	{
+	$>
+	<tr>
+		<td style="color:white;"><a href=""><$=routesList[x].regexp$></a></td>
+	</tr>
+<$
+}
+$>
+</table><br />
 </div>
 </div>
 

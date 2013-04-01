@@ -94,6 +94,18 @@ border-radius: 70px;
 background-color: rgb(46, 74, 100);
 }
 
+.boxNavy
+{
+width: 71%;
+margin-left: auto;
+margin-right: auto;
+margin-top: 20px;
+margin-bottom: 20px;
+padding: 20px;
+border-radius: 70px;
+background-color: rgb(46, 74, 100);
+}
+
 .glowBoxBlue
 {
 margin-top: 20px;
@@ -102,6 +114,15 @@ border: 30px solid rgb(37, 104, 156);
 border-radius: 40px;
 background-color: rgb(88, 161, 228);
 box-shadow: 2px 2px 120px 0px white;
+}
+
+.boxBlue
+{
+margin-top: 20px;
+margin-bottom: 20px;
+border: 30px solid rgb(37, 104, 156);
+border-radius: 40px;
+background-color: rgb(88, 161, 228);
 }
 
 #loginUserNameBox,#loginPasswordBox
@@ -144,6 +165,11 @@ a
 {
 color:whitesmoke;
 }
+a:hover
+{
+color:blue;
+}
+
 
 .right
 {
@@ -159,3 +185,4 @@ float:left;
 font-size:24px;
 font-weight:bold;
 }
+

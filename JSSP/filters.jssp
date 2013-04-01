@@ -16,10 +16,10 @@
 
 <div id="contentLeft">
 <div id="projectMenu" class="glowBoxBlue">
-<a href="./home.jssp">Home</a><br />
-<a href="./routes.jssp">Configure Project Routes</a><br />
-<a href="./filters.jssp">Configure Filters</a><br />
-<a href="./index.jssp">Logout</a>
+<a class="navMenuLink" href="./home.jssp">Home</a><br />
+<a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
+<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
+<a class="navMenuLink" href="./index.jssp">Logout</a>
 </div>
 </div>
 <div id="contentRight">

@@ -1,6 +1,6 @@
 <html>
 <head>
-<link rel="stylesheet" href="index_style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
 
@@ -8,25 +8,32 @@
 
 <div id="headerWrapper">
 <div id="headerContent">
-Assassin.js
+<div class="headingText left">Assassin.js</div>
+<div class="headingText right">Assassin Panel</div>
 </div>
 </div>
 <div id="contentWrapper">
 
 <div id="contentLeft">
-<div id="projectMenu">
-Configure Project Routes<br />
-Configure Filters<br />
+<div id="projectMenu" class="glowBoxBlue">
+<a href="./home.jssp">Home</a><br />
+<a href="./routes.jssp">Configure Project Routes</a><br />
+<a href="./filters.jssp">Configure Filters</a><br />
+<a href="./index.jssp">Logout</a>
 </div>
 </div>
 <div id="contentRight">
-Manage Filters for Routes Here<br />
+<div id="infobox" class="glowBoxNavy">
+<p>Configure Filters Here</p>
+</div>
 </div>
 
 </div>
 <div id="footerWrapper">
 <div id="footerContent">
-(c)2013 Adithya Chebiyyam and Sai Teja Jammalamadaka
+<div class="left">
+(c)2013 Adithya Chebiyyam and Sai Teja Jammalamadaka</div>
+<div class="right">Maintained By <a href="http://www.setusoftware.com">Setu Software Systems</a></div>
 </div>
 </div>
 

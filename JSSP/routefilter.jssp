@@ -21,40 +21,37 @@
 <a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
 <a class="navMenuLink" href="./index.jssp">Logout</a>
 </div>
-
-<div id="newRouteBox" class="boxBlue">
-<form action="./addRoute.jssp" method="GET">
-<br />
-<input type="text" name="route" class="roundInputBox" placeholder="Enter A New Route Here" /><br /><br />
-<input type="text" name="method" class="roundInputBox" placeholder="Route's Method Here (eg GET, POST)" /><br /><br />
-<button type="submit">Add Route</button>
-</form>
-</div>
-
 </div>
 <div id="contentRight">
+<$
+var url = require('url');
+var routesList = __dataObj["routesDB"];
+var filterParameters = __dataObj["filterDB"];
+var route = url.parse(__request.url,true).query.route;
+var filter = url.parse(__request.url,true).query.filter;
+$>
 <div id="titlebox" class="glowBoxNavy">
-<p>Total List of Routes</p>
+<p>Route is: <$=route$></p>
+<p>Filter is: <$=filter$></p>
 </div>
 <div id="infobox" class="boxNavy">
+
+Filter Properties<br />
 <$
-var routesList = __dataObj["routesDB"];
+if(filterParameters[filter] !=undefined)
+{
 $>
-<table border="0" cellspacing="0" style="width:100%">
-	<tr>
-		<th style="color:white;">Select A Route to Apply Filters</th>
-	</tr>
-	<$
-	for(var x in routesList)
-	{
-	$>
-	<tr>
-		<td style="color:white;"><a href="./route.jssp?route=<$=routesList[x].regexp$>"><$=routesList[x].regexp$></a></td>
-	</tr>
+<$=JSON.stringify(filterParameters[filter])$>
+<$
+}
+else
+{
+$>
+No Configurable Properties
 <$
 }
 $>
-</table><br />
+<br />
 </div>
 </div>
 

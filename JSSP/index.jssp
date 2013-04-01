@@ -18,8 +18,8 @@
 <div id="loginPanel" class="glowBoxBlue">
 Login to Admin Panel:<br /><br />
 <form action="./home.jssp" method="GET">
-<input type="text" name="username" id="loginUserNameBox" placeholder="Username" /><br /><br />
-<input type="password" name="password" id="loginPasswordBox" placeholder="Password" /><br /><br />
+<input type="text" name="username" id="loginUserNameBox" class="roundInputBox" placeholder="Username" /><br /><br />
+<input type="password" name="password" id="loginPasswordBox" class="roundInputBox" placeholder="Password" /><br /><br />
 <button type="submit">Login</button>
 </form>
 </div>

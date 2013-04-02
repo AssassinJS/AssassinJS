@@ -29,12 +29,12 @@ function ReadFilters()
 function applyFilters(routesObj,request,response)
 {
 	var filterObj = {};
-	for(i in routesObj.filters[request.method])
+	for(i in routesObj.filters)
 	{
 		//checking if any of the routesObj filters match with the filter modules present in the filters folder
-		if(filters[routesObj.filters[request.method][i]] != undefined)
+		if(filters[routesObj.filters[i]] != undefined)
 		{
-			filterObj = filters[routesObj.filters[request.method][i]].applyFilter(routesObj,request,response);
+			filterObj = filters[routesObj.filters[i]].applyFilter(routesObj,request,response);
 			if(filterObj !=null && filterObj !=undefined)
 				break;
 		}

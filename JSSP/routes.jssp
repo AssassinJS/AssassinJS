@@ -23,10 +23,14 @@
 </div>
 
 <div id="newRouteBox" class="boxBlue">
-<form action="./addRoute.jssp" method="GET">
+<form action="./addroute.jssp" method="GET">
 <br />
-<input type="text" name="route" class="roundInputBox" placeholder="Enter A New Route Here" /><br /><br />
-<input type="text" name="method" class="roundInputBox" placeholder="Route's Method Here (eg GET, POST)" /><br /><br />
+Enter A New Route with Method<br />
+or Override Existing Route<br />
+<input type="text" name="route" class="roundInputBox" placeholder="Enter Route Here" /><br />
+eg. GET/test<br /><br />
+<input type="text" name="target" class="roundInputBox" placeholder="Enter Target Controller Here" /><br />
+eg. test<br /><br />
 <button type="submit">Add Route</button>
 </form>
 </div>

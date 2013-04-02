@@ -1,0 +1,115 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+
+<div id="bodyWrapper">
+
+<div id="headerWrapper">
+<div id="headerContent">
+<div class="headingText left">Assassin.js</div>
+<div class="headingText right">Assassin Panel</div>
+</div>
+</div>
+<div id="contentWrapper">
+
+<div id="contentLeft">
+<div id="projectMenu" class="glowBoxBlue">
+<a class="navMenuLink" href="./home.jssp">Home</a><br />
+<a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
+<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
+<a class="navMenuLink" href="./index.jssp">Logout</a>
+</div>
+
+</div>
+<div id="contentRight">
+<$
+var url = require('url');
+
+var MyMongo = require('../system/dbconnect.js').MyMongo;
+var db = new MyMongo('localhost', 27017, 'assassindb');
+
+var routesList = __dataObj['routesDB'];
+
+var route = url.parse(__request.url,true).query.route;
+var filter = url.parse(__request.url,true).query.filter;
+
+var filterParameters = __dataObj['filterDB'][filter];
+var filterParamsFormat = __dataObj['filterDB']['format'][filter];
+$>
+<div id="titlebox" class="glowBoxNavy">
+<p>Route is: <$=route$></p>
+<p>Filter is: <$=filter$></p>
+</div>
+<div id="infobox" class="boxNavy">
+
+Added New Filter<br />
+
+<$
+	db.query('routes',function(collection){
+		var toSet = {};
+		toSet.filters = [];	
+		for(var i in routesList)
+		{
+			if(routesList[i].regexp == route && routesList[i].filters!=undefined)
+			{
+				toSet.filters = routesList[i].filters;
+				break;
+			}
+		}
+		if(route !=null && route !=undefined && route!='' && filter !=null && filter !=undefined && filter!='')
+		{
+			var toSetFlag = true;
+			for(var i in toSet.filters)
+			{
+				if(toSet.filters[i] == filter) toSetFlag = false;
+			}
+			if(toSetFlag)
+			{
+				toSet.filters.push(filter);
+				collection.update({regexp:route},{$set:toSet},{upsert:true, w:1},function(err,data){
+					if(err)logger.write(err,'addroute.jssp');		
+					else require('../controllers/assassinPanel').getDBParameterObjects();
+				});
+			}
+		}
+	});
+	
+	 db.query('filterParameters',function(collection){		
+		var toSet = {};
+		toSet.parameters = filterParameters;
+		var toSetObj = {}
+		toSetObj['url'] = route;
+		toSetObj['params'] = {}
+		for(var i in filterParamsFormat)
+		{
+			toSetObj['params'][filterParamsFormat[i]] = '';
+		}
+		toSet.parameters.push(toSetObj);
+		
+		collection.update({filter:filter},{$set:toSet},{upsert:true, w:1},function(err,data){
+			if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
+			else require('../controllers/assassinPanel').getDBParameterObjects();
+		});
+			
+		
+	});
+$>
+
+</div>
+</div>
+
+</div>
+<div id="footerWrapper">
+<div id="footerContent">
+<div class="left">
+(c)2013 Adithya Chebiyyam and Sai Teja Jammalamadaka</div>
+<div class="right">Maintained By <a href="http://www.setusoftware.com">Setu Software Systems</a></div>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

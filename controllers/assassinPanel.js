@@ -20,12 +20,19 @@ function getDBParameterObjects()
 	db.query('filterParameters',function(collection){		
 				
 		DataObj['filterDB'] = {};
+		DataObj['filterDB']['format'] = {};
+		DataObj['filterDB']['total'] = {};
 		collection.find({}).each(function(err,item){
 			if(err) 
 				logger.write('error occured in retrieving from db','assassinPanel filterDB');
 			else if(item)
 			{
 				DataObj['filterDB'][item.filter] = item.parameters;
+				
+				DataObj['filterDB']['format'][item.filter] = item.paramsformat;
+				
+				if(item.total!=undefined)
+					DataObj['filterDB']['total'][item.filter] = item.total;
 				
 				//logger.write(JSON.stringify(DataObj['filterDB']),'assassinPanel filterDB');
 			}
@@ -59,3 +66,4 @@ function invoke(req,res)
 }
 
 exports.invoke = invoke;
+exports.getDBParameterObjects = getDBParameterObjects;

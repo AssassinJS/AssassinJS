@@ -30,7 +30,7 @@ function handleRequest(routesObj,request,response)
 		}
 		else
 		{ 
-			var controllerName = routesObj[request.method];
+			var controllerName = routesObj.target;
 			if(typeof(controllers[controllerName]) === 'function')
 			{
 				controllers[controllerName](request,response);		

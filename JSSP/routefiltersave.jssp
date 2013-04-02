@@ -1,0 +1,93 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+
+<div id="bodyWrapper">
+
+<div id="headerWrapper">
+<div id="headerContent">
+<div class="headingText left">Assassin.js</div>
+<div class="headingText right">Assassin Panel</div>
+</div>
+</div>
+<div id="contentWrapper">
+
+<div id="contentLeft">
+<div id="projectMenu" class="glowBoxBlue">
+<a class="navMenuLink" href="./home.jssp">Home</a><br />
+<a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
+<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
+<a class="navMenuLink" href="./index.jssp">Logout</a>
+</div>
+</div>
+<div id="contentRight">
+<$
+var qs = require('querystring');
+var logger = require('../system/logger');
+var MyMongo = require('../system/dbconnect.js').MyMongo;
+var db = new MyMongo('localhost', 27017, 'assassindb');
+
+var routesList = __dataObj['routesDB'];
+var formbody = qs.parse(__request.body);
+var route = formbody.route;
+var filter = formbody.filter;
+var filterParameters = __dataObj['filterDB'][filter];
+var filterParamsFormat = __dataObj['filterDB']['format'][filter];
+
+	 db.query('filterParameters',function(collection){		
+		var toSet = {};
+		var toSetFlag = true;
+		toSet.parameters = filterParameters;
+		var toSetObj = {}
+		toSetObj['url'] = route;
+		toSetObj['params'] = {}
+		for(var i in filterParamsFormat)
+		{
+			toSetObj['params'][filterParamsFormat[i]] = formbody[filterParamsFormat[i]];
+		}
+		for(var i in toSet.parameters)
+		{
+			if(toSet.parameters[i].url == route)
+			{
+				toSet.parameters[i].params = toSetObj['params'];
+				toSetFlag = false;
+				break;
+			}
+		}
+		if(toSetFlag)
+			toSet.parameters.push(toSetObj);
+		
+		collection.update({filter:filter},{$set:toSet},{upsert:true, w:1},function(err,data){
+			if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
+			else require('../controllers/assassinPanel').getDBParameterObjects();
+		});
+			
+		
+	});
+$>
+
+<div id="titlebox" class="glowBoxNavy">
+<p>Route is: <$=route$></p>
+<p>Filter is: <$=filter$></p>
+</div>
+<div id="infobox" class="boxNavy">
+<p>Filter Has Been Updated</p>
+</div>
+
+</div>
+
+</div>
+<div id="footerWrapper">
+<div id="footerContent">
+<div class="left">
+(c)2013 Adithya Chebiyyam and Sai Teja Jammalamadaka</div>
+<div class="right">Maintained By <a href="http://www.setusoftware.com">Setu Software Systems</a></div>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

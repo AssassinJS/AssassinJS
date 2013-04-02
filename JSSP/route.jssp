@@ -13,7 +13,20 @@
 </div>
 </div>
 <div id="contentWrapper">
-
+<$
+var url = require('url');
+var routesList = __dataObj["routesDB"];
+var route = url.parse(__request.url,true).query.route;
+var target = '';
+for(var i in routesList)
+{
+	if(routesList[i].regexp == route)
+	{
+		target = routesList[i].target;
+		break;
+	}
+}
+$>
 <div id="contentLeft">
 <div id="projectMenu" class="glowBoxBlue">
 <a class="navMenuLink" href="./home.jssp">Home</a><br />
@@ -23,27 +36,26 @@
 </div>
 
 <div id="newFilterBox" class="boxBlue">
-<form action="./addFilter.jssp" method="GET">
+<form action="./addfilter.jssp" method="GET">
 <br />
-<input type="text" name="route" class="roundInputBox" placeholder="Add A New Filter Here" /><br /><br />
+Enter a Filter Name<br />
+<input type="text" name="filter" class="roundInputBox" placeholder="Add A Filter Here" /><br />
+eg. test<br /><br />
+<input type="hidden" name="route" class="roundInputBox" value="<$=route$>" />
 <button type="submit">Add Filter</button>
 </form>
 </div>
 
 </div>
 <div id="contentRight">
-<$
-var url = require('url');
-var routesList = __dataObj["routesDB"];
-var route = url.parse(__request.url,true).query.route;
-$>
+
 <div id="titlebox" class="glowBoxNavy">
 <p>Route is: <$=route$></p>
+<p>Target Controller is: <$=target$></p>
 </div>
 <div id="infobox" class="boxNavy">
 
 Route Filters<br />
-
 <table border="0" cellspacing="0" style="width:100%">
 
 	<$
@@ -55,31 +67,12 @@ Route Filters<br />
 		<th style="color:white;">Select Filter to Change Properties</th>
 		</tr>
 		<$
-			if(routesList[x].filters["GET"]!=undefined)
+			if(routesList[x].filters!=undefined)
+			{
+			for(var y in routesList[x].filters)
 			{$>
 			<tr>
-			<td style="color:white;font-weight:bold;">GET filters</td>
-			</tr>
-			<$
-			for(var y in routesList[x].filters["GET"])
-			{$>
-			<tr>
-			<td style="color:white;"><a href="./routefilter.jssp?filter=<$=routesList[x].filters['GET'][y]$>&route=<$=route$>"><$=routesList[x].filters["GET"][y]$></a></td>
-			</tr>
-			<$
-			}
-			}
-			
-			if(routesList[x].filters["POST"]!=undefined)
-			{$>
-			<tr>
-			<td style="color:white;font-weight:bold;">POST filters</td>
-			</tr>
-			<$
-			for(var y in routesList[x].filters["POST"])
-			{$>
-			<tr>
-			<td style="color:white;"><a href="./routefilter.jssp?filter=<$=routesList[x].filters['POST'][y]$>&route=<$=route$>"><$=routesList[x].filters["POST"][y]$></a></td>
+			<td style="color:white;"><a href="./routefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>"><$=routesList[x].filters[y]$></a></td>
 			</tr>
 			<$
 			}
@@ -88,7 +81,7 @@ Route Filters<br />
 		else if(routesList[x].regexp == route && routesList[x].filters==undefined)
 		{$>
 		<tr>
-		<th style="color:white;">No Filters Applied</th>
+		<th style="color:white;">No Filters Applied to</th>
 		</tr>
 		<$}
 	}

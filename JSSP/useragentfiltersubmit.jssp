@@ -37,23 +37,35 @@ $>
 	db.query('filterParameters',function(collection){
 				
 		var toSet = {};
+		var toSetFlag = true;
 		toSet.parameters = userAgentFilterParameters;
 		if(newUAFilters.routes !=null ||newUAFilters.routes !=undefined)
 		{
 			for(var i in newUAFilters.routes)
 			{
-				$><$=newUAFilters.routes[i]$><$
-				toSet.parameters[newUAFilters.routes[i]] = {};
-				toSet.parameters[newUAFilters.routes[i]]['GET'] = {};
-				toSet.parameters[newUAFilters.routes[i]]['GET']['allow'] = newUAFilters.useragentWhite;
-				toSet.parameters[newUAFilters.routes[i]]['GET']['block'] = newUAFilters.useragentBlack;
+				var toSetObj = {};
+				toSetObj.url=newUAFilters.routes[i];
+				toSetObj.params = {};
+				toSetObj.params['allow'] = newUAFilters.useragentWhite;
+				toSetObj.params['block'] = newUAFilters.useragentBlack;
+				
+				for(var j in toSet.parameters)
+				{
+					if(toSet.parameters[j].url == newUAfilters.routes[i])
+					{
+						toSet.parameters[j].params = toSetObj.params;
+						toSetFlag = false;
+						break;
+					}
+				}
+				if(toSetFlag)
+					toSet.parameters.push(toSetObj);
 			}
 			collection.update({filter:'user-agent'},{$set:toSet},{upsert:true, w:1},function(err,data){
 				if(err)logger.write(err,'useragentfiltersubmit.jssp');		
 				else require('../filters/user-agent').ReadFromDB();
 			});
 		}
-		$><$=newUAFilters.routes$><$
 		
 		
 	});

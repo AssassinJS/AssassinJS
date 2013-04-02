@@ -29,20 +29,15 @@ function ReadRoutesFile()
 				for(row in listentries)
 				{
 					var values = listentries[row].split('\t');
-					if(values.length<3 || values.length>4) continue;
+					if(values.length<2 || values.length>3) continue;
 					var routeObj={};
-					routeObj.path=values[1];
-					routeObj.method=values[0];
-					routeObj.target=values[2];
-					var toSet={};
-					toSet[routeObj.method] = routeObj.target;
-					if(values.length==4) 
+					routeObj.regexp=values[0];
+					routeObj.target=values[1];
+					if(values.length==3) 
 					{
-						routeObj.filters=values[3].split(',');
-						toSet.filters = {};
-						toSet.filters[routeObj.method] = routeObj.filters;
+						routeObj.filters=values[2].split(',');
 					}
-					collection.update({regexp:routeObj.path},{$set:toSet},{upsert:true, w:1},function(err,data){
+					collection.update({regexp:routeObj.regexp},{$set:routeObj},{upsert:true, w:1},function(err,data){
 						if(err)logger.write(err);						
 					});			
 				}
@@ -69,8 +64,9 @@ function ReadUserAgentFile()
 		db.query('filterParameters',function(collection){
 
 			var toset = {};
-			toset.parameters = {};
-			toset.parameters.total = listentries;
+			toset.parameters = [];
+			toset.paramsformat = ['allow','block'];
+			toset.total = listentries;
 			collection.update({filter:'user-agent'},{$set:toset},{upsert:true, w:1},function(err,data){
 				if(err)logger.write(err,'user-agent.js');
 			});
@@ -87,10 +83,14 @@ function ReadRateLimitFile()
 	var ua_data = fs.readFileSync('./config/useragent.txt');
 	if(ua_data==null)
 	{ 
-		logger.write("useragent filter list data not found",'');
+		logger.write("rateLimit filter list data not found",'');
+		db.query('filterParameters',function(collection){
 		var toset = {};
+		toset.parameters = [];
+		toset.paramsformat = ['limitNum','limitTime'];
 		collection.update({filter:'rate-limit'},{$set:toset},{upsert:true, w:1},function(err,data){
 			if(err)logger.write(err,'firsttime.js');
+		});
 		});
 	}
 	else
@@ -101,12 +101,12 @@ function ReadRateLimitFile()
 
 			var toset = {};
 			toset.parameters = [];
-			//toset.parameters.total = listentries;
+			toset.paramsformat = ['limitNum','limitTime'];
 			collection.update({filter:'rate-limit'},{$set:toset},{upsert:true, w:1},function(err,data){
 				if(err)logger.write(err,'firsttime.js');
 			});
 			
-			logger.write('initialized the user agent collection in db','firsttime.js');			
+			logger.write('initialized the ratelimit collection in db','firsttime.js');			
 		});
 	}
 }

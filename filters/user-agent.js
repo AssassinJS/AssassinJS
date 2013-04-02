@@ -19,7 +19,8 @@ function ReadFromDB()
 			userAgents = item.parameters;
 			
 			//test entry in userAgents
-			//userAgents['/filterbrowser']={'GET':{'allow':["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17"],'block':[]}};
+			//userAgents.url='GET/filterbrowser';
+			//userAgents.params={'allow':["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17"],'block':[]};
 		
 			//logger.write(JSON.stringify(userAgents),'user-agent filter');
 		});
@@ -30,8 +31,15 @@ function ReadFromDB()
 function applyFilter(routesObj,request,response)
 {
 	var userAgent = request.headers['user-agent'];
-	var whitelist=userAgents[routesObj.regexp][request.method].allow;
-	var blacklist=userAgents[routesObj.regexp][request.method].block;
+	for(var i in userAgents)
+	{
+		if(userAgents[i].url == routesObj.regexp)
+		{
+			var whitelist=userAgents[i].params.allow;
+			var blacklist=userAgents[i].params.block;
+		}
+	}
+	
 	logger.write('user-agent header is '+userAgent,'filters/test.js');
 	
 	/*var browser ='';
@@ -64,7 +72,7 @@ function applyFilter(routesObj,request,response)
 			filterobj.filterStatus = 403;				
 		}
 	}
-	else
+	else if(blacklist != null && blacklist.length!=0)
 	{
 		if(blacklist.indexOf(userAgent)>-1)
 		{
@@ -77,6 +85,11 @@ function applyFilter(routesObj,request,response)
 			filterobj.filterMessage = 'Allowed: Not BlackListed this is a user-agent filter and your browser user-agent is '+userAgent;
 			filterobj.filterStatus = 200;			
 		}			
+	}
+	else
+	{
+		filterobj.filterMessage = 'Filter Not Configured Properly. Your browser user-agent is '+userAgent;
+			filterobj.filterStatus = 200;
 	}
 	return filterobj;
 }

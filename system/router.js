@@ -47,7 +47,7 @@ function route(request,response)
 			logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
 			var reqDetails = url.parse(request.url);
 			logger.write("Request Details: "+JSON.stringify(reqDetails));
-			var filepath = reqDetails.pathname;
+			var filepath = request.method+reqDetails.pathname;
 			var isHandled = false;
 			for(i in routes)
 			{
@@ -76,7 +76,7 @@ function route(request,response)
 		logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
 		var reqDetails = url.parse(request.url);
 		logger.write("Request Details: "+JSON.stringify(reqDetails));
-		var filepath = reqDetails.pathname;
+		var filepath = request.method+reqDetails.pathname;
 		var isHandled = false;
 		for(i in routes)
 		{

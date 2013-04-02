@@ -73,7 +73,11 @@ $>
 			}
 			collection.update({filter:'rate-limit'},{$set:toSet},{upsert:true, w:1},function(err,data){
 				if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
-				else require('../controllers/assassinPanel').getDBParameterObjects();
+				else
+				{
+					require('../filters/rate-limit').ReadFromDB();
+					require('../controllers/assassinPanel').getDBParameterObjects();
+				}
 			});
 		}	
 		

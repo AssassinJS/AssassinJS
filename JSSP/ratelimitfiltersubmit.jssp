@@ -1,6 +1,6 @@
 <html>
 <head>
-<link rel="stylesheet" href="index_style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
 
@@ -8,15 +8,18 @@
 
 <div id="headerWrapper">
 <div id="headerContent">
-Assassin.js
+<div class="headingText left">Assassin.js</div>
+<div class="headingText right">Assassin Panel</div>
 </div>
 </div>
 <div id="contentWrapper">
 
 <div id="contentLeft">
-<div id="projectMenu" style="position:fixed;">
-Configure Project Routes<br />
-Configure Filters<br />
+<div id="projectMenu" class="glowBoxBlue">
+<a class="navMenuLink" href="./home.jssp">Home</a><br />
+<a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
+<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
+<a class="navMenuLink" href="./index.jssp">Logout</a>
 </div>
 </div>
 <div id="contentRight">
@@ -70,7 +73,7 @@ $>
 			}
 			collection.update({filter:'rate-limit'},{$set:toSet},{upsert:true, w:1},function(err,data){
 				if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
-				else require('../filters/rate-limit').ReadFromDB();
+				else require('../controllers/assassinPanel').getDBParameterObjects();
 			});
 		}	
 		

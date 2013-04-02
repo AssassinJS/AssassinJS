@@ -28,8 +28,8 @@
 </div>
 
 <div id="infobox" class="boxNavy">
-<p>user-agent</p>
-<p>rate-limit</p>
+<a class="navMenuLink" href="./useragentfilter.jssp">user-agent filter</a><br />
+<a class="navMenuLink" href="./ratelimitfilter.jssp">rate-limit filter</a><br />
 </div>
 
 </div>

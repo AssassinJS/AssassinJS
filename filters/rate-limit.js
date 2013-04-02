@@ -83,8 +83,8 @@ function applyFilter(routesObj,request,response)
 	
 		if(urlReg.test(path))
 		{
-			limitNum = rateLimits[index].params.limitNum;
-			limitTime = rateLimits[index].params.limitTime;
+			limitNum = parseInt(rateLimits[index].params.limitNum);
+			limitTime = parseInt(rateLimits[index].params.limitTime);
 			logger.write('path = '+path+', LimitNum = '+limitNum+', LimitTime = '+limitTime,'rate-limit.js');
 			urlReg = rateLimits[index].url;
 			logger.write('URL RegExp = '+JSON.stringify(urlReg),'rate-limit');
@@ -120,7 +120,7 @@ function applyFilter(routesObj,request,response)
 						else
 						{
 							//When limit exceeded
-							filterObj.filterMessage = 'Forbidden: Request Rate Exceeded Limits';
+							filterObj.filterMessage = 'Forbidden: Request Rate Exceeded Limits. '+LastRequestOn+'+'+limitTime+'='+(LastRequestOn + limitTime)+'   '+LatestRequestOn;
 							filterObj.filterStatus = 403;
 						}
 					

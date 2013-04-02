@@ -61,7 +61,11 @@ var filterParamsFormat = __dataObj['filterDB']['format'][filter];
 		
 		collection.update({filter:filter},{$set:toSet},{upsert:true, w:1},function(err,data){
 			if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
-			else require('../controllers/assassinPanel').getDBParameterObjects();
+			else
+			{
+				require('../filters/'+filter).ReadFromDB();
+				require('../controllers/assassinPanel').getDBParameterObjects();
+			}
 		});
 			
 		

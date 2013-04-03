@@ -24,8 +24,7 @@ function ReadRoutesFile()
 	{
 		var listentries = r_data.toString().split('\n');
 		
-		db.query('routes',function(collection){
-				
+		db.query('routes',function(collection){				
 				for(row in listentries)
 				{
 					var values = listentries[row].split('\t');
@@ -33,17 +32,17 @@ function ReadRoutesFile()
 					var routeObj={};
 					routeObj.regexp=values[0];
 					routeObj.target=values[1];
+					
 					if(values.length==3) 
 					{
 						routeObj.filters=values[2].split(',');
 					}
+					
 					collection.update({regexp:routeObj.regexp},{$set:routeObj},{upsert:true, w:1},function(err,data){
-						if(err)logger.write(err);						
-					});			
+						if(err) logger.write(err);												
+					});													
 				}
-				
-				logger.write('Finished Initializing Routes','firsttime.js');
-		
+				logger.write('Finished Initializing Routes','firsttime.js');			
 		});
 	}
 }
@@ -51,7 +50,7 @@ function ReadRoutesFile()
 // Is used only for first time initialization
 function ReadUserAgentFile()
 {
-	logger.write('Reading user-agents from db,please wait...','firsttime.js');
+	logger.write('Populating user-agents into DB,please wait...','firsttime.js');
 	var ua_data = fs.readFileSync('./config/useragent.txt');
 	if(ua_data==null)
 	{ 
@@ -62,16 +61,14 @@ function ReadUserAgentFile()
 		var listentries = ua_data.toString().split('\n');
 		
 		db.query('filterParameters',function(collection){
-
 			var toset = {};
 			toset.parameters = [];
 			toset.paramsformat = ['allow','block'];
 			toset.total = listentries;
 			collection.update({filter:'user-agent'},{$set:toset},{upsert:true, w:1},function(err,data){
-				if(err)logger.write(err,'user-agent.js');
-			});
-			
-			logger.write('initialized the user agent collection in db','firsttime.js');			
+				if(err) logger.write(err,'user-agent.js');
+				else if(data) logger.write('Initialized the user agent collection in DB','firsttime.js');
+			});								
 		});
 	}
 }
@@ -79,44 +76,39 @@ function ReadUserAgentFile()
 // Is used only for first time initialization
 function ReadRateLimitFile()
 {
-	logger.write('Reading user-agents from db,please wait...','firsttime.js');
-	var ua_data = fs.readFileSync('./config/useragent.txt');
-	if(ua_data==null)
-	{ 
-		logger.write("rateLimit filter list data not found",'');
-		db.query('filterParameters',function(collection){
+	logger.write('Populating rate-limits into DB, please wait...','firsttime.js');	
+	
+	db.query('filterParameters',function(collection){
 		var toset = {};
 		toset.parameters = [];
 		toset.paramsformat = ['limitNum','limitTime'];
 		collection.update({filter:'rate-limit'},{$set:toset},{upsert:true, w:1},function(err,data){
-			if(err)logger.write(err,'firsttime.js');
+			if(err) logger.write(err,'firsttime.js');
+			else if(data) logger.write('Initialized the ratelimit collection in DB','firsttime.js');
 		});
-		});
-	}
-	else
-	{
-		var listentries = ua_data.toString().split('\n');
-		
-		db.query('filterParameters',function(collection){
-
-			var toset = {};
-			toset.parameters = [];
-			toset.paramsformat = ['limitNum','limitTime'];
-			collection.update({filter:'rate-limit'},{$set:toset},{upsert:true, w:1},function(err,data){
-				if(err)logger.write(err,'firsttime.js');
-			});
-			
-			logger.write('initialized the ratelimit collection in db','firsttime.js');			
-		});
-	}
+	});		
 }
 
-//To populate db from routes file
+function ReadLoginInfo()
+{
+	logger.write('Populating default LoginInfo into DB, please wait...','firsttime.js');
+	db.query('filterParameters',function(collection){
+		var toset = { parameters : { admin : "password" } };
+		collection.update({filter:'login'},{$set:toset},{upsert:true, w:1},function(err,data){
+			if(err)	logger.write(err,'firsttime.js');
+			else if(data) logger.write('Initialized LoginInfo in DB','firsttime.js');				
+		});
+	});
+}
+
+//To populate DB from routes file
 ReadRoutesFile();
-//To populate db from useragent file
+//To populate DB from useragent file
 ReadUserAgentFile();
-//To populate db from ratelimit file if it exists or else an empty obj
+//To populate DB from ratelimit file with an empty obj
 ReadRateLimitFile();
+//To populate DB with Default Login Info
+ReadLoginInfo();
 
 //To Compile JSSP files to Views (production level - assuming that jssp's are already there)
 var viewcompiler = require('./system/viewcompiler');

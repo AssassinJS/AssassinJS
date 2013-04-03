@@ -85,6 +85,8 @@ function invoke(req,res)
 		var secret = splitTokens[1].split('=')[1];		
 				
 		//checking auth credentials from db
+		//the db object model is simple and easy
+		//{ "_id":"adasdas112312aqsda" , "filter":"login" , "parameters":{ "admin":"password" } }
 		db.query('filterParameters',function(collection){		
 			collection.find({filter:'login'}).nextObject(function(err,doc){			
 				if(doc)

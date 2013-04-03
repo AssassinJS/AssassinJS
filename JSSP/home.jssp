@@ -1,3 +1,14 @@
+<$
+var
+xfr = __request.headers['x-forwarded-for'],
+ip = xfr?xfr.split(', ')[0]:__request.connection.remoteAddress;
+
+ip = ip.replace(/\./g,'-');
+
+if(ip in __dataObj.Session) 
+{
+
+$>
 <html>
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -19,7 +30,7 @@
 <a class="navMenuLink" href="./home.jssp">Home</a><br />
 <a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
 <a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
-<a class="navMenuLink" href="./index.jssp">Logout</a>
+<a class="navMenuLink" href="./logout.jssp">Logout</a>
 </div>
 </div>
 <div id="contentRight">
@@ -42,3 +53,19 @@
 
 </body>
 </html>
+<$
+}
+else 
+{
+$>
+<html>
+<head><title>AssassinJS:Assassinated!</title></head>
+<body>
+<div>
+<span style="font-size:20;">401:Unauthorized Access, Login First!</span>
+</div>
+</body>
+</html>
+<$
+}
+$>

@@ -1,3 +1,6 @@
+//Earlier Version, works fine, but different model
+//from current one, has a manual getURL call also
+
 var common = require('./common');
 var url = require('url');
 var http = require('http');

@@ -1,4 +1,5 @@
 //This filter implements rate limitation of requests based on IPs and Preset URLs 
+//This is the earlier model, works fine, but no support for regex in url checking
 var logger = require('../system/logger');
 var fs = require('fs');
 var url = require('url');

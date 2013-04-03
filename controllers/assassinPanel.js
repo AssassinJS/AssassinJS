@@ -8,11 +8,12 @@
 
 var fileserver = require('./fileserver');
 var logger = require('../system/logger');
+var url = require('url');
 
 var MyMongo = require('../system/dbconnect.js').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
  
-var DataObj = {};
+var DataObj = { Session: {} };
 
 getDBParameterObjects();//ensures first time execution
 function getDBParameterObjects()
@@ -57,12 +58,68 @@ function getDBParameterObjects()
 
 function invoke(req,res)
 {
-	//First need to check of user validation credentials.
+	//First need to check user validation credentials.
 	//If valid user, then show home page
-	//else redirect to login index page
-	DataObj['request'] = req;
-	DataObj['response'] = res;
-	fileserver.serveFile(req,res,null,DataObj);
+	//else redirect to login index page		
+	var
+	req_url = url.parse(req.url),
+	endpoint = req_url.pathname.split('/'),
+	xfr = req.headers['x-forwarded-for'],	
+	ip = xfr?xfr.split(', ')[0]:req.connection.remoteAddress;
+	
+	ip = ip.replace(/\./g,'-');
+	
+	if(endpoint[endpoint.length-1] === 'login.jssp')
+	{
+		logger.write('Request Body is = '+JSON.stringify(req.body),'assassinPanel.js');
+		var source = req.body;		
+		var splitTokens = source.split('&');
+		var uname = splitTokens[0].split('=')[1];
+		var secret = splitTokens[1].split('=')[1];		
+				
+		//checking auth credentials from db
+		db.query('filterParameters',function(collection){		
+			collection.find({filter:'login'}).nextObject(function(err,doc){			
+				if(doc)
+				{								
+					if(doc.parameters[uname] === secret)	
+						DataObj.Session[ip] = { loginOn:new Date().getTime() , isActive:true };							
+				}
+				else if(err)
+				{
+					logger.write('Error while validating login: '+JSON.stringify(err),'assassinPanel.js');
+				}
+												
+				//redirecting to home page
+				req.url = req['url'].replace(/login\.jssp/,'home.jssp');
+				
+				//forwarding request
+				DataObj['request'] = req;
+				DataObj['response'] = res;
+				fileserver.serveFile(req,res,null,DataObj);
+				
+			});		
+		});			
+	}
+	else if(endpoint[endpoint.length-1] === 'logout.jssp')
+	{
+		//removing stored session from memory
+		delete DataObj.Session[ip];
+		
+		//redirecting to index page
+		req.url = req['url'].replace(/logout\.jssp/,'index.jssp');
+		
+		//forwarding request
+		DataObj['request'] = req;
+		DataObj['response'] = res;
+		fileserver.serveFile(req,res,null,DataObj);
+	}
+	else
+	{
+		DataObj['request'] = req;
+		DataObj['response'] = res;
+		fileserver.serveFile(req,res,null,DataObj);
+	}
 }
 
 exports.invoke = invoke;

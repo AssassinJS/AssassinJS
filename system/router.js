@@ -31,6 +31,38 @@ function ReadFromDB()
 	});
 }
 
+function process(request,response)
+{
+	logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
+	var reqDetails = url.parse(request.url);
+	logger.write("Request Details: "+JSON.stringify(reqDetails));
+	var filepath = request.method+reqDetails.pathname;
+	var isHandled = false;
+	for(i in routes)
+	{
+		var urlReg = new RegExp('^'+routes[i].regexp+'$');
+		if(urlReg.test(filepath))
+		{
+			isHandled = true;
+			
+			if(routes[i].filters !=null || routes[i].filters != undefined)
+				filter.applyFilters(routes[i],request,response);
+			else
+				controller.handleRequest(routes[i],request,response);
+			
+			//To stop iteration after correct route is found and executed
+			break;
+		}
+	}
+			
+	if(!isHandled)
+	{
+		logger.write('URL not found');
+		controller.handleRequest(null,request,response);
+	}        	    
+
+}
+
 //Actual Routing Function
 function route(request,response)
 {			
@@ -44,58 +76,12 @@ function route(request,response)
 			request.body = reqbody;
 			logger.write(request.body,'router.js');
 		
-			logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
-			var reqDetails = url.parse(request.url);
-			logger.write("Request Details: "+JSON.stringify(reqDetails));
-			var filepath = request.method+reqDetails.pathname;
-			var isHandled = false;
-			for(i in routes)
-			{
-				var urlReg = new RegExp('^'+routes[i].regexp+'$');
-				if(urlReg.test(filepath))
-				{
-					isHandled = true;
-					
-					if(routes[i].filters !=null || routes[i].filters != undefined)
-						filter.applyFilters(routes[i],request,response);
-					else
-						controller.handleRequest(routes[i],request,response);
-				}
-			}
-			if(!isHandled)
-			{
-				logger.write('URL not found');
-				controller.handleRequest(null,request,response);
-			}
-        	    
-
+			process(request,response);
         });
     }
     else//for get requests
     {
-		logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
-		var reqDetails = url.parse(request.url);
-		logger.write("Request Details: "+JSON.stringify(reqDetails));
-		var filepath = request.method+reqDetails.pathname;
-		var isHandled = false;
-		for(i in routes)
-		{
-			var urlReg = new RegExp('^'+routes[i].regexp+'$');
-			if(urlReg.test(filepath))
-			{
-				isHandled = true;
-				
-				if(routes[i].filters !=null || routes[i].filters != undefined)
-					filter.applyFilters(routes[i],request,response);
-				else
-					controller.handleRequest(routes[i],request,response);
-			}
-		}
-		if(!isHandled)
-		{
-			logger.write('URL not found');
-			controller.handleRequest(null,request,response);
-		}
+		process(request,response);
 	}
 }
 

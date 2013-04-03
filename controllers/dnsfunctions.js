@@ -14,10 +14,8 @@ function forwardRequest(request,response)
 						
 		dns.lookup(qObj.query,function(err,ip){
 				
-			//var result = 'HTTP - '+request.httpVersion+'\nMethod - '+request.method+'\nURL - '+request.url+'\nHeader - '+request.header;	
-			
-			var result = 'Request : \n'+JSON.stringify(request);	
-	
+			var result = 'HTTP - '+request.httpVersion+'\nMethod - '+request.method+'\nURL - '+request.url+'\nHeader - '+request.header;	
+		
 			if(err) 
 			{			 
 				 result += '\n'+'Encountered Error - '+err;
@@ -27,8 +25,7 @@ function forwardRequest(request,response)
 				 result += '\n'+qObj.query+' resolved to '+ip;	
 			}
 		
-		 	console.log(result);
-		 	logger.write(JSON.stringify(response),'dnsfunctions.js');		
+		 	console.log(result);		 	
 			response.writeHead(200,{'content-type':'text/plain'});			
 			response.write(result);				 
 			response.end();		

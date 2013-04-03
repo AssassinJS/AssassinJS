@@ -1,3 +1,7 @@
+//Old model, no concurrent use, no multiple simultaneous calls,
+//very buggy model
+
+
 var mongodb = require('mongodb');
 var logger = require('./logger');
 var global_db  = '';

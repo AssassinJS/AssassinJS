@@ -56,6 +56,13 @@ function getDBParameterObjects()
 	});
 }
 
+function forward(req,res)
+{
+	DataObj['request'] = req;
+	DataObj['response'] = res;
+	fileserver.serveFile(req,res,null,DataObj);
+}
+
 function invoke(req,res)
 {
 	//First need to check user validation credentials.
@@ -94,9 +101,7 @@ function invoke(req,res)
 				req.url = req['url'].replace(/login\.jssp/,'home.jssp');
 				
 				//forwarding request
-				DataObj['request'] = req;
-				DataObj['response'] = res;
-				fileserver.serveFile(req,res,null,DataObj);
+				forward(req,res);
 				
 			});		
 		});			
@@ -110,15 +115,21 @@ function invoke(req,res)
 		req.url = req['url'].replace(/logout\.jssp/,'index.jssp');
 		
 		//forwarding request
-		DataObj['request'] = req;
-		DataObj['response'] = res;
-		fileserver.serveFile(req,res,null,DataObj);
+		forward(req,res);
+	}
+	else if(endpoint[endpoint.length-1] === 'index.jssp' && (ip in DataObj.Session))
+	{
+		//When already logged in and trying to access index page
+		//redirecting to home page
+		req.url = req['url'].replace(/index\.jssp/,'home.jssp');
+		
+		//forwarding request
+		forward(req,res);
+	
 	}
 	else
 	{
-		DataObj['request'] = req;
-		DataObj['response'] = res;
-		fileserver.serveFile(req,res,null,DataObj);
+		forward(req,res);
 	}
 }
 

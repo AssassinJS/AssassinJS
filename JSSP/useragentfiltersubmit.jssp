@@ -30,7 +30,7 @@ $>
 <a class="navMenuLink" href="./home.jssp">Home</a><br />
 <a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
 <a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
-<a class="navMenuLink" href="./index.jssp">Logout</a>
+<a class="navMenuLink" href="./logout.jssp">Logout</a>
 </div>
 </div>
 <div id="contentRight">
@@ -55,7 +55,7 @@ $>
 		toSet.parameters = userAgentFilterParameters;
 		if(newUAFilters.routes !=null ||newUAFilters.routes !=undefined)
 		{
-			for(var i in newUAFilters.routes)
+			for(i in newUAFilters.routes)
 			{
 				var toSetObj = {};
 				toSetObj.url=newUAFilters.routes[i];
@@ -63,7 +63,7 @@ $>
 				toSetObj.params['allow'] = newUAFilters.useragentWhite;
 				toSetObj.params['block'] = newUAFilters.useragentBlack;
 				
-				for(var j in toSet.parameters)
+				for(j in toSet.parameters)
 				{
 					if(toSet.parameters[j].url == newUAfilters.routes[i])
 					{
@@ -75,17 +75,57 @@ $>
 				if(toSetFlag)
 					toSet.parameters.push(toSetObj);
 			}
+			
 			collection.update({filter:'user-agent'},{$set:toSet},{upsert:true, w:1},function(err,data){
-				if(err)logger.write(err,'useragentfiltersubmit.jssp');		
+				if(err)	logger.write(err,'useragentfiltersubmit.jssp');		
 				else
 				{
 					require('../filters/user-agent').ReadFromDB();
 					require('../controllers/assassinPanel').getDBParameterObjects();
 				}
 			});
-		}
-		
-		
+		}				
+	});
+	
+	//need to update routes collection as well, add filters array to the specific route
+	db.query('routes',function(collection){
+	
+		if(newUAFilters.routes != undefined)
+		{						
+			if(!(newUAFilters.routes instanceof Array))
+				newUAFilters.routes = [newUAFilters.routes];
+				
+			for(index in newUAFilters.routes)
+			{
+				var routeURL = newUAFilters.routes[index];
+				var toSet = { filters:[] };
+				
+				for(count in routesList)
+				{
+					if(routesList[count].regexp === routeURL)
+					{
+						toSet.filters = routesList[count].filters;
+						
+						if(toSet.filters === undefined)
+							toSet.filters = [];
+							
+						toSet.filters.push('rate-limit');
+						
+						//to stop unnecessary iteration after match is found
+						break;							
+					}					
+				}
+				
+				collection.update({regexp:routeURL},{$set:toSet},{upsert:true, w:1},function(err,data){
+					if(err)	logger.write(err,'useragentfiltersubmit.jssp');	
+					else
+					{
+						require('../system/router').ReadFromDB();
+						require('../controllers/assassinPanel').getDBParameterObjects();
+					}
+				});
+			}
+		}	
 	});
 $>
 

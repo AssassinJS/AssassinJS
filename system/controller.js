@@ -7,6 +7,7 @@
 */
 var fs = require('fs');
 var logger = require('./logger');
+var config = require('./config');
 
 var extensions =[];
 //Dynamically Reading the controllers folder to get all the extensions
@@ -43,18 +44,20 @@ function handleRequest(routesObj,request,response)
 	{
 		//controllers.fileserver(request,response);
 		controllers['proxy'](request,response);
-		//controllers.error(request,response);
+		//controllers.error(request,response);						
 	}
 }
 
 //The actual controller functions to which requests are forwarded to 
 //(and the controller functions may be mapped to extensions)
 var controllers = [];
+
 controllers.test = function(request,response)
 {
 	logger.write('test in controller executed');
 	extensions['respond'].createResponse(response,200,null,'test');
 }
+
 controllers.error = function(request,response)
 {
 	var rHeader = {'Content-Type': 'text/plain'};
@@ -62,6 +65,7 @@ controllers.error = function(request,response)
 	var rContent = 'Request Resource Not Found On Server. Please Check the URL';
 	extensions['respond'].createResponse(response,status,rHeader,rContent);
 }
+
 controllers.blocked = function(request,response,filterMessage,statusCode)
 {
 	var rHeader = {'Content-Type': 'text/plain'};
@@ -69,17 +73,26 @@ controllers.blocked = function(request,response,filterMessage,statusCode)
 	var rContent = filterMessage;
 	extensions['respond'].createResponse(response,status,rHeader,rContent);
 }
+
 controllers.testReg = function(request,response)
 {
 	logger.write('testReg executed');
 	extensions['respond'].createResponse(response,200,null,'testReg Executed.');
 }
+
+controllers['assassinPanel'] = extensions['assassinPanel'].invoke;
 controllers['fileserver'] = extensions['fileserver'].serveFile;
 controllers['dnsfunctions'] = extensions['dnsfunctions'].forwardRequest;
 controllers['dbfunctions'] = extensions['dbfunctions'].forwardRequest;
 controllers['common'] = extensions['common'].forwardRequest;
 controllers['users'] = extensions['users'].forwardRequest;
-controllers['proxy'] = extensions['proxy'].forwardRequest;
-controllers['assassinPanel'] = extensions['assassinPanel'].invoke;
+//controllers['proxy'] = extensions['proxy'].forwardRequest;
+
+//to separate calls to internal/external proxy based on config
+var proxyType = config.getConfig().proxyType;
+if(proxyType === 'internal')
+	controllers['proxy'] = extensions['proxy_internal'].forwardRequest;		
+else
+	controllers['proxy'] = extensions['proxy_external'].forwardRequest;				
 
 exports.handleRequest = handleRequest;

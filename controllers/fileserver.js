@@ -1,12 +1,14 @@
+//Required Modules
 var url = require('url');
 var fs = require('fs');
 var logger = require('../system/logger');
 var respond = require('./respond');
 
-//Reading filetypelist into filetypemap
-
+//Global Variabels in this module
 var filetypemap = {};
-ReadFileTypeList();
+var ViewsList = {};
+
+//Reading filetypelist into filetypemap
 function ReadFileTypeList()
 {
 	var data = fs.readFileSync('./config/filetypelist.txt');
@@ -26,8 +28,6 @@ function ReadFileTypeList()
 	}
 }
 
-var ViewsList = {};
-LoadViews();
 function LoadViews()
 {
 	var ViewFiles = [];
@@ -39,6 +39,7 @@ function LoadViews()
 		WatchViews(ViewFiles[i]);
 	}
 }
+
 function LoadView(ViewFile)
 {
 	if(ViewExtensionReg.test(ViewFile))
@@ -52,6 +53,7 @@ function LoadView(ViewFile)
 		ViewsList['/'+ViewFile] = require('../compiled_views/'+ViewFile);	
 	}
 }
+
 function WatchViews(ViewFile)
 {
 	fs.watchFile('./compiled_views/'+ViewFile,{persistent: true, interval: 1000 },function (curr, prev) {
@@ -64,7 +66,6 @@ function WatchViews(ViewFile)
 		}
 	});
 }
-
 
 function serveFile(req,res,defaultDir,dataObj)
 {
@@ -123,6 +124,12 @@ function serveView(req,res,dataObj)
 		logger.write('Error in Reading View or Missing View:\n');
 	}
 }
+
+//Actual Processing Area
+//To Read FileType List
+ReadFileTypeList();
+//To Load Views
+LoadViews();
 
 exports.serveFile = serveFile;
 exports.serveView = serveView;

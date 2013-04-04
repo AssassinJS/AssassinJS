@@ -40,15 +40,25 @@ function process(request,response)
 	var isHandled = false;
 	for(i in routes)
 	{
-		var urlReg = new RegExp('^'+routes[i].regexp+'$');
+		//var urlReg = new RegExp('^'+routes[i].regexp+'$');
+		
+		//removed ^,$ -> matches even without them
+		var urlReg = new RegExp(routes[i].regexp);
+		
 		if(urlReg.test(filepath))
 		{
 			isHandled = true;
-			
+						
 			if(routes[i].filters !=null || routes[i].filters != undefined)
+			{
+				logger.write('Trying to apply filters..','router.js');
 				filter.applyFilters(routes[i],request,response);
+			}
 			else
+			{
+				logger.write('No filters defined for route..','router.js');
 				controller.handleRequest(routes[i],request,response);
+			}
 			
 			//To stop iteration after correct route is found and executed
 			break;

@@ -43,7 +43,7 @@ $>
 <a class="navMenuLink" href="./home.jssp">Home</a><br />
 <a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
 <a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
-<a class="navMenuLink" href="./index.jssp">Logout</a>
+<a class="navMenuLink" href="./logout.jssp">Logout</a>
 </div>
 
 <div id="newFilterBox" class="boxBlue">

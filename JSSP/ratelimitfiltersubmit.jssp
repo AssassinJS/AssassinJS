@@ -30,7 +30,7 @@ $>
 <a class="navMenuLink" href="./home.jssp">Home</a><br />
 <a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
 <a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
-<a class="navMenuLink" href="./index.jssp">Logout</a>
+<a class="navMenuLink" href="./logout.jssp">Logout</a>
 </div>
 </div>
 <div id="contentRight">
@@ -53,22 +53,23 @@ $>
 		toSet.parameters = rateLimitFilterParameters;
 		if(newRLFilters.routes !=null ||newRLFilters.routes !=undefined)
 		{
-			if (newRLFilters.routes instanceof Array) {
-				
-			} else {
+			if (!(newRLFilters.routes instanceof Array))
 				newRLFilters.routes = [newRLFilters.routes];
-			}
-			for(var i in newRLFilters.routes)
+			
+			for(i in newRLFilters.routes)
 			{
 				var routeURL = newRLFilters.routes[i];
 				var updateflag = true;
-				for(var j in toSet.parameters)
+				for(j in toSet.parameters)
 				{
 					if(toSet.parameters[j].url == routeURL)
 					{
 						updateflag = false;
 						toSet.parameters[j].params.limitNum = parseInt(newRLFilters.limitNum,10);
 						toSet.parameters[j].params.limitTime = parseInt(newRLFilters.limitTime,10);
+						
+						//to stop unnecessary iteration after match is found
+						break;
 					}
 				}
 				if(updateflag)
@@ -82,6 +83,7 @@ $>
 				}
 				
 			}
+			
 			collection.update({filter:'rate-limit'},{$set:toSet},{upsert:true, w:1},function(err,data){
 				if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
 				else
@@ -92,6 +94,47 @@ $>
 			});
 		}	
 		
+	});
+	
+	//need to update routes collection as well, add filters array to the specific route
+	db.query('routes',function(collection){
+	
+		if(newRLFilters.routes != undefined)
+		{						
+			if(!(newRLFilters.routes instanceof Array))
+				newRLFilters.routes = [newRLFilters.routes];
+				
+			for(index in newRLFilters.routes)
+			{
+				var routeURL = newRLFilters.routes[index];
+				var toSet = { filters:[] };
+				
+				for(count in routesList)
+				{
+					if(routesList[count].regexp === routeURL)
+					{
+						toSet.filters = routesList[count].filters;
+						
+						if(toSet.filters === undefined)
+							toSet.filters = [];
+							
+						toSet.filters.push('rate-limit');
+						
+						//to stop unnecessary iteration after match is found
+						break;							
+					}					
+				}
+				
+				collection.update({regexp:routeURL},{$set:toSet},{upsert:true, w:1},function(err,data){
+					if(err)	logger.write(err,'ratelimitfiltersubmit.jssp');		
+					else
+					{
+						require('../system/router').ReadFromDB();
+						require('../controllers/assassinPanel').getDBParameterObjects();
+					}
+				});
+			}
+		}	
 	});
 
 $>

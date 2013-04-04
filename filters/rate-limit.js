@@ -79,7 +79,10 @@ function applyFilter(routesObj,request,response)
 	
 	for(index in rateLimits)
 	{
-		urlReg = new RegExp('^'+rateLimits[index].url+'$');
+		//urlReg = new RegExp('^'+rateLimits[index].url+'$');
+		
+		//removed ^,$ -> matches even without them
+		urlReg = new RegExp(rateLimits[index].url);
 	
 		if(urlReg.test(path))
 		{
@@ -98,7 +101,10 @@ function applyFilter(routesObj,request,response)
 		{		
 			for(index in IPLogs[ip])
 			{
-				urlReg2 = new RegExp('^'+IPLogs[ip][index].url+'$');				
+				//urlReg2 = new RegExp('^'+IPLogs[ip][index].url+'$');
+				
+				//removed ^,$ -> matches even without them		
+				urlReg2 = new RegExp(IPLogs[ip][index].url);	
 			
 				if(urlReg2.test(path))
 				{

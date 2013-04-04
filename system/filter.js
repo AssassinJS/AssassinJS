@@ -10,7 +10,7 @@ var fs = require('fs');
 var logger = require('./logger');
 var controller = require('./controller');
 
-var filters =[];
+var filters = [];
 
 //Dynamically Reading the filters folder to get all the filters
 ReadFilters();//Ensures first time execution

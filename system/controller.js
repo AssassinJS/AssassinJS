@@ -25,7 +25,8 @@ function handleRequest(routesObj,request,response)
 	logger.write('routesobj = '+JSON.stringify(routesObj),'controller.js');
 	if(routesObj != undefined || routesObj != null)
 	{
-		if(routesObj['filterMessage'] != undefined)
+		//filterStatus has to be checked instead of filterMessage to know whether to block or allow the request
+		if(routesObj['filterStatus']!=undefined && routesObj['filterStatus']!='200')
 		{
 			controllers.blocked(request,response,routesObj['filterMessage'],routesObj['filterStatus']);
 		}

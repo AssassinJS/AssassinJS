@@ -100,7 +100,9 @@ $>
 	db.query('routes',function(collection){
 	
 		if(newRLFilters.routes != undefined)
-		{						
+		{	
+			var FilterName = 'rate-limit';
+								
 			if(!(newRLFilters.routes instanceof Array))
 				newRLFilters.routes = [newRLFilters.routes];
 				
@@ -108,6 +110,7 @@ $>
 			{
 				var routeURL = newRLFilters.routes[index];
 				var toSet = { filters:[] };
+				var UpdateFlag = false;
 				
 				for(count in routesList)
 				{
@@ -118,21 +121,28 @@ $>
 						if(toSet.filters === undefined)
 							toSet.filters = [];
 							
-						toSet.filters.push('rate-limit');
+						if(toSet.filters.indexOf(FilterName) === -1)
+						{
+							toSet.filters.push(FilterName);
+							UpdateFlag = true;
+						}
 						
 						//to stop unnecessary iteration after match is found
 						break;							
 					}					
 				}
 				
-				collection.update({regexp:routeURL},{$set:toSet},{upsert:true, w:1},function(err,data){
-					if(err)	logger.write(err,'ratelimitfiltersubmit.jssp');		
-					else
-					{
-						require('../system/router').ReadFromDB();
-						require('../controllers/assassinPanel').getDBParameterObjects();
-					}
-				});
+				if(UpdateFlag)
+				{
+					collection.update({regexp:routeURL},{$set:toSet},{upsert:true, w:1},function(err,data){
+						if(err)	logger.write(err,'ratelimitfiltersubmit.jssp');		
+						else
+						{
+							require('../system/router').ReadFromDB();
+							require('../controllers/assassinPanel').getDBParameterObjects();
+						}
+					});
+				}
 			}
 		}	
 	});

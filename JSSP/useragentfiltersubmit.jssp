@@ -91,7 +91,9 @@ $>
 	db.query('routes',function(collection){
 	
 		if(newUAFilters.routes != undefined)
-		{						
+		{	
+			var FilterName = 'user-agent';
+								
 			if(!(newUAFilters.routes instanceof Array))
 				newUAFilters.routes = [newUAFilters.routes];
 				
@@ -99,6 +101,7 @@ $>
 			{
 				var routeURL = newUAFilters.routes[index];
 				var toSet = { filters:[] };
+				var UpdateFlag = false;
 				
 				for(count in routesList)
 				{
@@ -109,21 +112,28 @@ $>
 						if(toSet.filters === undefined)
 							toSet.filters = [];
 							
-						toSet.filters.push('rate-limit');
-						
+						if(toSet.filters.indexOf(FilterName) === -1)
+						{
+							toSet.filters.push(FilterName);
+							UpdateFlag = true;
+						}
+												
 						//to stop unnecessary iteration after match is found
 						break;							
 					}					
 				}
 				
-				collection.update({regexp:routeURL},{$set:toSet},{upsert:true, w:1},function(err,data){
-					if(err)	logger.write(err,'useragentfiltersubmit.jssp');	
-					else
-					{
-						require('../system/router').ReadFromDB();
-						require('../controllers/assassinPanel').getDBParameterObjects();
-					}
-				});
+				if(UpdateFlag)
+				{
+					collection.update({regexp:routeURL},{$set:toSet},{upsert:true, w:1},function(err,data){
+						if(err)	logger.write(err,'useragentfiltersubmit.jssp');	
+						else
+						{
+							require('../system/router').ReadFromDB();
+							require('../controllers/assassinPanel').getDBParameterObjects();
+						}
+					});
+				}
 			}
 		}	
 	});

@@ -31,7 +31,7 @@ function ReadFromDB()
 function applyFilter(routesObj,request,response)
 {
 	var userAgent = request.headers['user-agent'];
-	for(var i in userAgents)
+	for(i in userAgents)
 	{
 		if(userAgents[i].url == routesObj.regexp)
 		{

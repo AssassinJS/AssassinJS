@@ -3,7 +3,7 @@ AssassinJS
 
 Assassin - An Access Control Framework written in Node.js
 
-Current Version: v0.1.2
+Current Version: v0.1.4
 
 Welcome to Assassin - An Access Control Framework written in Node.js. Assassin works almost like a real world assassin, only it assassinates unwanted incoming requests to your server. So don't worry, this assassin has your back :)
 

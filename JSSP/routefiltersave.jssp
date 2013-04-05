@@ -54,11 +54,11 @@ var filterParamsFormat = __dataObj['filterDB']['format'][filter];
 		var toSetObj = {}
 		toSetObj['url'] = route;
 		toSetObj['params'] = {}
-		for(var i in filterParamsFormat)
+		for(i in filterParamsFormat)
 		{
 			toSetObj['params'][filterParamsFormat[i]] = formbody[filterParamsFormat[i]];
 		}
-		for(var i in toSet.parameters)
+		for(i in toSet.parameters)
 		{
 			if(toSet.parameters[i].url == route)
 			{
@@ -77,10 +77,47 @@ var filterParamsFormat = __dataObj['filterDB']['format'][filter];
 				require('../filters/'+filter).ReadFromDB();
 				require('../controllers/assassinPanel').getDBParameterObjects();
 			}
-		});
-			
-		
+		});					
 	});
+	
+	//need to update routes collection as well, add filters array to the specific route
+	db.query('routes',function(collection){
+						
+			var toSet = { filters:[] };			
+			var UpdateFlag = false;				
+						
+			for(index in routesList)
+			{
+				if(routesList[index].regexp === route)
+				{
+					toSet.filters = routesList[index].filters;
+					
+					if(toSet.filters === undefined)
+						toSet.filters = [];
+							
+					if(toSet.filters.indexOf(filter) === -1)
+					{
+						toSet.filters.push(filter);
+						UpdateFlag = true;
+					}
+												
+					//to stop unnecessary iteration after match is found
+					break;							
+				}					
+			}
+				
+			if(UpdateFlag)
+			{
+				collection.update({regexp:route},{$set:toSet},{upsert:true, w:1},function(err,data){
+					if(err)	logger.write(err,'useragentfiltersubmit.jssp');	
+					else
+					{
+						require('../system/router').ReadFromDB();
+						require('../controllers/assassinPanel').getDBParameterObjects();
+					}
+				});
+			}						
+	});	
 $>
 
 <div id="titlebox" class="glowBoxNavy">

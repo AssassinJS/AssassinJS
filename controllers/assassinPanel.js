@@ -76,7 +76,7 @@ function invoke(req,res)
 	
 	ip = ip.replace(/\./g,'-');
 	
-	if(endpoint[endpoint.length-1] === 'login.jssp')
+	if(endpoint[endpoint.length-1] === 'login.jssp' && req.body)
 	{
 		logger.write('Request Body is = '+JSON.stringify(req.body),'assassinPanel.js');
 		var source = req.body;		

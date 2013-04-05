@@ -55,6 +55,9 @@ $>
 		toSet.parameters = userAgentFilterParameters;
 		if(newUAFilters.routes !=null ||newUAFilters.routes !=undefined)
 		{
+			if (!(newUAFilters.routes instanceof Array))
+				newUAFilters.routes = [newUAFilters.routes];
+		
 			for(i in newUAFilters.routes)
 			{
 				var toSetObj = {};
@@ -65,7 +68,7 @@ $>
 				
 				for(j in toSet.parameters)
 				{
-					if(toSet.parameters[j].url == newUAfilters.routes[i])
+					if(toSet.parameters[j].url == newUAFilters.routes[i])
 					{
 						toSet.parameters[j].params = toSetObj.params;
 						toSetFlag = false;
@@ -140,7 +143,7 @@ $>
 $>
 
 
-
+User-Agent Filter added Successfully!
 </div>
 
 </div>

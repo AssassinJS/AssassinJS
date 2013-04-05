@@ -60,7 +60,12 @@ Added New Route<br />
 			toSet.target = target;
 			collection.update({regexp:route},{$set:toSet},{upsert:true, w:1},function(err,data){
 				if(err)logger.write(err,'addroute.jssp');		
-				else require('../controllers/assassinPanel').getDBParameterObjects();
+				else
+				{
+					//should read routes from db again
+					require('../system/router').ReadFromDB();
+					require('../controllers/assassinPanel').getDBParameterObjects()
+				};
 			});
 		}
 		

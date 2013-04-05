@@ -1,15 +1,23 @@
-GET/test	test
-GET/test/again	again
-POST/test	testpost
-GET/dbfunctions/put	dbfunctions
-GET/dbfunctions/get	dbfunctions
-GET/dnsfunctions/findip	dnsfunctions
 GET/users/generateUID	users
+
 GET/favicon.ico	proxy
-GET/proxy/getURL	proxy
-GET/reg/[a-zA-Z0-9]*/test	testReg
-GET/assassinPanel/[a-zA-Z0-9_./]*	assassinPanel
-POST/assassinPanel/[a-zA-Z0-9_./]*	assassinPanel
+
 GET/public/[a-zA-Z0-9_./]*	fileserver
 GET/testfilter	proxy
 GET/filterbrowser	proxy
+
+GET/assassinPanel/index.jssp	assassinPanel
+GET/assassinPanel/home.jssp	assassinPanel
+POST/assassinPanel/login.jssp	assassinPanel
+GET/assassinPanel/addfilter.jssp	assassinPanel
+GET/assassinPanel/addroute.jssp	assassinPanel
+GET/assassinPanel/filters.jssp	assassinPanel
+GET/assassinPanel/ratelimitfilter.jssp	assassinPanel
+POST/assassinPanel/ratelimitfiltersubmit.jssp	assassinPanel
+GET/assassinPanel/route.jssp	assassinPanel
+GET/assassinPanel/routefilter.jssp	assassinPanel
+POST/assassinPanel/routefiltersave.jssp	assassinPanel
+GET/assassinPanel/routes.jssp	assassinPanel
+GET/assassinPanel/useragentfilter.jssp	assassinPanel
+POST/assassinPanel/useragentfiltersubmit.jssp	assassinPanel
+GET/assassinPanel/logout.jssp	assassinPanel

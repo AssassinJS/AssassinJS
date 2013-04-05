@@ -1,4 +1,3 @@
-var common = require('./common');
 var url = require('url');
 var http = require('http');
 var config = require('../system/config');

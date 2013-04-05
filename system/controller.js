@@ -83,10 +83,10 @@ controllers.testReg = function(request,response)
 
 controllers['assassinPanel'] = extensions['assassinPanel'].invoke;
 controllers['fileserver'] = extensions['fileserver'].serveFile;
-controllers['dnsfunctions'] = extensions['dnsfunctions'].forwardRequest;
-controllers['dbfunctions'] = extensions['dbfunctions'].forwardRequest;
-controllers['common'] = extensions['common'].forwardRequest;
-controllers['users'] = extensions['users'].forwardRequest;
+//controllers['dnsfunctions'] = extensions['dnsfunctions'].forwardRequest;
+//controllers['dbfunctions'] = extensions['dbfunctions'].forwardRequest;
+//controllers['common'] = extensions['common'].forwardRequest;
+//controllers['users'] = extensions['users'].forwardRequest;
 //controllers['proxy'] = extensions['proxy'].forwardRequest;
 
 //to separate calls to internal/external proxy based on config

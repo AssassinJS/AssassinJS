@@ -22,12 +22,10 @@ var routes={};
 ReadFromDB(); //Ensures first time execution
 function ReadFromDB()
 {
-	db.query('routes',function(collection){
-			
+	db.query('routes',function(collection){			
 		collection.find().toArray(function(err,list){
 			routes = list;
-		});
-		
+		});		
 	});
 }
 

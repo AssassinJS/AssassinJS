@@ -119,7 +119,7 @@ $>
 </table><br />
 <input type="hidden" name="filter" class="roundInputBox" value="<$=filter$>" />
 <input type="hidden" name="route" class="roundInputBox" value="<$=route$>" />
-<button type="submit">Save Changes to Filter User Agent</button>
+<button type="submit">Save Changes to Filter</button>
 </form>
 <$
 break;

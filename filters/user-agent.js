@@ -89,7 +89,7 @@ function applyFilter(routesObj,request,response)
 	else
 	{
 		filterobj.filterMessage = 'Filter Not Configured Properly. Your browser user-agent is '+userAgent;
-			filterobj.filterStatus = 200;
+		filterobj.filterStatus = 200;
 	}
 	return filterobj;
 }

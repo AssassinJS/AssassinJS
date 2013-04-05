@@ -35,7 +35,7 @@ function applyFilters(routesObj,request,response)
 		if(filters[routesObj.filters[i]] != undefined)
 		{
 			filterObj = filters[routesObj.filters[i]].applyFilter(routesObj,request,response);
-			if(filterObj !=null && filterObj !=undefined)
+			if(filterObj!=undefined && filterObj.filterStatus!='200')
 				break;
 		}
 	}

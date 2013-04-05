@@ -81,7 +81,11 @@ Added New Filter<br />
 				toSet.filters.push(filter);
 				collection.update({regexp:route},{$set:toSet},{upsert:true, w:1},function(err,data){
 					if(err)logger.write(err,'addroute.jssp');		
-					else require('../controllers/assassinPanel').getDBParameterObjects();
+					else
+					{
+						require('../system/router').ReadFromDB();
+						require('../controllers/assassinPanel').getDBParameterObjects();
+					}
 				});
 			}
 		}

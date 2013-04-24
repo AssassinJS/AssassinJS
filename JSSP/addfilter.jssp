@@ -61,7 +61,7 @@ Added New Filter<br />
 	db.query('routes',function(collection){
 		var toSet = {};
 		toSet.filters = [];	
-		for(var i in routesList)
+		for(i in routesList)
 		{
 			if(routesList[i].regexp == route && routesList[i].filters!=undefined)
 			{
@@ -72,7 +72,7 @@ Added New Filter<br />
 		if(route !=null && route !=undefined && route!='' && filter !=null && filter !=undefined && filter!='')
 		{
 			var toSetFlag = true;
-			for(var i in toSet.filters)
+			for(i in toSet.filters)
 			{
 				if(toSet.filters[i] == filter) toSetFlag = false;
 			}
@@ -97,7 +97,7 @@ Added New Filter<br />
 		var toSetObj = {}
 		toSetObj['url'] = route;
 		toSetObj['params'] = {}
-		for(var i in filterParamsFormat)
+		for(i in filterParamsFormat)
 		{
 			toSetObj['params'][filterParamsFormat[i]] = '';
 		}

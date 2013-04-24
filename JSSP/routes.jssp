@@ -40,8 +40,13 @@ Enter A New Route with Method<br />
 or Override Existing Route<br />
 <input type="text" name="route" class="roundInputBox" placeholder="Enter Route Here" /><br />
 eg. GET/test<br /><br />
-<input type="text" name="target" class="roundInputBox" placeholder="Enter Target Controller Here" /><br />
-eg. test<br /><br />
+<!--<input type="text" name="target" class="roundInputBox" placeholder="Enter Target Controller Here" /><br />
+eg. test<br /><br />-->
+<select name="target" class="roundInputBox" style="background-color:white;margin:5px 0px 5px 0px;"><br />
+	<option value="proxy">Proxy</option>
+	<option value="fileserver">File Server</option>
+	<option value="assassinPanel">Assassin Panel</option>	
+</select>
 <button type="submit">Add Route</button>
 </form>
 </div>
@@ -60,7 +65,7 @@ $>
 		<th style="color:white;">Select A Route to Apply Filters</th>
 	</tr>
 	<$
-	for(var x in routesList)
+	for(x in routesList)
 	{
 	$>
 	<tr>

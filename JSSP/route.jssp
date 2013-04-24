@@ -29,7 +29,7 @@ var url = require('url');
 var routesList = __dataObj["routesDB"];
 var route = url.parse(__request.url,true).query.route;
 var target = '';
-for(var i in routesList)
+for(i in routesList)
 {
 	if(routesList[i].regexp == route)
 	{
@@ -50,8 +50,21 @@ $>
 <form action="./addfilter.jssp" method="GET">
 <br />
 Enter a Filter Name<br />
-<input type="text" name="filter" class="roundInputBox" placeholder="Add A Filter Here" /><br />
-eg. test<br /><br />
+<!--<input type="text" name="filter" class="roundInputBox" placeholder="Add A Filter Here" /><br />
+<eg. test<br /><br />-->
+<select name="filter" class="roundInputBox" style="background-color:white;margin:5px 0px 5px 0px;"><br />
+<$
+	for(index in __dataObj.filterDB.format)
+	{
+		if(index!='login')
+		{
+$>
+			<option value="<$=index$>"><$=index$></option>
+<$		
+		}
+	}
+$>
+</select>
 <input type="hidden" name="route" class="roundInputBox" value="<$=route$>" />
 <button type="submit">Add Filter</button>
 </form>
@@ -70,7 +83,7 @@ Route Filters<br />
 <table border="0" cellspacing="0" style="width:100%">
 
 	<$
-	for(var x in routesList)
+	for(x in routesList)
 	{
 		if(routesList[x].regexp == route && routesList[x].filters!=undefined)
 		{$>
@@ -80,7 +93,7 @@ Route Filters<br />
 		<$
 			if(routesList[x].filters!=undefined)
 			{
-			for(var y in routesList[x].filters)
+			for(y in routesList[x].filters)
 			{$>
 			<tr>
 			<td style="color:white;">

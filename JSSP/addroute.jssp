@@ -49,14 +49,15 @@ $>
 </div>
 <div id="infobox" class="boxNavy">
 
-Added New Route<br />
+<!--Added New Route<br />-->
 
 <$
-	db.query('routes',function(collection){
-				
-		var toSet = {};
-		if(route !=null && route !=undefined && route!='' && target !=null && target !=undefined && target!='')
-		{
+	var processed = false;	
+	
+	if(route !=null && route !=undefined && route!='' && target !=null && target !=undefined && target!='')
+	{
+		db.query('routes',function(collection){				
+			var toSet = {};					
 			toSet.target = target;
 			collection.update({regexp:route},{$set:toSet},{upsert:true, w:1},function(err,data){
 				if(err)logger.write(err,'addroute.jssp');		
@@ -67,10 +68,26 @@ Added New Route<br />
 					require('../controllers/assassinPanel').getDBParameterObjects()
 				};
 			});
-		}
+						
+		});
 		
-		
-	});
+		processed = true;
+	}
+$>
+
+<$
+	if(processed)
+	{
+$>
+		Added New Route<br />
+<$
+	}	
+	else
+	{
+$>
+		Route discarded,Invalid Parameters given!<br />
+<$	
+	}
 $>
 
 </div>

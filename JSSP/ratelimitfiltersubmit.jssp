@@ -177,7 +177,7 @@ function toggle(tag) {
 	{
 		checkboxes = document.getElementsByName("routes");
 	}
-	for(var i in checkboxes)
+	for(i in checkboxes)
 		checkboxes[i].checked = tag.checked;
 }
 </script>

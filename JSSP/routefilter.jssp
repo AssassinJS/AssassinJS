@@ -55,7 +55,7 @@ if(filterParameters[filter] !=undefined)
 {
 
 
-for(var i in filterParameters[filter])
+for(i in filterParameters[filter])
 {
 if(filterParameters[filter][i].url==route)
 {$>
@@ -63,7 +63,7 @@ if(filterParameters[filter][i].url==route)
 <table border="0" cellspacing="0" style="color:white;">
 <tr>
 <$
-	for(var j in filterParamsFormat)
+	for(j in filterParamsFormat)
 	{
 	$>
 		<th style="border:1px solid black;"><$=filterParamsFormat[j]$></th>
@@ -81,12 +81,12 @@ $>
 <$
 if(filterTotalValues!=undefined)
 {
-for(var k in filterTotalValues)
+for(k in filterTotalValues)
 {
 $>
 <tr>
 <$
-	for(var j in filterParamsFormat)
+	for(j in filterParamsFormat)
 	{
 	$>
 	<td style="text-align: center; border:1px solid black;"><input type="checkbox" name="<$=filterParamsFormat[j]$>" value="<$=filterTotalValues[k]$>"></td>
@@ -104,7 +104,7 @@ else
 $>
 <tr>
 <$
-	for(var j in filterParamsFormat)
+	for(j in filterParamsFormat)
 	{
 	$>
 	<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i]['params'][filterParamsFormat[j]]$>"></td>

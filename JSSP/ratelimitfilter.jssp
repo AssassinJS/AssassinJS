@@ -51,7 +51,7 @@ Total List of Routes<br />
 		<th>Select Routes to Apply User-Agent Filter</th>
 	</tr>
 	<$
-	for(var x in routesList)
+	for(x in routesList)
 	{
 	$>
 	<tr>
@@ -98,7 +98,7 @@ function toggle(tag) {
 	{
 		checkboxes = document.getElementsByName("routes");
 	}
-	for(var i in checkboxes)
+	for(i in checkboxes)
 		checkboxes[i].checked = tag.checked;
 }
 </script>

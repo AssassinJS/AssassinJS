@@ -79,13 +79,17 @@ $>
 	if(processed)
 	{
 $>
-		Added Specified Route<br />
+		<p>Added Specified Route</p>
+		<button type="button" onclick="location.replace('./routes.jssp<$$>')">Go Back</button>
+
 <$
 	}	
 	else
 	{
 $>
-		Route discarded,Invalid Parameters given!<br />
+		<p>Route discarded,Invalid Parameters given!</p>
+		<button type="button" onclick="location.replace('./routes.jssp<$$>')">Go Back</button>
+
 <$	
 	}
 $>

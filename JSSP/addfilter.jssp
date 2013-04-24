@@ -55,7 +55,9 @@ $>
 </div>
 <div id="infobox" class="boxNavy">
 
-Added New Filter<br />
+<p>Added New Filter</p>
+<button type="button" onclick="location.replace('./route.jssp?route=<$=route$>')">Go Back</button>
+
 
 <$
 	db.query('routes',function(collection){
@@ -99,7 +101,7 @@ Added New Filter<br />
 		toSetObj['params'] = {}
 		for(i in filterParamsFormat)
 		{
-			toSetObj['params'][filterParamsFormat[i]] = '';
+			toSetObj['params'][filterParamsFormat[i]] = [];
 		}
 		toSet.parameters.push(toSetObj);
 		

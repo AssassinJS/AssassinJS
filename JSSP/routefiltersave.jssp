@@ -12,6 +12,7 @@ $>
 <html>
 <head>
 <link rel="stylesheet" href="../../public/style.css" type="text/css" />
+
 </head>
 <body>
 
@@ -60,7 +61,7 @@ var filterParamsFormat = __dataObj['filterDB']['format'][filter];
 			{
 				for(j = formbody[filterParamsFormat[i]].length-1;j>=0;j--)
 				{
-					if(formbody[filterParamsFormat[i]][j] == "")
+					if(formbody[filterParamsFormat[i]][j] == "" || formbody[filterParamsFormat[i]][j] == null || formbody[filterParamsFormat[i]][j] == undefined)
 					{
 						formbody[filterParamsFormat[i]].splice(j,1);
 					}
@@ -69,7 +70,7 @@ var filterParamsFormat = __dataObj['filterDB']['format'][filter];
 			}
 			else
 			{
-				if(formbody[filterParamsFormat[i]] == "") 
+				if(formbody[filterParamsFormat[i]] == "" || formbody[filterParamsFormat[i]] == null || formbody[filterParamsFormat[i]] == undefined) 
 					toSetObj['params'][filterParamsFormat[i]] = [];
 				else
 					toSetObj['params'][filterParamsFormat[i]] = formbody[filterParamsFormat[i]];
@@ -144,6 +145,7 @@ $>
 </div>
 <div id="infobox" class="boxNavy">
 <p>Filter Has Been Updated</p>
+<button type="button" onclick="location.replace('./routefilter.jssp?filter=<$=filter$>&route=<$=route$>')">Go Back</button>
 </div>
 
 </div>

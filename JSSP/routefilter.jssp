@@ -66,7 +66,7 @@ for(j in filterParamsFormat)
 {
 	if(filterParamsFormatType[j]=='single')
 	{$>
-		<table>
+		<table style="width:100%;">
 		<tr><th style="border:1px solid black;"><$=filterParamsFormat[j]$></th></tr>
 		<tr>
 			<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i]['params'][filterParamsFormat[j]]$>"></td>
@@ -83,7 +83,7 @@ for(j in filterParamsFormat)
 			row.innerHTML='<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" ></td>';
 		}
 		</script>
-		<table id="multiTable<$=j$>">
+		<table id="multiTable<$=j$>" style="width:100%;">
 		<tr><th style="border:1px solid black;"><$=filterParamsFormat[j]$></th></tr>
 		<$
 		if (filterParameters[filter][i].params[filterParamsFormat[j]] instanceof Array)
@@ -101,7 +101,7 @@ for(j in filterParamsFormat)
 		<$}
 		$>
 		</table><br />
-		<button type="button" onclick="addRowInput<$=j$>()">Add Another Row</button><br />
+		<button type="button" onclick="addRowInput<$=j$>()">Add Another Row</button><br /><br />
 	<$}
 }
 $>

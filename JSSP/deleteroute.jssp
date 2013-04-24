@@ -48,7 +48,9 @@ $>
 </div>
 <div id="infobox" class="boxNavy">
 
-Deleted Route<br />
+<p>Deleted Filter</p>
+<button type="button" onclick="location.replace('./routes.jssp<$$>');">Go Back</button>
+
 
 <$
 	if(route!=null && route!=undefined && route!='')

@@ -55,7 +55,8 @@ $>
 </div>
 <div id="infobox" class="boxNavy">
 
-Deleted Filter<br />
+<p>Deleted Filter</p>
+<button type="button" onclick="location.replace('./route.jssp?route=<$=route$>')">Go Back</button>
 
 <$
 	db.query('routes',function(collection){
@@ -72,13 +73,12 @@ Deleted Filter<br />
 		if(route !=null && route !=undefined && route!='' && filter !=null && filter !=undefined && filter!='')
 		{
 			var toSetFlag = false;
-			for(i in toSet.filters)
+			for(i = toSet.filters.length-1;i>=0;i--)
 			{
 				if(toSet.filters[i] == filter) 
 				{
 					toSetFlag = true;
 					toSet.filters.splice(i,1);
-					break;
 				}
 			}
 			if(toSetFlag)
@@ -98,12 +98,11 @@ Deleted Filter<br />
 	 db.query('filterParameters',function(collection){		
 		var toSet = {};
 		toSet.parameters = filterParameters;
-		for(i in toSet.parameters)
+		for(i = toSet.parameters.length-1;i>=0;i--)
 		{
 			if(toSet.parameters[i]['url']==route)
 			{
 				toSet.parameters.splice(i,1);
-				break;
 				
 			}
 		}

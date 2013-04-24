@@ -83,7 +83,11 @@ Route Filters<br />
 			for(var y in routesList[x].filters)
 			{$>
 			<tr>
-			<td style="color:white;"><a href="./routefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>"><$=routesList[x].filters[y]$></a></td>
+			<td style="color:white;">
+				<a href="./routefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>"><$=routesList[x].filters[y]$></a>
+				&nbsp;&nbsp;
+				<a href="./deletefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>">Delete This Filter</a>
+			</td>
 			</tr>
 			<$
 			}

@@ -1,0 +1,150 @@
+<$
+var
+xfr = __request.headers['x-forwarded-for'],
+ip = xfr?xfr.split(', ')[0]:__request.connection.remoteAddress;
+
+ip = ip.replace(/\./g,'-');
+
+if(ip in __dataObj.Session) 
+{
+
+$>
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+
+<div id="bodyWrapper">
+
+<div id="headerWrapper">
+<div id="headerContent">
+<div class="headingText left">Assassin.js</div>
+<div class="headingText right">Assassin Panel</div>
+</div>
+</div>
+<div id="contentWrapper">
+
+<div id="contentLeft">
+<div id="projectMenu" class="glowBoxBlue">
+<a class="navMenuLink" href="./home.jssp">Home</a><br />
+<a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
+<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
+<a class="navMenuLink" href="./logout.jssp">Logout</a>
+</div>
+
+</div>
+<div id="contentRight">
+<$
+var url = require('url');
+
+var MyMongo = require('../system/dbconnect.js').MyMongo;
+var db = new MyMongo('localhost', 27017, 'assassindb');
+
+var routesList = __dataObj['routesDB'];
+
+var route = url.parse(__request.url,true).query.route;
+var filter = url.parse(__request.url,true).query.filter;
+
+var filterParameters = __dataObj['filterDB'][filter];
+var filterParamsFormat = __dataObj['filterDB']['format'][filter];
+$>
+<div id="titlebox" class="glowBoxNavy">
+<p>Route is: <$=route$></p>
+<p>Filter is: <$=filter$></p>
+</div>
+<div id="infobox" class="boxNavy">
+
+Deleted Filter<br />
+
+<$
+	db.query('routes',function(collection){
+		var toSet = {};
+		toSet.filters = [];	
+		for(var i in routesList)
+		{
+			if(routesList[i].regexp == route && routesList[i].filters!=undefined)
+			{
+				toSet.filters = routesList[i].filters;
+				break;
+			}
+		}
+		if(route !=null && route !=undefined && route!='' && filter !=null && filter !=undefined && filter!='')
+		{
+			var toSetFlag = false;
+			for(var i in toSet.filters)
+			{
+				if(toSet.filters[i] == filter) 
+				{
+					toSetFlag = true;
+					toSet.filters.splice(i,1);
+					break;
+				}
+			}
+			if(toSetFlag)
+			{
+				collection.update({regexp:route},{$set:toSet},{upsert:true, w:1},function(err,data){
+					if(err)logger.write(err,'addroute.jssp');		
+					else
+					{
+						require('../system/router').ReadFromDB();
+						require('../controllers/assassinPanel').getDBParameterObjects();
+					}
+				});
+			}
+		}
+	});
+	
+	 db.query('filterParameters',function(collection){		
+		var toSet = {};
+		toSet.parameters = filterParameters;
+		for(var i in toSet.parameters)
+		{
+			if(toSet.parameters[i]['url']==route)
+			{
+				toSet.parameters.splice(i,1);
+				break;
+				
+			}
+		}
+		
+		collection.update({filter:filter},{$set:toSet},{upsert:true, w:1},function(err,data){
+			if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
+			else require('../controllers/assassinPanel').getDBParameterObjects();
+		});
+					
+	});
+$>
+
+</div>
+</div>
+
+</div>
+<div id="footerWrapper">
+<div id="footerContent">
+<div class="left">
+(c)2013 Adithya Chebiyyam and Sai Teja Jammalamadaka</div>
+<div class="right">Maintained By <a href="http://www.setusoftware.com">Setu Software Systems</a></div>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
+<$
+}
+else 
+{
+$>
+<html>
+<head><title>AssassinJS:Assassinated!</title></head>
+<body>
+<div>
+<span style="font-size:20;">401:Unauthorized Access, Login First!</span>
+</div>
+</body>
+</html>
+<$
+}
+$>

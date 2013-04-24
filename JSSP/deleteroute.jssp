@@ -33,47 +33,43 @@ $>
 <a class="navMenuLink" href="./logout.jssp">Logout</a>
 </div>
 
-<div id="newRouteBox" class="boxBlue">
-<form action="./addroute.jssp" method="GET">
-<br />
-Enter A New Route with Method<br />
-or Override Existing Route<br />
-<input type="text" name="route" class="roundInputBox" placeholder="Enter Route Here" /><br />
-eg. GET/test<br /><br />
-<input type="text" name="target" class="roundInputBox" placeholder="Enter Target Controller Here" /><br />
-eg. test<br /><br />
-<button type="submit">Add Route</button>
-</form>
-</div>
-
 </div>
 <div id="contentRight">
+<$
+var url = require('url');
+
+var MyMongo = require('../system/dbconnect.js').MyMongo;
+var db = new MyMongo('localhost', 27017, 'assassindb');
+
+var route = url.parse(__request.url,true).query.route;
+$>
 <div id="titlebox" class="glowBoxNavy">
-<p>Total List of Routes</p>
+<p>Route is: <$=route$></p>
 </div>
 <div id="infobox" class="boxNavy">
+
+Deleted New Route<br />
+
 <$
-var routesList = __dataObj["routesDB"];
+	db.query('routes',function(collection){
+				
+		if(route !=null && route !=undefined && route!='')
+		{
+			collection.remove({regexp:route},{safe:true},function(err,data){
+				if(err)logger.write(err,'deleteroute.jssp');		
+				else
+				{
+					//should read routes from db again
+					require('../system/router').ReadFromDB();
+					require('../controllers/assassinPanel').getDBParameterObjects();
+				};
+			});
+		}
+		
+		
+	});
 $>
-<table border="0" cellspacing="0" style="width:100%">
-	<tr>
-		<th style="color:white;">Select A Route to Apply Filters</th>
-	</tr>
-	<$
-	for(var x in routesList)
-	{
-	$>
-	<tr>
-		<td style="color:white;">
-			<a href="./route.jssp?route=<$=routesList[x].regexp$>"><$=routesList[x].regexp$></a>
-			&nbsp;&nbsp;
-			<a href="./deleteroute.jssp?route=<$=routesList[x].regexp$>">Delete This Route</a>
-		</td>
-	</tr>
-<$
-}
-$>
-</table><br />
+
 </div>
 </div>
 

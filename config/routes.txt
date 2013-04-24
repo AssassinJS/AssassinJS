@@ -11,6 +11,8 @@ GET/assassinPanel/home.jssp	assassinPanel
 POST/assassinPanel/login.jssp	assassinPanel
 GET/assassinPanel/addfilter.jssp	assassinPanel
 GET/assassinPanel/addroute.jssp	assassinPanel
+GET/assassinPanel/deletefilter.jssp	assassinPanel
+GET/assassinPanel/deleteroute.jssp	assassinPanel
 GET/assassinPanel/filters.jssp	assassinPanel
 GET/assassinPanel/ratelimitfilter.jssp	assassinPanel
 POST/assassinPanel/ratelimitfiltersubmit.jssp	assassinPanel

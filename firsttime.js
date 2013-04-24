@@ -89,9 +89,27 @@ function ReadRateLimitFile()
 	});		
 }
 
+// Is used only for first time initialization
+function ReadIPBlacklist()
+{
+	logger.write('Populating IP Blacklist into DB, please wait...','firsttime.js');	
+	
+	db.query('filterParameters',function(collection){
+		var toset = {};
+		toset.parameters = [];
+		toset.paramsformat = [];
+		collection.update({filter:'ipblock'},{$set:toset},{upsert:true, w:1},function(err,data){
+			if(err) logger.write(err,'firsttime.js');
+			else if(data) logger.write('Initialized the ipblock collection in DB','firsttime.js');
+		});
+	});		
+}
+
+// Is used only for first time initialization
 function ReadLoginInfo()
 {
 	logger.write('Populating default LoginInfo into DB, please wait...','firsttime.js');
+	
 	db.query('filterParameters',function(collection){
 		var toset = { parameters : { admin : "password" } };
 		collection.update({filter:'login'},{$set:toset},{upsert:true, w:1},function(err,data){
@@ -105,8 +123,10 @@ function ReadLoginInfo()
 ReadRoutesFile();
 //To populate DB from useragent file
 ReadUserAgentFile();
-//To populate DB from ratelimit file with an empty obj
+//To populate DB with an empty obj for ratelimits
 ReadRateLimitFile();
+//To populate DB  with an empty obj for ipblock
+//ReadIPBlacklist();
 //To populate DB with Default Login Info
 ReadLoginInfo();
 

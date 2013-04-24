@@ -11,7 +11,7 @@ if(ip in __dataObj.Session)
 $>
 <html>
 <head>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../../public/style.css" type="text/css" />
 </head>
 <body>
 

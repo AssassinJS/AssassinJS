@@ -51,26 +51,27 @@ function ReadRoutesFile()
 function ReadUserAgentFile()
 {
 	logger.write('Populating user-agents into DB,please wait...','firsttime.js');
-	var ua_data = fs.readFileSync('./config/useragent.txt');
+	/*var ua_data = fs.readFileSync('./config/useragent.txt');
 	if(ua_data==null)
 	{ 
 		logger.write("useragent filter list data not found",'');
 	}
 	else
-	{
-		var listentries = ua_data.toString().split('\n');
+	{*/
+		//var listentries = ua_data.toString().split('\n');
 		
 		db.query('filterParameters',function(collection){
 			var toset = {};
 			toset.parameters = [];
 			toset.paramsformat = ['allow','block'];
-			toset.total = listentries;
+			//toset.total = listentries;
+			toset.paramsformattype = ['array','array'];
 			collection.update({filter:'user-agent'},{$set:toset},{upsert:true, w:1},function(err,data){
 				if(err) logger.write(err,'user-agent.js');
 				else if(data) logger.write('Initialized the user agent collection in DB','firsttime.js');
 			});								
 		});
-	}
+	//}
 }
 
 // Is used only for first time initialization
@@ -82,6 +83,7 @@ function ReadRateLimitFile()
 		var toset = {};
 		toset.parameters = [];
 		toset.paramsformat = ['limitNum','limitTime'];
+		toset.paramsformattype = ['single','single'];
 		collection.update({filter:'rate-limit'},{$set:toset},{upsert:true, w:1},function(err,data){
 			if(err) logger.write(err,'firsttime.js');
 			else if(data) logger.write('Initialized the ratelimit collection in DB','firsttime.js');

@@ -22,6 +22,7 @@ function getDBParameterObjects()
 				
 		DataObj['filterDB'] = {};
 		DataObj['filterDB']['format'] = {};
+		DataObj['filterDB']['formattype'] = {};
 		DataObj['filterDB']['total'] = {};
 		collection.find({}).each(function(err,item){
 			if(err) 
@@ -30,7 +31,11 @@ function getDBParameterObjects()
 			{
 				DataObj['filterDB'][item.filter] = item.parameters;
 				
+				if(item.paramsformat!=undefined)
 				DataObj['filterDB']['format'][item.filter] = item.paramsformat;
+				
+				if(item.paramsformattype!=undefined)
+				DataObj['filterDB']['formattype'][item.filter] = item.paramsformattype;
 				
 				if(item.total!=undefined)
 					DataObj['filterDB']['total'][item.filter] = item.total;

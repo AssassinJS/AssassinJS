@@ -41,7 +41,6 @@ var filterParameters = __dataObj["filterDB"];
 var route = url.parse(__request.url,true).query.route;
 var filter = url.parse(__request.url,true).query.filter;
 var filterParamsFormat = __dataObj['filterDB']['format'][filter];
-var filterParamsFormatType = __dataObj['filterDB']['formattype'][filter];
 var filterTotalValues = __dataObj['filterDB']['total'][filter];
 $>
 <div id="titlebox" class="glowBoxNavy">
@@ -61,39 +60,63 @@ for(i in filterParameters[filter])
 if(filterParameters[filter][i].url==route)
 {$>
 <form method="POST" action="./routefiltersave.jssp">
+<table border="0" cellspacing="0" style="color:white;">
+<tr>
 <$
-for(j in filterParamsFormat)
+	for(j in filterParamsFormat)
+	{
+	$>
+		<th style="border:1px solid black;"><$=filterParamsFormat[j]$></th>
+	<$
+	}
+	if(filterTotalValues!=undefined)
+	{
+	$>
+		<th style="border:1px solid black;">Value</th>
+	<$
+	}
+$>
+</tr>
+
+<$
+if(filterTotalValues!=undefined)
 {
-	if(filterParamsFormatType[j]=='single')
-	{$>
-		<table>
-		<tr><th style="border:1px solid black;"><$=filterParamsFormat[j]$></th></tr>
-		<tr>
-			<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i]['params'][filterParamsFormat[j]]$>"></td>
-		</tr>
-		</table><br />
-	<$}
-	if(filterParamsFormatType[j]=='array')
-	{$>
-		<script>
-		function addRowInput<$=j$>()
-		{
-			var table=document.getElementById("multiTable<$=j$>");
-			var row=table.insertRow(-1);
-			row.innerHTML='<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i].params[filterParamsFormat[j]]$>"></td>';
-		}
-		</script>
-		<table id="multiTable<$=j$>">
-		<tr><th style="border:1px solid black;"><$=filterParamsFormat[j]$></th></tr>
-		<tr>
-			<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i]['params'][filterParamsFormat[j]]$>"></td>
-		</tr>
-		</table><br />
-		<button type="button" onclick="addRowInput<$=j$>()">Add Another Row</button><br />
-	<$}
+for(k in filterTotalValues)
+{
+$>
+<tr>
+<$
+	for(j in filterParamsFormat)
+	{
+	$>
+	<td style="text-align: center; border:1px solid black;"><input type="checkbox" name="<$=filterParamsFormat[j]$>" value="<$=filterTotalValues[k]$>"></td>
+	<$
+	}
+	$>
+	<td style="border:1px solid black;"><$=filterTotalValues[k]$></td>
+
+</tr>
+<$
+}
+}
+else
+{
+$>
+<tr>
+<$
+	for(j in filterParamsFormat)
+	{
+	$>
+	<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i]['params'][filterParamsFormat[j]]$>"></td>
+	<$
+	}
+$>
+</tr>
+<$
 }
 $>
-<br />
+
+</table><br />
 <input type="hidden" name="filter" class="roundInputBox" value="<$=filter$>" />
 <input type="hidden" name="route" class="roundInputBox" value="<$=route$>" />
 <button type="submit">Save Changes to Filter</button>
@@ -115,9 +138,6 @@ $>
 </div>
 
 </div>
-
-
-
 <div id="footerWrapper">
 <div id="footerContent">
 <div class="left">

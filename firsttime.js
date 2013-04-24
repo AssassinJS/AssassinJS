@@ -99,7 +99,8 @@ function ReadIPBlacklist()
 	db.query('filterParameters',function(collection){
 		var toset = {};
 		toset.parameters = [];
-		toset.paramsformat = [];
+		toset.paramsformat = ['iplist'];
+		toset.paramsformattype = ['array'];
 		collection.update({filter:'ipblock'},{$set:toset},{upsert:true, w:1},function(err,data){
 			if(err) logger.write(err,'firsttime.js');
 			else if(data) logger.write('Initialized the ipblock collection in DB','firsttime.js');
@@ -128,7 +129,7 @@ ReadUserAgentFile();
 //To populate DB with an empty obj for ratelimits
 ReadRateLimitFile();
 //To populate DB  with an empty obj for ipblock
-//ReadIPBlacklist();
+ReadIPBlacklist();
 //To populate DB with Default Login Info
 ReadLoginInfo();
 

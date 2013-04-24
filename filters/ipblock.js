@@ -43,7 +43,7 @@ function applyFilter(routesObj,request,response)
 		
 		if(urlReg.test(path))
 		{
-			if(IPBlacklist[index].params.indexOf(ip) != -1)
+			if(IPBlacklist[index].params.iplist.indexOf(ip) != -1)
 			{
 				//ip is in blacklist
 				handled = true;

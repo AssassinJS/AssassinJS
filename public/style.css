@@ -149,7 +149,7 @@ background-color:white;
 
 button
 {
-border: 0px solid black;
+border: 1px solid white;
 border-radius: 15px;
 height: 30px;
 padding: 0px 10px;
@@ -160,6 +160,7 @@ box-shadow: 2px 3px 12px 0px;
 button:hover
 {
 border: 1px solid black;
+background-color: white;
 }
 button:active
 {

@@ -56,7 +56,25 @@ var filterParamsFormat = __dataObj['filterDB']['format'][filter];
 		toSetObj['params'] = {}
 		for(i in filterParamsFormat)
 		{
-			toSetObj['params'][filterParamsFormat[i]] = formbody[filterParamsFormat[i]];
+			if(formbody[filterParamsFormat[i]] instanceof Array)
+			{
+				for(j = formbody[filterParamsFormat[i]].length-1;j>=0;j--)
+				{
+					if(formbody[filterParamsFormat[i]][j] == "")
+					{
+						formbody[filterParamsFormat[i]].splice(j,1);
+					}
+				}
+				toSetObj['params'][filterParamsFormat[i]] = formbody[filterParamsFormat[i]];
+			}
+			else
+			{
+				if(formbody[filterParamsFormat[i]] == "") 
+					toSetObj['params'][filterParamsFormat[i]] = [];
+				else
+					toSetObj['params'][filterParamsFormat[i]] = formbody[filterParamsFormat[i]];
+			}
+			
 		}
 		for(i in toSet.parameters)
 		{

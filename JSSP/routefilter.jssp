@@ -80,14 +80,26 @@ for(j in filterParamsFormat)
 		{
 			var table=document.getElementById("multiTable<$=j$>");
 			var row=table.insertRow(-1);
-			row.innerHTML='<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i].params[filterParamsFormat[j]]$>"></td>';
+			row.innerHTML='<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" ></td>';
 		}
 		</script>
 		<table id="multiTable<$=j$>">
 		<tr><th style="border:1px solid black;"><$=filterParamsFormat[j]$></th></tr>
+		<$
+		if (filterParameters[filter][i].params[filterParamsFormat[j]] instanceof Array)
+		for(k in filterParameters[filter][i].params[filterParamsFormat[j]])
+		{$>
 		<tr>
-			<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i]['params'][filterParamsFormat[j]]$>"></td>
+			<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i].params[filterParamsFormat[j]][k]$>"></td>
 		</tr>
+		<$}
+		else
+		{$>
+		<tr>
+			<td style="text-align: center; border:1px solid black;"><input type="text" name="<$=filterParamsFormat[j]$>" class="roundInputBox" value="<$=filterParameters[filter][i].params[filterParamsFormat[j]]$>"></td>
+		</tr>
+		<$}
+		$>
 		</table><br />
 		<button type="button" onclick="addRowInput<$=j$>()">Add Another Row</button><br />
 	<$}
@@ -96,8 +108,14 @@ $>
 <br />
 <input type="hidden" name="filter" class="roundInputBox" value="<$=filter$>" />
 <input type="hidden" name="route" class="roundInputBox" value="<$=route$>" />
-<button type="submit">Save Changes to Filter</button>
+<button type="submit" onsubmit="validate_form();">Save Changes to Filter</button>
 </form>
+<script>
+function validate_form()
+{
+
+}
+</script>
 <$
 break;
 }

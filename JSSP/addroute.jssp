@@ -79,7 +79,7 @@ $>
 	if(processed)
 	{
 $>
-		Added New Route<br />
+		Added Specified Route<br />
 <$
 	}	
 	else

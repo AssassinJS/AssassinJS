@@ -12,6 +12,17 @@ $>
 <html>
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
+<script type="text/javascript">
+	function confirm_delete()
+	{
+		var _choice = confirm("Confirm deletion of filter?");
+		
+		if(_choice)
+			return true;
+			
+		return false;
+	}
+</script>
 </head>
 <body>
 
@@ -99,7 +110,7 @@ Route Filters<br />
 			<td style="color:white;">
 				<a href="./routefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>"><$=routesList[x].filters[y]$></a>
 				&nbsp;&nbsp;
-				<a href="./deletefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>">Delete This Filter</a>
+				<a href="./deletefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>" onclick="return confirm_delete();"><button>Delete</button></a>
 			</td>
 			</tr>
 			<$

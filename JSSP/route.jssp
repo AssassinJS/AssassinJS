@@ -11,7 +11,18 @@ if(ip in __dataObj.Session)
 $>
 <html>
 <head>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../../public/style.css" type="text/css" />
+<script type="text/javascript">
+	function confirm_delete()
+	{
+		var _choice = confirm("Confirm deletion of filter?");
+		
+		if(_choice)
+			return true;
+			
+		return false;
+	}
+</script>
 </head>
 <body>
 
@@ -80,40 +91,52 @@ $>
 <div id="infobox" class="boxNavy">
 
 Route Filters<br />
-<table border="0" cellspacing="0" style="width:100%">
+<table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative;">
 
-	<$
+<$
 	for(x in routesList)
 	{
 		if(routesList[x].regexp == route && routesList[x].filters!=undefined)
-		{$>
+		{
+$>
 		<tr>
 		<th style="color:white;">Select Filter to Change Properties</th>
 		</tr>
-		<$
+<$
 			if(routesList[x].filters!=undefined)
 			{
-			for(y in routesList[x].filters)
-			{$>
-			<tr>
-			<td style="color:white;">
-				<a href="./routefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>"><$=routesList[x].filters[y]$></a>
-				&nbsp;&nbsp;
-				<a href="./deletefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>">Delete This Filter</a>
-			</td>
-			</tr>
-			<$
-			}
+				for(y in routesList[x].filters)
+				{
+$>
+				<tr>
+					<td style="color:white;">
+						<a href="./routefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>"><$=routesList[x].filters[y]$></a>
+						<!--&nbsp;&nbsp;-->
+					</td>
+					<td>	
+						<a href="./deletefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>" onclick="return confirm_delete();"><button>Delete</button></a>
+					</td>
+				</tr>
+<$
+				}
 			}
 		}
 		else if(routesList[x].regexp == route && routesList[x].filters==undefined)
-		{$>
+		{
+$>
 		<tr>
 		<th style="color:white;">No Filters Applied to</th>
 		</tr>
-		<$}
+<$		
+		}
 	}
-	$>
+$>
+<script type="text/javascript">
+		var table = document.getElementById("MainTable");
+		var rowcount = table.getElementsByTagName("tr").length;
+		if(rowcount > 1)
+			table.style.left = "65px";			
+</script>
 </table><br />
 </div>
 </div>

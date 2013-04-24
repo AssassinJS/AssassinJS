@@ -11,7 +11,7 @@ if(ip in __dataObj.Session)
 $>
 <html>
 <head>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../../public/style.css" type="text/css" />
 </head>
 <body>
 
@@ -61,7 +61,7 @@ Deleted Filter<br />
 	db.query('routes',function(collection){
 		var toSet = {};
 		toSet.filters = [];	
-		for(var i in routesList)
+		for(i in routesList)
 		{
 			if(routesList[i].regexp == route && routesList[i].filters!=undefined)
 			{
@@ -72,7 +72,7 @@ Deleted Filter<br />
 		if(route !=null && route !=undefined && route!='' && filter !=null && filter !=undefined && filter!='')
 		{
 			var toSetFlag = false;
-			for(var i in toSet.filters)
+			for(i in toSet.filters)
 			{
 				if(toSet.filters[i] == filter) 
 				{
@@ -98,7 +98,7 @@ Deleted Filter<br />
 	 db.query('filterParameters',function(collection){		
 		var toSet = {};
 		toSet.parameters = filterParameters;
-		for(var i in toSet.parameters)
+		for(i in toSet.parameters)
 		{
 			if(toSet.parameters[i]['url']==route)
 			{

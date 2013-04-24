@@ -11,7 +11,7 @@ if(ip in __dataObj.Session)
 $>
 <html>
 <head>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../../public/style.css" type="text/css" />
 </head>
 <body>
 
@@ -48,13 +48,12 @@ $>
 </div>
 <div id="infobox" class="boxNavy">
 
-Deleted New Route<br />
+Deleted Route<br />
 
 <$
-	db.query('routes',function(collection){
-				
-		if(route !=null && route !=undefined && route!='')
-		{
+	if(route!=null && route!=undefined && route!='')
+	{
+		db.query('routes',function(collection){		
 			collection.remove({regexp:route},{safe:true},function(err,data){
 				if(err)logger.write(err,'deleteroute.jssp');		
 				else
@@ -63,11 +62,9 @@ Deleted New Route<br />
 					require('../system/router').ReadFromDB();
 					require('../controllers/assassinPanel').getDBParameterObjects();
 				};
-			});
-		}
-		
-		
-	});
+			});				
+		});
+	}
 $>
 
 </div>

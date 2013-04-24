@@ -134,6 +134,17 @@ height: 30px;
 padding: 0px 10px;
 color:black;
 text-align:center;
+background-color:white;
+}
+.squareInputBox
+{
+width: 85%;
+border: 0px solid black;
+height: 30px;
+padding: 0px 0px 0px 10px;
+color: black;
+text-align: center;
+background-color:white;
 }
 
 button

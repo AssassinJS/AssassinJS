@@ -49,10 +49,10 @@ $>
 <div id="newFilterBox" class="boxBlue">
 <form action="./addfilter.jssp" method="GET">
 <br />
-Enter a Filter Name<br />
+Select a Filter<br />
 <!--<input type="text" name="filter" class="roundInputBox" placeholder="Add A Filter Here" /><br />
 <eg. test<br /><br />-->
-<select name="filter" class="roundInputBox" style="background-color:white;margin:5px 0px 5px 0px;"><br />
+<select name="filter" class="squareInputBox" >
 <$
 	for(index in __dataObj.filterDB.format)
 	{
@@ -65,7 +65,7 @@ $>
 	}
 $>
 </select>
-<input type="hidden" name="route" class="roundInputBox" value="<$=route$>" />
+<input type="hidden" name="route" class="roundInputBox" value="<$=route$>" /><br /><br />
 <button type="submit">Add Filter</button>
 </form>
 </div>

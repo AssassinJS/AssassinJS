@@ -42,11 +42,13 @@ or Override Existing Route<br />
 eg. GET/test<br /><br />
 <!--<input type="text" name="target" class="roundInputBox" placeholder="Enter Target Controller Here" /><br />
 eg. test<br /><br />-->
-<select name="target" class="roundInputBox" style="background-color:white;margin:5px 0px 5px 0px;"><br />
+Select a Target Controller<br />
+<select name="target" class="squareInputBox" >
 	<option value="proxy">Proxy</option>
 	<option value="fileserver">File Server</option>
-	<option value="assassinPanel">Assassin Panel</option>	
-</select>
+	<option value="assassinPanel">Assassin Panel</option>
+	<option value="test">Test</option>
+</select><br /><br />
 <button type="submit">Add Route</button>
 </form>
 </div>

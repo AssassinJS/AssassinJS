@@ -1,5 +1,5 @@
-port	8080
+port	8000
 address	0.0.0.0
 domain	localhost
-domainPort	9000
+domainPort	8080
 proxyType	internal

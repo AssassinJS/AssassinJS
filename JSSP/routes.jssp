@@ -71,24 +71,32 @@ eg. test<br /><br />-->
 <$
 var routesList = __dataObj["routesDB"];
 $>
-<table border="0" cellspacing="0" style="width:100%">
+<table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative">
 	<tr>
 		<th style="color:white;">Select A Route to Apply Filters</th>
 	</tr>
-	<$
+<$
 	for(x in routesList)
 	{
-	$>
+$>	
 	<tr>
 		<td style="color:white;">
 			<a href="./route.jssp?route=<$=routesList[x].regexp$>"><$=routesList[x].regexp$></a>
-			&nbsp;&nbsp;
+			<!--&nbsp;&nbsp;-->
+		</td>
+		<td>
 			<a href="./deleteroute.jssp?route=<$=routesList[x].regexp$>" onclick="return confirm_delete();"><button>Delete</button></a>
 		</td>
 	</tr>
 <$
-}
+	}	
 $>
+<script type="text/javascript">
+		var table = document.getElementById("MainTable");
+		var rowcount = table.getElementsByTagName("tr").length;
+		if(rowcount > 1)
+			table.style.left = "53px";			
+</script>
 </table><br />
 </div>
 </div>

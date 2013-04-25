@@ -60,7 +60,7 @@ $>
 <div id="newFilterBox" class="boxBlue">
 <form action="./addfilter.jssp" method="GET">
 <br />
-Select a Filter<br />
+Select a Filter to Add<br />
 <!--<input type="text" name="filter" class="roundInputBox" placeholder="Add A Filter Here" /><br />
 <eg. test<br /><br />-->
 <select name="filter" class="squareInputBox" >

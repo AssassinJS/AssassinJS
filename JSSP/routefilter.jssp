@@ -32,20 +32,101 @@ $>
 <a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
 <a class="navMenuLink" href="./logout.jssp">Logout</a>
 </div>
-</div>
-<div id="contentRight">
+
 <$
 var url = require('url');
 var routesList = __dataObj["routesDB"];
 var filterParameters = __dataObj["filterDB"];
 var route = url.parse(__request.url,true).query.route;
+var target = '';
+for(i in routesList)
+{
+	if(routesList[i].regexp == route)
+	{
+		target = routesList[i].target;
+		break;
+	}
+}
+
 var filter = url.parse(__request.url,true).query.filter;
 var filterParamsFormat = __dataObj['filterDB']['format'][filter];
 var filterParamsFormatType = __dataObj['filterDB']['formattype'][filter];
 var filterTotalValues = __dataObj['filterDB']['total'][filter];
 $>
+<div id="infobox" class="boxBlue">
+<p>Route is: <$=route$></p>
+Applied Filters:<br />
+<table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative;">
+
+<$
+	for(x in routesList)
+	{
+		if(routesList[x].regexp == route && routesList[x].filters!=undefined)
+		{
+$>
+		<tr>
+		<th style="color:white;">Select Filter to Change Properties</th>
+		</tr>
+<$
+			if(routesList[x].filters!=undefined)
+			{
+				for(y in routesList[x].filters)
+				{
+$>
+				<tr>
+					<td style="color:white;">
+						<a href="./routefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>"><$=routesList[x].filters[y]$></a>
+						<!--&nbsp;&nbsp;-->
+					</td>
+					<td>	
+						<a href="./deletefilter.jssp?filter=<$=routesList[x].filters[y]$>&route=<$=route$>" onclick="return confirm_delete();"><button>Delete</button></a>
+					</td>
+				</tr>
+<$
+				}
+			}
+		}
+		else if(routesList[x].regexp == route && routesList[x].filters==undefined)
+		{
+$>
+		<tr>
+		<th style="color:white;">No Filters Applied to</th>
+		</tr>
+<$		
+		}
+	}
+$>
+
+</table><br /><br />
+<form action="./addfilter.jssp" method="GET">
+<br />
+Add a New Filter<br />
+<!--<input type="text" name="filter" class="roundInputBox" placeholder="Add A Filter Here" /><br />
+<eg. test<br /><br />-->
+<select name="filter" class="squareInputBox" >
+<$
+	for(index in __dataObj.filterDB.format)
+	{
+		if(index!='login')
+		{
+$>
+			<option value="<$=index$>"><$=index$></option>
+<$		
+		}
+	}
+$>
+</select>
+<input type="hidden" name="route" class="roundInputBox" value="<$=route$>" /><br /><br />
+<button type="submit">Add Filter</button>
+</form>
+</div>
+
+</div>
+<div id="contentRight">
+
 <div id="titlebox" class="glowBoxNavy">
 <p>Route is: <$=route$></p>
+<p>Target Controller is: <$=target$></p>
 <p>Filter is: <$=filter$></p>
 </div>
 <div id="infobox" class="boxNavy">

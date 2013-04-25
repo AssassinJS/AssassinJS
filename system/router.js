@@ -38,10 +38,12 @@ function process(request,response)
 	var isHandled = false;
 	for(i in routes)
 	{
-		//var urlReg = new RegExp('^'+routes[i].regexp+'$');
+		//DO NOT REMOVE ^ and $, they are very very important
+		var urlReg = new RegExp('^'+routes[i].regexp+'$');
+		//DO NOT REMOVE ^ and $, they are very very important
 		
 		//removed ^,$ -> matches even without them
-		var urlReg = new RegExp(routes[i].regexp);
+		//var urlReg = new RegExp(routes[i].regexp);
 		
 		if(urlReg.test(filepath))
 		{

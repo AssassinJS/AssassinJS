@@ -88,7 +88,8 @@ function serveFile(req,res,defaultDir,dataObj)
 	//fs.readFile("."+filepath,function(err,data){
 		if(err)
 		{
-			respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');
+			//respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');
+			serverError(req,res,404,'Requested Resourse is not found on the server. Please Check the URL');
 			logger.write('Error in Reading File or Missing File:\n'+err+'\n');
 		}
 		else
@@ -120,8 +121,27 @@ function serveView(req,res,dataObj)
 	}
 	else
 	{
-		respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');
+		//respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');
+		serverError(req,res,404,'Requested Resourse is not found on the server. Please Check the URL');
 		logger.write('Error in Reading View or Missing View:\n');
+	}
+}
+
+function serveError(req,res,status,message)
+{
+	var toServe = ViewsList['/error.jssp.js'];
+	var dataObj = {};
+	dataObj.errorMessage = message;
+	dataObj.errorStatus = status;
+	if(toServe!=null || toServe!=undefined)
+	{		
+		toServe.render(req,res,dataObj); //Third optional param is a data object
+		logger.write('error.jssp View Rendered','fileserver.js');
+	}
+	else
+	{
+		respond.createResponse(res,status,null,message);
+		logger.write('Error in Reading error.jssp View','fileserver.js');
 	}
 }
 
@@ -133,5 +153,6 @@ LoadViews();
 
 exports.serveFile = serveFile;
 exports.serveView = serveView;
+exports.serveError = serveError;
 exports.ReadFileTypeList = ReadFileTypeList;
 exports.LoadViews = LoadViews;

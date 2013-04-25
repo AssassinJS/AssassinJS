@@ -56,7 +56,8 @@ var controllers = [];
 controllers.test = function(request,response)
 {
 	logger.write('test in controller executed');
-	extensions['respond'].createResponse(response,200,null,'test');
+	//extensions['respond'].createResponse(response,200,null,'test');
+	extensions['fileserver'].serveError(request,response,200,'TEST');
 }
 
 controllers.error = function(request,response)
@@ -64,7 +65,8 @@ controllers.error = function(request,response)
 	var rHeader = {'Content-Type': 'text/plain'};
 	var status = 404;
 	var rContent = 'Request Resource Not Found On Server. Please Check the URL';
-	extensions['respond'].createResponse(response,status,rHeader,rContent);
+	//extensions['respond'].createResponse(response,status,rHeader,rContent);
+	extensions['fileserver'].serveError(request,response,status,rContent);
 }
 
 controllers.blocked = function(request,response,filterMessage,statusCode)
@@ -72,7 +74,8 @@ controllers.blocked = function(request,response,filterMessage,statusCode)
 	var rHeader = {'Content-Type': 'text/plain'};
 	var status = statusCode;
 	var rContent = filterMessage;
-	extensions['respond'].createResponse(response,status,rHeader,rContent);
+	//extensions['respond'].createResponse(response,status,rHeader,rContent);
+	extensions['fileserver'].serveError(request,response,status,rContent);
 }
 
 controllers.testReg = function(request,response)

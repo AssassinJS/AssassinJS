@@ -50,7 +50,7 @@ function applyFilter(routesObj,request,response)
 	else if(userAgent.indexOf('MSIE')!=-1)
 		browser='MSIE';
 	else
-		browser='Unknown Browser';
+		browser='Other';
 	
 	logger.write('browser is '+browser,'filter browser.js');
 	

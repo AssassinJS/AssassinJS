@@ -70,6 +70,7 @@ Applied Filters:<br />
 <table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative;">
 
 <$
+
 	for(x in routesList)
 	{
 		if(routesList[x].regexp == route && routesList[x].filters!=undefined)
@@ -154,6 +155,55 @@ if(filterParameters[filter][i].url==route)
 {$>
 <form method="POST" action="./routefiltersave.jssp">
 <$
+if(filterTotalValues!=undefined || filterTotalValues!=null)
+{
+	$>
+	<table style="width:100%;color:white;">
+	<$
+	for(j in filterParamsFormat)
+	{
+	$>
+		<th style="border:1px solid black;"><$=filterParamsFormat[j]$></th>
+	<$
+	}
+	$>
+		<th style="border:1px solid black;">Value</th>
+	<$
+	for(k in filterTotalValues)
+	{
+	$>
+		<tr>
+		<$
+		for(j in filterParamsFormat)
+		{
+		$>
+			<td style="text-align: center; border:1px solid black;"><input type="checkbox" name="<$=filterParamsFormat[j]$>" value="<$=filterTotalValues[k]$>"
+			<$
+			if (filterParameters[filter][i].params[filterParamsFormat[j]] instanceof Array)
+			{
+				if(filterParameters[filter][i].params[filterParamsFormat[j]].indexOf(filterTotalValues[k]) != -1)
+				{$>checked<$}
+			}
+			else
+			{
+				if(filterParameters[filter][i].params[filterParamsFormat[j]] == filterTotalValues[k])
+				{$>checked<$}
+			}
+			$>
+			></td>
+		<$
+		}
+		$>
+		<td style="border:1px solid black;"><$=filterTotalValues[k]$></td>
+		</tr>
+	<$
+	}
+	$>
+	</table>
+	<$
+}
+else
+{	
 for(j in filterParamsFormat)
 {
 	if(filterParamsFormatType[j]=='single')
@@ -195,6 +245,7 @@ for(j in filterParamsFormat)
 		</table><br />
 		<button type="button" onclick="addRowInput<$=j$>()">Add Another Row</button><br /><br />
 	<$}
+}
 }
 $>
 <br />

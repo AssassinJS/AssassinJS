@@ -75,7 +75,12 @@ var routesList = __dataObj["routesDB"];
 $>
 <table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative">
 	<tr>
-		<th style="color:white;">Select A Route to Apply Filters</th>
+		<th colspan="3" style="color:white;">Select A Route to Apply Filters</th>
+	</tr>
+	<tr>
+		<th style="color:white;text-align:left;">Route</th>
+		<th style="color:white;text-align:left;">Target Controller</th>
+		<th style="color:white;">Delete?</th>
 	</tr>
 <$
 	for(x in routesList)
@@ -86,19 +91,17 @@ $>
 			<a href="./route.jssp?route=<$=routesList[x].regexp$>"><$=routesList[x].regexp$></a>
 			<!--&nbsp;&nbsp;-->
 		</td>
-		<td>
+		<td style="color:white;">
+			<$=routesList[x].target$>
+		</td>
+		<td style="text-align:center;">
 			<a href="./deleteroute.jssp?route=<$=routesList[x].regexp$>" onclick="return confirm_delete();"><button>Delete</button></a>
 		</td>
 	</tr>
 <$
 	}	
 $>
-<script type="text/javascript">
-		var table = document.getElementById("MainTable");
-		var rowcount = table.getElementsByTagName("tr").length;
-		if(rowcount > 1)
-			table.style.left = "53px";			
-</script>
+
 </table><br />
 </div>
 </div>

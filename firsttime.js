@@ -130,7 +130,7 @@ function ReadBrowsersFile()
 		var toset = {};
 		toset.parameters = [];
 		toset.paramsformat = ['allow','block'];
-		//toset.total = listentries;
+		toset.total = ['Seamonkey','Firefox','Chromium','Chrome','Safari','Opera','MSIE','Other'];
 		toset.paramsformattype = ['array','array'];
 		collection.update({filter:'browser'},{$set:toset},{upsert:true, w:1},function(err,data){
 			if(err) logger.write(err,'firsttime.js');

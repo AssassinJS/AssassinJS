@@ -11,7 +11,7 @@ if(ip in __dataObj.Session)
 $>
 <html>
 <head>
-<link rel="stylesheet" href="../../public/style.css" type="text/css" />
+<link rel="stylesheet" href="./style.css" type="text/css" />
 </head>
 <body>
 
@@ -29,7 +29,7 @@ $>
 <div id="projectMenu" class="glowBoxBlue">
 <a class="navMenuLink" href="./home.jssp">Home</a><br />
 <a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
-<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />
+<!--<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />-->
 <a class="navMenuLink" href="./logout.jssp">Logout</a>
 </div>
 

@@ -122,6 +122,23 @@ function ReadLoginInfo()
 	});
 }
 
+// Is used only for first time initialization
+function ReadBrowsersFile()
+{
+	logger.write('Populating browsers into DB,please wait...','firsttime.js');
+	db.query('filterParameters',function(collection){
+		var toset = {};
+		toset.parameters = [];
+		toset.paramsformat = ['allow','block'];
+		//toset.total = listentries;
+		toset.paramsformattype = ['array','array'];
+		collection.update({filter:'browser'},{$set:toset},{upsert:true, w:1},function(err,data){
+			if(err) logger.write(err,'firsttime.js');
+			else if(data) logger.write('Initialized the browser collection in DB','firsttime.js');
+		});								
+	});
+}
+
 //To populate DB from routes file
 ReadRoutesFile();
 //To populate DB from useragent file
@@ -132,6 +149,8 @@ ReadRateLimitFile();
 ReadIPBlacklist();
 //To populate DB with Default Login Info
 ReadLoginInfo();
+//To popilate DB with Browsers Info
+ReadBrowsersFile();
 
 //To Compile JSSP files to Views (production level - assuming that jssp's are already there)
 var viewcompiler = require('./system/viewcompiler');

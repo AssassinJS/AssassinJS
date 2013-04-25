@@ -3,8 +3,8 @@ GET/users/generateUID	users
 GET/favicon.ico	proxy
 
 GET/public/[a-zA-Z0-9_./]*	fileserver
-GET/testfilter	proxy
-GET/filterbrowser	proxy
+GET/testfilter	test
+GET/filterbrowser	test
 
 GET/assassinPanel/index.jssp	assassinPanel
 GET/assassinPanel/home.jssp	assassinPanel

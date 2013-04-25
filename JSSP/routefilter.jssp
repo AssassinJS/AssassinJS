@@ -12,6 +12,17 @@ $>
 <html>
 <head>
 <link rel="stylesheet" href="../../public/style.css" type="text/css" />
+<script type="text/javascript">
+	function confirm_delete()
+	{
+		var _choice = confirm("Confirm deletion of filter?");
+		
+		if(_choice)
+			return true;
+			
+		return false;
+	}
+</script>
 </head>
 <body>
 

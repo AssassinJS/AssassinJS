@@ -6,8 +6,8 @@ var logger = require('../system/logger');
 function forwardRequest(request,response)
 {	
 	var		
-	domain = config.getConfig().domain,
-	domainPort = config.getConfig().domainPort,
+	domain = config.getConfig().proxyDomain,
+	domainPort = config.getConfig().proxyDomainPort,
 	pathstring = request.url;
 	
 	//cached request,response objects

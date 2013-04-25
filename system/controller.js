@@ -43,8 +43,14 @@ function handleRequest(routesObj,request,response)
 	}
 	else
 	{
+		//to forward to default controller from config
+		var defaultController = config.getConfig().defaultController;
+		if(defaultController != null || defaultController!='' || defaultController!=undefined)
+			controllers[defaultController](request,response);
+		else
+			controllers.error(request,response);
 		//controllers.fileserver(request,response);
-		controllers['proxy'](request,response);
+		//controllers['proxy'](request,response);
 		//controllers.error(request,response);						
 	}
 }

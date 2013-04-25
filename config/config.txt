@@ -1,5 +1,6 @@
-port	8000
-address	0.0.0.0
-domain	localhost
-domainPort	8080
+assassinjsPort	8000
+assassinjsAddress	0.0.0.0
+defaultController	error
+proxyDomain	localhost
+proxyDomainPort	8080
 proxyType	internal

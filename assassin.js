@@ -22,10 +22,10 @@ function assassinate()
 	//system.logger.write('config object='+JSON.stringify(config));
 	server.on('request',system.router.route);
 
-	if(config.port!=undefined && config.address!=undefined)
+	if(config.assassinjsPort!=undefined && config.assassinjsAddress!=undefined)
 	{
-		server.listen(config.port,config.address);
-		system.logger.write('Server running at '+config.address+':'+config.port);
+		server.listen(config.assassinjsPort,config.assassinjsAddress);
+		system.logger.write('Server running at '+config.assassinjsAddress+':'+config.assassinjsPort);
 	}
 	else
 		system.logger.write('Config Parameters not defined: port and address');

@@ -95,7 +95,7 @@ function serveFile(req,res,defaultDir,dataObj)
 		else
 		{
 			var contenttype = filetypemap[fileextension];
-			respond.createResponse(res,200,contenttype,data);
+			respond.createResponse(res,200,{'Content-Type': contenttype},data);
 			logger.write('Written File Contents to Response with content-type: '+contenttype+'\n');
 		}
 	});

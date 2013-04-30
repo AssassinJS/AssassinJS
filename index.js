@@ -9,10 +9,20 @@
 var assassin = require('./assassin');
 var viewcompiler = require('./system/viewcompiler');
 var fileserver = require('./controllers/fileserver');
+var config = require('./system/config');
+
+//This function invokes the firsttime
+config.firsttime(function(){
 
 //This function invokes the precompiler of jssp views
-viewcompiler.readJSSP();
+viewcompiler.readJSSP(function(){
+
 //This function reads all the views in compiled_views folder
-fileserver.LoadViews();
+fileserver.LoadViews(function(){
+
 //This function invokes assassin
 assassin.assassinate();
+});
+});
+});
+

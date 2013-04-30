@@ -5,9 +5,11 @@ var logger = require('../system/logger');
 var respond = require('./respond');
 
 //Global Variabels in this module
-var filetypemap = {};
+var filetypemap = require('../config/filetypelist.json');
 var ViewsList = {};
 
+//Not necessary if filetypelist.json is present
+//var filetypemap = {};
 //Reading filetypelist into filetypemap
 function ReadFileTypeList()
 {
@@ -28,20 +30,22 @@ function ReadFileTypeList()
 	}
 }
 
-function LoadViews()
+function LoadViews(callback)
 {
 	var ViewFiles = [];
 	ViewFiles = fs.readdirSync('./compiled_views/');
-	ViewExtensionReg = new RegExp('.js$');
 	for(i in ViewFiles)
 	{
 		LoadView(ViewFiles[i]);
 		WatchViews(ViewFiles[i]);
 	}
+	callback();
+	return;
 }
 
 function LoadView(ViewFile)
 {
+	ViewExtensionReg = new RegExp('.js$');
 	if(ViewExtensionReg.test(ViewFile))
 	{
 		//To clear the previous cache
@@ -147,9 +151,9 @@ function serveError(req,res,status,message)
 
 //Actual Processing Area
 //To Read FileType List
-ReadFileTypeList();
+//ReadFileTypeList();
 //To Load Views
-LoadViews();
+//LoadViews();
 
 exports.serveFile = serveFile;
 exports.serveView = serveView;

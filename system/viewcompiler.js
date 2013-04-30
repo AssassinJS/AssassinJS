@@ -5,10 +5,12 @@ var JSSPFiles = [];
 
 //Dynamically Reading the jssp folder to get all the jssp files
 //readJSSP();//Ensures first time execution
-function readJSSP()
+function readJSSP(callback)
 {
 	JSSPFiles = fs.readdirSync('./JSSP/');
 	compileJSSP();
+	callback();
+	return;
 }
 
 function compileJSSP()

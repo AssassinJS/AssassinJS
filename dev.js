@@ -10,6 +10,10 @@ var assassin = require('./assassin');
 var fileserver = require('./controllers/fileserver');
 
 //This function reads all the views in compiled_views folder
-fileserver.LoadViews();
+fileserver.LoadViews(function(){
+
 //This function invokes assassin
 assassin.assassinate();
+
+});
+

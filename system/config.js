@@ -44,6 +44,7 @@ function firsttime(callback)
 		
 		//To popilate DB with Browsers Info
 		ReadBrowsersFile(function(){
+			initReadFromDB();
 			config.firsttime = false;
 			fs.writeFileSync('./config/config.json',JSON.stringify(config));
 			callback();
@@ -57,6 +58,7 @@ function firsttime(callback)
 	}
 	else
 	{
+		initReadFromDB();
 		callback();
 		return;
 	}
@@ -158,6 +160,18 @@ function ReadBrowsersFile(callback)
 		});		
 	});
 }
+
+
+function initReadFromDB()
+{
+  require('./router').ReadFromDB();
+  require('../filters/browser').ReadFromDB();
+  require('../filters/ipblock').ReadFromDB();
+  require('../filters/rate-limit').ReadFromDB();
+  require('../filters/user-agent').ReadFromDB();
+  require('../filters/user-auth').ReadFromDB();
+}
+
 
 exports.firsttime = firsttime;
 exports.getConfig = getConfig;

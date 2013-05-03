@@ -1,9 +1,21 @@
 var mongodb = require('mongodb');
 
 function MyMongo(host, port, dbname) {
-    this.host = host;
-    this.port = port;
-    this.dbname = dbname;
+	if(process.env.VCAP_SERVICES){
+		var env = JSON.parse(process.env.VCAP_SERVICES);
+		var mongoInstance = env['mongodb-2.0'][0]['credentials'];
+		this.host = mongoInstance.hostname;
+		this.port = mongoInstance.port;
+		this.dbname = mongoInstance.db;
+		this.username = mongoInstance.username;
+		this.password = mongoInstance.password;
+	}
+	else
+	{
+		this.host = host;
+		this.port = port;
+		this.dbname = dbname;
+	}
 
     this.server = new mongodb.Server(
                               this.host, 
@@ -17,11 +29,22 @@ function MyMongo(host, port, dbname) {
     this.queue = [];
 
     this.db_connector.open(function(err, db) {
-            if( err ) {
-                console.log(err);
-                return;
+        if( err ) {
+            console.log(err);
+            return;
         }
-        self.db = db;
+		if(self.username && self.password)
+		{
+			db.authenticate(self.username, self.password, function(err,res){
+				if( err)
+				{
+					console.log(err);
+					return;
+				}
+				console.log(res);
+			});
+		}
+		self.db = db;
         for (var i = 0; i < self.queue.length; i++) {
             var collection = new mongodb.Collection(
                                  self.db, self.queue[i].cn);

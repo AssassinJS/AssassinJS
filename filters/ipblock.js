@@ -69,7 +69,7 @@ function applyFilter(routesObj,request,response)
 }
 
 //Populate on load, executes only once, when loaded for first time, during server start
-ReadFromDB();
+//ReadFromDB();
 
 exports.applyFilter = applyFilter;
 exports.ReadFromDB = ReadFromDB;

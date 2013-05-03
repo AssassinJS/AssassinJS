@@ -19,13 +19,17 @@ function assassinate()
 {
 	var server = http.createServer();
 	var config = system.config.getConfig();
+	var port = (process.env.VMC_APP_PORT || config.assassinjsPort);
+	var host = (process.env.VMC_APP_HOST || config.assassinjsAddress);
 	//system.logger.write('config object='+JSON.stringify(config));
 	server.on('request',system.router.route);
 
-	if(config.assassinjsPort!=undefined && config.assassinjsAddress!=undefined)
+	//if(config.assassinjsPort!=undefined && config.assassinjsAddress!=undefined)
+	if(port!=undefined && host!=undefined)
 	{
-		server.listen(config.assassinjsPort,config.assassinjsAddress);
-		system.logger.write('Server running at '+config.assassinjsAddress+':'+config.assassinjsPort);
+		//server.listen(config.assassinjsPort,config.assassinjsAddress);
+		server.listen(port,host);
+		system.logger.write('Server running at '+host+':'+port);
 	}
 	else
 		system.logger.write('Config Parameters not defined: port and address');

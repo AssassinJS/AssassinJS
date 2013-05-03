@@ -5,7 +5,7 @@
  This is the file that needs to be run by node.
 
 */
-
+//require("cf-autoconfig");
 var assassin = require('./assassin');
 var viewcompiler = require('./system/viewcompiler');
 var fileserver = require('./controllers/fileserver');

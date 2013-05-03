@@ -8,7 +8,7 @@ var db = new MyMongo('localhost', 27017, 'assassindb');
 var browsers = {};
 
 //Reading from db to get the user-agent parameters object
-ReadFromDB();//First Time Execution
+//ReadFromDB();//First Time Execution
 function ReadFromDB()
 {
 	db.query('filterParameters',function(collection){		

@@ -19,7 +19,7 @@ var db = new MyMongo('localhost', 27017, 'assassindb');
 var routes={};
 
 //Reading Routes from DB
-ReadFromDB(); //Ensures first time execution
+//ReadFromDB(); //Ensures first time execution
 function ReadFromDB()
 {
 	db.query('routes',function(collection){			

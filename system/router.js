@@ -8,11 +8,14 @@
 
 var url = require('url');
 var fs = require('fs');
-var controller = require('./controller');
-var logger = require('./logger');
-var filter = require('./filter');
 
-var MyMongo = require('./dbconnect.js').MyMongo;
+var rqm = require('./rqmodules');
+
+var controller = rqm.system.controller;
+var logger = rqm.system.logger;
+var filter = rqm.system.filter;
+
+var MyMongo = rqm.system.dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 //Reading Routes File
@@ -76,6 +79,7 @@ function process(request,response)
 //Actual Routing Function
 function route(request,response)
 {			
+	request.rqm = rqm;
 	if(request.method == 'POST')//for post requests, to get the entire request body
 	{
         var reqbody = '';

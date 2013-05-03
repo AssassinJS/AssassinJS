@@ -10,8 +10,9 @@ function getFileList(path,removeParent)
 
 function getFileListR(path,defaultParent)//the defaultParent is removed from the paths
 {
-	//console.log('path is '+path);
+	//console.log('path is '+path+' and defaultParent is '+defaultParent);
 	var filelist = fs.readdirSync(path);
+	//console.log('filelist is '+JSON.stringify(filelist));
 	var toReturn = [];
 	var i,j;
 	for(i in filelist)
@@ -25,7 +26,7 @@ function getFileListR(path,defaultParent)//the defaultParent is removed from the
 		}
 		else
 		{
-			if(defaultParent!=null || defaultParent!=undefined || defaultParent!='')
+			if(defaultParent!=null && defaultParent!=undefined && defaultParent!='')
 			{
 				var dPReg = new RegExp('^'+defaultParent+'/');
 				toReturn.push(innerPath.split(dPReg)[1]);
@@ -58,7 +59,7 @@ function getDirectoryListR(path,defaultParent)//the defaultParent is removed fro
 		var stats = fs.statSync(innerPath);
 		if(stats.isDirectory())
 		{
-			if(defaultParent!=null || defaultParent!=undefined || defaultParent!='')
+			if(defaultParent!=null && defaultParent!=undefined && defaultParent!='')
 			{
 				var dPReg = new RegExp('^'+defaultParent+'/');
 				toReturn.push(innerPath.split(dPReg)[1]);

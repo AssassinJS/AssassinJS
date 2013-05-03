@@ -2,6 +2,7 @@
 var url = require('url');
 var fs = require('fs');
 var logger = require('../system/logger');
+var rfs = require('../system/recursiveFS');
 var respond = require('./respond');
 
 //Global Variabels in this module
@@ -33,7 +34,7 @@ function ReadFileTypeList()
 function LoadViews(callback)
 {
 	var ViewFiles = [];
-	ViewFiles = fs.readdirSync('./compiled_views/');
+	ViewFiles = rfs.getFileList('compiled_views',true);
 	for(i in ViewFiles)
 	{
 		LoadView(ViewFiles[i]);
@@ -76,7 +77,7 @@ function serveFile(req,res,defaultDir,dataObj)
 	var reqDetails = url.parse(req.url);
 	logger.write("Request Details: "+JSON.stringify(reqDetails),'serveFile in fileserver');
 	var filepath =reqDetails.pathname;
-	filepath = filepath.split('/'+filepath.split('/')[1])[1];
+	//filepath = filepath.split('/'+filepath.split('/')[1])[1];
 	logger.write('filepath is '+filepath);
 	if(defaultDir==null ||defaultDir==undefined)
 		defaultDir='public';
@@ -93,7 +94,7 @@ function serveFile(req,res,defaultDir,dataObj)
 		if(err)
 		{
 			//respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');
-			serverError(req,res,404,'Requested Resourse is not found on the server. Please Check the URL');
+			serveError(req,res,404,'Requested Resourse is not found on the server. Please Check the URL');
 			logger.write('Error in Reading File or Missing File:\n'+err+'\n');
 		}
 		else
@@ -111,7 +112,7 @@ function serveView(req,res,dataObj)
 	var reqDetails = url.parse(req.url);
 	//logger.write("Request Details: "+JSON.stringify(reqDetails),'serveView in fileserver');
 	var filepath =reqDetails.pathname;
-	filepath = filepath.split('/'+filepath.split('/')[1])[1];
+	//filepath = filepath.split('/'+filepath.split('/')[1])[1];
 	//logger.write('filepath is '+filepath,'serveView in fileserver');
 	
 	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
@@ -126,7 +127,7 @@ function serveView(req,res,dataObj)
 	else
 	{
 		//respond.createResponse(res,404,null,'Requested Resourse is not found on the server. Please Check the URL');
-		serverError(req,res,404,'Requested Resourse is not found on the server. Please Check the URL');
+		serveError(req,res,404,'Requested Resourse is not found on the server. Please Check the URL');
 		logger.write('Error in Reading View or Missing View:\n');
 	}
 }

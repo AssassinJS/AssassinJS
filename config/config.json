@@ -1,1 +1,1 @@
-{"assassinjsPort":"8000","assassinjsAddress":"0.0.0.0","defaultController":"error","proxyDomain":"localhost","proxyDomainPort":"8080","proxyType":"internal","firsttime":true}
+{"assassinjsPort":"8000","assassinjsAddress":"0.0.0.0","defaultController":"proxy","proxyDomain":"www.veooz.com","proxyDomainPort":"80","proxyType":"external","firsttime":true}

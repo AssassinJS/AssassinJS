@@ -37,8 +37,8 @@ $>
 <div id="contentRight">
 <$
 var qs = require('querystring');
-var logger = require('../system/logger');
-var MyMongo = require('../system/dbconnect.js').MyMongo;
+var logger = require('../../system/logger');
+var MyMongo = require('../../system/dbconnect.js').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 var routesList = __dataObj['routesDB'];
@@ -93,8 +93,8 @@ var filterParamsFormat = __dataObj['filterDB']['format'][filter];
 			if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
 			else
 			{
-				require('../filters/'+filter).ReadFromDB();
-				require('../controllers/assassinPanel').getDBParameterObjects();
+				require('../../filters/'+filter).ReadFromDB();
+				require('../../controllers/assassinPanel').getDBParameterObjects();
 			}
 		});					
 	});
@@ -131,8 +131,8 @@ var filterParamsFormat = __dataObj['filterDB']['format'][filter];
 					if(err)	logger.write(err,'useragentfiltersubmit.jssp');	
 					else
 					{
-						require('../system/router').ReadFromDB();
-						require('../controllers/assassinPanel').getDBParameterObjects();
+						require('../../system/router').ReadFromDB();
+						require('../../controllers/assassinPanel').getDBParameterObjects();
 					}
 				});
 			}						

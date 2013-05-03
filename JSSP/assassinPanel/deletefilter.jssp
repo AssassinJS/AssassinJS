@@ -38,7 +38,7 @@ $>
 <$
 var url = require('url');
 
-var MyMongo = require('../system/dbconnect.js').MyMongo;
+var MyMongo = require('../../system/dbconnect.js').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 var routesList = __dataObj['routesDB'];
@@ -87,8 +87,8 @@ $>
 					if(err)logger.write(err,'addroute.jssp');		
 					else
 					{
-						require('../system/router').ReadFromDB();
-						require('../controllers/assassinPanel').getDBParameterObjects();
+						require('../../system/router').ReadFromDB();
+						require('../../controllers/assassinPanel').getDBParameterObjects();
 					}
 				});
 			}
@@ -109,7 +109,7 @@ $>
 		
 		collection.update({filter:filter},{$set:toSet},{upsert:true, w:1},function(err,data){
 			if(err)logger.write(err,'ratelimitfiltersubmit.jssp');		
-			else require('../controllers/assassinPanel').getDBParameterObjects();
+			else require('../../controllers/assassinPanel').getDBParameterObjects();
 		});
 					
 	});

@@ -3,3 +3,4 @@ node_modules/
 config/log.txt
 system/log.txt
 bin/
+compiled_views/

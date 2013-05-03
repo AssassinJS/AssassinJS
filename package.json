@@ -5,8 +5,7 @@
   "keywords" : ["access control","framework","util", "server", "client"],
   "contributors" : ["Sai Teja Jammalamadaka <tsjamm@gmail.com>", "Adithya Chebiyyam <adithya217@gmail.com>"],
   "dependencies" : {
-	"mongodb": "*",
-	"cf-autoconfig": "*"
+  "mongodb":"*"
   },
   "repository" : {"type": "git", "url": "git://github.com/AssassinJS/AssassinJS.git"},
   "main" : "index.js",

@@ -24,7 +24,6 @@ function assassinate()
 	//system.logger.write('config object='+JSON.stringify(config));
 	server.on('request',system.router.route);
 
-	//if(config.assassinjsPort!=undefined && config.assassinjsAddress!=undefined)
 	if(port!=undefined && host!=undefined)
 	{
 		//server.listen(config.assassinjsPort,config.assassinjsAddress);
@@ -36,4 +35,3 @@ function assassinate()
 }
 
 exports.assassinate = assassinate;
-

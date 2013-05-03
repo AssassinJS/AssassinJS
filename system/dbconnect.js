@@ -1,7 +1,7 @@
 var mongodb = require('mongodb');
 
 function MyMongo(host, port, dbname) {
-	
+
 	if(process.env.VCAP_SERVICES){
 		var env = JSON.parse(process.env.VCAP_SERVICES);
 		var mongoInstance = env['mongodb-2.0'][0]['credentials'];

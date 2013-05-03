@@ -1,5 +1,5 @@
 
-function createResponse(response,StatusCode,ResponseHeader,ResponseContent)
+function __createResponse(response,StatusCode,ResponseHeader,ResponseContent)
 {
 	if(ResponseHeader == null)
 	{
@@ -12,4 +12,4 @@ function createResponse(response,StatusCode,ResponseHeader,ResponseContent)
 	response.end();
 }
 
-exports.createResponse = createResponse;
+exports.createResponse = __createResponse;

@@ -1,4 +1,5 @@
 var fs = require('fs');
+var logger = require('./logger');
 
 function getFileList(path,removeParent)
 {
@@ -75,17 +76,55 @@ function getDirectoryListR(path,defaultParent)//the defaultParent is removed fro
 
 function createRecursiveDirectories(source,destination)
 {
-	fs.mkdir(destination,function(err){
-		if(err) console.log(err);
-	});
+	//Synchronous Version
+	try
+	{
+		fs.mkdirSync(destination);
+	}
+	catch(err)
+	{
+		if(err.code=='EEXIST') logger.write('Path '+destination+' Exists','recursiveFS.js');
+		else logger.write('ERROR '+err,'recursiveFS.js');
+	}
 	var sourcelist = getDirectoryList(source,true);
 	var i;
 	for(i in sourcelist)
 	{
-		fs.mkdir(destination+'/'+sourcelist[i],function(err){
-			if(err) console.log(err);
-		});
+		try
+		{
+			fs.mkdirSync(destination+'/'+sourcelist[i]);
+		}
+		catch(err)
+		{
+			if(err.code=='EEXIST') logger.write('Path '+destination+' Exists','recursiveFS.js');
+			else logger.write('ERROR '+err,'recursiveFS.js');
+		}
 	}
+	/*
+	//Asynchronous version
+	fs.mkdir(destination,function(err){
+		if(err)
+		{
+			if(err.code == 'EEXIST') logger.write('Path '+destination+' Exists','recursiveFS.js');
+			else logger.write('ERROR '+err,'recursiveFS.js');
+		}
+		else
+		{
+			var sourcelist = getDirectoryList(source,true);
+			var i;
+			for(i in sourcelist)
+			{
+				fs.mkdir(destination+'/'+sourcelist[i],function(err){
+					if(err)
+					{
+						if(err.code == 'EEXIST') logger.write('Path '+destination+'/'+sourcelist[i]+' Exists','recursiveFS.js');
+						else logger.write('ERROR '+err,'recursiveFS.js');
+					}
+				});
+			}
+		}
+	});
+	*/
 }
 
 exports.getFileList = getFileList;

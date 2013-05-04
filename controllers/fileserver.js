@@ -62,13 +62,14 @@ function LoadView(ViewFile)
 
 function WatchViews(ViewFile)
 {
-	fs.watchFile('./compiled_views/'+ViewFile,{persistent: true, interval: 1000 },function (curr, prev) {
+	fs.watchFile('./compiled_views/'+ViewFile,{persistent: true, interval: 500 },function (curr, prev) {
 		//logger.write('the current mtime is: ' + curr.mtime,'views in fileserver.js');
 		//logger.write('the previous mtime was: ' + prev.mtime,'views in fileserver.js');
-		if(curr.mtime != prev.mtime)
+		if(curr.mtime.getTime() != prev.mtime.getTime())
 		{
 			LoadView(ViewFile);
 			logger.write("called LoadView again for "+ViewFile,'fileserver.js');
+			//logger.write("called LoadView again for "+ViewFile+'\nthe current mtime is: ' + curr.mtime+'\ncurr is ' +JSON.stringify(curr)+'\nthe previous mtime was: ' +prev.mtime +'\nprev is '+JSON.stringify(prev),'fileserver.js');
 		}
 	});
 }

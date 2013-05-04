@@ -1,6 +1,6 @@
 <html>
 <head>
-<link rel="stylesheet" href="./assassinPanel/style.css" type="text/css" />
+<link rel="stylesheet" href="/assassinPanel/style.css" type="text/css" />
 </head>
 <body>
 
@@ -8,6 +8,7 @@
 var status = __dataObj.errorStatus;
 var message = __dataObj.errorMessage;
 __request.rqm.system.logger.write('this is a test','error.jssp');
+
 $>
 
 <div id="bodyWrapper">

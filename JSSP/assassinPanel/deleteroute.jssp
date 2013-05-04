@@ -38,7 +38,7 @@ $>
 <$
 var url = require('url');
 
-var MyMongo = require('../../system/dbconnect.js').MyMongo;
+var MyMongo = __rqm.system.dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 var route = url.parse(__request.url,true).query.route;
@@ -61,8 +61,8 @@ $>
 				else
 				{
 					//should read routes from db again
-					require('../../system/router').ReadFromDB();
-					require('../../controllers/assassinPanel').getDBParameterObjects();
+					__rqm.system.router.ReadFromDB();
+					__rqm.controllers.assassinPanel.getDBParameterObjects();
 				};
 			});				
 		});

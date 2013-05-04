@@ -80,15 +80,23 @@ function compileJSSPFile(filename)
 
 function watchJSSP(filename)
 {
-	fs.watchFile('JSSP/'+filename,{persistent: true, interval: 1000 },function (curr, prev) {
+	fs.watchFile('JSSP/'+filename,{persistent: true, interval: 500 },function (curr, prev) {
 		//logger.write('the current mtime is: ' + curr.mtime,'viewcompiler.js');
 		//logger.write('the previous mtime was: ' + prev.mtime,'viewcompiler.js');
-		if(curr.mtime != prev.mtime)
+		if(curr.mtime.getTime() != prev.mtime.getTime())
 		{
-			compileJSSPFile('JSSP/'+filename);
+			compileJSSPFile(filename);
 			logger.write("called compileJSSPFile again for "+filename,'viewcompiler.js');
+			//logger.write("called compileJSSPFile again for "+filename+'\nthe current mtime is: ' + curr.mtime+'\ncurr is ' +JSON.stringify(curr)+'\nthe previous mtime was: ' +prev.mtime +'\nprev is '+JSON.stringify(prev),'viewcompiler.js');
 		}
 	});
+	/*fs.watch('JSSP/'+filename,{persistent: true, interval: 5000 },function (event, file) {
+		if(event == 'change')
+		{
+			compileJSSPFile(filename);
+			logger.write("called compileJSSPFile again for "+filename+' and event is '+event+' triggered by '+file,'viewcompiler.js');
+		}
+	});*/
 }
 
 exports.readJSSP = readJSSP;

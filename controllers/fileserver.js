@@ -4,6 +4,7 @@ var fs = require('fs');
 var logger = require('../system/logger');
 var rfs = require('../system/recursiveFS');
 var respond = require('./respond');
+var rqm = require('../system/rqmodules');
 
 //Global Variabels in this module
 var filetypemap = require('../config/filetypelist.json');
@@ -121,7 +122,9 @@ function serveView(req,res,dataObj)
 	var toServe = ViewsList[filepath];
 	if(toServe!=null || toServe!=undefined)
 	{		
-		toServe.render(req,res,dataObj); //Third optional param is a data object
+		//Third param is the RequiredModules object rqm
+		//Fourth param is optional which is a dataObj
+		toServe.render(req,res,rqm,dataObj);
 		logger.write('View Rendered:\n','fileserver.js');
 	}
 	else
@@ -140,7 +143,9 @@ function serveError(req,res,status,message)
 	dataObj.errorStatus = status;
 	if(toServe!=null || toServe!=undefined)
 	{		
-		toServe.render(req,res,dataObj); //Third optional param is a data object
+		//Third param is the RequiredModules object rqm
+		//Fourth param is optional which is a dataObj
+		toServe.render(req,res,rqm,dataObj);
 		logger.write('error.jssp View Rendered','fileserver.js');
 	}
 	else

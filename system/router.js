@@ -10,12 +10,11 @@ var url = require('url');
 var fs = require('fs');
 
 var rqm = require('./rqmodules');
+var controller = require('./controller');
+var logger = require('./logger');
+var filter = require('./filter');
 
-var controller = rqm.system.controller;
-var logger = rqm.system.logger;
-var filter = rqm.system.filter;
-
-var MyMongo = rqm.system.dbconnect.MyMongo;
+var MyMongo = require('./dbconnect').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 //Reading Routes File

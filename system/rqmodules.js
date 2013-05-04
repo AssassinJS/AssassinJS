@@ -46,7 +46,8 @@ for(i in systemL)
 	if(fileExtension == 'js')
 	{
 		var name = systemL[i].split('/').pop().split('.')[0];
-		system[name] = require('./'+systemL[i]);
+		if(name != 'rqmodules')
+			system[name] = require('./'+systemL[i]);
 	}
 }
 for(i in controllersL)
@@ -68,6 +69,9 @@ for(i in filtersL)
 	}
 }
 
+//console.log(JSON.stringify(system));
+//console.log(JSON.stringify(controllers));
+//console.log(JSON.stringify(filters));
 
 exports.system = system;
 exports.controllers = controllers;

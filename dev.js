@@ -5,9 +5,9 @@
  This is the file that needs to be run by node.
 
 */
-
-var assassin = require('./assassin');
-var fileserver = require('./controllers/fileserver');
+var rqm = require('./system/rqmodules');
+var assassin = rqm.system.assassin;
+var fileserver = rqm.controllers.fileserver;
 
 //This function reads all the views in compiled_views folder
 fileserver.LoadViews(function(){

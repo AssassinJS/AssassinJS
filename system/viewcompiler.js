@@ -31,9 +31,9 @@ function compileJSSPFile(filename)
 	var JSSPExtensionReg = new RegExp('.jssp$');
 	var EqualReg = new RegExp('^=');
 	var globalCode = '';
-	var respondCode = fs.readFileSync('controllers/respond.js','utf-8').toString();
-	//var compiledCode = "var respond = require('../controllers/respond');\r\n\r\nfunction render(__request,__response,__dataObj){\r\nvar outputstr='';\r\n";
-	var compiledCode = respondCode+"\r\n\r\nfunction render(__request,__response,__dataObj){\r\nvar outputstr='';\r\n";
+	var compiledCode = "\r\n\r\nfunction render(__request,__response,__rqm,__dataObj){\r\nvar outputstr='';\r\n";
+	//var respondCode = fs.readFileSync('controllers/respond.js','utf-8').toString();
+	//var compiledCode = respondCode+"\r\n\r\nfunction render(__request,__response,__dataObj){\r\nvar outputstr='';\r\n";
 	var filedata = fs.readFileSync('JSSP/'+filename,'utf-8').toString();
 	//logger.write('view contents '+filedata,'viewcompiler');
 	if(filedata!=null || filedata!=undefined)
@@ -69,7 +69,7 @@ function compileJSSPFile(filename)
 			}
 		}
 	}
-	compiledCode = compiledCode+"__createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);\r\n/**/} \r\n\r\nexports.render = render;";
+	compiledCode = compiledCode+"__rqm.controllers.respond.createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);\r\n/**/} \r\n\r\nexports.render = render;";
 	fs.writeFile('compiled_views/'+filename+'.js',globalCode+compiledCode,function(err){
 		if(err)
 			logger.write('file write error for view file '+filename,'viewcompiler.js');

@@ -11,9 +11,9 @@
 var http = require('http');
 
 var system = [];
-system['config'] = require('./system/config');
-system['logger'] = require('./system/logger');
-system['router'] = require('./system/router');
+system['config'] = require('./config');
+system['logger'] = require('./logger');
+system['router'] = require('./router');
 
 function assassinate()
 {

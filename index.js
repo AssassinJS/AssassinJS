@@ -6,10 +6,11 @@
 
 */
 //require("cf-autoconfig");
-var assassin = require('./assassin');
-var viewcompiler = require('./system/viewcompiler');
-var fileserver = require('./controllers/fileserver');
-var config = require('./system/config');
+var rqm = require('./system/rqmodules');
+var assassin = rqm.system.assassin;
+var viewcompiler = rqm.system.viewcompiler;
+var fileserver = rqm.controllers.fileserver;
+var config = rqm.system.config;
 
 //This function invokes the firsttime
 config.firsttime(function(){

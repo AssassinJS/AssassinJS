@@ -30,7 +30,7 @@
 			
 			routeList.push(routeObj);
 		}
-		fs.writeFileSync('../routes.json',JSON.stringify(routeList));
+		fs.writeFileSync('./routes.json',JSON.stringify(routeList));
 	}
 	
 	var data = fs.readFileSync('./config.txt');
@@ -44,7 +44,7 @@
 			var valuepair = listentries[row].split('\t');
 			config[valuepair[0]] = valuepair[1];
 		}
-		fs.writeFileSync('../config.json',JSON.stringify(config));
+		fs.writeFileSync('./config.json',JSON.stringify(config));
 	}
 	
 	var filetypemap = {};
@@ -62,5 +62,5 @@
 			row = listentries[row];
 			filetypemap[row.split('\t')[0].split('.')[1]] = row.split('\t')[1];
 		}
-		fs.writeFileSync('../filetypelist.json',JSON.stringify(filetypemap));
+		fs.writeFileSync('./filetypelist.json',JSON.stringify(filetypemap));
 	}

@@ -3,7 +3,7 @@ AssassinJS
 
 AssassinJS - An Access Control Framework written in Node.js
 
-Current Version: v0.1.6
+Current Version: v0.1.7
 
 Welcome to AssassinJS - An Access Control Framework written in Node.js. AssassinJS works almost like a real world assassin, only it assassinates unwanted incoming requests to your server. So don't worry, this assassin has your back :)
 
@@ -25,15 +25,15 @@ After cloning the repo you will be on master, which contains the current stable 
 run npm -d to install all the dependancies, which will save to node_modules.
 Start the mongod server if on windows, or in linux it is started by default.
 
-run node resetFirstTime.js which ensures that the config file is set to first time installation
+run node setFirstTime.js which ensures that the config file is set to first time installation
 (The config file should have firsttime=true by default, but just to make sure)
 
 Then run node index.js
 
 This will initialize the database collections first and then start the assassinjs server.
 (firsttime will be set to false in the config file, so if you run index.js again, it will not reintialize the db collections)
-(If you need to reinitialize the db collections, then run resetFirstTime.js)
-(If you already have the db initialized, run setFirstTime.js to stop the initialization when you pull a new copy of assassinjs)
+(If you need to reinitialize the db collections, then run setFirstTime.js)
+(If you already have the db initialized, run setSecondTime.js to stop the initialization when you pull a new copy of assassinjs)
 
 Thats it! Check your specified host and port number and goto the url
 http://<your url here>:<port>/assassinPanel/index.jssp

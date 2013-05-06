@@ -1,0 +1,30 @@
+GET/users/generateUID	users
+
+GET/favicon.ico	proxy
+
+GET/public/[a-zA-Z0-9_./]*	fileserver
+GET/testfilter	test
+GET/filterbrowser	test
+
+GET/assassinPanel/index.jssp	assassinPanel
+GET/assassinPanel/home.jssp	assassinPanel
+POST/assassinPanel/login.jssp	assassinPanel
+GET/assassinPanel/addfilter.jssp	assassinPanel
+GET/assassinPanel/addroute.jssp	assassinPanel
+GET/assassinPanel/deletefilter.jssp	assassinPanel
+GET/assassinPanel/deleteroute.jssp	assassinPanel
+GET/assassinPanel/filters.jssp	assassinPanel
+GET/assassinPanel/ratelimitfilter.jssp	assassinPanel
+POST/assassinPanel/ratelimitfiltersubmit.jssp	assassinPanel
+GET/assassinPanel/route.jssp	assassinPanel
+GET/assassinPanel/routefilter.jssp	assassinPanel
+POST/assassinPanel/routefiltersave.jssp	assassinPanel
+GET/assassinPanel/routes.jssp	assassinPanel
+GET/assassinPanel/useragentfilter.jssp	assassinPanel
+POST/assassinPanel/useragentfiltersubmit.jssp	assassinPanel
+GET/assassinPanel/logout.jssp	assassinPanel
+
+GET/assassinPanel/style.css	fileserver
+
+GET/index.html	fileserver
+GET/test.txt	fileserver

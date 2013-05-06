@@ -65,7 +65,8 @@ function WatchViews(ViewFile)
 	fs.watchFile('./compiled_views/'+ViewFile,{persistent: true, interval: 500 },function (curr, prev) {
 		//logger.write('the current mtime is: ' + curr.mtime,'views in fileserver.js');
 		//logger.write('the previous mtime was: ' + prev.mtime,'views in fileserver.js');
-		if(curr.mtime.getTime() != prev.mtime.getTime())
+		//if(curr.mtime.getTime() != prev.mtime.getTime())
+		if(curr.mtime != prev.mtime)
 		{
 			LoadView(ViewFile);
 			logger.write("called LoadView again for "+ViewFile,'fileserver.js');
@@ -77,10 +78,10 @@ function WatchViews(ViewFile)
 function serveFile(req,res,defaultDir,dataObj)
 {
 	var reqDetails = url.parse(req.url);
-	logger.write("Request Details: "+JSON.stringify(reqDetails),'serveFile in fileserver');
+	//logger.write("Request Details: "+JSON.stringify(reqDetails),'serveFile in fileserver');
 	var filepath =reqDetails.pathname;
 	//filepath = filepath.split('/'+filepath.split('/')[1])[1];
-	logger.write('filepath is '+filepath);
+	logger.write('filepath is '+filepath,'fileserver.js');
 	if(defaultDir==null ||defaultDir==undefined)
 		defaultDir='public';
 	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)

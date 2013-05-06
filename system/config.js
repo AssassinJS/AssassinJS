@@ -16,7 +16,7 @@ var config = require('../config/config.json');
 
 function getConfig()
 {
-	logger.write('returning config = '+JSON.stringify(config));
+	//logger.write('returning config = '+JSON.stringify(config));
 	return config;
 }
 
@@ -26,6 +26,8 @@ function firsttime(callback)
 {
 	if(config.firsttime != false)
 	{
+		//Dropping Prev Collection Data
+		DropPrevDB(function(){
 		
 		//To populate DB from routes file
 		ReadRoutesFile(function(){
@@ -55,6 +57,7 @@ function firsttime(callback)
 		});
 		});
 		});
+		});
 	}
 	else
 	{
@@ -62,6 +65,35 @@ function firsttime(callback)
 		callback();
 		return;
 	}
+}
+
+// Used to drop previous values
+function DropPrevDB(callback)
+{
+	logger.write('Dropping Previous AssassinJS Database Collections...','firsttime.js');
+	db.query('routes',function(collection1){
+		collection1.drop(function(err){
+			if(err) logger.write(err,'config firsttime');
+		
+			db.query('filterParameters',function(collection2){
+			
+				collection2.drop(function(err){
+					if(err) logger.write(err,'config firsttime');
+					
+					db.query('IPLogs',function(collection3){
+						collection3.drop(function(err){
+							if(err) logger.write(err,'config firsttime');
+							logger.write('Finished Dropping Collections','firsttime.js');
+							callback();
+							return;
+						});
+					});
+				});
+			
+			});
+		
+		});
+	});
 }
 
 // Is used only for first time initialization

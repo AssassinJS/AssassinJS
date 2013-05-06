@@ -83,7 +83,8 @@ function watchJSSP(filename)
 	fs.watchFile('JSSP/'+filename,{persistent: true, interval: 500 },function (curr, prev) {
 		//logger.write('the current mtime is: ' + curr.mtime,'viewcompiler.js');
 		//logger.write('the previous mtime was: ' + prev.mtime,'viewcompiler.js');
-		if(curr.mtime.getTime() != prev.mtime.getTime())
+		//if(curr.mtime.getTime() != prev.mtime.getTime())
+		if(curr.mtime != prev.mtime)
 		{
 			compileJSSPFile(filename);
 			logger.write("called compileJSSPFile again for "+filename,'viewcompiler.js');

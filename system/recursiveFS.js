@@ -1,15 +1,15 @@
 var fs = require('fs');
 var logger = require('./logger');
 
-function getFileList(path,removeParent)
+function getFileList(path,removeParent,extension)
 {
 	if(removeParent)
-		return getFileListR(path,path);
+		return getFileListR(path,path,extension);
 	else
-		return getFileListR(path);
+		return getFileListR(path,null,extension);
 }
 
-function getFileListR(path,defaultParent)//the defaultParent is removed from the paths
+function getFileListR(path,defaultParent,extension)//the defaultParent is removed from the paths
 {
 	//console.log('path is '+path+' and defaultParent is '+defaultParent);
 	var filelist = fs.readdirSync(path);
@@ -27,6 +27,9 @@ function getFileListR(path,defaultParent)//the defaultParent is removed from the
 		}
 		else
 		{
+			if(extension!=null && extension!=undefined && extension!='' && extension != innerPath.split('.').pop().toLowerCase())
+				break;
+			
 			if(defaultParent!=null && defaultParent!=undefined && defaultParent!='')
 			{
 				var dPReg = new RegExp('^'+defaultParent+'/');

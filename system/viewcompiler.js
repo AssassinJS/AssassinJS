@@ -9,8 +9,13 @@ var JSSPFiles = [];
 function readJSSP(callback)
 {
 	//JSSPFiles = fs.readdirSync('./JSSP/');
-	JSSPFiles = rfs.getFileList('JSSP',true); //true removes the parent dir from each entry in the list
-	rfs.createRecursiveDirectories('JSSP','compiled_views');
+	
+	//getFileList is the function with parameters as follows
+	//first parameter is directory to read
+	//second parameter is default directory, true removes the parent dir from each entry in the list
+	//third parameter is the file extension to read in the list
+	JSSPFiles = rfs.getFileList('public',true,'jssp'); 
+	rfs.createRecursiveDirectories('public','compiled_views');
 	compileJSSP();
 	callback();
 	return;
@@ -20,8 +25,12 @@ function compileJSSP()
 {
 	for(file in JSSPFiles)
 	{
-		compileJSSPFile(JSSPFiles[file]);
-		watchJSSP(JSSPFiles[file]);
+		var ext = JSSPFiles[file].split('.').pop();
+		if(ext.toLowerCase() == 'jssp')
+		{
+			compileJSSPFile(JSSPFiles[file]);
+			watchJSSP(JSSPFiles[file]);
+		}
 	}
 }
 
@@ -34,7 +43,7 @@ function compileJSSPFile(filename)
 	var compiledCode = "\r\n\r\nfunction render(__request,__response,__rqm,__dataObj){\r\nvar outputstr='';\r\n";
 	//var respondCode = fs.readFileSync('controllers/respond.js','utf-8').toString();
 	//var compiledCode = respondCode+"\r\n\r\nfunction render(__request,__response,__dataObj){\r\nvar outputstr='';\r\n";
-	var filedata = fs.readFileSync('JSSP/'+filename,'utf-8').toString();
+	var filedata = fs.readFileSync('public/'+filename,'utf-8').toString();
 	//logger.write('view contents '+filedata,'viewcompiler');
 	if(filedata!=null || filedata!=undefined)
 	{
@@ -80,7 +89,7 @@ function compileJSSPFile(filename)
 
 function watchJSSP(filename)
 {
-	fs.watchFile('JSSP/'+filename,{persistent: true, interval: 500 },function (curr, prev) {
+	fs.watchFile('public/'+filename,{persistent: true, interval: 500 },function (curr, prev) {
 		//logger.write('the current mtime is: ' + curr.mtime,'viewcompiler.js');
 		//logger.write('the previous mtime was: ' + prev.mtime,'viewcompiler.js');
 		//if(curr.mtime.getTime() != prev.mtime.getTime())

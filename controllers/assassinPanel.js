@@ -14,16 +14,18 @@ var MyMongo = require('../system/dbconnect.js').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
  
 var DataObj = { Session: {} };
+DataObj['filterDB'] = {};
+DataObj['filterDB']['format'] = {};
+DataObj['filterDB']['formattype'] = {};
+DataObj['filterDB']['total'] = {};
+DataObj['routesDB'] = {};
 
 getDBParameterObjects();//ensures first time execution
 function getDBParameterObjects()
 {
 	db.query('filterParameters',function(collection){		
 				
-		DataObj['filterDB'] = {};
-		DataObj['filterDB']['format'] = {};
-		DataObj['filterDB']['formattype'] = {};
-		DataObj['filterDB']['total'] = {};
+
 		collection.find({}).each(function(err,item){
 			if(err) 
 				logger.write('error occured in retrieving from db','assassinPanel filterDB');
@@ -47,7 +49,6 @@ function getDBParameterObjects()
 	});
 	db.query('routes',function(collection){		
 				
-		DataObj['routesDB'] = {};
 		collection.find({}).toArray(function(err,items){
 			if(err) ;
 			else if(items)
@@ -59,6 +60,11 @@ function getDBParameterObjects()
 		});
 		
 	});
+	if(db.db == undefined)
+	{
+		DataObj['routesDB']=require('../config/routes.json');
+		DataObj['routesDB'] = DataObj['routesDB'].concat(require('../config/assassinPanel.json').routes);
+	}
 }
 
 function forward(req,res)
@@ -92,7 +98,7 @@ function invoke(req,res)
 		//checking auth credentials from db
 		//the db object model is simple and easy
 		//{ "_id":"adasdas112312aqsda" , "filter":"login" , "parameters":{ "admin":"password" } }
-		db.query('filterParameters',function(collection){		
+		db.query('filterParameters',function(collection,status){
 			collection.find({filter:'login'}).nextObject(function(err,doc){			
 				if(doc)
 				{								
@@ -108,10 +114,22 @@ function invoke(req,res)
 				req.url = req['url'].replace(/login\.jssp/,'home.jssp');
 				
 				//forwarding request
-				forward(req,res);
+				forward(req,res);	
+			});
+		});
+		if(db.db==undefined)
+		{
+			var aPconfig = require('../config/assassinPanel.json');
+			if(uname == aPconfig.uname && secret == aPconfig.secret)
+			{
+				DataObj.Session[ip] = { loginOn:new Date().getTime() , isActive:true };
+			}
+			//redirecting to home page
+			req.url = req['url'].replace(/login\.jssp/,'home.jssp');
 				
-			});		
-		});			
+			//forwarding request
+			forward(req,res);
+		}
 	}
 	else if(endpoint[endpoint.length-1] === 'logout.jssp')
 	{

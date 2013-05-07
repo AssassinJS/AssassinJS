@@ -31,7 +31,7 @@ function MyMongo(host, port, dbname) {
 
     this.db_connector.open(function(err, db) {
         if( err ) {
-            console.log(err);
+            console.log('no db running: '+err);
             return;
         }
 		if(self.username && self.password)

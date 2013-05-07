@@ -35,7 +35,7 @@ function handleRequest(routesObj,request,response)
 			var controllerName = routesObj.target;
 			if(typeof(controllers[controllerName]) === 'function')
 			{
-				controllers[controllerName](request,response);		
+				controllers[controllerName](request,response);
 			}
 			else
 				controllers.error(request,response);
@@ -82,12 +82,6 @@ controllers.blocked = function(request,response,filterMessage,statusCode)
 	var rContent = filterMessage;
 	//extensions['respond'].createResponse(response,status,rHeader,rContent);
 	extensions['fileserver'].serveError(request,response,status,rContent);
-}
-
-controllers.testReg = function(request,response)
-{
-	logger.write('testReg executed');
-	extensions['respond'].createResponse(response,200,null,'testReg Executed.');
 }
 
 controllers['assassinPanel'] = extensions['assassinPanel'].invoke;

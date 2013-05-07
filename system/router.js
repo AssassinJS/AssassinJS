@@ -17,6 +17,8 @@ var filter = require('./filter');
 var MyMongo = require('./dbconnect').MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
+
+
 //Reading Routes File
 var routes={};
 
@@ -29,13 +31,22 @@ function ReadFromDB()
 			routes = list;
 		});		
 	});
+	if(db.db==undefined){
+		//To clear the previous cache
+		//var toClear = require.resolve('../config/routes.json');
+		//logger.write('resolved require object is '+toClear,'fileserver.js');
+		//delete require.cache[toClear];
+		routes = require('../config/routes.json');
+		routes = routes.concat(require('../config/assassinPanel').routes);
+		logger.write('db is undefined and routes = '+JSON.stringify(routes),'router.js');
+	}
 }
 
 function process(request,response)
 {
-	logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
+	//logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
 	var reqDetails = url.parse(request.url);
-	logger.write("Request Details: "+JSON.stringify(reqDetails));
+	//logger.write("Request Details: "+JSON.stringify(reqDetails));
 	var filepath = request.method+reqDetails.pathname;
 	var isHandled = false;
 	for(i in routes)
@@ -53,12 +64,12 @@ function process(request,response)
 						
 			if(routes[i].filters !=null || routes[i].filters != undefined)
 			{
-				logger.write('Trying to apply filters..','router.js');
+				//logger.write('Trying to apply filters..','router.js');
 				filter.applyFilters(routes[i],request,response);
 			}
 			else
 			{
-				logger.write('No filters defined for route..','router.js');
+				//logger.write('No filters defined for route..','router.js');
 				controller.handleRequest(routes[i],request,response);
 			}
 			
@@ -87,7 +98,7 @@ function route(request,response)
         });
         request.on('end', function () {
 			request.body = reqbody;
-			logger.write(request.body,'router.js');
+			//logger.write(request.body,'router.js');
 		
 			process(request,response);
         });

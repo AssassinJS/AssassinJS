@@ -1,10 +1,11 @@
 AssassinJS
 ==========
 
-AssassinJS - An Access Control Framework written in Node.js
+*AssassinJS - An Access Control Framework written in Node.js*
 
 Current Version: v0.1.7
 
+##Description
 Welcome to AssassinJS - An Access Control Framework written in Node.js. AssassinJS works almost like a real world assassin, only it assassinates unwanted incoming requests to your server. So don't worry, this assassin has your back :)
 
 AssassinJS can be used for more than just for assassinating requests. It can provide a security check on incoming requests based on filters that you specify. You can also format the data to be sent as responses with customised filters.
@@ -15,12 +16,15 @@ AssassinJS. The Secret Server Agent. At your service.
 
 (psst... Nothing is true, Everything is Permitted)
 
-How To Use:
 
-Prerequisites:
+##Prerequisites:
 *Latest version of NodeJS installed
 *Latest version of MongoDB installed
 
+AssassinJS will run with out MongoDB installed, but No Filters can be applied. Without the DB, AssassinJS is reduced to just a fileserver and proxy, depending on what default controller is specified in config.json
+Routes can be added and target controllers still be configured, though.
+
+##How To Use:
 After cloning the repo you will be on master, which contains the current stable build.
 run npm -d to install all the dependancies, which will save to node_modules.
 Start the mongod server if on windows, or in linux it is started by default.

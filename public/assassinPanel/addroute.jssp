@@ -56,7 +56,8 @@ $>
 	
 	if(route !=null && route !=undefined && route!='' && target !=null && target !=undefined && target!='')
 	{
-		db.query('routes',function(collection){				
+		db.query('routes',function(collection,status){
+		
 			var toSet = {};					
 			toSet.target = target;
 			collection.update({regexp:route},{$set:toSet},{upsert:true, w:1},function(err,data){
@@ -68,9 +69,30 @@ $>
 					__rqm.controllers.assassinPanel.getDBParameterObjects()
 				};
 			});
-						
 		});
-		
+		if(db.db==undefined)
+		{
+			//require('../../config/routes.json').push({'regexp':route,'target':target});
+			
+			var aPconfig = require('../../config/assassinPanel.json');
+			var present_flag=false;
+			for(var x in aPconfig.routes)
+			{
+				if(aPconfig.routes[x].regexp == route)
+				{
+					aPconfig.routes[x].target = target;
+					present_flag=true;
+					break;
+				}
+			}
+			if(!present_flag)
+			{
+				aPconfig.routes.push({'regexp':route,'target':target});
+			}
+			require('fs').writeFileSync('./config/assassinPanel.json',JSON.stringify(aPconfig));
+			
+			__rqm.system.router.ReadFromDB();
+		}
 		processed = true;
 	}
 $>
@@ -80,7 +102,6 @@ $>
 	{
 $>
 		<p>Added Specified Route</p>
-		<button type="button" onclick="location.replace('./routes.jssp<$$>')">Go Back</button>
 
 <$
 	}	
@@ -88,12 +109,11 @@ $>
 	{
 $>
 		<p>Route discarded,Invalid Parameters given!</p>
-		<button type="button" onclick="location.replace('./routes.jssp<$$>')">Go Back</button>
 
 <$	
 	}
 $>
-
+<button type="button" onclick="location.replace('./routes.jssp<$$>')">Go Back</button>
 </div>
 </div>
 

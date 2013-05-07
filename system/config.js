@@ -24,7 +24,7 @@ function getConfig()
 //this.prototype.firsttime = function(callback)
 function firsttime(callback)
 {
-	if(config.firsttime != false)
+	if(config.firsttime != "false")
 	{
 		//Dropping Prev Collection Data
 		DropPrevDB(function(){
@@ -207,3 +207,4 @@ function initReadFromDB()
 
 exports.firsttime = firsttime;
 exports.getConfig = getConfig;
+exports.config = config;

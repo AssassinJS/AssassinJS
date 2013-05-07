@@ -5,8 +5,16 @@
 <body>
 
 <$
-var status = __dataObj.errorStatus;
-var message = __dataObj.errorMessage;
+if(__dataObj != undefined && __dataObj !=null)
+{
+	var status = __dataObj.errorStatus;
+	var message = __dataObj.errorMessage;
+}
+else
+{
+	var status = "200";
+	var message = "This is a Test of Error View";
+}
 __request.rqm.system.logger.write('this is a test','error.jssp');
 
 $>

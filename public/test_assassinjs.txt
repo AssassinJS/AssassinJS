@@ -42,3 +42,17 @@ This will initialize the database collections first and then start the assassinj
 Thats it! Check your specified host and port number and goto the url
 http://(your url here):(port)/assassinPanel/index.jssp
 This will open up the Assassin Panel where you can configure your Routes and Filters.
+
+##Config Parameters
+The following can be changed from assassinPanel, and the effects are seen without restarting AssassinJS
+
+defaultController: fileserver (or) proxy (or) error
+proxyDomain: www.youtube.com (or) localhost
+proxyDomainPort: 80 (or) (any port number)
+proxyType: external (or) internal
+
+The following can be changed from assassinPanel, and the effects are seen AFTER restarting AssassinJS
+
+assassinjsPort:	8000
+assassinjsAddress:	0.0.0.0
+firsttime:	true (or) false

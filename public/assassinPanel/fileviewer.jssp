@@ -27,11 +27,7 @@ var newfile = query.newfile;
 $>
 <div id="contentLeft">
 <div id="projectMenu" class="glowBoxBlue">
-<a class="navMenuLink" href="./home.jssp">Home</a><br />
-<a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
-<a class="navMenuLink" href="./fileviewer.jssp">FileViewer</a><br />
-<!--<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />-->
-<a class="navMenuLink" href="./logout.jssp">Logout</a>
+<$@assassinPanel/menuList.jssp$>
 </div>
 
 <$
@@ -80,7 +76,7 @@ File Name With Extension:<br />
 <div id="contentRight">
 
 <div id="titlebox" class="glowBoxNavy">
-<p>File Viewer: <$=query.path$></p>
+<p>File Viewer: <$=path$></p>
 </div>
 <div id="infobox" class="boxNavy">
 
@@ -107,8 +103,15 @@ if(stats.isDirectory())
 }
 else
 {
-	var filedata = fs.readFileSync(path,'utf-8').toString();
-	$>File Contents:<br /><textarea readonly="true" style="width:100%;height:400px;"><$=filedata$></textarea><$
+	var filedata = fs.readFileSync(path,'utf-8');
+	$>
+	File Contents:<br />
+	<form action="./savefile.jssp" method="POST">
+	<input type="hidden" name="filepath" value="<$=path$>" />
+	<textarea name="filecontent" style="width:100%;height:400px;"><$=filedata$></text<$$>area><br /><br />
+	<button type="submit">Save Modifications</button>
+	</form>
+	<$
 }
 
 

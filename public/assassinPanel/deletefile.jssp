@@ -2,6 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="./style.css" type="text/css" />
+
 </head>
 <body>
 
@@ -21,28 +22,31 @@
 </div>
 </div>
 <div id="contentRight">
-<div id="infobox" class="glowBoxNavy">
-<p>Welcome Username!</p>
-<p>You are logged into AssassinPanel. Here you can customise your assassin server.</p>
-</div>
+<$
+var qs = require('querystring');
+var fs = require('fs');
+var formbody = qs.parse(__request.body);
+var filepath = formbody.filepath;
+$>
+<div id="titlebox" class="glowBoxNavy">
+<p><$=filepath$></p>
+<$
+	try
+	{
+		//fs.writeFileSync(filepath);
+		$>
+		<p>Has Been Deleted is still under development :P </p><br />
+		<$
+	}
+	catch(err)
+	{
+		$>
+		<p><$=err$></p><br />
+		<$
+	}
+$>
 
-<div id="configbox" class="boxNavy">
-<p>Config Parameters:</p>
-<$
-var config = __rqm.system.config.getConfig();
-//var config = __rqm.system.config.config;
-$>
-<form method="GET" action="./saveconfig.jssp">
-<table style="color:white; width:40%; margin:0px auto;">
-<$
-for(var x in config)
-{
-	$><tr><td><$=x$>:</td><td><input type="text" name="<$=x$>" value="<$=config[x]$>" /></td></tr><$
-}
-$>
-</table><br />
-<button type="submit" >Save Config</button>
-</form>
+<button type="button" onclick="location.replace('./fileviewer.jssp?path=<$=filepath$>')">Go Back</button>
 </div>
 
 </div>

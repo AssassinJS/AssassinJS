@@ -28,10 +28,7 @@
 
 <div id="contentLeft">
 <div id="projectMenu" class="glowBoxBlue">
-<a class="navMenuLink" href="./home.jssp">Home</a><br />
-<a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
-<!--<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />-->
-<a class="navMenuLink" href="./logout.jssp">Logout</a>
+<$@assassinPanel/menuList.jssp$>
 </div>
 
 <$

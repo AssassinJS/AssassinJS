@@ -4,6 +4,8 @@ var rfs = require('./recursiveFS');
 
 var JSSPFiles = [];
 
+var fileDir = 'public';
+
 //Dynamically Reading the jssp folder to get all the jssp files
 //readJSSP();//Ensures first time execution
 function readJSSP(callback)
@@ -14,8 +16,8 @@ function readJSSP(callback)
 	//first parameter is directory to read
 	//second parameter is default directory, true removes the parent dir from each entry in the list
 	//third parameter is the file extension to read in the list
-	JSSPFiles = rfs.getFileList('public',true,'jssp'); 
-	rfs.createRecursiveDirectories('public','compiled_views');
+	JSSPFiles = rfs.getFileList(fileDir,true,'jssp'); 
+	rfs.createRecursiveDirectories(fileDir,'compiled_views');
 	compileJSSP();
 	callback();
 	return;
@@ -38,16 +40,24 @@ function compileJSSPFile(filename)
 {
 	var JSSPStartDirectoryReg = new RegExp('^JSSP/');
 	var JSSPExtensionReg = new RegExp('.jssp$');
-	var EqualReg = new RegExp('^=');
-	var globalCode = '';
 	var compiledCode = "\r\n\r\nfunction render(__request,__response,__rqm,__dataObj){\r\nvar outputstr='';\r\n";
-	//var respondCode = fs.readFileSync('controllers/respond.js','utf-8').toString();
-	//var compiledCode = respondCode+"\r\n\r\nfunction render(__request,__response,__dataObj){\r\nvar outputstr='';\r\n";
-	var filedata = fs.readFileSync('public/'+filename,'utf-8').toString();
+	var filedata = fs.readFileSync(fileDir+'/'+filename,'utf-8').toString();
 	//logger.write('view contents '+filedata,'viewcompiler');
+	compiledCode = getCompiledCode(filedata);
+	compiledCode = compiledCode+"__rqm.controllers.respond.createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);\r\n/**/} \r\n\r\nexports.render = render;";
+	fs.writeFile('compiled_views/'+filename+'.js',compiledCode,function(err){
+		if(err)
+			logger.write('file write error for view file '+filename,'viewcompiler.js');
+		//else
+			//logger.write('file write successful for view file '+filename,'viewcompiler.js');
+	});
+}
+
+function getCompiledCode(filedata)
+{
+	var compiledCode='';
 	if(filedata!=null || filedata!=undefined)
 	{
-		//var viewFile = filename.split(JSSPStartDirectoryReg)[1];
 		
 		var startTagSplit = filedata.split('<$');
 		for(line in startTagSplit)
@@ -64,7 +74,10 @@ function compileJSSPFile(filename)
 					}
 					else if((/^@/).test(endTagSplit[0]))
 					{
-						globalCode = globalCode+endTagSplit[0];
+						//globalCode = globalCode+endTagSplit[0];
+						var includeFile = endTagSplit[0].split(/^@/)[1].trim();
+						var includeData = fs.readFileSync(fileDir+'/'+includeFile,'utf-8').toString();
+						compiledCode = getCompiledCode(includeData);
 					}
 					else
 						compiledCode = compiledCode+endTagSplit[0];
@@ -78,13 +91,7 @@ function compileJSSPFile(filename)
 			}
 		}
 	}
-	compiledCode = compiledCode+"__rqm.controllers.respond.createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);\r\n/**/} \r\n\r\nexports.render = render;";
-	fs.writeFile('compiled_views/'+filename+'.js',globalCode+compiledCode,function(err){
-		if(err)
-			logger.write('file write error for view file '+filename,'viewcompiler.js');
-		//else
-			//logger.write('file write successful for view file '+filename,'viewcompiler.js');
-	});
+	return compiledCode;
 }
 
 function watchJSSP(filename)

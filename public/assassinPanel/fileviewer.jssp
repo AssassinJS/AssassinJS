@@ -14,7 +14,17 @@
 </div>
 </div>
 <div id="contentWrapper">
+<$
+var url = require('url');
+var fs = require('fs');
+var query = url.parse(__request.url,true).query;
 
+var path = query.path;
+if(path==undefined || path == null || path.trim()=='') path='.';
+
+var newfile = query.newfile;
+
+$>
 <div id="contentLeft">
 <div id="projectMenu" class="glowBoxBlue">
 <a class="navMenuLink" href="./home.jssp">Home</a><br />
@@ -24,15 +34,38 @@
 <a class="navMenuLink" href="./logout.jssp">Logout</a>
 </div>
 
+<$
+if(newfile !=undefined && newfile !=null && newfile.trim()!='')
+{
+	$><div id="addedFile" class="boxBlue"><$
+	try
+	{
+		if(fs.existsSync(path+'/'+newfile)) throw('File Already Exists!')
+		fs.writeFileSync(path+'/'+newfile,'');
+		$><p>Created a New File: <$=path+'/'+newfile$></p><$
+	}
+	catch(err)
+	{
+		$><p><$=err$></p><$
+	}
+$>
+</div>
+<$
+}
+$>
+<div id="newFile" class="boxBlue">
+<p>Create a New File at Path: <$=path+'/'$></p>
+<form method="GET" action="./fileviewer.jssp">
+File Name With Extension:<br />
+<input type="text" class="roundInputBox" name="newfile" placeholder="Enter a File Name Here" />
+<input type="hidden" name="path" value="<$=path$>" /><br /><br />
+<button type="submit">Create</button>
+</form>
+</div>
+
 </div>
 <div id="contentRight">
-<$
-var url = require('url');
-var fs = require('fs');
-var query = url.parse(__request.url,true).query;
-var path = query.path;
-if(path==undefined || path == null || path.trim()=='') path='.';
-$>
+
 <div id="titlebox" class="glowBoxNavy">
 <p>File Viewer: <$=query.path$></p>
 </div>

@@ -1,1 +1,1 @@
-{"uname":"admin","secret":"password","routes":[{"regexp":"GET/test","target":"test"}]}
+{"uname":"admin","secret":"password","routes":[]}

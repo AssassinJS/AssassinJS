@@ -1,14 +1,4 @@
-<$
-var
-xfr = __request.headers['x-forwarded-for'],
-ip = xfr?xfr.split(', ')[0]:__request.connection.remoteAddress;
-
-ip = ip.replace(/\./g,'-');
-
-if(ip in __dataObj.Session) 
-{
-
-$>
+<$@assassinPanel/loginCheckHeader.jssp$>
 <html>
 <head>
 <link rel="stylesheet" href="./style.css" type="text/css" />
@@ -290,20 +280,4 @@ $>
 </div>
 
 </body>
-</html>
-<$
-}
-else 
-{
-$>
-<html>
-<head><title>AssassinJS:Assassinated!</title></head>
-<body>
-<div>
-<span style="font-size:20;">401:Unauthorized Access, Login First!</span>
-</div>
-</body>
-</html>
-<$
-}
-$>
+<$@assassinPanel/loginCheckFooter.jssp$>

@@ -43,7 +43,8 @@ function compileJSSPFile(filename)
 	var compiledCode = "\r\n\r\nfunction render(__request,__response,__rqm,__dataObj){\r\nvar outputstr='';\r\n";
 	var filedata = fs.readFileSync(fileDir+'/'+filename,'utf-8').toString();
 	//logger.write('view contents '+filedata,'viewcompiler');
-	compiledCode = getCompiledCode(filedata);
+	if(filedata.trim().indexOf('<$!$>') != 0)
+		compiledCode = compiledCode+getCompiledCode(filedata);
 	compiledCode = compiledCode+"__rqm.controllers.respond.createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);\r\n/**/} \r\n\r\nexports.render = render;";
 	fs.writeFile('compiled_views/'+filename+'.js',compiledCode,function(err){
 		if(err)
@@ -58,7 +59,6 @@ function getCompiledCode(filedata)
 	var compiledCode='';
 	if(filedata!=null || filedata!=undefined)
 	{
-		
 		var startTagSplit = filedata.split('<$');
 		for(line in startTagSplit)
 		{
@@ -77,7 +77,11 @@ function getCompiledCode(filedata)
 						//globalCode = globalCode+endTagSplit[0];
 						var includeFile = endTagSplit[0].split(/^@/)[1].trim();
 						var includeData = fs.readFileSync(fileDir+'/'+includeFile,'utf-8').toString();
-						compiledCode = getCompiledCode(includeData);
+						compiledCode = compiledCode+getCompiledCode(includeData);
+					}
+					else if((/^!/).test(endTagSplit[0]))
+					{
+						compiledCode = compiledCode+'';
 					}
 					else
 						compiledCode = compiledCode+endTagSplit[0];

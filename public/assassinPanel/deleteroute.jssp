@@ -1,14 +1,4 @@
-<$
-var
-xfr = __request.headers['x-forwarded-for'],
-ip = xfr?xfr.split(', ')[0]:__request.connection.remoteAddress;
-
-ip = ip.replace(/\./g,'-');
-
-if(ip in __dataObj.Session) 
-{
-
-$>
+<$@assassinPanel/loginCheckHeader.jssp$>
 <html>
 <head>
 <link rel="stylesheet" href="./style.css" type="text/css" />
@@ -66,6 +56,24 @@ $>
 				};
 			});				
 		});
+		if(db.db==undefined)
+		{
+			//require('../../config/routes.json').push({'regexp':route,'target':target});
+			
+			var aPconfig = require('../../config/assassinPanel.json');
+			for(var x in aPconfig.routes)
+			{
+				if(aPconfig.routes[x].regexp == route)
+				{
+					aPconfig.routes.splice(x,1);
+					break;
+				}
+			}
+			require('fs').writeFileSync('./config/assassinPanel.json',JSON.stringify(aPconfig));
+			
+			__rqm.system.router.ReadFromDB();
+			__rqm.controllers.assassinPanel.getDBParameterObjects();
+		}
 	}
 $>
 
@@ -85,19 +93,4 @@ $>
 
 </body>
 </html>
-<$
-}
-else 
-{
-$>
-<html>
-<head><title>AssassinJS:Assassinated!</title></head>
-<body>
-<div>
-<span style="font-size:20;">401:Unauthorized Access, Login First!</span>
-</div>
-</body>
-</html>
-<$
-}
-$>
+<$@assassinPanel/loginCheckFooter.jssp$>

@@ -1,0 +1,12 @@
+<$!$>
+<$
+}
+else 
+{
+	__dataObj.errorStatus = '401';
+	__dataObj.errorMessage = 'Unauthorized Access, Login First!';
+$>
+<$@error.jssp$>
+<$
+}
+$>

@@ -2,6 +2,17 @@
 <html>
 <head>
 <link rel="stylesheet" href="./style.css" type="text/css" />
+<script type="text/javascript">
+	function confirm_delete()
+	{
+		var _choice = confirm("Confirm deletion of route?");
+		
+		if(_choice)
+			return true;
+			
+		return false;
+	}
+</script>
 </head>
 <body>
 
@@ -84,7 +95,10 @@ File Name With Extension:<br />
 var stats = fs.statSync(path);
 if(stats.isDirectory())
 {
-	$>File List:<br /><$
+	$>
+	File List:<br />
+	<table>
+	<$
 	var filelist = fs.readdirSync(path);
 	for(i in filelist)
 	{
@@ -92,11 +106,19 @@ if(stats.isDirectory())
 		var innerStats = fs.statSync(innerPath);
 		if(innerStats.isDirectory())
 		{$>
-			<a href="./fileviewer.jssp?path=<$=innerPath$>"><$=innerPath$></a> ---- Directory<br />
+			<tr>
+			<td><a href="./fileviewer.jssp?path=<$=innerPath$>"><$=innerPath$></a></td>
+			<td>Directory</td>
+			<td></td>
+			</tr>
 		<$}
 		else
 		{$>
-			<a href="./fileviewer.jssp?path=<$=innerPath$>"><$=innerPath$></a> ---- File<br />
+			<tr>
+			<td><a href="./fileviewer.jssp?path=<$=innerPath$>"><$=innerPath$></a></td>
+			<td>File</td>
+			<td><a href="./deletefile.jssp?filepath=<$=innerPath$>" onclick="return confirm_delete();"><button>Delete File</button></a></td>
+			</tr>
 		<$}
 		
 	}

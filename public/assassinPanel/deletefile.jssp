@@ -24,18 +24,21 @@
 <div id="contentRight">
 <$
 var qs = require('querystring');
+var url = require('url');
 var fs = require('fs');
-var formbody = qs.parse(__request.body);
-var filepath = formbody.filepath;
+
+var query = url.parse(__request.url,true).query;
+var filepath = query.filepath;
+var parentdir = filepath.split('/'+filepath.split('/').pop())[0];
 $>
 <div id="titlebox" class="glowBoxNavy">
 <p><$=filepath$></p>
 <$
 	try
 	{
-		//fs.writeFileSync(filepath);
+		fs.unlinkSync(filepath);
 		$>
-		<p>Has Been Deleted is still under development :P </p><br />
+		<p>Has Been Deleted</p><br />
 		<$
 	}
 	catch(err)
@@ -46,7 +49,7 @@ $>
 	}
 $>
 
-<button type="button" onclick="location.replace('./fileviewer.jssp?path=<$=filepath$>')">Go Back</button>
+<button type="button" onclick="location.replace('./fileviewer.jssp?path=<$=parentdir$>')">Go Back</button>
 </div>
 
 </div>

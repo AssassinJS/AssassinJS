@@ -23,32 +23,54 @@
 <!--<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />-->
 <a class="navMenuLink" href="./logout.jssp">Logout</a>
 </div>
+
 </div>
 <div id="contentRight">
-<div id="infobox" class="glowBoxNavy">
-<p>Welcome Username!</p>
-<p>You are logged into AssassinPanel. Here you can customise your assassin server.</p>
-</div>
-
-<div id="configbox" class="boxNavy">
-<p>Config Parameters:</p>
 <$
-var config = __rqm.system.config.getConfig();
-//var config = __rqm.system.config.config;
+var url = require('url');
+var fs = require('fs');
+var query = url.parse(__request.url,true).query;
+var path = query.path;
+if(path==undefined || path == null || path.trim()=='') path='.';
 $>
-<form method="GET" action="./saveconfig.jssp">
-<table style="color:white; width:40%; margin:0px auto;">
+<div id="titlebox" class="glowBoxNavy">
+<p>File Viewer: <$=query.path$></p>
+</div>
+<div id="infobox" class="boxNavy">
+
 <$
-for(var x in config)
+var stats = fs.statSync(path);
+if(stats.isDirectory())
 {
-	$><tr><td><$=x$>:</td><td><input type="text" name="<$=x$>" value="<$=config[x]$>" /></td></tr><$
+	$>File List:<br /><$
+	var filelist = fs.readdirSync(path);
+	for(i in filelist)
+	{
+		var innerPath = path+'/'+filelist[i];
+		var innerStats = fs.statSync(innerPath);
+		if(innerStats.isDirectory())
+		{$>
+			<a href="./fileviewer.jssp?path=<$=innerPath$>"><$=innerPath$></a> ---- Directory<br />
+		<$}
+		else
+		{$>
+			<a href="./fileviewer.jssp?path=<$=innerPath$>"><$=innerPath$></a> ---- File<br />
+		<$}
+		
+	}
 }
-$>
-</table><br />
-<button type="submit" >Save Config</button>
-</form>
-</div>
+else
+{
+	var filedata = fs.readFileSync(path,'utf-8').toString();
+	$>File Contents:<br /><textarea readonly="true" style="width:100%;height:400px;"><$=filedata$></textarea><$
+}
 
+
+$>
+
+<br /><br />
+<button type="button" onclick="location.replace('./fileviewer.jssp?path=<$=path.split('/'+path.split('/').pop())[0]$>')">Go Back</button>
+</div>
 </div>
 
 </div>

@@ -40,6 +40,19 @@ if(newfile !=undefined && newfile !=null && newfile.trim()!='')
 	$><div id="addedFile" class="boxBlue"><$
 	try
 	{
+		if(newfile.split('/').length>1)
+		{
+			dirtree = newfile.split('/');
+			for(var i=0;i<dirtree.length-1;i++)
+			{
+				var dirname = '';
+				for(var j=0;j<=i;j++)
+				{
+					dirname = dirname+'/'+dirtree[j];
+				}
+				fs.mkdirSync(path+dirname);
+			}
+		}
 		if(fs.existsSync(path+'/'+newfile)) throw('File Already Exists!')
 		fs.writeFileSync(path+'/'+newfile,'');
 		$><p>Created a New File: <$=path+'/'+newfile$></p><$

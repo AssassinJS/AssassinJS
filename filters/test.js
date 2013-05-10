@@ -3,6 +3,12 @@
 
 var logger = require('../system/logger');
 
+function reloadrqm(rqm)
+{
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+}
+
 function applyFilter(routesObj,request,response)
 {
 	logger.write('test filter','filters/test.js');
@@ -13,3 +19,4 @@ function applyFilter(routesObj,request,response)
 }
 
 exports.applyFilter = applyFilter;
+exports.reloadrqm = reloadrqm;

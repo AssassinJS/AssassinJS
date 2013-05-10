@@ -10,6 +10,19 @@ var rqm = require('../system/rqmodules');
 var filetypemap = require('../config/filetypelist.json');
 var ViewsList = {};
 
+
+function reloadrqm(rqm)
+{
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+rfs.reloadrqm(rqm);
+rfs = rqm.system.recursiveFS;
+respond.reloadrqm(rqm);
+respond = rqm.controllers.respond;
+rqm = rqm;
+}
+
+
 //Not necessary if filetypelist.json is present
 //var filetypemap = {};
 //Reading filetypelist into filetypemap
@@ -168,3 +181,4 @@ exports.serveView = serveView;
 exports.serveError = serveError;
 exports.ReadFileTypeList = ReadFileTypeList;
 exports.LoadViews = LoadViews;
+exports.reloadrqm = reloadrqm;

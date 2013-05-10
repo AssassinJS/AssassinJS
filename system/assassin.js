@@ -34,4 +34,15 @@ function assassinate()
 		system.logger.write('Config Parameters not defined: port and address');
 }
 
+function reloadrqm(rqm)
+{
+system['config'].reloadrqm(rqm);
+system['config'] = rqm.system.config;
+system['logger'].reloadrqm(rqm);
+system['logger'] = rqm.system.logger;
+system['router'].reloadrqm(rqm);
+system['router'] = rqm.system.router;
+}
+
 exports.assassinate = assassinate;
+exports.reloadrqm = reloadrqm;

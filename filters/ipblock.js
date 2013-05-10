@@ -2,10 +2,21 @@
 var logger = require('../system/logger');
 var url = require('url');
 
-var MyMongo = require('../system/dbconnect').MyMongo;
+var dbconnect = require('../system/dbconnect');
+var MyMongo = dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 var IPBlacklist = [];
+
+function reloadrqm(rqm)
+{
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+dbconnect.reloadrqm(rqm);
+dbconnect = rqm.system.dbconnect;
+MyMongo = dbconnect.MyMongo;
+db = new MyMongo('localhost', 27017, 'assassindb');
+}
 
 //To read from db
 function ReadFromDB()
@@ -73,3 +84,4 @@ function applyFilter(routesObj,request,response)
 
 exports.applyFilter = applyFilter;
 exports.ReadFromDB = ReadFromDB;
+exports.reloadrqm = reloadrqm;

@@ -2,10 +2,21 @@
 var logger = require('../system/logger');
 var fs = require('fs');
 
-var MyMongo = require('../system/dbconnect.js').MyMongo;
+var dbconnect = require('../system/dbconnect');
+var MyMongo = dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 var browsers = {};
+
+function reloadrqm(rqm)
+{
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+dbconnect.reloadrqm(rqm);
+dbconnect = rqm.system.dbconnect;
+MyMongo = dbconnect.MyMongo;
+db = new MyMongo('localhost', 27017, 'assassindb');
+}
 
 //Reading from db to get the user-agent parameters object
 //ReadFromDB();//First Time Execution
@@ -92,3 +103,4 @@ function applyFilter(routesObj,request,response)
 
 exports.applyFilter = applyFilter;
 exports.ReadFromDB = ReadFromDB;
+exports.reloadrqm = reloadrqm;

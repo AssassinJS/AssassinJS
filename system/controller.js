@@ -20,6 +20,19 @@ for(i in controllerFiles)
 	extensions[controllerFile] = require('../controllers/'+controllerFile);
 }
 
+function reloadrqm(rqm)
+{
+config.reloadrqm(rqm);
+config = rqm.system.config;
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+for(var i in extensions)
+{
+	extensions[i].reloadrqm(rqm);
+}
+extensions = rqm.controllers;
+}
+
 function handleRequest(routesObj,request,response)
 {
 	logger.write('routesobj = '+JSON.stringify(routesObj),'controller.js');
@@ -100,3 +113,4 @@ else
 	controllers['proxy'] = extensions['proxy_external'].forwardRequest;				
 
 exports.handleRequest = handleRequest;
+exports.reloadrqm = reloadrqm;

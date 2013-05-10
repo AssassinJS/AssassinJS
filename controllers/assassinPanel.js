@@ -10,15 +10,28 @@ var fileserver = require('./fileserver');
 var logger = require('../system/logger');
 var url = require('url');
 
-var MyMongo = require('../system/dbconnect.js').MyMongo;
+var dbconnect = require('../system/dbconnect');
+var MyMongo = dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
- 
+
 var DataObj = { Session: {} };
 DataObj['filterDB'] = {};
 DataObj['filterDB']['format'] = {};
 DataObj['filterDB']['formattype'] = {};
 DataObj['filterDB']['total'] = {};
 DataObj['routesDB'] = {};
+
+function reloadrqm(rqm)
+{
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+dbconnect.reloadrqm(rqm);
+dbconnect = rqm.system.dbconnect;
+MyMongo = dbconnect.MyMongo;
+db = new MyMongo('localhost', 27017, 'assassindb');
+fileserver.reloadrqm(rqm);
+fileserver = rqm.controllers.fileserver;
+}
 
 getDBParameterObjects();//ensures first time execution
 function getDBParameterObjects()
@@ -160,3 +173,4 @@ function invoke(req,res)
 
 exports.invoke = invoke;
 exports.getDBParameterObjects = getDBParameterObjects;
+exports.reloadrqm = reloadrqm;

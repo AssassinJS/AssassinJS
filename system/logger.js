@@ -34,5 +34,11 @@ function moduleInfo(theModule)
 	});
 }
 
+function reloadrqm(rqm)
+{
+//nothing to reload here :P
+}
+
 exports.write = write;
 exports.moduleInfo = moduleInfo;
+exports.reloadrqm = reloadrqm;

@@ -9,10 +9,21 @@
 var fs = require('fs');
 var logger = require('./logger');
 
-var MyMongo = require('./dbconnect').MyMongo;
+var dbconnect = require('./dbconnect');
+var MyMongo = dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
 var config = require('../config/config.json');
+
+function reloadrqm(rqm)
+{
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+dbconnect.reloadrqm(rqm);
+dbconnect = rqm.system.dbconnect;
+MyMongo = dbconnect.MyMongo;
+db = new MyMongo('localhost', 27017, 'assassindb');
+}
 
 function getConfig()
 {
@@ -208,3 +219,4 @@ function initReadFromDB()
 exports.firsttime = firsttime;
 exports.getConfig = getConfig;
 exports.config = config;
+exports.reloadrqm = reloadrqm;

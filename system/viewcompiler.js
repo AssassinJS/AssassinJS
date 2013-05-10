@@ -6,6 +6,14 @@ var JSSPFiles = [];
 
 var fileDir = 'public';
 
+function reloadrqm(rqm)
+{
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+rfs.reloadrqm(rqm);
+rfs = rqm.system.recursiveFS;
+}
+
 //Dynamically Reading the jssp folder to get all the jssp files
 //readJSSP();//Ensures first time execution
 function readJSSP(callback)
@@ -122,3 +130,4 @@ function watchJSSP(filename)
 
 exports.readJSSP = readJSSP;
 exports.compileJSSP = compileJSSP;
+exports.reloadrqm = reloadrqm;

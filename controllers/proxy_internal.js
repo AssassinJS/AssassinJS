@@ -3,6 +3,14 @@ var http = require('http');
 var config = require('../system/config');
 var logger = require('../system/logger');
 
+function reloadrqm(rqm)
+{
+config.reloadrqm(rqm);
+config = rqm.system.config;
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+}
+
 function forwardRequest(request,response)
 {	
 	var		
@@ -157,3 +165,4 @@ function forwardRequest(request,response)
 }
 
 exports.forwardRequest = forwardRequest;
+exports.reloadrqm = reloadrqm;

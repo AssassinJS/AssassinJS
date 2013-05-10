@@ -1,6 +1,12 @@
 var fs = require('fs');
 var logger = require('./logger');
 
+function reloadrqm(rqm)
+{
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+}
+
 function getFileList(path,removeParent,extension)
 {
 	if(removeParent)
@@ -130,6 +136,33 @@ function createRecursiveDirectories(source,destination)
 	*/
 }
 
+function watchRecursive(path,callback)
+{
+	//console.log('calling wR() for path: '+path);
+	if(fs.statSync(path).isDirectory())
+	{	
+		//console.log(path+' is directory');
+		var flist = fs.readdirSync(path);
+		//console.log(JSON.stringify(flist));
+		for(var i in flist)
+			watchRecursive(path+'/'+flist[i],callback);
+	}
+	//console.log('after if case : '+path);
+	else
+	{
+		fs.watch(path,function(event,filename){
+			if(callback!=undefined && callback!=null)
+				callback(event,filename,path);
+			else
+				console.log('file: '+filename+' caused an event: '+event+' at path: '+path);
+		});
+	//console.log('after watching : '+path);
+	}
+}
+
+
 exports.getFileList = getFileList;
 exports.getDirectoryList = getDirectoryList;
 exports.createRecursiveDirectories = createRecursiveDirectories;
+exports.watchRecursive = watchRecursive;
+exports.reloadrqm = reloadrqm;

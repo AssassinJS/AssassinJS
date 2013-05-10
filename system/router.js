@@ -9,15 +9,27 @@
 var url = require('url');
 var fs = require('fs');
 
-var rqm = require('./rqmodules');
 var controller = require('./controller');
 var logger = require('./logger');
 var filter = require('./filter');
 
-var MyMongo = require('./dbconnect').MyMongo;
+var dbconnect = require('./dbconnect');
+var MyMongo = dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 
-
+function reloadrqm(rqm)
+{
+controller.reloadrqm(rqm);
+controller = rqm.system.controller;
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+filter.reloadrqm(rqm);
+filter = rqm.system.filter;
+dbconnect.reloadrqm(rqm);
+dbconnect = rqm.system.dbconnect;
+MyMongo = dbconnect.MyMongo;
+db = new MyMongo('localhost', 27017, 'assassindb');
+}
 
 //Reading Routes File
 var routes={};
@@ -89,7 +101,6 @@ function process(request,response)
 //Actual Routing Function
 function route(request,response)
 {			
-	request.rqm = rqm;
 	if(request.method == 'POST')//for post requests, to get the entire request body
 	{
         var reqbody = '';
@@ -111,3 +122,4 @@ function route(request,response)
 
 exports.route = route;
 exports.ReadFromDB = ReadFromDB;
+exports.reloadrqm = reloadrqm;

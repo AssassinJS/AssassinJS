@@ -122,6 +122,9 @@ if(stats.isDirectory())
 		<$}
 		
 	}
+	$>
+	</table>
+	<$
 }
 else
 {

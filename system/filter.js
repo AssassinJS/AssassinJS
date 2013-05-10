@@ -26,6 +26,19 @@ function ReadFilters()
 	}
 }
 
+function reloadrqm(rqm)
+{
+controller.reloadrqm(rqm);
+controller = rqm.system.controller;
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
+for(var i in filters)
+{
+	filters[i].reloadrqm(rqm);
+}
+filters = rqm.filters;
+}
+
 function applyFilters(routesObj,request,response)
 {
 	var filterObj = {};
@@ -50,3 +63,4 @@ function applyFilters(routesObj,request,response)
 }
 
 exports.applyFilters = applyFilters;
+exports.reloadrqm = reloadrqm;

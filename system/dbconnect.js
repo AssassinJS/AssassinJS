@@ -56,6 +56,7 @@ function MyMongo(host, port, dbname) {
     });
 }
 exports.MyMongo = MyMongo;
+exports.reloadrqm = reloadrqm;
 
 MyMongo.prototype.query = function(collectionName, callback) {
     if (this.db != undefined) {
@@ -64,4 +65,9 @@ MyMongo.prototype.query = function(collectionName, callback) {
         return;
     }
     this.queue.push({ "cn" : collectionName, "cb" : callback});
+}
+
+function reloadrqm(rqm)
+{
+//nothing to do here :P
 }

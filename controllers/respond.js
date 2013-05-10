@@ -12,4 +12,10 @@ function __createResponse(response,StatusCode,ResponseHeader,ResponseContent)
 	response.end();
 }
 
+function reloadrqm(rqm)
+{
+//nothing to do here :P
+}
+
 exports.createResponse = __createResponse;
+exports.reloadrqm = reloadrqm;

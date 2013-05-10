@@ -15,7 +15,7 @@ else
 	var status = "200";
 	var message = "This is a Test of Error View";
 }
-__request.rqm.system.logger.write('this is a test','error.jssp');
+__rqm.system.logger.write('this is a test','error.jssp');
 
 $>
 

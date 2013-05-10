@@ -72,7 +72,33 @@ for(i in filtersL)
 //console.log(JSON.stringify(system));
 //console.log(JSON.stringify(controllers));
 //console.log(JSON.stringify(filters));
-
+function watchrqm(callback)
+{
+	rfs.watchRecursive('./controllers',function(event,filename,path){
+		var toClear = require.resolve(path);
+		//console.log('resolved require object is '+toClear);
+		delete require.cache[toClear];
+		controllers[filename.split('.')[0]] = require(path);
+		callback();
+	});
+	rfs.watchRecursive('./system',function(event,filename,path){
+		if(filename.split('.').pop().toLowerCase() != 'js') return;
+		var toClear = require.resolve('./'+filename);
+		//console.log('resolved require object is '+toClear);
+		delete require.cache[toClear];
+		system[filename.split('.')[0]] = require('./'+filename);
+		callback();
+	});
+	rfs.watchRecursive('./filters',function(event,filename,path){
+		var toClear = require.resolve(path);
+		//console.log('resolved require object is '+toClear);
+		delete require.cache[toClear];
+		filters[filename.split('.')[0]] = require(path);
+		callback();
+	});
+}
+	
 exports.system = system;
 exports.controllers = controllers;
 exports.filters = filters;
+exports.watchrqm = watchrqm;

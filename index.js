@@ -20,7 +20,21 @@ viewcompiler.readJSSP(function(){
 
 //This function reads all the views in compiled_views folder
 fileserver.LoadViews(function(){
-
+rqm.watchrqm(function(){
+	//console.log('watchrqm executed')
+	var toClear = require.resolve('./system/rqmodules');
+	console.log('resolved require object is '+toClear);
+	delete require.cache[toClear];
+	rqm = require('./system/rqmodules');
+	assassin.reloadrqm(rqm);
+	assassin = rqm.system.assassin;
+	viewcompiler.reloadrqm(rqm);
+	viewcompiler = rqm.system.viewcompiler;
+	fileserver.reloadrqm(rqm);
+	fileserver = rqm.controllers.fileserver;
+	config.reloadrqm(rqm);
+	config = rqm.system.config;
+});
 //This function invokes assassin
 assassin.assassinate();
 });

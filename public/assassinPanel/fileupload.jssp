@@ -1,0 +1,115 @@
+<$@assassinPanel/loginCheckHeader.jssp$>
+<html>
+<head>
+<link rel="stylesheet" href="./style.css" type="text/css" />
+
+</head>
+<body>
+
+<div id="bodyWrapper">
+
+<div id="headerWrapper">
+<div id="headerContent">
+<div class="headingText left">Assassin.js</div>
+<div class="headingText right">Assassin Panel</div>
+</div>
+</div>
+<div id="contentWrapper">
+<$
+var url = require('url');
+var fs = require('fs');
+var path='';
+var newfiles = {};
+
+
+/*multipart form FILE upload parser*/
+/**/
+var headers = __request.headers;
+var contentType = headers['content-type'];
+var boundary = contentType.split('boundary=')[1];
+
+var body = __request.body;
+var data = body.split(boundary);
+for(var i in data)
+{
+	if(data[i] != '' && data[i]!='--' && data[i] != '--\r\n' && data[i]!=null && data[i]!=undefined)
+	{
+		var entry = data[i];
+		var entryHeader = entry.split('\r\n\r\n')[0]+'\r\n\r\n';
+		var entryBody = entry.split(entryHeader)[1].replace(/\r\n--$/,'');
+		var contentDisposition = entryHeader.split('\r\n')[1].split('Content-Disposition: ')[1];
+		var contentType = entryHeader.split('\r\n')[2].split('Content-Type: ')[1];
+		var filename = contentDisposition.split('filename=')[1];
+		if(filename!=undefined && filename != null)
+		{
+			filename = filename.replace(/\"/g,'');
+			var name = contentDisposition.split(';')[1].split('name=')[1].replace(/\"/g,'');
+		}
+		else
+		{
+			var name = contentDisposition.split('name=')[1].replace(/\"/g,'');
+		}
+		if(name == "path")
+		{
+			path = entryBody;
+		}
+		if(name == "upfile")
+		{
+			/*newfiles[filename] = new Buffer(entryBody,'utf8');*/
+			newfiles[filename] = entryBody;
+		}
+	}
+}
+
+
+if(path==undefined || path == null || path.trim()=='') path='.';
+
+$>
+<div id="contentLeft">
+<div id="projectMenu" class="glowBoxBlue">
+<$@assassinPanel/menuList.jssp$>
+</div>
+
+
+</div>
+<div id="contentRight">
+
+<div id="titlebox" class="glowBoxNavy">
+<p>File Viewer: <$=path$></p>
+</div>
+<div id="infobox" class="boxNavy">
+<$
+for(var i in newfiles)
+{
+	try
+	{
+		if(fs.existsSync(path+'/'+i)) throw('File Already Exists!')
+		/*fs.writeFileSync(path+'/'+i,newfiles[i],{enc:'utf8'});*/
+		fs.writeFileSync(path+'/'+i,newfiles[i]);
+		$><p>Created a New File: <$=path+'/'+i$></p><$
+	}
+	catch(err)
+	{
+		$><p><$=err$></p><$
+	}
+}
+$>
+<br /><br />
+<button type="button" onclick="location.replace('./fileviewer.jssp?path=<$=path$>')">Go Back</button>
+</div>
+</div>
+
+</div>
+<div id="footerWrapper">
+<div id="footerContent">
+<div class="left">
+(c)2013 Adithya Chebiyyam and Sai Teja Jammalamadaka</div>
+<div class="right">Maintained By <a href="http://www.setusoftware.com">Setu Software Systems</a></div>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
+<$@assassinPanel/loginCheckFooter.jssp$>

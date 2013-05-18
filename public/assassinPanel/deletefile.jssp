@@ -34,9 +34,17 @@ $>
 <div id="titlebox" class="glowBoxNavy">
 <p><$=filepath$></p>
 <$
+	var stats = fs.statSync(filepath);
 	try
 	{
-		fs.unlinkSync(filepath);
+		if(stats.isFile())
+		{
+			fs.unlinkSync(filepath);
+		}
+		else if(stats.isDirectory())
+		{
+			fs.rmdirSync(filepath);
+		}
 		$>
 		<p>Has Been Deleted</p><br />
 		<$

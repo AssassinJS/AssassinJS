@@ -5,7 +5,7 @@
 <script type="text/javascript">
 	function confirm_delete()
 	{
-		var _choice = confirm("Confirm deletion of route?");
+		var _choice = confirm("Confirm deletion of path?");
 		
 		if(_choice)
 			return true;
@@ -60,7 +60,8 @@ if(newfile !=undefined && newfile !=null && newfile.trim()!='')
 				fs.mkdirSync(path+dirname);
 			}
 		}
-		if(fs.existsSync(path+'/'+newfile)) throw('File Already Exists!')
+		if(fs.statSync(path+'/'+newfile).isDirectory()) throw('Directory Created');
+		if(fs.existsSync(path+'/'+newfile)) throw('File Already Exists!');
 		fs.writeFileSync(path+'/'+newfile,'');
 		$><p>Created a New File: <$=path+'/'+newfile$></p><$
 	}
@@ -80,6 +81,15 @@ File Name With Extension:<br />
 <input type="text" class="roundInputBox" name="newfile" placeholder="Enter a File Name Here" />
 <input type="hidden" name="path" value="<$=path$>" /><br /><br />
 <button type="submit">Create</button>
+</form>
+</div>
+
+<div id="upForm" class="boxBlue">
+<p>Upload Files Into Current Directory: <$=path+'/'$></p>
+<form method="POST" enctype="multipart/form-data" action="./fileupload.jssp">
+Files to upload: <input type="file" name="upfile" multiple><br />
+<input type="hidden" name="path" value="<$=path$>" /><br /><br />
+<button type="submit">Upload</button>
 </form>
 </div>
 
@@ -109,7 +119,7 @@ if(stats.isDirectory())
 			<tr>
 			<td><a href="./fileviewer.jssp?path=<$=innerPath$>"><$=innerPath$></a></td>
 			<td>Directory</td>
-			<td></td>
+			<td><a href="./deletefile.jssp?filepath=<$=innerPath$>" onclick="return confirm_delete();"><button>Delete Directory</button></a></td>
 			</tr>
 		<$}
 		else

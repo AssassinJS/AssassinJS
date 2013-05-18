@@ -103,12 +103,16 @@ function route(request,response)
 {			
 	if(request.method == 'POST')//for post requests, to get the entire request body
 	{
-        var reqbody = '';
+		var reqbody = '';
+		var reqbodyList = [];
         request.on('data', function (data) {
-            reqbody += data;
+			reqbody += data;
+            toAdd = new Buffer(data,'binary');
+			reqbodyList.push(toAdd);
         });
         request.on('end', function () {
 			request.body = reqbody;
+			request.bodyBinary = Buffer.concat(reqbodyList);
 			//logger.write(request.body,'router.js');
 		
 			process(request,response);

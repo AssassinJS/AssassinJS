@@ -64,7 +64,7 @@ var db = new MyMongo('localhost', 27017, 'assassindb');
 $>
 <table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative">
 	<$
-	if(db.db!=undefined)
+	if(db.useDB == 'true')
 	{
 	$>
 	<tr>
@@ -85,7 +85,7 @@ $>
 	<tr>
 		<td style="color:white;">
 			<$
-			if(db.db!=undefined)
+			if(db.useDB == 'true')
 			{
 			$>
 			<a href="./route.jssp?route=<$=routesList[x].regexp$>"><$=routesList[x].regexp$></a>

@@ -73,7 +73,7 @@ function getDBParameterObjects()
 		});
 		
 	});
-	if(db.db == undefined)
+	if(db.useDB == 'false')
 	{
 		DataObj['routesDB']=require('../config/routes.json');
 		DataObj['routesDB'] = DataObj['routesDB'].concat(require('../config/assassinPanel.json').routes);
@@ -130,7 +130,7 @@ function invoke(req,res)
 				forward(req,res);	
 			});
 		});
-		if(db.db==undefined)
+		if(db.useDB == 'false')
 		{
 			var aPconfig = require('../config/assassinPanel.json');
 			if(uname == aPconfig.uname && secret == aPconfig.secret)

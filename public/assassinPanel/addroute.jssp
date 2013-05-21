@@ -57,7 +57,7 @@ $>
 				};
 			});
 		});
-		if(db.db==undefined)
+		if(db.useDB == 'false')
 		{
 			//require('../../config/routes.json').push({'regexp':route,'target':target});
 			

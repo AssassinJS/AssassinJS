@@ -1,7 +1,11 @@
 var mongodb = require('mongodb');
+var logger = require('./logger');
+
+var configObj = require('../config/config.json');
 
 function MyMongo(host, port, dbname) {
 
+	this.useDB = configObj.useDB;
 	if(process.env.VCAP_SERVICES){
 		var env = JSON.parse(process.env.VCAP_SERVICES);
 		var mongoInstance = env['mongodb-2.0'][0]['credentials'];
@@ -69,5 +73,6 @@ MyMongo.prototype.query = function(collectionName, callback) {
 
 function reloadrqm(rqm)
 {
-//nothing to do here :P
+logger.reloadrqm(rqm);
+logger = rqm.system.logger;
 }

@@ -7,6 +7,7 @@ function MyMongo(host, port, dbname) {
 
 	this.useDB = configObj.useDB;
 	if(process.env.VCAP_SERVICES){
+		logger.write('VMC DB','dbconnect.js');
 		var env = JSON.parse(process.env.VCAP_SERVICES);
 		var mongoInstance = env['mongodb-2.0'][0]['credentials'];
 		this.host = mongoInstance.hostname;
@@ -15,8 +16,18 @@ function MyMongo(host, port, dbname) {
 		this.username = mongoInstance.username;
 		this.password = mongoInstance.password;
 	}
+	else if(process.env.OPENSHIFT_MONGODB_DB_HOST != null && process.env.OPENSHIFT_MONGODB_DB_HOST != undefined)
+	{
+		logger.write('OpenShift DB','dbconnect.js');
+		this.host = process.env.OPENSHIFT_MONGODB_DB_HOST;
+		this.port = process.env.OPENSHIFT_MONGODB_DB_PORT;
+		this.username = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
+		this.password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
+		this.dbname = process.env.OPENSHIFT_APP_NAME;
+	}
 	else
 	{
+		logger.write('Local DB','dbconnect.js');
 		this.host = host;
 		this.port = port;
 		this.dbname = dbname;

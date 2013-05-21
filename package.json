@@ -5,13 +5,17 @@
   "keywords" : ["access control","framework","util", "server", "client"],
   "contributors" : ["Sai Teja Jammalamadaka <tsjamm@gmail.com>", "Adithya Chebiyyam <adithya217@gmail.com>"],
   "dependencies" : {
-  "mongodb":"*"
+	"mongodb":">0"
   },
-  "repository" : {"type": "git", "url": "git://github.com/AssassinJS/AssassinJS.git"},
+  "repository" : {
+	"type": "git",
+	"url": "git://github.com/AssassinJS/AssassinJS.git"
+  },
   "main" : "index.js",
-  "version" : "0.1.6",
+  "version" : "1.1.0",
   "engines": {
-	"node": "*"
+	"node": ">= 0.8.0",
+	"npm": ">= 1.0.0"
   },
   "scripts":{
 	"start": "node index.js"

@@ -170,7 +170,7 @@ function serveError(req,res,status,message)
 	{		
 		//Third param is the RequiredModules object rqm
 		//Fourth param is optional which is a dataObj
-		toServe.render(req,res,rqm,dataObj);
+		toServe.render(req,res,rqmMain,dataObj);
 		logger.write('error.jssp View Rendered','fileserver.js');
 	}
 	else

@@ -8,6 +8,7 @@ var rqm = require('../system/rqmodules');
 
 //Global Variabels in this module
 var filetypemap = require('../config/filetypelist.json');
+var defaultFile = require('../config/config.json').fileDefault;
 var ViewsList = {};
 
 
@@ -97,8 +98,12 @@ function serveFile(req,res,defaultDir,dataObj)
 	logger.write('filepath is '+filepath,'fileserver.js');
 	if(defaultDir==null ||defaultDir==undefined)
 		defaultDir='public';
+	var filepathreg = /\/$/g;
+	//logger.write('defaultFile '+defaultFile);
+	if(filepathreg.test(filepath)==true) filepath = filepath+defaultFile;
 	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
-		filepath = '/index.html';
+		filepath = '/'+defaultFile;
+	//logger.write('filepath is '+filepath);
 	var fileextension = filepath.split('.').pop();
 	//logger.write('fileextension is '+fileextension,'serveFile in fileserver');
 	if(fileextension =='jssp')
@@ -130,9 +135,11 @@ function serveView(req,res,dataObj)
 	var filepath =reqDetails.pathname;
 	//filepath = filepath.split('/'+filepath.split('/')[1])[1];
 	//logger.write('filepath is '+filepath,'serveView in fileserver');
-	
+	var filepathreg = /\/$/g;
+	//logger.write('defaultFile '+defaultFile);
+	if(filepathreg.test(filepath)==true) filepath = filepath+defaultFile;
 	if(filepath == '/' || filepath == '' || filepath == null || filepath == undefined)
-		filepath = '/index.jssp';
+		filepath = '/'+defaultFile;
 	filepath = filepath+'.js';
 	var toServe = ViewsList[filepath];
 	if(toServe!=null || toServe!=undefined)

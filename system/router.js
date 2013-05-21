@@ -43,7 +43,7 @@ function ReadFromDB()
 			routes = list;
 		});		
 	});
-	if(db.db==undefined){
+	if(db.useDB=='false'){
 		//To clear the previous cache
 		//var toClear = require.resolve('../config/routes.json');
 		//logger.write('resolved require object is '+toClear,'fileserver.js');

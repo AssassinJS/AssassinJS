@@ -73,6 +73,6 @@ MyMongo.prototype.query = function(collectionName, callback) {
 
 function reloadrqm(rqm)
 {
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
 }

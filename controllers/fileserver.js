@@ -4,7 +4,9 @@ var fs = require('fs');
 var logger = require('../system/logger');
 var rfs = require('../system/recursiveFS');
 var respond = require('./respond');
-var rqm = require('../system/rqmodules');
+//var rqm = require('../system/rqmodules');
+//rqmMain gets initialized by index.js from LoadViews() function, and gets sent to views
+var rqmMain;
 
 //Global Variabels in this module
 var filetypemap = require('../config/filetypelist.json');
@@ -14,13 +16,13 @@ var ViewsList = {};
 
 function reloadrqm(rqm)
 {
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
-rfs.reloadrqm(rqm);
+try{rfs.reloadrqm(rqm);}catch(err){console.log(err);}
 rfs = rqm.system.recursiveFS;
-respond.reloadrqm(rqm);
+try{respond.reloadrqm(rqm);}catch(err){console.log(err);}
 respond = rqm.controllers.respond;
-rqm = rqm;
+//rqmMain = rqm;
 }
 
 
@@ -46,8 +48,9 @@ function ReadFileTypeList()
 	}
 }
 
-function LoadViews(callback)
+function LoadViews(rqm,callback)
 {
+	rqmMain = rqm;
 	var ViewFiles = [];
 	ViewFiles = rfs.getFileList('compiled_views',true);
 	for(i in ViewFiles)
@@ -146,7 +149,7 @@ function serveView(req,res,dataObj)
 	{		
 		//Third param is the RequiredModules object rqm
 		//Fourth param is optional which is a dataObj
-		toServe.render(req,res,rqm,dataObj);
+		toServe.render(req,res,rqmMain,dataObj);
 		logger.write('View Rendered:\n','fileserver.js');
 	}
 	else

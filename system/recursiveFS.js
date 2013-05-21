@@ -3,7 +3,7 @@ var logger = require('./logger');
 
 function reloadrqm(rqm)
 {
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
 }
 

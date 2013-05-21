@@ -19,13 +19,13 @@ var db = new MyMongo('localhost', 27017, 'assassindb');
 
 function reloadrqm(rqm)
 {
-controller.reloadrqm(rqm);
+try{controller.reloadrqm(rqm);}catch(err){console.log(err);}
 controller = rqm.system.controller;
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
-filter.reloadrqm(rqm);
+try{filter.reloadrqm(rqm);}catch(err){console.log(err);}
 filter = rqm.system.filter;
-dbconnect.reloadrqm(rqm);
+try{dbconnect.reloadrqm(rqm);}catch(err){console.log(err);}
 dbconnect = rqm.system.dbconnect;
 MyMongo = dbconnect.MyMongo;
 db = new MyMongo('localhost', 27017, 'assassindb');

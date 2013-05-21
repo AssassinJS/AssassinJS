@@ -1,4 +1,3 @@
-
 function __createResponse(response,StatusCode,ResponseHeader,ResponseContent)
 {
 	if(ResponseHeader == null)

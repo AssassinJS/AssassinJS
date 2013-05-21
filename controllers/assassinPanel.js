@@ -19,17 +19,17 @@ DataObj['filterDB'] = {};
 DataObj['filterDB']['format'] = {};
 DataObj['filterDB']['formattype'] = {};
 DataObj['filterDB']['total'] = {};
-DataObj['routesDB'] = {};
+DataObj['routesDB'] = {}; 
 
 function reloadrqm(rqm)
 {
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
-dbconnect.reloadrqm(rqm);
+try{dbconnect.reloadrqm(rqm);}catch(err){console.log(err);}
 dbconnect = rqm.system.dbconnect;
 MyMongo = dbconnect.MyMongo;
 db = new MyMongo('localhost', 27017, 'assassindb');
-fileserver.reloadrqm(rqm);
+try{fileserver.reloadrqm(rqm);}catch(err){console.log(err);}
 fileserver = rqm.controllers.fileserver;
 }
 

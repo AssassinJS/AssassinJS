@@ -5,9 +5,9 @@ var logger = require('../system/logger');
 
 function reloadrqm(rqm)
 {
-config.reloadrqm(rqm);
+try{config.reloadrqm(rqm);}catch(err){console.log(err);}
 config = rqm.system.config;
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
 }
 

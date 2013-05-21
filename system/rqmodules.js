@@ -75,6 +75,7 @@ for(i in filtersL)
 function watchrqm(callback)
 {
 	rfs.watchRecursive('./controllers',function(event,filename,path){
+		path = '.'+path;
 		var toClear = require.resolve(path);
 		//console.log('resolved require object is '+toClear);
 		delete require.cache[toClear];
@@ -90,6 +91,7 @@ function watchrqm(callback)
 		callback();
 	});
 	rfs.watchRecursive('./filters',function(event,filename,path){
+		path = '.'+path;
 		var toClear = require.resolve(path);
 		//console.log('resolved require object is '+toClear);
 		delete require.cache[toClear];

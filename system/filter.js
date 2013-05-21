@@ -28,13 +28,13 @@ function ReadFilters()
 
 function reloadrqm(rqm)
 {
-controller.reloadrqm(rqm);
+try{controller.reloadrqm(rqm);}catch(err){console.log(err);}
 controller = rqm.system.controller;
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
 for(var i in filters)
 {
-	filters[i].reloadrqm(rqm);
+	try{filters[i].reloadrqm(rqm);}catch(err){console.log(err);}
 }
 filters = rqm.filters;
 }

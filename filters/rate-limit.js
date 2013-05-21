@@ -11,9 +11,9 @@ var IPLogs = {};
 
 function reloadrqm(rqm)
 {
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
-dbconnect.reloadrqm(rqm);
+try{dbconnect.reloadrqm(rqm);}catch(err){console.log(err);}
 dbconnect = rqm.system.dbconnect;
 MyMongo = dbconnect.MyMongo;
 db = new MyMongo('localhost', 27017, 'assassindb');

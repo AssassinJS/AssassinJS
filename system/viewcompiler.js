@@ -8,9 +8,9 @@ var fileDir = 'public';
 
 function reloadrqm(rqm)
 {
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
-rfs.reloadrqm(rqm);
+try{rfs.reloadrqm(rqm);}catch(err){console.log(err);}
 rfs = rqm.system.recursiveFS;
 }
 

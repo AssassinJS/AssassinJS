@@ -22,13 +22,13 @@ for(i in controllerFiles)
 
 function reloadrqm(rqm)
 {
-config.reloadrqm(rqm);
+try{config.reloadrqm(rqm);}catch(err){console.log(err);}
 config = rqm.system.config;
-logger.reloadrqm(rqm);
+try{logger.reloadrqm(rqm);}catch(err){console.log(err);}
 logger = rqm.system.logger;
 for(var i in extensions)
 {
-	extensions[i].reloadrqm(rqm);
+	try{extensions[i].reloadrqm(rqm);}catch(err){console.log(err);}
 }
 extensions = rqm.controllers;
 }

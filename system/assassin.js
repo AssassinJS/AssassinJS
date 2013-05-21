@@ -22,6 +22,7 @@ function assassinate()
 	var port = (process.env.VMC_APP_PORT || config.assassinjsPort);
 	var host = (process.env.VMC_APP_HOST || config.assassinjsAddress);
 	//system.logger.write('config object='+JSON.stringify(config));
+
 	server.on('request',system.router.route);
 
 	if(port!=undefined && host!=undefined)
@@ -36,11 +37,11 @@ function assassinate()
 
 function reloadrqm(rqm)
 {
-system['config'].reloadrqm(rqm);
+try{system['config'].reloadrqm(rqm);}catch(err){console.log(err);}
 system['config'] = rqm.system.config;
-system['logger'].reloadrqm(rqm);
+try{system['logger'].reloadrqm(rqm);}catch(err){console.log(err);}
 system['logger'] = rqm.system.logger;
-system['router'].reloadrqm(rqm);
+try{system['router'].reloadrqm(rqm);}catch(err){console.log(err);}
 system['router'] = rqm.system.router;
 }
 

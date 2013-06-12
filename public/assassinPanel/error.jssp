@@ -1,0 +1,46 @@
+<html>
+<head>
+<link rel="stylesheet" href="/assassinPanel/style.css" type="text/css" />
+</head>
+<body>
+
+<$
+if(__dataObj != undefined && __dataObj !=null)
+{
+	var status = __dataObj.errorStatus;
+	var message = __dataObj.errorMessage;
+}
+else
+{
+	var status = "200";
+	var message = "This is a Test of Error View";
+}
+__rqm.system.logger.write('this is a test','error.jssp');
+
+$>
+
+<div id="bodyWrapper">
+
+<$@assassinPanel/pageHeader.jssp$>
+
+<div id="contentWrapper">
+
+<div id="contentLeft">
+<div id="StatusBox" class="glowBoxBlue">
+<h1>Status Code: <$=status$></h1>
+
+</div>
+</div>
+<div id="contentRight">
+<div id="descriptionPanel" class="glowBoxNavy">
+<h1><$=message$></h1>
+</div>
+</div>
+
+</div>
+<$@assassinPanel/pageFooter.jssp$>
+
+</div>
+
+</body>
+</html>

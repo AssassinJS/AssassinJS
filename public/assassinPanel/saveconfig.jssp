@@ -7,12 +7,8 @@
 
 <div id="bodyWrapper">
 
-<div id="headerWrapper">
-<div id="headerContent">
-<div class="headingText left">Assassin.js</div>
-<div class="headingText right">Assassin Panel</div>
-</div>
-</div>
+<$@assassinPanel/pageHeader.jssp$>
+
 <div id="contentWrapper">
 
 <div id="contentLeft">
@@ -52,13 +48,8 @@ $>
 </div>
 
 </div>
-<div id="footerWrapper">
-<div id="footerContent">
-<div class="left">
-(c)2013 Adithya Chebiyyam and Sai Teja Jammalamadaka</div>
-<div class="right">Maintained By <a href="http://www.setusoftware.com">Setu Software Systems</a></div>
-</div>
-</div>
+
+<$@assassinPanel/pageFooter.jssp$>
 
 </div>
 

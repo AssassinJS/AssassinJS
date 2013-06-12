@@ -19,8 +19,8 @@ function assassinate()
 {
 	var server = http.createServer();
 	var config = system.config.getConfig();
-	var port = (process.env.VMC_APP_PORT || process.env.OPENSHIFT_INTERNAL_PORT || config.assassinjsPort);
-	var host = (process.env.VMC_APP_HOST || process.env.OPENSHIFT_INTERNAL_IP || config.assassinjsAddress);
+	var port = (process.env.VMC_APP_PORT || process.env.OPENSHIFT_INTERNAL_PORT || process.env.OPENSHIFT_NODEJS_PORT || config.assassinjsPort);
+	var host = (process.env.VMC_APP_HOST || process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || config.assassinjsAddress);
 	//system.logger.write('config object='+JSON.stringify(config));
 
 	server.on('request',system.router.route);

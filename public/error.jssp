@@ -12,8 +12,8 @@ if(__dataObj != undefined && __dataObj !=null)
 }
 else
 {
-	var status = "200";
-	var message = "This is a Test of Error View";
+	var status = "500";
+	var message = "Internal Server Error";
 }
 __rqm.system.logger.write('this is a test','error.jssp');
 
@@ -46,7 +46,7 @@ $>
 <div id="footerContent">
 <div class="left">
 AssassinJS Access Control Framework</div>
-<div class="right">Project Maintained By <a href="http://www.setusoftware.com">Setu Software Systems</a></div>
+<div class="right">Project Sponsored By <a href="http://www.setusoftware.com">Setu Software Systems</a></div>
 </div>
 </div>
 

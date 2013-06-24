@@ -73,7 +73,14 @@ function LoadView(ViewFile)
 		delete require.cache[toClear];
 			
 		//logger.write('ViewFile is '+ViewFile,'fileserver.js');
-		ViewsList['/'+ViewFile] = require('../compiled_views/'+ViewFile);	
+		try
+		{
+			ViewsList['/'+ViewFile] = require('../compiled_views/'+ViewFile);	
+		}
+		catch(err)
+		{
+			ViewsList['/'+ViewFile] = require('../compiled_views/error.jssp.js');
+		}
 	}
 }
 

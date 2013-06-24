@@ -33,7 +33,8 @@ try{fileserver.reloadrqm(rqm);}catch(err){console.log(err);}
 fileserver = rqm.controllers.fileserver;
 }
 
-getDBParameterObjects();//ensures first time execution
+//this function is called in index.js
+//getDBParameterObjects();//ensures first time execution
 function getDBParameterObjects()
 {
 	db.query('filterParameters',function(collection){		
@@ -66,9 +67,11 @@ function getDBParameterObjects()
 			if(err) ;
 			else if(items)
 			{
-				DataObj['routesDB'] = items;
+				DataObj['routesDB'] = items; 
 				
 				//logger.write(JSON.stringify(DataObj['routesDB']),'assassinPanel routesDB');
+				//console.log(JSON.stringify(items));
+				//console.log("one  "+JSON.stringify(DataObj['routesDB']));
 			}
 		});
 		
@@ -78,12 +81,14 @@ function getDBParameterObjects()
 		DataObj['routesDB']=require('../config/routes.json');
 		DataObj['routesDB'] = DataObj['routesDB'].concat(require('../config/assassinPanel.json').routes);
 	}
+	//console.log(db.useDB);
 }
 
 function forward(req,res)
 {
+	//console.log("forwarding to fileserver "+JSON.stringify(DataObj));
 	DataObj['request'] = req;
-	DataObj['response'] = res;
+	DataObj['response'] = res;	
 	fileserver.serveFile(req,res,null,DataObj);
 }
 

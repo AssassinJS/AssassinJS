@@ -10,6 +10,7 @@ var rqm = require('./system/rqmodules');
 var assassin = rqm.system.assassin;
 var viewcompiler = rqm.system.viewcompiler;
 var fileserver = rqm.controllers.fileserver;
+var assassinPanel = rqm.controllers.assassinPanel;
 var config = rqm.system.config;
 
 //This function invokes the firsttime
@@ -20,6 +21,9 @@ viewcompiler.readJSSP(function(){
 
 //This function reads all the views in compiled_views folder
 fileserver.LoadViews(rqm,function(){
+
+//This function gets all the db Parameters Ready for AssassinPanel
+assassinPanel.getDBParameterObjects(); //No callback here necessary
 
 rqm.watchrqm(function(){
 	//console.log('watchrqm executed');

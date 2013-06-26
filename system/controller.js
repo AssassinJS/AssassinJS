@@ -104,6 +104,7 @@ controllers['fileserver'] = extensions['fileserver'].serveFile;
 //controllers['common'] = extensions['common'].forwardRequest;
 //controllers['users'] = extensions['users'].forwardRequest;
 //controllers['proxy'] = extensions['proxy'].forwardRequest;
+controllers['echoJSON'] = extensions['echo'].echoQueryJSON;
 controllers['echo'] = extensions['echo'].render;
 
 //to separate calls to internal/external proxy based on config

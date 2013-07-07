@@ -46,6 +46,9 @@ function firsttime(callback)
 		//To populate DB from useragent file
 		ReadUserAgentFile(function(){
 		
+		//To populate DB with empty analytics obj
+		ReadAnalyticsFile(function(){
+		
 		//To populate DB with an empty obj for ratelimits
 		ReadRateLimitFile(function(){
 		
@@ -58,10 +61,11 @@ function firsttime(callback)
 		//To popilate DB with Browsers Info
 		ReadBrowsersFile(function(){
 			initReadFromDB();
-			config.firsttime = false;
+			config.firsttime = "false";
 			fs.writeFileSync('./config/config.json',JSON.stringify(config));
 			callback();
 			return;
+		});
 		});
 		});
 		});
@@ -94,16 +98,20 @@ function DropPrevDB(callback)
 					db.query('IPLogs',function(collection3){
 						collection3.drop(function(err){
 							if(err) logger.write(err,'config firsttime');
-							logger.write('Finished Dropping Collections','firsttime.js');
-							callback();
-							return;
+							
+							db.query('Analytics',function(collection4){
+								collection4.drop(function(err){
+									if(err) logger.write(err,'config firsttime');
+									logger.write('Finished Dropping Collections','firsttime.js');
+									callback();
+									return;
+								});
+							});
 						});
 					});
 				});
-			
 			});
-		
-		});
+		});	
 	});
 }
 
@@ -139,6 +147,22 @@ function ReadUserAgentFile(callback)
 			return;
 		});
 	});
+}
+
+// Is used only for first time initialization
+function ReadAnalyticsFile(callback)
+{
+	logger.write('Initializing analytics Parameters into DB, please wait...','firsttime.js');	
+	
+	db.query('filterParameters',function(collection){
+		var toset = require('../config/analytics.json');
+		collection.update({filter:'analytics'},{$set:toset},{upsert:true, w:1},function(err,data){
+			if(err) logger.write(err,'firsttime.js');
+			else if(data) logger.write('Initialized the analytics collection in DB','firsttime.js');
+			callback();
+			return;
+		});
+	});		
 }
 
 // Is used only for first time initialization

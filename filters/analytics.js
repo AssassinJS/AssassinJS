@@ -34,12 +34,12 @@ function ReadFromDB()
 			Analytics = {
 			
 					/dots in ip cause an error while insertion into db/
-					192-168-2-97 : [{url:'GET/assassinPanel', params:{ RequestList:[1363691315880,1363691315980,1363691315990] }},
+					{ip:192-168-2-97, logs : [{url:'GET/assassinPanel', params:{ RequestList:[1363691315880,1363691315980,1363691315990] }},
 									{url:'GET/index.html', params:{ RequestList:[1363643127965,1363643128965,1363643129565] }},
 										
 										and so on..					
-								   }],
-					and so on..
+								   ]}
+					and so on..}
 			
 			}
 	*/
@@ -79,7 +79,7 @@ function applyFilter(routesObj,request,response)
 		if(!handled)
 		{
 			//When an ip is accessing a specific url for the first time				
-			Analytics[ip].push({url:urlReg,params:{ RequestList : [new Date().getTime()]}});			
+			Analytics[ip].push({url:path,params:{ RequestList : [new Date().getTime()]}});			
 		}
 		
 		var newObj = {$set:{logs:Analytics[ip]}};
@@ -95,7 +95,7 @@ function applyFilter(routesObj,request,response)
 	{
 		//When an ip is accessing for the first time
 		Analytics[ip] = [];
-		var tempObj = {url:urlReg,params:{ RequestList : [new Date().getTime()] }};
+		var tempObj = {url:path,params:{ RequestList : [new Date().getTime()] }};
 		Analytics[ip].push(tempObj);
 		
 		var newObj = {ip:ip,logs:[]};

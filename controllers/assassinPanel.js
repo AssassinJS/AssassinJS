@@ -37,46 +37,59 @@ fileserver = rqm.controllers.fileserver;
 //getDBParameterObjects();//ensures first time execution
 function getDBParameterObjects()
 {
-	db.query('filterParameters',function(collection){		
-				
+	if(db.useDB == 'true')
+	{
+		db.query('filterParameters',function(collection){		
+					
 
-		collection.find({}).each(function(err,item){
-			if(err) 
-				logger.write('error occured in retrieving from db','assassinPanel filterDB');
-			else if(item)
-			{
-				DataObj['filterDB'][item.filter] = item.parameters;
-				
-				if(item.paramsformat!=undefined)
-				DataObj['filterDB']['format'][item.filter] = item.paramsformat;
-				
-				if(item.paramsformattype!=undefined)
-				DataObj['filterDB']['formattype'][item.filter] = item.paramsformattype;
-				
-				if(item.total!=undefined)
-					DataObj['filterDB']['total'][item.filter] = item.total;
-				
-				//logger.write(JSON.stringify(DataObj['filterDB']),'assassinPanel filterDB');
-			}
+			collection.find({}).each(function(err,item){
+				if(err) 
+					logger.write('error occured in retrieving from db','assassinPanel filterDB');
+				else if(item)
+				{
+					//console.log(item.filter);
+					DataObj['filterDB'][item.filter] = item.parameters;
+					
+					if(item.paramsformat!=undefined)
+					DataObj['filterDB']['format'][item.filter] = item.paramsformat;
+					
+					if(item.paramsformattype!=undefined)
+					DataObj['filterDB']['formattype'][item.filter] = item.paramsformattype;
+					
+					if(item.total!=undefined)
+						DataObj['filterDB']['total'][item.filter] = item.total;
+					
+					//logger.write(JSON.stringify(DataObj['filterDB']),'assassinPanel filterDB');
+				}
+			});
+			
 		});
-		
-	});
-	db.query('routes',function(collection){		
-				
-		collection.find({}).toArray(function(err,items){
-			if(err) ;
-			else if(items)
-			{
-				DataObj['routesDB'] = items; 
-				
-				//logger.write(JSON.stringify(DataObj['routesDB']),'assassinPanel routesDB');
-				//console.log(JSON.stringify(items));
-				//console.log("one  "+JSON.stringify(DataObj['routesDB']));
-			}
+		db.query('routes',function(collection){		
+					
+			collection.find({}).toArray(function(err,items){
+				if(err) ;
+				else if(items)
+				{
+					DataObj['routesDB'] = items; 
+					
+					//logger.write(JSON.stringify(DataObj['routesDB']),'assassinPanel routesDB');
+					//console.log(JSON.stringify(items));
+					//console.log("one  "+JSON.stringify(DataObj['routesDB']));
+				}
+			});
+			
 		});
-		
-	});
-	if(db.useDB == 'false')
+		db.query('Analytics',function(collection){
+			collection.find({}).toArray(function(err,items){
+				if(err) ;
+				else if(items)
+				{
+					DataObj['analyticsDB'] = items;
+				}
+			});
+		});
+	}
+	else if(db.useDB == 'false')
 	{
 		DataObj['routesDB']=require('../config/routes.json');
 		DataObj['routesDB'] = DataObj['routesDB'].concat(require('../config/assassinPanel.json').routes);

@@ -1,0 +1,100 @@
+<$
+var MyMongo = __rqm.system.dbconnect.MyMongo;
+var db = new MyMongo('localhost', 27017, 'assassindb');
+db.query('Analytics',function(collection){
+	collection.find({}).toArray(function(err,adbItems){
+		if(err) ;
+		else if(adbItems)
+		{
+$>
+<html>
+<head>
+<link rel="stylesheet" href="./style.css" type="text/css" />
+</head>
+<body>
+
+<div id="bodyWrapper">
+
+<$@assassinPanel/pageHeader.jssp$>
+
+<div id="contentWrapper">
+<$
+
+$>
+<div id="contentLeft">
+<div id="projectMenu" class="glowBoxBlue">
+
+</div>
+
+<div id="newFilterBox" class="boxBlue">
+
+</div>
+
+</div>
+<div id="contentRight">
+
+<div id="titlebox" class="glowBoxNavy">
+<p>Analytics Page</p>
+</div>
+<div id="infobox" class="boxNavy">
+
+Route Filters<br />
+
+<table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative;">
+
+<$
+	if(__dataObj.analyticsDB!=null && __dataObj.analyticsDB!=undefined)
+	{
+$>
+		<tr>
+		<th style="color:white;">IP Address</th>
+		<th style="color:white;">URL Route</th>
+		<th style="color:white;">Timestamp</th>
+		</tr>
+<$
+		for(x in adbItems)
+		{
+			if(adbItems[x] != null && adbItems[x]!=undefined)
+			{
+				for(y in adbItems[x].logs)
+				{
+					for(z in adbItems[x].logs[y].params.RequestList)
+					{
+$>
+					<tr>
+						<td style="color:white;">
+							<$=adbItems[x].ip$>
+						</td>
+						<td>	
+							<$=adbItems[x].logs[y].url$>
+						</td>
+						<td>
+							<$=adbItems[x].logs[y].params.RequestList[z]$>
+						</td>
+					</tr>
+<$
+					}
+				}
+			}
+		}
+	}
+$>
+</table><br />
+</div>
+</div>
+
+</div>
+
+<$@assassinPanel/pageFooter.jssp$>
+
+</div>
+
+</body>
+</html>
+<$
+		__rqm.controllers.respond.createResponse(__response,200,{'Content-Type': 'text/html'},outputstr);
+		}
+	});
+});
+/*
+$>

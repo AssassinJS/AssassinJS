@@ -14,10 +14,14 @@
   "main" : "index.js",
   "version" : "2.0.0",
   "engines": {
-	"node": ">= 0.10.1",
+	"node": ">= 0.10.9",
 	"npm": ">= 1.0.0"
   },
   "scripts":{
 	"start": "node index.js"
-  }
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+
+  "private": true
 }

@@ -79,6 +79,7 @@ function LoadView(ViewFile)
 		}
 		catch(err)
 		{
+			console.log(err);
 			ViewsList['/'+ViewFile] = require('../compiled_views/error.jssp.js');
 		}
 	}

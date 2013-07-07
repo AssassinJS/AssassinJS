@@ -35,7 +35,10 @@ extensions = rqm.controllers;
 
 function handleRequest(routesObj,request,response)
 {
-	logger.write('routesobj = '+JSON.stringify(routesObj),'controller.js');
+	//logger.write('routesobj = '+JSON.stringify(routesObj),'controller.js');
+	//console.log(JSON.stringify(controllers));
+	for(i in controllers)
+		console.log(i);
 	if(routesObj != undefined || routesObj != null)
 	{
 		//filterStatus has to be checked instead of filterMessage to know whether to block or allow the request
@@ -71,13 +74,14 @@ function handleRequest(routesObj,request,response)
 //The actual controller functions to which requests are forwarded to 
 //(and the controller functions may be mapped to extensions)
 var controllers = [];
-
+var descriptions = [];
 controllers.test = function(request,response)
 {
 	logger.write('test in controller executed');
 	//extensions['respond'].createResponse(response,200,null,'test');
 	extensions['fileserver'].serveError(request,response,200,'TEST');
 }
+descriptions.test = {'title':'Test','info':'A Test Controller'};
 
 controllers.error = function(request,response)
 {
@@ -87,6 +91,7 @@ controllers.error = function(request,response)
 	//extensions['respond'].createResponse(response,status,rHeader,rContent);
 	extensions['fileserver'].serveError(request,response,status,rContent);
 }
+descriptions.error = {'title':'Echo','info':'Sends a 404 Error'};
 
 controllers.blocked = function(request,response,filterMessage,statusCode)
 {
@@ -96,23 +101,42 @@ controllers.blocked = function(request,response,filterMessage,statusCode)
 	//extensions['respond'].createResponse(response,status,rHeader,rContent);
 	extensions['fileserver'].serveError(request,response,status,rContent);
 }
+descriptions.blocked = {'title':'Blocked','info':'Sends a Blocked Error'};
 
 controllers['assassinPanel'] = extensions['assassinPanel'].invoke;
 controllers['fileserver'] = extensions['fileserver'].serveFile;
-//controllers['dnsfunctions'] = extensions['dnsfunctions'].forwardRequest;
-//controllers['dbfunctions'] = extensions['dbfunctions'].forwardRequest;
-//controllers['common'] = extensions['common'].forwardRequest;
-//controllers['users'] = extensions['users'].forwardRequest;
-//controllers['proxy'] = extensions['proxy'].forwardRequest;
 controllers['echoJSON'] = extensions['echo'].echoQueryJSON;
+controllers['echoHTML'] = extensions['echo'].echoQueryHTML;
 controllers['echo'] = extensions['echo'].render;
+
+descriptions['assassinPanel'] = {'title':'Assassin Panel','info':'The AssassinPanel Controller'};
+descriptions['fileserver'] = {'title':'File Server','info':'The FileServer Controller'};
+descriptions['echoJSON'] = {'title':'Echo Query JSON','info':'Returns a JSON object of the QueryString Parameters'};
+descriptions['echoHTML'] = {'title':'Echo Query HTML','info':'Returns an HTML page of the QueryString Parameters'};
+descriptions['echo'] = {'title':'Echo','info':'Returns an HTML page with Request Details'};
 
 //to separate calls to internal/external proxy based on config
 var proxyType = config.getConfig().proxyType;
 if(proxyType === 'internal')
+{
 	controllers['proxy'] = extensions['proxy_internal'].forwardRequest;		
+	descriptions['proxy'] = {'title':'Internal Proxy','info':'The Internal Proxy Controller'};
+}
 else
+{
 	controllers['proxy'] = extensions['proxy_external'].forwardRequest;				
-
+	descriptions['proxy'] = {'title':'External Proxy','info':'The External Proxy Controller'};
+}
+	
+function getControllers()
+{
+	return controllers;
+}
+function getDescriptions()
+{
+	return descriptions;
+}	
 exports.handleRequest = handleRequest;
 exports.reloadrqm = reloadrqm;
+exports.getControllers = getControllers;
+exports.getDescriptions = getDescriptions;

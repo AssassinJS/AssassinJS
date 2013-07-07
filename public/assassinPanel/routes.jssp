@@ -37,14 +37,52 @@ eg. GET/test<br /><br />
 <!--<input type="text" name="target" class="roundInputBox" placeholder="Enter Target Controller Here" /><br />
 eg. test<br /><br />-->
 Select a Target Controller<br />
+<$
+var controllerList = __rqm.system.controller.getControllers();
+var descriptionList = __rqm.system.controller.getDescriptions();
+$>
 <select name="target" class="squareInputBox" >
-	<option value="proxy">Proxy</option>
-	<option value="fileserver">File Server</option>
-	<option value="assassinPanel">Assassin Panel</option>
-	<option value="test">Test</option>
+<$
+for(var i in controllerList)
+{
+	if(descriptionList[i]!=null && descriptionList[i] !='' && descriptionList[i] != undefined)
+	{
+$>
+	<option value="<$=i$>"><$=descriptionList[i].title$></option>
+<$
+	}
+	else if(i!=null && i!=undefined)
+	{
+$>
+	<option value="<$=i$>"><$=i$></option>
+<$	
+	}
+}
+$>
 </select><br /><br />
 <button type="submit">Add Route</button>
 </form>
+</div>
+
+<div id="controllersInfoBox" class="boxBlue">
+<b>Controller Descriptions</b><br /><br />
+<$
+for(var i in controllerList)
+{
+	if(descriptionList[i]!=null && descriptionList[i] !='' && descriptionList[i] != undefined)
+	{
+$>
+	<b><$=descriptionList[i].title$></b> - <$=descriptionList[i].info$><br />
+<$
+	}
+	else if(i!=null && i!=undefined)
+	{
+$>
+	<b><$=i$></b> - No Description Available<br />
+<$
+	}
+}
+$>
 </div>
 
 </div>

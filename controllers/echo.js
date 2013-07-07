@@ -14,5 +14,13 @@ function echoQueryJSON(req,res)
 	respond.createResponse(res,200,ct,rc);
 }
 
+function echoQueryHTML(req,res)
+{
+	var ct = {'Content-Type': 'text/html'};
+	var rc = '<html><head></head><body>'+JSON.stringify(url.parse(req.url,true).query)+'</body></html>';
+	respond.createResponse(res,200,ct,rc);
+}
+
 exports.render = render;
 exports.echoQueryJSON = echoQueryJSON;
+exports.echoQueryHTML = echoQueryHTML;

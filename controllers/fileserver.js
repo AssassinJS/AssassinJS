@@ -23,8 +23,13 @@ rfs = rqm.system.recursiveFS;
 try{respond.reloadrqm(rqm);}catch(err){console.log(err);}
 respond = rqm.controllers.respond;
 //rqmMain = rqm;
+var defaultFile = require('../config/config.json').fileDefault;
 }
 
+function setDefaultFile(toSet)
+{
+	defaultFile = toSet;
+}
 
 //Not necessary if filetypelist.json is present
 //var filetypemap = {};
@@ -200,3 +205,4 @@ exports.serveError = serveError;
 exports.ReadFileTypeList = ReadFileTypeList;
 exports.LoadViews = LoadViews;
 exports.reloadrqm = reloadrqm;
+exports.setDefaultFile = setDefaultFile;

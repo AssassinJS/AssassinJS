@@ -34,6 +34,7 @@ $>
 	
 	//__rqm.system.config.config = newConfig;
 	__rqm.system.config.getConfig = function(){return newConfig};
+	__rqm.controllers.fileserver.setDefaultFile(newConfig.fileDefault);
 	require('fs').writeFileSync('./config/config.json',JSON.stringify(newConfig));
 
 for(var x in newConfig)

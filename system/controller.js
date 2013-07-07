@@ -37,8 +37,6 @@ function handleRequest(routesObj,request,response)
 {
 	//logger.write('routesobj = '+JSON.stringify(routesObj),'controller.js');
 	//console.log(JSON.stringify(controllers));
-	for(i in controllers)
-		console.log(i);
 	if(routesObj != undefined || routesObj != null)
 	{
 		//filterStatus has to be checked instead of filterMessage to know whether to block or allow the request

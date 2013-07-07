@@ -208,6 +208,7 @@ function ReadBrowsersFile(callback)
 function initReadFromDB()
 {
 	require('./router').ReadFromDB();
+	require('../filters/analytics').ReadFromDB();
 	require('../filters/browser').ReadFromDB();
 	require('../filters/ipblock').ReadFromDB();
 	require('../filters/rate-limit').ReadFromDB();

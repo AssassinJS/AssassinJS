@@ -34,8 +34,8 @@ function ReadFromDB()
 			Analytics = {
 			
 					/dots in ip cause an error while insertion into db/
-					{ip:192-168-2-97, logs : [{url:'GET/assassinPanel', params:{ RequestList:[1363691315880,1363691315980,1363691315990] }},
-									{url:'GET/index.html', params:{ RequestList:[1363643127965,1363643128965,1363643129565] }},
+					{ip:192-168-2-97, logs : [{url:'GET/assassinPanel', params:{ RequestList:[{timestamp:1363691315880,browser:'chrome'},{timestamp:1363691316880,browser:'chrome'}] }},
+									{url:'GET/index.html', params:{ RequestList:[{timestamp:1363691317880,browser:'chrome'},{timestamp:1363691318880,browser:'chrome'}] }},
 										
 										and so on..					
 								   ]}
@@ -54,10 +54,29 @@ function applyFilter(routesObj,request,response)
 	path = request.method + url.parse(request.url).pathname,
 	urlReg = null,
 	handled = false;
-		
-	logger.write('IP is : '+ip,'analytics.js');
 	
-	logger.write(JSON.stringify(Analytics),'analytics.js');
+	var userAgent = request.headers['user-agent'];
+	var browser ='';
+	if(userAgent.indexOf('Seamonkey')!=-1)
+		browser='Seamonkey';
+	else if(userAgent.indexOf('Firefox')!=-1)
+		browser='Firefox';
+	else if(userAgent.indexOf('Chromium')!=-1)
+		browser='Chromium';
+	else if(userAgent.indexOf('Chrome')!=-1)
+		browser='Chrome';
+	else if(userAgent.indexOf('Safari')!=-1)
+		browser='Safari';
+	else if(userAgent.indexOf('Opera')!=-1)
+		browser='Opera';
+	else if(userAgent.indexOf('MSIE')!=-1)
+		browser='MSIE';
+	else
+		browser='Other';
+	
+	logger.write('IP is : '+ip,'analytics.js');
+	logger.write('user-agent header is '+userAgent,'analytics.js');
+	//logger.write(JSON.stringify(Analytics),'analytics.js');
 	
 	ip = ip.replace(/\./g,'-');
 	
@@ -71,15 +90,18 @@ function applyFilter(routesObj,request,response)
 			{
 				handled = true;
 				
-				var LatestRequestOn = new Date().getTime();	
-				Analytics[ip][index].params.RequestList.push(LatestRequestOn);
+				var LatestRequestOn = new Date().getTime();
+				var toPush = {};
+				toPush.timestamp = LatestRequestOn;
+				toPush.browser = browser;
+				Analytics[ip][index].params.RequestList.push(toPush);
 			}								
 		}
 		
 		if(!handled)
 		{
 			//When an ip is accessing a specific url for the first time				
-			Analytics[ip].push({url:path,params:{ RequestList : [new Date().getTime()]}});			
+			Analytics[ip].push({url:path,params:{ RequestList : [{timestamp:new Date().getTime(),browser:browser}]}});			
 		}
 		
 		var newObj = {$set:{logs:Analytics[ip]}};
@@ -95,7 +117,7 @@ function applyFilter(routesObj,request,response)
 	{
 		//When an ip is accessing for the first time
 		Analytics[ip] = [];
-		var tempObj = {url:path,params:{ RequestList : [new Date().getTime()] }};
+		var tempObj = {url:path,params:{ RequestList : [{timestamp:new Date().getTime(),browser:browser}] }};
 		Analytics[ip].push(tempObj);
 		
 		var newObj = {ip:ip,logs:[]};

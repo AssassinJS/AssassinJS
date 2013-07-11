@@ -1,7 +1,7 @@
 body
 {
 	background-color: #efefef;
-	font-family:calibri,arial,times new roman;
+	font-family:"Open Sans",arial,times new roman;
 }
 #bodyWrapper
 {
@@ -186,7 +186,6 @@ font-weight:bold;
 .boxWhite
 {
 background: #fff;
-width: 400px;
 margin: 0 auto;
 border-radius: 5px;
 box-shadow: 0px 1px 5px 0px #555;

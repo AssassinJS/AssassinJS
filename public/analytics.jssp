@@ -22,6 +22,7 @@ $>
 <html>
 <head>
 <link rel="stylesheet" href="./style_analytics.css" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 <script src="./javascripts/Chart.js"></script>
 </head>
 <body>
@@ -35,12 +36,12 @@ $>
 
 $>
 <div id="titleBox">
-<p>Analytics Page</p>
+<h1>Welcome to AssassinJS Analytics Page</h1>
 <p>Your IP Adress is:</p>
 <$=ip$>
 </div>
 
-<div id="graphBox">
+<div id="graphBox" class="boxWhite">
 <canvas id="graph" height="300" width="300"></canvas>
 <br />
 Key:
@@ -85,7 +86,7 @@ $>
 							Freq[Months[month-1]]++;
 $>
 					<tr>
-						<td style="color:white;">
+						<td >
 							<$=adbItems[x].ip$>
 						</td>
 						<td>	

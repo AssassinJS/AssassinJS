@@ -1,4 +1,16 @@
 <$
+var xfr = __request.headers['x-forwarded-for'];
+var ip = xfr?xfr.split(', ')[0]:__request.connection.remoteAddress;
+ip = ip.replace(/\./g,'-');
+
+var Months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var Freq = {};
+var Total = {};
+for(var i=0;i<12;i++)
+{
+	Freq[Months[i]]=0;
+	Total[Months[i]]=0;
+}
 var MyMongo = __rqm.system.dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 db.query('Analytics',function(collection){
@@ -10,6 +22,7 @@ $>
 <html>
 <head>
 <link rel="stylesheet" href="./style.css" type="text/css" />
+<script src="./Chart.js"></script>
 </head>
 <body>
 
@@ -23,11 +36,17 @@ $>
 $>
 <div id="contentLeft">
 <div id="projectMenu" class="glowBoxBlue">
-
+Your IP Adress is:<br />
+<$=ip$>
 </div>
 
 <div id="newFilterBox" class="boxBlue">
-
+<canvas id="graph" height="300" width="300"></canvas>
+<br />
+Key:
+<br />
+<span style="background-color:rgba(220,220,220,1)">Your Frequency</span>
+<span style="background-color:rgba(151,187,205,1)">Total Frequency</span>
 </div>
 
 </div>
@@ -60,6 +79,11 @@ $>
 				{
 					for(z in adbItems[x].logs[y].params.RequestList)
 					{
+						var date = new Date(parseInt(adbItems[x].logs[y].params.RequestList[z]));
+						var month = date.getMonth();
+						Total[Months[month-1]]++;
+						if(adbItems[x].ip == ip)
+							Freq[Months[month-1]]++;
 $>
 					<tr>
 						<td style="color:white;">
@@ -88,7 +112,28 @@ $>
 <$@assassinPanel/pageFooter.jssp$>
 
 </div>
+<script>
 
+		var barChartData = {
+			labels : ["June","July","August"],
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					data : [<$=Freq[Months[4]]$>,<$=Freq[Months[5]]$>,<$=Freq[Months[6]]$>]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,1)",
+					data : [<$=Total[Months[4]]$>,<$=Total[Months[5]]$>,<$=Total[Months[6]]$>]
+				}
+			]
+			
+		};
+
+	var myLine = new Chart(document.getElementById("graph").getContext("2d")).Bar(barChartData);
+	
+</script>
 </body>
 </html>
 <$

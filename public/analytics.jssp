@@ -3,6 +3,25 @@ var xfr = __request.headers['x-forwarded-for'];
 var ip = xfr?xfr.split(', ')[0]:__request.connection.remoteAddress;
 ip = ip.replace(/\./g,'-');
 
+var userAgent = __request.headers['user-agent'];
+	var browser ='';
+	if(userAgent.indexOf('Seamonkey')!=-1)
+		browser='Seamonkey';
+	else if(userAgent.indexOf('Firefox')!=-1)
+		browser='Firefox';
+	else if(userAgent.indexOf('Chromium')!=-1)
+		browser='Chromium';
+	else if(userAgent.indexOf('Chrome')!=-1)
+		browser='Chrome';
+	else if(userAgent.indexOf('Safari')!=-1)
+		browser='Safari';
+	else if(userAgent.indexOf('Opera')!=-1)
+		browser='Opera';
+	else if(userAgent.indexOf('MSIE')!=-1)
+		browser='MSIE';
+	else
+		browser='Other';
+
 var Months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 var Freq = {};
 var Total = {};
@@ -11,6 +30,7 @@ for(var i=0;i<12;i++)
 	Freq[Months[i]]=0;
 	Total[Months[i]]=0;
 }
+var Rate = {};
 var MyMongo = __rqm.system.dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 db.query('Analytics',function(collection){
@@ -37,12 +57,12 @@ $>
 $>
 <div id="titleBox">
 <h1>Welcome to AssassinJS Analytics Page</h1>
-<p>Your IP Adress is:</p>
-<$=ip$>
+<h2>You Are Using <$=browser$><br />
+From <$=ip$></h2>
 </div>
 
-<div id="graphBox" class="boxWhite">
-<canvas id="graph" height="300" width="300"></canvas>
+<div id="barGraphBox" class="boxWhite">
+<canvas id="barGraph" height="300" width="300"></canvas>
 <br />
 Key:
 <br />
@@ -50,7 +70,15 @@ Key:
 <span style="background-color:rgba(151,187,205,1)">Total Frequency</span>
 </div>
 
-
+<div id="lineGraphBox" class="boxWhite">
+Test Graph<br />
+<canvas id="lineGraph" height="300" width="300"></canvas>
+<br />
+Key:
+<br />
+<span style="background-color:rgba(220,220,220,1)">Your Frequency</span>
+<span style="background-color:rgba(151,187,205,1)">Total Frequency</span>
+</div>
 
 
 <div id="infobox">
@@ -93,7 +121,8 @@ $>
 							<$=adbItems[x].logs[y].url$>
 						</td>
 						<td>
-							<$=adbItems[x].logs[y].params.RequestList[z].timestamp$>
+							<$=adbItems[x].logs[y].params.RequestList[z].timestamp$><br />
+							<$=(new Date(adbItems[x].logs[y].params.RequestList[z].timestamp)).getMinutes()$>
 						</td>
 						<td>
 							<$=adbItems[x].logs[y].params.RequestList[z].browser$>
@@ -133,8 +162,24 @@ $>
 			]
 			
 		};
+		var currentTime = (new Date()).getTime();
+		var frequencyData = {
+			labels : [(new Date(currentTime-4000)).toLocaleTimeString(),
+					(new Date(currentTime-3000)).toLocaleTimeString(),
+					(new Date(currentTime-2000)).toLocaleTimeString(),
+					(new Date(currentTime-1000)).toLocaleTimeString(),
+					(new Date(currentTime)).toLocaleTimeString()],
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					data : [1,2,3,4,5]
+				}
+			]
+		};
 
-	var myLine = new Chart(document.getElementById("graph").getContext("2d")).Bar(barChartData);
+	var myBar = new Chart(document.getElementById("barGraph").getContext("2d")).Bar(barChartData);
+	var myLine = new Chart(document.getElementById("lineGraph").getContext("2d")).Line(frequencyData);
 	
 </script>
 </body>

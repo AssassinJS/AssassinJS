@@ -22,7 +22,7 @@ $>
 <html>
 <head>
 <link rel="stylesheet" href="./style_analytics.css" type="text/css" />
-<script src="./Chart.js"></script>
+<script src="./javascripts/Chart.js"></script>
 </head>
 <body>
 
@@ -34,13 +34,13 @@ $>
 <$
 
 $>
-<div id="contentLeft">
-<div id="projectMenu" class="glowBoxBlue">
-Your IP Adress is:<br />
+<div id="titleBox">
+<p>Analytics Page</p>
+<p>Your IP Adress is:</p>
 <$=ip$>
 </div>
 
-<div id="newFilterBox" class="boxBlue">
+<div id="graphBox">
 <canvas id="graph" height="300" width="300"></canvas>
 <br />
 Key:
@@ -49,15 +49,12 @@ Key:
 <span style="background-color:rgba(151,187,205,1)">Total Frequency</span>
 </div>
 
-</div>
-<div id="contentRight">
 
-<div id="titlebox" class="glowBoxNavy">
-<p>Analytics Page</p>
-</div>
-<div id="infobox" class="boxNavy">
 
-Route Filters<br />
+
+<div id="infobox">
+
+Data Dump<br />
 
 <table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative;">
 
@@ -67,10 +64,10 @@ Route Filters<br />
 	{
 $>
 		<tr>
-		<th style="color:white;">IP Address</th>
-		<th style="color:white;">URL Route</th>
-		<th style="color:white;">Timestamp</th>
-		<th style="color:white;">Browser</th>
+		<th style="color:#333;">IP Address</th>
+		<th style="color:#333;">URL Route</th>
+		<th style="color:#333;">Timestamp</th>
+		<th style="color:#333;">Browser</th>
 		</tr>
 <$
 		for(x in adbItems)
@@ -81,7 +78,7 @@ $>
 				{
 					for(z in adbItems[x].logs[y].params.RequestList)
 					{
-						var date = new Date(parseInt(adbItems[x].logs[y].params.RequestList[z]));
+						var date = new Date(parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp));
 						var month = date.getMonth();
 						Total[Months[month-1]]++;
 						if(adbItems[x].ip == ip)

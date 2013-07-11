@@ -62,8 +62,7 @@ Route Filters<br />
 <table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative;">
 
 <$
-	/*if(__dataObj.analyticsDB!=null && __dataObj.analyticsDB!=undefined)*/
-	if(adbItems!=null && adbItems!=undefined)
+	if(__dataObj.analyticsDB!=null && __dataObj.analyticsDB!=undefined)
 	{
 $>
 		<tr>

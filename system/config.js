@@ -46,6 +46,9 @@ function firsttime(callback)
 		//To populate DB from useragent file
 		ReadUserAgentFile(function(){
 		
+		//To populate DB from referer file
+		ReadRefererFile(function(){
+		
 		//To populate DB with empty analytics obj
 		ReadAnalyticsFile(function(){
 		
@@ -65,6 +68,7 @@ function firsttime(callback)
 			fs.writeFileSync('./config/config.json',JSON.stringify(config));
 			callback();
 			return;
+		});
 		});
 		});
 		});
@@ -143,6 +147,21 @@ function ReadUserAgentFile(callback)
 		collection.update({filter:'user-agent'},{$set:toset},{upsert:true, w:1},function(err,data){
 			if(err) logger.write(err,'firsttime.js');
 			else if(data) logger.write('Initialized the user agent collection in DB','firsttime.js');
+			callback();
+			return;
+		});
+	});
+}
+
+// Is used only for first time initialization
+function ReadRefererFile(callback)
+{
+	logger.write('Initializing referer Parameters into DB,please wait...','firsttime.js');
+	db.query('filterParameters',function(collection){
+		var toset = require('../config/referer.json');
+		collection.update({filter:'referer'},{$set:toset},{upsert:true, w:1},function(err,data){
+			if(err) logger.write(err,'firsttime.js');
+			else if(data) logger.write('Initialized the referer collection in DB','firsttime.js');
 			callback();
 			return;
 		});
@@ -237,6 +256,7 @@ function initReadFromDB()
 	require('../filters/ipblock').ReadFromDB();
 	require('../filters/rate-limit').ReadFromDB();
 	require('../filters/user-agent').ReadFromDB();
+	require('../filters/referer').ReadFromDB();
 	require('../filters/user-auth').ReadFromDB();
 }
 

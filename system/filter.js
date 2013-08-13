@@ -41,51 +41,51 @@ filters = rqm.filters;
 
 function applyFilters(routesObj,request,response)
 {
-	var filterObj = {};
+	var filterObj = routesObj;
+	if(filterObj.filterStatus!=undefined && filterObj.filterStatus!='200')
+		return filterObj;
+	else 
+		filterObj.filterStatus='200';//default value
 	for(i in routesObj.filters)
 	{
 		//checking if any of the routesObj filters match with the filter modules present in the filters folder
 		if(filters[routesObj.filters[i]] != undefined)
 		{
 			filterObj = filters[routesObj.filters[i]].applyFilter(routesObj,request,response);
-			if(filterObj!=undefined && filterObj.filterStatus!='200')
+			if(filterObj.filterStatus!='200')
 				break;
 		}
 	}
-	if(filterObj['filterMessage'] != undefined)
-	{
-		controller.handleRequest(filterObj,request,response);
-	}
-	else
-	{
-		controller.handleRequest(routesObj,request,response);
-	}
+	
+	controller.handleRequest(filterObj,request,response);
+	
 }
 
 function applyGeneralFilters(routesObj,request,response)
 {
-	var filterObj = {};
+	//logger.write('routesObj in aGF: '+JSON.stringify(routesObj),'analytics.js');
+	var filterObj = routesObj;
+	if(filterObj.filterStatus!=undefined && filterObj.filterStatus!='200')
+		return filterObj;
+	else 
+		filterObj.filterStatus='200';//default value
 	var generalFilters = require('../config/generalfilters.json');
 	for(i in generalFilters)
 	{
 		//checking if any of the routesObj filters match with the filter modules present in the filters folder
 		if(filters[generalFilters[i]] != undefined)
 		{
-			filterObj = filters[generalFilters[i]].applyFilter(routesObj,request,response);
-			if(filterObj!=undefined && filterObj.filterStatus!='200')
+			//logger.write('generalFilter: '+JSON.stringify(generalFilters[i]),'analytics.js');
+			filterObj = filters[generalFilters[i]].applyFilter(filterObj,request,response);
+			if(filterObj.filterStatus!='200')
 				break;
 		}
 	}
-	if(filterObj['filterMessage'] != undefined || filterObj['filterStatus']!='200')
-	{
-		controller.handleRequest(filterObj,request,response);
-	}
-	else
-	{
-		controller.handleRequest(routesObj,request,response);
-	}
+	
+	return filterObj;
+	
 }
 
 exports.applyFilters = applyFilters;
-exports.applyFilters = applyGeneralFilters;
+exports.applyGeneralFilters = applyGeneralFilters;
 exports.reloadrqm = reloadrqm;

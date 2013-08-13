@@ -74,8 +74,8 @@ function applyFilter(routesObj,request,response)
 	else
 		browser='Other';
 	
-	logger.write('IP is : '+ip,'analytics.js');
-	logger.write('user-agent header is '+userAgent,'analytics.js');
+	//logger.write('IP is : '+ip,'analytics.js');
+	//logger.write('user-agent header is '+userAgent,'analytics.js');
 	//logger.write(JSON.stringify(Analytics),'analytics.js');
 	
 	ip = ip.replace(/\./g,'-');
@@ -133,6 +133,7 @@ function applyFilter(routesObj,request,response)
 	
 	filterObj.filterMessage = 'Allowed: Analytics Filter Applied';
 	filterObj.filterStatus = 200;
+	
 	return filterObj;
 }
 

@@ -63,8 +63,9 @@ function process(request,response)
 	var isHandled = false;
 	for(i in routes)
 	{
+		var routesObj = routes[i];
 		//DO NOT REMOVE ^ and $, they are very very important
-		var urlReg = new RegExp('^'+routes[i].regexp+'$');
+		var urlReg = new RegExp('^'+routesObj.regexp+'$');
 		//DO NOT REMOVE ^ and $, they are very very important
 		
 		//removed ^,$ -> matches even without them
@@ -76,17 +77,17 @@ function process(request,response)
 						
 			if(db.useDB=='true' && require('../config/generalfilters.json').length > 0 )
 			{
-				filter.applyGeneralFilters(routes[i],request,response);
+				routesObj = filter.applyGeneralFilters(routesObj,request,response);
 			}
-			if(routes[i].filters !=null || routes[i].filters != undefined)
+			if(routesObj.filters !=null || routesObj.filters != undefined)
 			{
 				//logger.write('Trying to apply filters..','router.js');
-				filter.applyFilters(routes[i],request,response);
+				filter.applyFilters(routesObj,request,response);
 			}
 			else
 			{
 				//logger.write('No filters defined for route..','router.js');
-				controller.handleRequest(routes[i],request,response);
+				controller.handleRequest(routesObj,request,response);
 			}
 			
 			//To stop iteration after correct route is found and executed

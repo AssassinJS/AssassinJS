@@ -4,5 +4,5 @@
 <a class="navMenuLink" href="./routes.jssp">Configure Project Routes</a><br />
 <a class="navMenuLink" href="./fileviewer.jssp">FileViewer</a><br />
 <!--<a class="navMenuLink" href="./filters.jssp">Configure Filters</a><br />-->
-<a class="navMenuLink" href="./logout.jssp">Logout</a>
+<a class="navMenuLink" href="./logout">Logout</a>
 <br /><br />

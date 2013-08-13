@@ -118,7 +118,7 @@ function invoke(req,res)
 	
 	ip = ip.replace(/\./g,'-');
 	
-	if(endpoint[endpoint.length-1] === 'login.jssp' && req.body)
+	if(endpoint[endpoint.length-1] === 'login' && req.body)
 	{
 		logger.write('Request Body is = '+JSON.stringify(req.body),'assassinPanel.js');
 		var source = req.body;		
@@ -142,7 +142,7 @@ function invoke(req,res)
 				}
 												
 				//redirecting to home page
-				req.url = req['url'].replace(/login\.jssp/,'home.jssp');
+				req.url = req['url'].replace(/login/,'home.jssp');
 				
 				//forwarding request
 				forward(req,res);	
@@ -156,19 +156,19 @@ function invoke(req,res)
 				DataObj.Session[ip] = { loginOn:new Date().getTime() , isActive:true };
 			}
 			//redirecting to home page
-			req.url = req['url'].replace(/login\.jssp/,'home.jssp');
+			req.url = req['url'].replace(/login/,'home.jssp');
 				
 			//forwarding request
 			forward(req,res);
 		}
 	}
-	else if(endpoint[endpoint.length-1] === 'logout.jssp')
+	else if(endpoint[endpoint.length-1] === 'logout')
 	{
 		//removing stored session from memory
 		delete DataObj.Session[ip];
 		
 		//redirecting to index page
-		req.url = req['url'].replace(/logout\.jssp/,'index.jssp');
+		req.url = req['url'].replace(/logout/,'index.jssp');
 		
 		//forwarding request
 		forward(req,res);

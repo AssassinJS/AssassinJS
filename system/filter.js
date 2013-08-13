@@ -62,5 +62,30 @@ function applyFilters(routesObj,request,response)
 	}
 }
 
+function applyGeneralFilters(routesObj,request,response)
+{
+	var filterObj = {};
+	var generalFilters = require('../config/generalfilters.json');
+	for(i in generalFilters)
+	{
+		//checking if any of the routesObj filters match with the filter modules present in the filters folder
+		if(filters[generalFilters[i]] != undefined)
+		{
+			filterObj = filters[generalFilters[i]].applyFilter(routesObj,request,response);
+			if(filterObj!=undefined && filterObj.filterStatus!='200')
+				break;
+		}
+	}
+	if(filterObj['filterMessage'] != undefined || filterObj['filterStatus']!='200')
+	{
+		controller.handleRequest(filterObj,request,response);
+	}
+	else
+	{
+		controller.handleRequest(routesObj,request,response);
+	}
+}
+
 exports.applyFilters = applyFilters;
+exports.applyFilters = applyGeneralFilters;
 exports.reloadrqm = reloadrqm;

@@ -74,6 +74,10 @@ function process(request,response)
 		{
 			isHandled = true;
 						
+			if(db.useDB=='true' && require('../config/generalfilters.json').length > 0 )
+			{
+				filter.applyGeneralFilters(routes[i],request,response);
+			}
 			if(routes[i].filters !=null || routes[i].filters != undefined)
 			{
 				//logger.write('Trying to apply filters..','router.js');

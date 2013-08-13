@@ -25,12 +25,21 @@ var userAgent = __request.headers['user-agent'];
 var Months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 var Freq = {};
 var Total = {};
+Total['Minutes'] = {};
 for(var i=0;i<12;i++)
 {
 	Freq[Months[i]]=0;
 	Total[Months[i]]=0;
 }
 var Rate = {};
+var nowMinuteTimestamp = Math.floor(((new Date().getTime()))/60000)*60000;
+Total['Minutes'][''+nowMinuteTimestamp-(4000*60)] = 0;
+Total['Minutes'][''+nowMinuteTimestamp-(3000*60)] = 0;
+Total['Minutes'][''+nowMinuteTimestamp-(2000*60)] = 0;
+Total['Minutes'][''+nowMinuteTimestamp-(1000*60)] = 0;
+Total['Minutes'][''+nowMinuteTimestamp] = 0;
+
+
 var MyMongo = __rqm.system.dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 db.query('Analytics',function(collection){
@@ -112,6 +121,11 @@ $>
 						Total[Months[month-1]]++;
 						if(adbItems[x].ip == ip)
 							Freq[Months[month-1]]++;
+						var cpm = Total['Minutes'][''+(Math.floor((date.getTime())/60000))*60000];
+						if(cpm!=undefined&&cpm!=null&&cpm!='')
+							Total['Minutes'][''+(Math.floor((date.getTime())/60000))*60000]++;
+						else
+							Total['Minutes'][''+(Math.floor((date.getTime())/60000))*60000]=1;
 $>
 					<tr>
 						<td >
@@ -121,8 +135,8 @@ $>
 							<$=adbItems[x].logs[y].url$>
 						</td>
 						<td>
-							<$=adbItems[x].logs[y].params.RequestList[z].timestamp$><br />
-							<$=(new Date(adbItems[x].logs[y].params.RequestList[z].timestamp)).getMinutes()$>
+							<$=date.getTime()$><br />
+							<$=date.toLocaleTimeString()$>
 						</td>
 						<td>
 							<$=adbItems[x].logs[y].params.RequestList[z].browser$>
@@ -162,18 +176,18 @@ $>
 			]
 			
 		};
-		var currentTime = (new Date()).getTime();
+		var currentTime = Math.floor((new Date()).getTime()/60000)*60000;
 		var frequencyData = {
-			labels : [(new Date(currentTime-4000)).toLocaleTimeString(),
-					(new Date(currentTime-3000)).toLocaleTimeString(),
-					(new Date(currentTime-2000)).toLocaleTimeString(),
-					(new Date(currentTime-1000)).toLocaleTimeString(),
+			labels : [(new Date(currentTime-4000*60)).toLocaleTimeString(),
+					(new Date(currentTime-3000*60)).toLocaleTimeString(),
+					(new Date(currentTime-2000*60)).toLocaleTimeString(),
+					(new Date(currentTime-1000*60)).toLocaleTimeString(),
 					(new Date(currentTime)).toLocaleTimeString()],
 			datasets : [
 				{
 					fillColor : "rgba(220,220,220,0.5)",
 					strokeColor : "rgba(220,220,220,1)",
-					data : [1,2,3,4,5]
+					data : [<$=Total['Minutes'][''+nowMinuteTimestamp-(4000*60)]$>,<$=Total['Minutes'][''+nowMinuteTimestamp-(3000*60)]$>,<$=Total['Minutes'][''+nowMinuteTimestamp-(2000*60)]$>,<$=Total['Minutes'][''+nowMinuteTimestamp-(1000*60)]$>,<$=Total['Minutes'][''+nowMinuteTimestamp]$>]
 				}
 			]
 		};

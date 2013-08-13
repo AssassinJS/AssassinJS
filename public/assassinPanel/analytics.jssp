@@ -80,7 +80,7 @@ $>
 				{
 					for(z in adbItems[x].logs[y].params.RequestList)
 					{
-						var date = new Date(parseInt(adbItems[x].logs[y].params.RequestList[z]));
+						var date = new Date(parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp));
 						var month = date.getMonth();
 						Total[Months[month-1]]++;
 						if(adbItems[x].ip == ip)
@@ -94,7 +94,7 @@ $>
 							<$=adbItems[x].logs[y].url$>
 						</td>
 						<td>
-							<$=adbItems[x].logs[y].params.RequestList[z]$>
+							<$=adbItems[x].logs[y].params.RequestList[z].timestamp$>
 						</td>
 					</tr>
 <$

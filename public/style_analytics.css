@@ -55,6 +55,16 @@ position:relative;
 	margin:auto;
 }
 
+.duo-left
+{
+	float:left;
+	width:480px
+}
+
+.duo-right
+{
+	margin-left:500px;
+}
 
 .glowBoxGold
 {
@@ -187,6 +197,7 @@ font-weight:bold;
 
 .boxWhite
 {
+padding:10px;
 background: #fff;
 margin: 0 auto;
 border-radius: 5px;

@@ -65,7 +65,7 @@ var MyMongo = __rqm.system.dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 db.query('Analytics',function(collection){
 	collection.find({}).toArray(function(err,adbItems){
-		if(err) ;
+		if(err) console.log(err);
 		else if(adbItems)
 		{
 $>

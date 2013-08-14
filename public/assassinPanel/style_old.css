@@ -1,7 +1,7 @@
 body
 {
-	background-color: #efefef;
-	font-family:"Open Sans",arial,times new roman;
+	background-color: #777;
+	font-family:calibri,arial,times new roman;
 }
 #bodyWrapper
 {
@@ -18,14 +18,13 @@ body
 	background-color:rgba(0, 0, 0, 0.45);
 	color: #fff;
 	z-index:10;
-	box-shadow: 0px 1px 5px black;
 }
 
 #contentWrapper
 {
 
-color: #333;
-margin-top: 50px;
+color: #fff;
+margin-top: 40px;
 width: 100%;
 text-align:center;
 position:relative;
@@ -36,7 +35,7 @@ position:relative;
 	position:fixed;
 	bottom:0px;
 	left:0px;
-	height:20px;
+	//height:60px;
 	width:100%;
 	background-color:rgba(0, 0, 0, 0.45);
 	color: #fff;
@@ -84,23 +83,19 @@ box-shadow: 2px 2px 120px 0px white;
 
 .glowBoxNavy
 {
-color:white;
 width: 71%;
 margin-left: auto;
 margin-right: auto;
 margin-top: 20px;
 margin-bottom: 20px;
 padding: 20px;
-//box-shadow: 0px 0px 130px 0px white;
-box-shadow:2px 3px 10px 0px rgb(100, 100, 100);
+box-shadow: 0px 0px 130px 0px white;
 border-radius: 70px;
-//background-color: rgb(46, 74, 100);
-background-color:rgb(17, 71, 121);
+background-color: rgb(46, 74, 100);
 }
 
 .boxNavy
 {
-color:white;
 width: 71%;
 margin-left: auto;
 margin-right: auto;
@@ -108,25 +103,21 @@ margin-top: 20px;
 margin-bottom: 20px;
 padding: 20px;
 border-radius: 70px;
-//background-color: rgb(46, 74, 100);
-background-color:rgb(17, 71, 121);
+background-color: rgb(46, 74, 100);
 }
 
 .glowBoxBlue
 {
-color:white;
 margin-top: 20px;
 margin-bottom: 20px;
 border: 30px solid rgb(37, 104, 156);
 border-radius: 40px;
 background-color: rgb(88, 161, 228);
-//box-shadow: 2px 2px 120px 0px white;
-box-shadow:2px 3px 10px 0px rgb(100, 100, 100);
+box-shadow: 2px 2px 120px 0px white;
 }
 
 .boxBlue
 {
-color:white;
 margin-top: 20px;
 margin-bottom: 20px;
 border: 30px solid rgb(37, 104, 156);
@@ -205,13 +196,5 @@ float:left;
 {
 font-size:24px;
 font-weight:bold;
-}
-
-.boxWhite
-{
-background: #fff;
-margin: 0 auto;
-border-radius: 5px;
-box-shadow: 0px 1px 5px 0px #555;
 }
 

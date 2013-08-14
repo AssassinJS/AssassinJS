@@ -3,27 +3,77 @@ var xfr = __request.headers['x-forwarded-for'];
 var ip = xfr?xfr.split(', ')[0]:__request.connection.remoteAddress;
 ip = ip.replace(/\./g,'-');
 
-var Months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-var Freq = {};
+var userAgent = __request.headers['user-agent'];
+	var browser ='';
+	if(userAgent.indexOf('Seamonkey')!=-1)
+		browser='Seamonkey';
+	else if(userAgent.indexOf('Firefox')!=-1)
+		browser='Firefox';
+	else if(userAgent.indexOf('Chromium')!=-1)
+		browser='Chromium';
+	else if(userAgent.indexOf('Chrome')!=-1)
+		browser='Chrome';
+	else if(userAgent.indexOf('Safari')!=-1)
+		browser='Safari';
+	else if(userAgent.indexOf('Opera')!=-1)
+		browser='Opera';
+	else if(userAgent.indexOf('MSIE')!=-1)
+		browser='MSIE';
+	else
+		browser='Other';
+
 var Total = {};
-for(var i=0;i<12;i++)
-{
-	Freq[Months[i]]=0;
-	Total[Months[i]]=0;
-}
+Total['Minutes'] = {};
+Total['Hours'] = {};
+
+var ipTotal = {};
+ipTotal['Minutes'] = {};
+ipTotal['Hours'] = {};
+
+var nowDate = new Date();
+var nowSec = new Date(nowDate.setMilliseconds(0));
+var nowMin = new Date(nowSec.setSeconds(0));
+var nowHour = new Date(nowMin.setMinutes(0));
+
+//var nowMinuteTimestamp = Math.floor(((new Date().getTime()))/60000)*60000;
+var nowMinuteTimestamp = nowMin.getTime();
+Total['Minutes'][''+nowMinuteTimestamp-(4000*60)] = 0;
+Total['Minutes'][''+nowMinuteTimestamp-(3000*60)] = 0;
+Total['Minutes'][''+nowMinuteTimestamp-(2000*60)] = 0;
+Total['Minutes'][''+nowMinuteTimestamp-(1000*60)] = 0;
+Total['Minutes'][''+nowMinuteTimestamp] = 0;
+ipTotal['Minutes'][''+nowMinuteTimestamp-(4000*60)] = 0;
+ipTotal['Minutes'][''+nowMinuteTimestamp-(3000*60)] = 0;
+ipTotal['Minutes'][''+nowMinuteTimestamp-(2000*60)] = 0;
+ipTotal['Minutes'][''+nowMinuteTimestamp-(1000*60)] = 0;
+ipTotal['Minutes'][''+nowMinuteTimestamp] = 0;
+
+//var nowHourTimestamp = (Math.floor(((new Date().getTime()))/3600000)*3600000)-1800000;
+var nowHourTimestamp = nowHour.getTime();
+Total['Hours'][''+nowHourTimestamp-(4000*60*60)] = 0;
+Total['Hours'][''+nowHourTimestamp-(3000*60*60)] = 0;
+Total['Hours'][''+nowHourTimestamp-(2000*60*60)] = 0;
+Total['Hours'][''+nowHourTimestamp-(1000*60*60)] = 0;
+Total['Hours'][''+nowHourTimestamp] = 0;
+ipTotal['Hours'][''+nowHourTimestamp-(4000*60*60)] = 0;
+ipTotal['Hours'][''+nowHourTimestamp-(3000*60*60)] = 0;
+ipTotal['Hours'][''+nowHourTimestamp-(2000*60*60)] = 0;
+ipTotal['Hours'][''+nowHourTimestamp-(1000*60*60)] = 0;
+ipTotal['Hours'][''+nowHourTimestamp] = 0;
+
 var MyMongo = __rqm.system.dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
 db.query('Analytics',function(collection){
 	collection.find({}).toArray(function(err,adbItems){
-		if(err) ;
+		if(err) console.log(err);
 		else if(adbItems)
 		{
 $>
 <html>
 <head>
-<link rel="stylesheet" href="./style.css" type="text/css" />
+<link rel="stylesheet" href="./style_analytics.css" type="text/css" />
 <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-<script src="./Chart.js"></script>
+<script src="./javascripts/Chart.js"></script>
 </head>
 <body>
 
@@ -35,30 +85,39 @@ $>
 <$
 
 $>
-<div id="contentLeft">
-<div id="projectMenu" class="glowBoxBlue">
-Your IP Adress is:<br />
-<$=ip$>
+<div id="titleBox">
+<h1>Welcome to AssassinJS Analytics Page</h1>
+<h2>You Are Using <$=browser$><br />
+From <$=ip$></h2>
 </div>
 
-<div id="newFilterBox" class="boxBlue">
-<canvas id="graph" height="300" width="300"></canvas>
+<div class="duo-left boxWhite">
+<h3>Requests to the Server</h3>
+<div id="minuteGraphBox" class="">
+Requests/Minute Graph<br />
+<canvas id="minuteGraph" height="400" width="450"></canvas>
 <br />
 Key:
 <br />
-<span style="background-color:rgba(220,220,220,1)">Your Frequency</span>
-<span style="background-color:rgba(151,187,205,1)">Total Frequency</span>
+<span style="background-color:rgba(151,187,205,1)">Your Frequency</span>
+<span style="background-color:rgba(220,220,220,1)">Total Frequency</span>
+</div>
+<br /><br />
+<div id="hourGraphBox" class="">
+Requests/Hour Graph<br />
+<canvas id="hourGraph" height="400" width="450"></canvas>
+<br />
+Key:
+<br />
+<span style="background-color:rgba(151,187,205,1)">Your Frequency</span>
+<span style="background-color:rgba(220,220,220,1)">Total Frequency</span>
 </div>
 
 </div>
-<div id="contentRight">
 
-<div id="titlebox" class="glowBoxNavy">
-<p>Analytics Page</p>
-</div>
-<div id="infobox" class="boxNavy">
+<div id="infobox" class="duo-right">
 
-Route Filters<br />
+<h3>Data Dump</h3>
 
 <table id="MainTable" border="0" cellspacing="0" style="width:80%;margin:0 auto;position:relative;">
 
@@ -68,9 +127,10 @@ Route Filters<br />
 	{
 $>
 		<tr>
-		<th style="color:white;">IP Address</th>
-		<th style="color:white;">URL Route</th>
-		<th style="color:white;">Timestamp</th>
+		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">IP Address</th>
+		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">URL Route</th>
+		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">Timestamp</th>
+		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">Browser</th>
 		</tr>
 <$
 		for(x in adbItems)
@@ -81,21 +141,51 @@ $>
 				{
 					for(z in adbItems[x].logs[y].params.RequestList)
 					{
-						var date = new Date(parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp));
-						var month = date.getMonth();
-						Total[Months[month-1]]++;
-						if(adbItems[x].ip == ip)
-							Freq[Months[month-1]]++;
+						var tempdate = new Date(parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp));
+						var tempsec = new Date(tempdate.setMilliseconds(0));
+						var tempmin = new Date(tempsec.setSeconds(0));
+						var temphour = new Date(tempmin.setMinutes(0));
+						
+						var cpm = Total['Minutes'][''+tempmin.getTime()];
+						if(cpm!=undefined&&cpm!=null&&cpm!='')
+							Total['Minutes'][''+tempmin.getTime()]++;
+						else
+							Total['Minutes'][''+tempmin.getTime()]=1;
+						if(ip==adbItems[x].ip)
+						{
+							var ipcpm = Total['Minutes'][''+tempmin.getTime()];
+							if(ipcpm!=undefined&&ipcpm!=null&&ipcpm!='')
+								ipTotal['Minutes'][''+tempmin.getTime()]++;
+							else
+								ipTotal['Minutes'][''+tempmin.getTime()]=1;
+						}
+						
+						var cph = Total['Hours'][''+temphour.getTime()];
+						if(cph!=undefined&&cph!=null&&cph!='')
+							Total['Hours'][''+temphour.getTime()]++;
+						else
+							Total['Hours'][''+temphour.getTime()]=1;
+						if(ip==adbItems[x].ip)
+						{
+							var ipcph = Total['Hours'][''+temphour.getTime()];
+							if(ipcpm!=undefined&&ipcpm!=null&&ipcpm!='')
+								ipTotal['Hours'][''+temphour.getTime()]++;
+							else
+								ipTotal['Hours'][''+temphour.getTime()]=1;
+						}
 $>
 					<tr>
-						<td style="color:white;">
+						<td >
 							<$=adbItems[x].ip$>
 						</td>
 						<td>	
 							<$=adbItems[x].logs[y].url$>
 						</td>
 						<td>
-							<$=adbItems[x].logs[y].params.RequestList[z].timestamp$>
+							<$=tempdate.toLocaleTimeString()$> = <$=tempdate.getTime()$>
+						</td>
+						<td>
+							<$=adbItems[x].logs[y].params.RequestList[z].browser$>
 						</td>
 					</tr>
 <$
@@ -116,24 +206,57 @@ $>
 </div>
 <script>
 
-		var barChartData = {
-			labels : ["June","July","August"],
+		var nowDate = new Date();
+		var nowSec = new Date(nowDate.setMilliseconds(0));
+		var nowMin = new Date(nowSec.setSeconds(0));
+		var nowHour = new Date(nowMin.setMinutes(0));
+		
+		var minuteTime = nowMin;
+		var hourTime = nowHour;
+		
+		var minuteData = {
+			labels : [(new Date(minuteTime-4000*60)).toLocaleTimeString(),
+					(new Date(minuteTime-3000*60)).toLocaleTimeString(),
+					(new Date(minuteTime-2000*60)).toLocaleTimeString(),
+					(new Date(minuteTime-1000*60)).toLocaleTimeString(),
+					(new Date(minuteTime)).toLocaleTimeString()],
 			datasets : [
 				{
 					fillColor : "rgba(220,220,220,0.5)",
 					strokeColor : "rgba(220,220,220,1)",
-					data : [<$=Freq[Months[4]]$>,<$=Freq[Months[5]]$>,<$=Freq[Months[6]]$>]
+					data : [<$=Total['Minutes'][''+nowMinuteTimestamp-(4000*60)]$>,<$=Total['Minutes'][''+nowMinuteTimestamp-(3000*60)]$>,<$=Total['Minutes'][''+nowMinuteTimestamp-(2000*60)]$>,<$=Total['Minutes'][''+nowMinuteTimestamp-(1000*60)]$>,<$=Total['Minutes'][''+nowMinuteTimestamp]$>]
 				},
 				{
 					fillColor : "rgba(151,187,205,0.5)",
 					strokeColor : "rgba(151,187,205,1)",
-					data : [<$=Total[Months[4]]$>,<$=Total[Months[5]]$>,<$=Total[Months[6]]$>]
+					data : [<$=ipTotal['Minutes'][''+nowMinuteTimestamp-(4000*60)]$>,<$=ipTotal['Minutes'][''+nowMinuteTimestamp-(3000*60)]$>,<$=ipTotal['Minutes'][''+nowMinuteTimestamp-(2000*60)]$>,<$=ipTotal['Minutes'][''+nowMinuteTimestamp-(1000*60)]$>,<$=ipTotal['Minutes'][''+nowMinuteTimestamp]$>]
 				}
 			]
-			
+		};
+		
+		var hourData = {
+			labels : [(new Date(hourTime-4000*60*60)).toLocaleTimeString(),
+					(new Date(hourTime-3000*60*60)).toLocaleTimeString(),
+					(new Date(hourTime-2000*60*60)).toLocaleTimeString(),
+					(new Date(hourTime-1000*60*60)).toLocaleTimeString(),
+					(new Date(hourTime)).toLocaleTimeString()],
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					data : [<$=Total['Hours'][''+nowHourTimestamp-(4000*60*60)]$>,<$=Total['Hours'][''+nowHourTimestamp-(3000*60*60)]$>,<$=Total['Hours'][''+nowHourTimestamp-(2000*60*60)]$>,<$=Total['Hours'][''+nowHourTimestamp-(1000*60*60)]$>,<$=Total['Hours'][''+nowHourTimestamp]$>]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,1)",
+					data : [<$=ipTotal['Hours'][''+nowHourTimestamp-(4000*60*60)]$>,<$=ipTotal['Hours'][''+nowHourTimestamp-(3000*60*60)]$>,<$=ipTotal['Hours'][''+nowHourTimestamp-(2000*60*60)]$>,<$=ipTotal['Hours'][''+nowHourTimestamp-(1000*60*60)]$>,<$=ipTotal['Hours'][''+nowHourTimestamp]$>]
+				}
+				
+			]
 		};
 
-	var myLine = new Chart(document.getElementById("graph").getContext("2d")).Bar(barChartData);
+	var minuteLine = new Chart(document.getElementById("minuteGraph").getContext("2d")).Line(minuteData);
+	var hourLine = new Chart(document.getElementById("hourGraph").getContext("2d")).Line(hourData);
 	
 </script>
 </body>

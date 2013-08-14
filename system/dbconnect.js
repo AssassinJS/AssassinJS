@@ -55,19 +55,27 @@ function MyMongo(host, port, dbname) {
 				if( err)
 				{
 					console.log(err);
-					return;
+					self.db = db;
+					for (var i = 0; i < self.queue.length; i++) {
+						var collection = new mongodb.Collection(
+						                     self.db, self.queue[i].cn);
+						self.queue[i].cb(collection);
+					}
+					self.queue = [];
 				}
 				console.log(res);
 			});
 		}
-		self.db = db;
-        for (var i = 0; i < self.queue.length; i++) {
-            var collection = new mongodb.Collection(
-                                 self.db, self.queue[i].cn);
-            self.queue[i].cb(collection);
-        }
-        self.queue = [];
-
+		else
+		{
+			self.db = db;
+		    for (var i = 0; i < self.queue.length; i++) {
+		        var collection = new mongodb.Collection(
+		                             self.db, self.queue[i].cn);
+		        self.queue[i].cb(collection);
+		    }
+		    self.queue = [];
+		}
     });
 }
 exports.MyMongo = MyMongo;

@@ -55,6 +55,10 @@ function MyMongo(host, port, dbname) {
 				if( err)
 				{
 					console.log(err);
+				}
+				else
+				{
+					console.log(res);
 					self.db = db;
 					for (var i = 0; i < self.queue.length; i++) {
 						var collection = new mongodb.Collection(
@@ -63,7 +67,6 @@ function MyMongo(host, port, dbname) {
 					}
 					self.queue = [];
 				}
-				console.log(res);
 			});
 		}
 		else

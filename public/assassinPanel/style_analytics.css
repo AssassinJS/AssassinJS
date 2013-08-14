@@ -29,6 +29,7 @@ margin-top: 50px;
 width: 100%;
 text-align:center;
 position:relative;
+min-height:100%;
 }
 
 #footerWrapper
@@ -57,13 +58,18 @@ position:relative;
 
 .duo-left
 {
-	float:left;
+	//float:left;
+	display:inline-block;
 	width:480px
 }
 
 .duo-right
 {
-	margin-left:500px;
+	display: inline-block;
+	height: 1050px;
+	max-height: 1050px;
+	overflow-y: scroll;
+	min-width: 680px;
 }
 
 .glowBoxGold
@@ -199,7 +205,7 @@ font-weight:bold;
 {
 padding:10px;
 background: #fff;
-margin: 0 auto;
+margin: 0 auto 10px;
 border-radius: 5px;
 box-shadow: 0px 1px 5px 0px #555;
 }

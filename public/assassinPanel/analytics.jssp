@@ -32,8 +32,8 @@ ipTotal['Hours'] = {};
 
 var nowDate = new Date();
 var nowSec = new Date(nowDate.setMilliseconds(0));
-var nowMin = new Date(nowSec.setSeconds(0));
-var nowHour = new Date(nowMin.setMinutes(0));
+var nowMin = new Date(nowDate.setSeconds(0));
+var nowHour = new Date(nowDate.setMinutes(0));
 
 //var nowMinuteTimestamp = Math.floor(((new Date().getTime()))/60000)*60000;
 var nowMinuteTimestamp = nowMin.getTime();
@@ -143,8 +143,8 @@ $>
 					{
 						var tempdate = new Date(parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp));
 						var tempsec = new Date(tempdate.setMilliseconds(0));
-						var tempmin = new Date(tempsec.setSeconds(0));
-						var temphour = new Date(tempmin.setMinutes(0));
+						var tempmin = new Date(tempdate.setSeconds(0));
+						var temphour = new Date(tempdate.setMinutes(0));
 						
 						var cpm = Total['Minutes'][''+tempmin.getTime()];
 						if(cpm!=undefined&&cpm!=null&&cpm!='')
@@ -208,8 +208,8 @@ $>
 
 		var nowDate = new Date();
 		var nowSec = new Date(nowDate.setMilliseconds(0));
-		var nowMin = new Date(nowSec.setSeconds(0));
-		var nowHour = new Date(nowMin.setMinutes(0));
+		var nowMin = new Date(nowDate.setSeconds(0));
+		var nowHour = new Date(nowDate.setMinutes(0));
 		
 		var minuteTime = nowMin;
 		var hourTime = nowHour;

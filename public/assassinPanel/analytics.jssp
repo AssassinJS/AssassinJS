@@ -182,7 +182,9 @@ $>
 							<$=adbItems[x].logs[y].url$>
 						</td>
 						<td>
-							<$=tempdate.toLocaleTimeString()$> = <$=tempdate.getTime()$>
+							<$=(new Date(parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp)).toLocaleTimeString()$>
+							=
+							<$=parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp$>
 						</td>
 						<td>
 							<$=adbItems[x].logs[y].params.RequestList[z].browser$>

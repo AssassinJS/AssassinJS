@@ -37,6 +37,7 @@ function handleRequest(routesObj,request,response)
 {
 	//logger.write('routesobj = '+JSON.stringify(routesObj),'controller.js');
 	//console.log(JSON.stringify(controllers));
+	var defaultController = config.getConfig().defaultController;
 	if(routesObj != undefined || routesObj != null)
 	{
 		//filterStatus has to be checked instead of filterMessage to know whether to block or allow the request
@@ -47,10 +48,12 @@ function handleRequest(routesObj,request,response)
 		else
 		{ 
 			var controllerName = routesObj.target;
-			if(typeof(controllers[controllerName]) === 'function')
+			if(controllerName!=undefined && controllerName!=null && controllerName!='' && typeof(controllers[controllerName]) === 'function')
 			{
 				controllers[controllerName](request,response);
 			}
+			else if(defaultController != null || defaultController!='' || defaultController!=undefined)
+				controllers[defaultController](request,response);
 			else
 				controllers.error(request,response);
 		}
@@ -58,7 +61,6 @@ function handleRequest(routesObj,request,response)
 	else
 	{
 		//to forward to default controller from config
-		var defaultController = config.getConfig().defaultController;
 		if(defaultController != null || defaultController!='' || defaultController!=undefined)
 			controllers[defaultController](request,response);
 		else

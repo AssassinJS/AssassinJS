@@ -98,7 +98,12 @@ function process(request,response)
 	if(!isHandled)
 	{
 		logger.write('URL not found');
-		controller.handleRequest(null,request,response);
+		var routesObj = {'regexp':filepath,'target':null};
+		if(db.useDB=='true' && require('../config/generalfilters.json').length > 0 )
+		{
+			routesObj = filter.applyGeneralFilters(routesObj,request,response);
+		}
+		controller.handleRequest(routesObj,request,response);
 	}        	    
 
 }

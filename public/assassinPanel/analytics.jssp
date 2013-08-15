@@ -184,7 +184,7 @@ $>
 						<td>
 							<$=(new Date(parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp))).toLocaleTimeString()$>
 							=
-							<$=parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp$>
+							<$=adbItems[x].logs[y].params.RequestList[z].timestamp$>
 						</td>
 						<td>
 							<$=adbItems[x].logs[y].params.RequestList[z].browser$>

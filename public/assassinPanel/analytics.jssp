@@ -114,7 +114,7 @@ $>
 <div id="titleBox">
 <h1>Welcome to AssassinJS Analytics Page</h1>
 <h2>You Are Using <$=browser$><br />
-From <$=ip$></h2>
+From <$=ip.replace(/-/g,'.')$></h2>
 </div>
 
 <div class="boxWhite">
@@ -151,7 +151,7 @@ Overall Browser Usage<br />
 </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <div id="ipBrowserGraphBox" class="inline-block">
-Browser Usage from <$=ip$><br />
+Browser Usage from <$=ip.replace(/-/g,'.')$><br />
 <canvas id="ipBrowserGraph" height="300" width="300"></canvas>
 
 </div>
@@ -183,6 +183,7 @@ $>
 		<tr>
 		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">IP Address</th>
 		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">URL Route</th>
+		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">UTC Time</th>
 		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">Timestamp</th>
 		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">Browser</th>
 		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">UserAgent</th>
@@ -238,14 +239,15 @@ $>
 $>
 					<tr>
 						<td >
-							<$=adbItems[x].ip$>
+							<$=adbItems[x].ip.replace(/-/g,'.')$>
 						</td>
 						<td>	
 							<$=adbItems[x].logs[y].url$>
 						</td>
 						<td>
 							<$=(new Date(parseInt(adbItems[x].logs[y].params.RequestList[z].timestamp))).toUTCString()$>
-							=
+						</td>
+						<td>
 							<$=adbItems[x].logs[y].params.RequestList[z].timestamp$>
 						</td>
 						<td>

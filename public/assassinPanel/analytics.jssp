@@ -4,23 +4,29 @@ var ip = xfr?xfr.split(', ')[0]:__request.connection.remoteAddress;
 ip = ip.replace(/\./g,'-');
 
 var userAgent = __request.headers['user-agent'];
-	var browser ='';
-	if(userAgent.indexOf('Seamonkey')!=-1)
-		browser='Seamonkey';
-	else if(userAgent.indexOf('Firefox')!=-1)
-		browser='Firefox';
-	else if(userAgent.indexOf('Chromium')!=-1)
-		browser='Chromium';
-	else if(userAgent.indexOf('Chrome')!=-1)
-		browser='Chrome';
-	else if(userAgent.indexOf('Safari')!=-1)
-		browser='Safari';
-	else if(userAgent.indexOf('Opera')!=-1)
-		browser='Opera';
-	else if(userAgent.indexOf('MSIE')!=-1)
-		browser='MSIE';
+var browser = getBrowserFromUserAgent(userAgent);
+
+function getBrowserFromUserAgent(uA)
+{
+	var brwsr = '';
+	if(uA.indexOf('Seamonkey')!=-1)
+		brwsr='Seamonkey';
+	else if(uA.indexOf('Firefox')!=-1)
+		brwsr='Firefox';
+	else if(uA.indexOf('Chromium')!=-1)
+		brwsr='Chromium';
+	else if(uA.indexOf('Chrome')!=-1)
+		brwsr='Chrome';
+	else if(uA.indexOf('Safari')!=-1)
+		brwsr='Safari';
+	else if(uA.indexOf('Opera')!=-1)
+		brwsr='Opera';
+	else if(uA.indexOf('MSIE')!=-1)
+		brwsr='MSIE';
 	else
-		browser='Other';
+		brwsr='Other';
+	return brwsr;
+}
 
 var Total = {};
 Total['Minutes'] = {};
@@ -131,6 +137,7 @@ $>
 		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">URL Route</th>
 		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">Timestamp</th>
 		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">Browser</th>
+		<th style="color:#333; text-align: left; border-bottom: 1px solid black;">UserAgent</th>
 		</tr>
 <$
 		for(x in adbItems)
@@ -187,7 +194,10 @@ $>
 							<$=adbItems[x].logs[y].params.RequestList[z].timestamp$>
 						</td>
 						<td>
-							<$=adbItems[x].logs[y].params.RequestList[z].browser$>
+							<$=getBrowserFromUserAgent(adbItems[x].logs[y].params.RequestList[z].useragent)$>
+						</td>
+						<td>
+							<$=adbItems[x].logs[y].params.RequestList[z].useragent$>
 						</td>
 					</tr>
 <$

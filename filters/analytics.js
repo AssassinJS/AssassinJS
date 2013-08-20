@@ -34,8 +34,8 @@ function ReadFromDB()
 			Analytics = {
 			
 					/dots in ip cause an error while insertion into db/
-					{ip:192-168-2-97, logs : [{url:'GET/assassinPanel', params:{ RequestList:[{timestamp:1363691315880,browser:'chrome'},{timestamp:1363691316880,browser:'chrome'}] }},
-									{url:'GET/index.html', params:{ RequestList:[{timestamp:1363691317880,browser:'chrome'},{timestamp:1363691318880,browser:'chrome'}] }},
+					{ip:192-168-2-97, logs : [{url:'GET/assassinPanel', params:{ RequestList:[{timestamp:1363691315880,useragent:'chrome ua goes here'},{timestamp:1363691316880,useragent:'chrome ua goes here'}] }},
+									{url:'GET/index.html', params:{ RequestList:[{timestamp:1363691317880,useragent:'chrome ua goes here'},{timestamp:1363691318880,useragent:'chrome ua goes here'}] }},
 										
 										and so on..					
 								   ]}
@@ -56,6 +56,7 @@ function applyFilter(routesObj,request,response)
 	handled = false;
 	
 	var userAgent = request.headers['user-agent'];
+	/*
 	var browser ='';
 	if(userAgent.indexOf('Seamonkey')!=-1)
 		browser='Seamonkey';
@@ -73,6 +74,7 @@ function applyFilter(routesObj,request,response)
 		browser='MSIE';
 	else
 		browser='Other';
+	*/
 	
 	//logger.write('IP is : '+ip,'analytics.js');
 	//logger.write('user-agent header is '+userAgent,'analytics.js');
@@ -93,7 +95,8 @@ function applyFilter(routesObj,request,response)
 				var LatestRequestOn = new Date().getTime();
 				var toPush = {};
 				toPush.timestamp = LatestRequestOn;
-				toPush.browser = browser;
+				//toPush.browser = browser;
+				toPush.useragent = userAgent;
 				Analytics[ip][index].params.RequestList.push(toPush);
 			}								
 		}
@@ -101,7 +104,7 @@ function applyFilter(routesObj,request,response)
 		if(!handled)
 		{
 			//When an ip is accessing a specific url for the first time				
-			Analytics[ip].push({url:path,params:{ RequestList : [{timestamp:new Date().getTime(),browser:browser}]}});			
+			Analytics[ip].push({url:path,params:{ RequestList : [{timestamp:new Date().getTime(),useragent:userAgent}]}});			
 		}
 		
 		var newObj = {$set:{logs:Analytics[ip]}};
@@ -117,7 +120,7 @@ function applyFilter(routesObj,request,response)
 	{
 		//When an ip is accessing for the first time
 		Analytics[ip] = [];
-		var tempObj = {url:path,params:{ RequestList : [{timestamp:new Date().getTime(),browser:browser}] }};
+		var tempObj = {url:path,params:{ RequestList : [{timestamp:new Date().getTime(),useragent:userAgent}] }};
 		Analytics[ip].push(tempObj);
 		
 		var newObj = {ip:ip,logs:[]};

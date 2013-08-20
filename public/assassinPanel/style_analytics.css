@@ -210,3 +210,7 @@ border-radius: 5px;
 box-shadow: 0px 1px 5px 0px #555;
 }
 
+.inline-block
+{
+	display:inline-block;
+}

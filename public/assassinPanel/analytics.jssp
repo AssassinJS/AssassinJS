@@ -97,9 +97,9 @@ $>
 From <$=ip$></h2>
 </div>
 
-<div class="duo-left boxWhite">
+<div class="boxWhite">
 <h3>Requests to the Server</h3>
-<div id="minuteGraphBox" class="">
+<div id="minuteGraphBox" class="inline-block">
 Requests/Minute Graph<br />
 <canvas id="minuteGraph" height="400" width="450"></canvas>
 <br />
@@ -108,8 +108,8 @@ Key:
 <span style="background-color:rgba(151,187,205,1)">Your Frequency</span>
 <span style="background-color:rgba(220,220,220,1)">Total Frequency</span>
 </div>
-<br /><br />
-<div id="hourGraphBox" class="">
+
+<div id="hourGraphBox" class="inline-block">
 Requests/Hour Graph<br />
 <canvas id="hourGraph" height="400" width="450"></canvas>
 <br />
@@ -121,7 +121,7 @@ Key:
 
 </div>
 
-<div id="infobox" class="duo-right">
+<div id="infobox" class="">
 
 <h3>Data Dump</h3>
 

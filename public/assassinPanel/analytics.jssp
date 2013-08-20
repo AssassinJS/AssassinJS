@@ -31,10 +31,12 @@ function getBrowserFromUserAgent(uA)
 var Total = {};
 Total['Minutes'] = {};
 Total['Hours'] = {};
+Total['Browsers'] = {};
 
 var ipTotal = {};
 ipTotal['Minutes'] = {};
 ipTotal['Hours'] = {};
+ipTotal['Browsers'] = {};
 
 var nowDate = new Date();
 var nowSec = new Date(nowDate.setUTCMilliseconds(0));
@@ -66,6 +68,24 @@ ipTotal['Hours'][''+nowHourTimestamp-(3000*60*60)] = 0;
 ipTotal['Hours'][''+nowHourTimestamp-(2000*60*60)] = 0;
 ipTotal['Hours'][''+nowHourTimestamp-(1000*60*60)] = 0;
 ipTotal['Hours'][''+nowHourTimestamp] = 0;
+
+Total['Browsers']['Seamonkey'] = 0;
+Total['Browsers']['Firefox'] = 0;
+Total['Browsers']['Chromium'] = 0;
+Total['Browsers']['Chrome'] = 0;
+Total['Browsers']['Safari'] = 0;
+Total['Browsers']['Opera'] = 0;
+Total['Browsers']['MSIE'] = 0;
+Total['Browsers']['Other'] = 0;
+ipTotal['Browsers']['Seamonkey'] = 0;
+ipTotal['Browsers']['Firefox'] = 0;
+ipTotal['Browsers']['Chromium'] = 0;
+ipTotal['Browsers']['Chrome'] = 0;
+ipTotal['Browsers']['Safari'] = 0;
+ipTotal['Browsers']['Opera'] = 0;
+ipTotal['Browsers']['MSIE'] = 0;
+ipTotal['Browsers']['Other'] = 0;
+
 
 var MyMongo = __rqm.system.dbconnect.MyMongo;
 var db = new MyMongo('localhost', 27017, 'assassindb');
@@ -99,25 +119,53 @@ From <$=ip$></h2>
 
 <div class="boxWhite">
 <h3>Requests to the Server</h3>
+<p>
+	UTC Time:&nbsp;
+	<time id="current-time-UTC"></time>
+	&nbsp;&nbsp;&nbsp;
+	Your Local Time:&nbsp;
+	<time id="current-time-local"></time>
+</p>
 <div id="minuteGraphBox" class="inline-block">
 Requests/Minute Graph<br />
 <canvas id="minuteGraph" height="400" width="450"></canvas>
-<br />
-Key:
-<br />
-<span style="background-color:rgba(151,187,205,1)">Your Frequency</span>
-<span style="background-color:rgba(220,220,220,1)">Total Frequency</span>
+
 </div>
 
 <div id="hourGraphBox" class="inline-block">
 Requests/Hour Graph<br />
 <canvas id="hourGraph" height="400" width="450"></canvas>
+
+</div>
 <br />
-Key:
+Frequency Key:
 <br />
 <span style="background-color:rgba(151,187,205,1)">Your Frequency</span>
 <span style="background-color:rgba(220,220,220,1)">Total Frequency</span>
+
+<br /><br /><br />
+
+<div id="browserGraphBox" class="inline-block">
+Overall Browser Usage<br />
+<canvas id="browserGraph" height="300" width="300"></canvas>
 </div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div id="ipBrowserGraphBox" class="inline-block">
+Browser Usage from <$=ip$><br />
+<canvas id="ipBrowserGraph" height="300" width="300"></canvas>
+
+</div>
+<br />
+Browser Key:
+<br />
+<span style="background-color:lightseagreen">Seamonkey</span>&nbsp;
+<span style="background-color:orange">Firefox</span>&nbsp;
+<span style="background-color:skyblue">Chromium</span>&nbsp;
+<span style="background-color:gold">Chrome</span>&nbsp;
+<span style="background-color:yellowgreen">Safari</span>&nbsp;
+<span style="background-color:pink">Opera</span>&nbsp;
+<span style="background-color:orchid">MSIE</span>&nbsp;
+<span style="background-color:silver">Other</span>&nbsp;
 
 </div>
 
@@ -153,32 +201,39 @@ $>
 						var tempmin = new Date(tempdate.setUTCSeconds(0));
 						var temphour = new Date(tempdate.setUTCMinutes(0));
 						
+						
 						var cpm = Total['Minutes'][''+tempmin.getTime()];
 						if(cpm!=undefined&&cpm!=null&&cpm!='')
 							Total['Minutes'][''+tempmin.getTime()]++;
 						else
 							Total['Minutes'][''+tempmin.getTime()]=1;
-						if(ip==adbItems[x].ip)
-						{
-							var ipcpm = Total['Minutes'][''+tempmin.getTime()];
-							if(ipcpm!=undefined&&ipcpm!=null&&ipcpm!='')
-								ipTotal['Minutes'][''+tempmin.getTime()]++;
-							else
-								ipTotal['Minutes'][''+tempmin.getTime()]=1;
-						}
 						
 						var cph = Total['Hours'][''+temphour.getTime()];
 						if(cph!=undefined&&cph!=null&&cph!='')
 							Total['Hours'][''+temphour.getTime()]++;
 						else
 							Total['Hours'][''+temphour.getTime()]=1;
+						
+						if(Total['Browsers'][getBrowserFromUserAgent(adbItems[x].logs[y].params.RequestList[z].useragent)]!=undefined)
+							Total['Browsers'][getBrowserFromUserAgent(adbItems[x].logs[y].params.RequestList[z].useragent)]++;
+						
 						if(ip==adbItems[x].ip)
 						{
+							
+							var ipcpm = Total['Minutes'][''+tempmin.getTime()];
+							if(ipcpm!=undefined&&ipcpm!=null&&ipcpm!='')
+								ipTotal['Minutes'][''+tempmin.getTime()]++;
+							else
+								ipTotal['Minutes'][''+tempmin.getTime()]=1;
+							
 							var ipcph = Total['Hours'][''+temphour.getTime()];
 							if(ipcpm!=undefined&&ipcpm!=null&&ipcpm!='')
 								ipTotal['Hours'][''+temphour.getTime()]++;
 							else
 								ipTotal['Hours'][''+temphour.getTime()]=1;
+								
+							if(ipTotal['Browsers'][getBrowserFromUserAgent(adbItems[x].logs[y].params.RequestList[z].useragent)]!=undefined)
+								ipTotal['Browsers'][getBrowserFromUserAgent(adbItems[x].logs[y].params.RequestList[z].useragent)]++;
 						}
 $>
 					<tr>
@@ -267,8 +322,83 @@ $>
 			]
 		};
 
+		var browserData = [
+			{
+				value: <$=Total['Browsers']['Seamonkey']$>,
+				color:"lightseagreen"
+			},
+			{
+				value : <$=Total['Browsers']['Firefox']$>,
+				color : "orange"
+			},
+			{
+				value : <$=Total['Browsers']['Chromium']$>,
+				color : "skyblue"
+			},
+			{
+				value: <$=Total['Browsers']['Chrome']$>,
+				color:"gold"
+			},
+			{
+				value : <$=Total['Browsers']['Safari']$>,
+				color : "yellowgreen"
+			},
+			{
+				value : <$=Total['Browsers']['Opera']$>,
+				color : "pink"
+			},
+			{
+				value : <$=Total['Browsers']['MSIE']$>,
+				color : "orchid"
+			},
+			{
+				value : <$=Total['Browsers']['Other']$>,
+				color : "silver"
+			}			
+		];
+		
+		var ipBrowserData = [
+			{
+				value: <$=ipTotal['Browsers']['Seamonkey']$>,
+				color:"lightseagreen"
+			},
+			{
+				value : <$=ipTotal['Browsers']['Firefox']$>,
+				color : "orange"
+			},
+			{
+				value : <$=ipTotal['Browsers']['Chromium']$>,
+				color : "skyblue"
+			},
+			{
+				value: <$=ipTotal['Browsers']['Chrome']$>,
+				color:"gold"
+			},
+			{
+				value : <$=ipTotal['Browsers']['Safari']$>,
+				color : "yellowgreen"
+			},
+			{
+				value : <$=ipTotal['Browsers']['Opera']$>,
+				color : "pink"
+			},
+			{
+				value : <$=ipTotal['Browsers']['MSIE']$>,
+				color : "orchid"
+			},
+			{
+				value : <$=ipTotal['Browsers']['Other']$>,
+				color : "silver"
+			}			
+		];
+
 	var minuteLine = new Chart(document.getElementById("minuteGraph").getContext("2d")).Line(minuteData);
 	var hourLine = new Chart(document.getElementById("hourGraph").getContext("2d")).Line(hourData);
+	var browserPie = new Chart(document.getElementById("browserGraph").getContext("2d")).Pie(browserData);
+	var ipBrowserPie = new Chart(document.getElementById("ipBrowserGraph").getContext("2d")).Pie(ipBrowserData);
+	
+	document.getElementById("current-time-UTC").innerHTML=(new Date()).toLocaleTimeString("en-US",{timeZone:"UTC"});
+	document.getElementById("current-time-local").innerHTML=(new Date()).toLocaleTimeString();
 	
 </script>
 </body>

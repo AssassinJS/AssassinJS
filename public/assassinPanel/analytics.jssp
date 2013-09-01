@@ -9,22 +9,25 @@ var browser = getBrowserFromUserAgent(userAgent);
 function getBrowserFromUserAgent(uA)
 {
 	var brwsr = '';
-	if(uA.indexOf('Seamonkey')!=-1)
-		brwsr='Seamonkey';
-	else if(uA.indexOf('Firefox')!=-1)
-		brwsr='Firefox';
-	else if(uA.indexOf('Chromium')!=-1)
-		brwsr='Chromium';
-	else if(uA.indexOf('Chrome')!=-1)
-		brwsr='Chrome';
-	else if(uA.indexOf('Safari')!=-1)
-		brwsr='Safari';
-	else if(uA.indexOf('Opera')!=-1)
-		brwsr='Opera';
-	else if(uA.indexOf('MSIE')!=-1)
-		brwsr='MSIE';
-	else
-		brwsr='Other';
+	if(uA!=null || uA!= undefined)
+	{
+		if(uA.indexOf('Seamonkey')!=-1)
+			brwsr='Seamonkey';
+		else if(uA.indexOf('Firefox')!=-1)
+			brwsr='Firefox';
+		else if(uA.indexOf('Chromium')!=-1)
+			brwsr='Chromium';
+		else if(uA.indexOf('Chrome')!=-1)
+			brwsr='Chrome';
+		else if(uA.indexOf('Safari')!=-1)
+			brwsr='Safari';
+		else if(uA.indexOf('Opera')!=-1)
+			brwsr='Opera';
+		else if(uA.indexOf('MSIE')!=-1)
+			brwsr='MSIE';
+		else
+			brwsr='Other';
+	}
 	return brwsr;
 }
 

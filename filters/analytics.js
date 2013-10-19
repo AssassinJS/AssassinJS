@@ -86,7 +86,17 @@ function applyFilter(routesObj,request,response)
 	{		
 		for(index in Analytics[ip])
 		{
-			urlReg = new RegExp('^'+Analytics[ip][index].url+'$');
+			//the try catch is to prevent a vulnerabilty that crashes assassinjs
+			//when an invalid url is stored in the db
+			try
+			{
+				urlReg = new RegExp('^'+Analytics[ip][index].url+'$');
+			}
+			catch(err)
+			{
+				logger.write(err,'analytics.js');
+				urlReg = new RegExp('^$');
+			}
 		
 			if(urlReg.test(path))
 			{

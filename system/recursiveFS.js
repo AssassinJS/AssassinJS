@@ -34,7 +34,7 @@ function getFileListR(path,defaultParent,extension)//the defaultParent is remove
 		else
 		{
 			if(extension!=null && extension!=undefined && extension!='' && extension != innerPath.split('.').pop().toLowerCase())
-				break;
+				continue;
 			
 			if(defaultParent!=null && defaultParent!=undefined && defaultParent!='')
 			{

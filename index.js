@@ -9,6 +9,7 @@
 var rqm = require('./system/rqmodules');
 var assassin = rqm.system.assassin;
 var viewcompiler = rqm.system.viewcompiler;
+var lesscompiler = rqm.system.lesscompiler;
 var fileserver = rqm.controllers.fileserver;
 var assassinPanel = rqm.controllers.assassinPanel;
 var config = rqm.system.config;
@@ -18,6 +19,9 @@ config.firsttime(function(){
 
 //This function invokes the precompiler of jssp views
 viewcompiler.readJSSP(function(){
+
+//This function invokes the precompiler of jssp views
+lesscompiler.readLess(function(){
 
 //This function reads all the views in compiled_views folder
 fileserver.LoadViews(rqm,function(){
@@ -44,6 +48,7 @@ rqm.watchrqm(function(){
 //This function invokes assassin
 assassin.assassinate();
 
+});
 });
 });
 });

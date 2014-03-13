@@ -54,7 +54,7 @@ function ReadFromDB()
 	}
 }
 
-function process(request,response)
+function router(request,response)
 {
 	//logger.write('Request Headers are '+JSON.stringify(request.headers),'router.js');
 	var reqDetails = url.parse(request.url);
@@ -125,12 +125,12 @@ function route(request,response)
 			request.bodyBinary = Buffer.concat(reqbodyList);
 			//logger.write(request.body,'router.js');
 		
-			process(request,response);
+			router(request,response);
         });
     }
     else//for get requests
     {
-		process(request,response);
+		router(request,response);
 	}
 }
 

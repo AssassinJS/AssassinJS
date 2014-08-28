@@ -1,6 +1,0 @@
-GET/testfilter	test
-
-GET/assassinPanel/[a-zA-Z0-9./_]*	assassinPanel
-POST/assassinPanel/[a-zA-Z0-9./_]*	assassinPanel
-
-GET/test_assassinjs.txt	fileserver

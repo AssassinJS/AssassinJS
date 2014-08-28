@@ -1,1 +1,0 @@
-[{"regexp":"GET/testfilter","target":"test"},{"regexp":"GET/assassinPanel/[a-zA-Z0-9./_]*","target":"assassinPanel"},{"regexp":"POST/assassinPanel/[a-zA-Z0-9./_]*","target":"assassinPanel"},{"regexp":"GET/test_assassinjs.txt","target":"fileserver"}]
